@@ -1,17 +1,17 @@
 <html>
+<title>
+    my title
+</title>
 
 <head>
 <script>
+    function customMessageCreator(name) {
+        return 'Hi ' + name + ' It\'s nice to meet you. I hope ' + name + ' has a nice day!'
+    }
 
-    function triggerWithCustomMessage(inputName) {
-        var value = {name: inputName, salutation: 'Your Grace'};
-        var jsonString = (JSON.stringify(value));
-        var escapedJsonParameters = escape(jsonString);
-        var appName = 'SampleSwiftCode';
-        var actionType = 'PrintData';
-
-        var url = appName + '://' + actionType + "#" + escapedJsonParameters;
-        document.location.href = url;
+    function customMessageWithDictionary(nameDetails) {
+        var oData = JSON.parse(nameDetails);
+        return oData["name"] + " is awesome";
     }
 
     function invokeMessage() {
