@@ -33848,14 +33848,11 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             //container.appendChild(renderedCard);
         };
 
-        window.renderCard = function() {
-            if (android) {
-                var stringJson = android.getData();
+        window.renderCard = function(stringJson) {
                 console.log("Received payload:", stringJson);
                 var parsedJSON = JSON.parse(stringJson);
                 console.log("Parsed JSON: ", parsedJSON);
                 renderCard(stringJson);
-            }
         }
 
         /***/ }),
