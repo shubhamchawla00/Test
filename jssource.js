@@ -33704,14 +33704,13 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             try {
                 var json = jsonString ? JSON.parse(jsonString) : JSON.parse(aceEditor.getValue());
                 var cardTypeName = json["@type"];
-]                if (isNullOrEmpty(cardTypeName)) {
+                if (isNullOrEmpty(cardTypeName)) {
                     cardTypeName = json["type"];
                 }
                 if (isNullOrEmpty(cardTypeName)) {
                     cardTypeName = "MessageCard";
                 }
                 var renderedCard = void 0;
-
                 switch (cardTypeName) {
                     case "SwiftCard":
                     case "MessageCard":
@@ -33738,7 +33737,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 var node = document.getElementById('androidContainer');
                 node.innerHTML = '';
                 node.appendChild(renderedCard);
-                return renderedCard.innerHTML();
             }
             catch (e) {
                 document.getElementById('content').innerHTML = "Error: " + e.toString();
