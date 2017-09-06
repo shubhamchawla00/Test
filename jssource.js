@@ -33845,11 +33845,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             //container.appendChild(renderedCard);
         };
 
-        window.renderCard = function() {
-          var stringJson = "{\"@type\":\"MessageCard\",\"@context\":\"http://schema.org/extensions\",\"summary\":\"This is the summary property\",\"themeColor\":\"0075FF\",\"sections\":[{\"heroImage\":{\"image\":\"http://messagecardplayground.azurewebsites.net/assets/FlowLogo.png\"}},{\"startGroup\":true,\"title\":\"**Pending approval**\",\"activityImage\":\"http://connectorsdemo.azurewebsites.net/images/MSC12_Oscar_002.jpg\",\"activityTitle\":\"Requested by **Miguel Garcia**\",\"activitySubtitle\":\"m.garcia@contoso.com\",\"facts\":[{\"name\":\"Date submitted:\",\"value\":\"06/27/2017, 2:44 PM\"},{\"name\":\"Details:\",\"value\":\"Please approve the awesome changes I made to this fantastic document.\"},{\"name\":\"Link:\",\"value\":\"[Link to the awesome document.pptx](http://awesomedocument)\"}]},{\"potentialAction\":[{\"@type\":\"ActionCard\",\"name\":\"Approve\",\"inputs\":[{\"@type\":\"TextInput\",\"id\":\"comment\",\"isMultiline\":true,\"title\":\"Reason (optional)\"}],\"actions\":[{\"@type\":\"HttpPOST\",\"name\":\"Submit\",\"target\":\"http://...\"}]},{\"@type\":\"ActionCard\",\"name\":\"Reject\",\"inputs\":[{\"@type\":\"TextInput\",\"id\":\"comment\",\"isMultiline\":true,\"title\":\"Reason (optional)\"}],\"actions\":[{\"@type\":\"HttpPOST\",\"name\":\"Submit\",\"target\":\"http://...\"}]}]},{\"startGroup\":true,\"activitySubtitle\":\"Grant approvals directly from your mobile device with the Microsoft Flow app. [Learn more](http://learnmode)\\n\\nThis message was created by an automated workflow in Microsoft Flow. Do not reply.\"}]}";
-                console.log("Received payload:", stringJson);
-                var parsedJSON = JSON.parse(stringJson);
-                console.log("Parsed JSON: ", parsedJSON);
+        window.renderCard = function(stringJson) {
                 renderCard(stringJson);
         }
 
