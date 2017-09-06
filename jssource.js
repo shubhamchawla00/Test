@@ -33705,9 +33705,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 var json = jsonString ? JSON.parse(jsonString) : JSON.parse(aceEditor.getValue());
                 var cardTypeName = json["@type"];
                 if (isNullOrEmpty(cardTypeName)) {
-                    cardTypeName = json["type"];
-                }
-                if (isNullOrEmpty(cardTypeName)) {
                     cardTypeName = "MessageCard";
                 }
                 var renderedCard = void 0;
