@@ -33702,6 +33702,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
         }
         function renderCard(jsonString) {
             try {
+              return jsonString;
                 var json = jsonString ? JSON.parse(jsonString) : JSON.parse(aceEditor.getValue());
                 var cardTypeName = json["@type"];
                 if (isNullOrEmpty(cardTypeName)) {
@@ -33852,7 +33853,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 console.log("Received payload:", stringJson);
                 var parsedJSON = JSON.parse(stringJson);
                 console.log("Parsed JSON: ", parsedJSON);
-                renderCard(stringJson);
+              return  renderCard(stringJson);
         }
 
         /***/ }),
