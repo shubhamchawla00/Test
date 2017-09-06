@@ -33845,7 +33845,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             //container.appendChild(renderedCard);
         };
 
-        window.renderCard = function(stringJson) {
+        window.renderCards = function(stringJson) {
                 renderCard(stringJson);
         }
 
