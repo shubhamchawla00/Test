@@ -33849,8 +33849,8 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             //container.appendChild(renderedCard);
         };
 
-        window.renderCard = function() {
-          return "shubham";
+        window.renderCard = function(stringJson) {
+          return "stringJson";
                 console.log("Received payload:", stringJson);
                 var parsedJSON = JSON.parse(stringJson);
                 console.log("Parsed JSON: ", parsedJSON);
