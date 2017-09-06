@@ -33737,6 +33737,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 var node = document.getElementById('androidContainer');
                 node.innerHTML = '';
                 node.appendChild(renderedCard);
+                return renderedCard.innerHTML();
             }
             catch (e) {
                 document.getElementById('content').innerHTML = "Error: " + e.toString();
