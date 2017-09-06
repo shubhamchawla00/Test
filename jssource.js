@@ -33704,6 +33704,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             try {
                 var json = jsonString ? JSON.parse(jsonString) : JSON.parse(aceEditor.getValue());
                 var cardTypeName = json["@type"];
+                return cardTypeName;
                 if (isNullOrEmpty(cardTypeName)) {
                     cardTypeName = json["type"];
                 }
@@ -33711,7 +33712,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                     cardTypeName = "MessageCard";
                 }
                 var renderedCard = void 0;
-                return jsonString;
 
                 switch (cardTypeName) {
                     case "SwiftCard":
