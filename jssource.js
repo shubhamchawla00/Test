@@ -33846,6 +33846,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
         };
 
         window.renderCard = function(jsonString) {
+                return jsonString;
                 console.log("Received payload:", jsonString);
                 var parsedJSON = JSON.parse(jsonString);
                 console.log("Parsed JSON: ", parsedJSON);
