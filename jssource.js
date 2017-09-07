@@ -33848,20 +33848,8 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
 
           window.renderCard = function(jsonString) {
-                  return jsonString;
-                  console.log("Received payload:", jsonString);
-                  var parsedJSON = JSON.parse(jsonString);
-                  console.log("Parsed JSON: ", parsedJSON);
                   renderCard(jsonString);
           }
-
-        window.customMessageWithDictionary = function (nameDetails) {
-              var oData = JSON.parse(nameDetails);
-              var firstName = oData['firstName'];
-              var lastName = oData['lastName'];
-              return firstName + " " + lastName;
-          }
-
         /***/ }),
     /* 81 */
     /***/ (function(module, exports) {
