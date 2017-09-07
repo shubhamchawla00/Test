@@ -33844,13 +33844,8 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             var container = document.getElementById("container");
             //container.appendChild(renderedCard);
         };
-
-
-
           window.renderCard = function(stringCard) {
-
-            return stringCard;
-                renderCard("shubham");
+                renderCard(stringCard);
           }
         /***/ }),
     /* 81 */
