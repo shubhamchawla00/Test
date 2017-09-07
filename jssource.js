@@ -33845,6 +33845,9 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             //container.appendChild(renderedCard);
         };
           window.renderCards = function(stringCard) {
+               console.log("Received payload:", stringCard);
+               var parsedJSON = JSON.parse(stringCard);
+               console.log("Parsed JSON: ", stringCard);
                 renderCard(stringCard);
           }
         /***/ }),
