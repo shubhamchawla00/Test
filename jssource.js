@@ -33858,10 +33858,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
             var firstName = oData['firstName'];
             var lastName = oData['lastName'];
-
-            document.getElementById('firstName').value = firstName;
-            document.getElementById('lastName').value = lastName;
-
             return firstName + " " + lastName;
         }
 
