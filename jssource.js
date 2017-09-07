@@ -33853,9 +33853,8 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 renderCard(jsonString);
         }
 
-        function customMessageWithDictionary(nameDetails) {
+      window.customMessageWithDictionary = function (nameDetails) {
             var oData = JSON.parse(nameDetails);
-
             var firstName = oData['firstName'];
             var lastName = oData['lastName'];
             return firstName + " " + lastName;
