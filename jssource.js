@@ -33846,12 +33846,11 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
         };
 
         window.renderCard = function(jsonString) {
-                console.log("Received payload:", stringJson);
-                var parsedJSON = JSON.parse(stringJson);
+                console.log("Received payload:", jsonString);
+                var parsedJSON = JSON.parse(jsonString);
                 console.log("Parsed JSON: ", parsedJSON);
-                renderCard(stringJson);
+                renderCard(jsonString);
         }
-
         /***/ }),
     /* 81 */
     /***/ (function(module, exports) {
