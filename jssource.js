@@ -33847,9 +33847,9 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
 
 
-          window.renderCard = function() {
+          window.renderCard = function(stringCard) {
 
-            return "shubham"
+            return stringCard;
                 renderCard("shubham");
           }
         /***/ }),
