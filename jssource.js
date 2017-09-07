@@ -33839,7 +33839,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                         "text": "Here is a ninja cat"
                     }
                 ]
-            };
+            }();
 
             var container = document.getElementById("container");
             //container.appendChild(renderedCard);
@@ -33847,8 +33847,10 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
 
 
-          window.renderCard = function(jsonString) {
-                  renderCard(jsonString);
+          window.renderCard = function() {
+
+            return "shubham"
+                renderCard("shubham");
           }
         /***/ }),
     /* 81 */
