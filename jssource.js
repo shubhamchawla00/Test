@@ -33852,6 +33852,19 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 console.log("Parsed JSON: ", parsedJSON);
                 renderCard(jsonString);
         }
+
+        function customMessageWithDictionary(nameDetails) {
+            var oData = JSON.parse(nameDetails);
+
+            var firstName = oData['firstName'];
+            var lastName = oData['lastName'];
+
+            document.getElementById('firstName').value = firstName;
+            document.getElementById('lastName').value = lastName;
+
+            return firstName + " " + lastName;
+        }
+
         /***/ }),
     /* 81 */
     /***/ (function(module, exports) {
