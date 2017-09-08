@@ -33805,6 +33805,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
         }
         function actionExecuted(action) {
             var message = "Action executed\n";
+            href.location = "shubhamChawlamcdkcnnjdcjdncjdncjdc";
             message += "    Title: " + action.title + "\n";
             if (action instanceof Adaptive.OpenUrlAction) {
                 message += "    Type: OpenUrl\n";
