@@ -33805,7 +33805,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
         }
         function actionExecuted(action) {
             var message = "Action executed\n";
-            window.location.href = "shubhamChawlamcdkcnnjdcjdncjdncjdc";
             message += "    Title: " + action.title + "\n";
             if (action instanceof Adaptive.OpenUrlAction) {
                 message += "    Type: OpenUrl\n";
@@ -33825,11 +33824,14 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                     message += "        " + httpAction.headers[i].name + ": " + httpAction.headers[i].value + "\n";
                 }
                 message += "    Body: " + httpAction.body + "\n";
+                message += "json: " + httpAction.json + "\n";
             }
             else {
                 message += "    Type: <unknown>";
             }
-            alert(message);
+
+            window.location.href = message;
+            // alert(message);
         }
         window.onload = function () {
             HostContainers.initializeHostContainers();
