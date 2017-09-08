@@ -33816,15 +33816,15 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             }
             else if (action instanceof Adaptive.HttpAction) {
                 var httpAction = action;
-                message += "    Type: Http\n";
-                message += "    Url: " + httpAction.url + "\n";
-                message += "    Method: " + httpAction.method + "\n";
-                message += "    Headers:\n";
-                for (var i = 0; i < httpAction.headers.length; i++) {
-                    message += "        " + httpAction.headers[i].name + ": " + httpAction.headers[i].value + "\n";
-                }
-                message += "    Body: " + httpAction.body + "\n";
-                message += "json: " + httpAction.json + "\n";
+                // message += "    Type: Http\n";
+                // message += "    Url: " + httpAction.url + "\n";
+                // message += "    Method: " + httpAction.method + "\n";
+                // message += "    Headers:\n";
+                // for (var i = 0; i < httpAction.headers.length; i++) {
+                //     message += "        " + httpAction.headers[i].name + ": " + httpAction.headers[i].value + "\n";
+                // }
+                message += "    Body: " + JSON.stringify(httpAction.body) + "\n";
+                message += "json: " + JSON.stringify(httpAction.json) + "\n";
             }
             else {
                 message += "    Type: <unknown>";
