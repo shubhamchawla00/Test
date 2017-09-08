@@ -33825,12 +33825,16 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 }
                 message += "    Body: " + httpAction.body + "\n";
                 message += "json: " + httpAction.json + "\n";
+
+                 var url;
+                 url = action.body + "/" + JSON.stringify(action.json)
+                 window.location.href = url;
+
             }
             else {
                 message += "    Type: <unknown>";
             }
 
-            window.location.href = action.body;
             // alert(message);
         }
         window.onload = function () {
