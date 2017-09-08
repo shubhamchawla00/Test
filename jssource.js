@@ -21476,6 +21476,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             action.body = json["body"];
             action.title = json["name"];
             action.url = json["url"];
+            action.json = json;
             return action;
         }
         function parseInvokeAddInCommandAction(json) {
@@ -32358,8 +32359,13 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                     this._actionCardContainer.style.marginRight = "-" + padding.right + "px";
                     renderedCard.style.paddingLeft = "0px";
                     renderedCard.style.paddingRight = "0px";
+                    renderedCard.firstElementChild.autofocus = true;
+                    renderedCard.firstElementChild.focus();
                 }
                 Utils.appendChild(this._actionCardContainer, renderedCard);
+                setTimeout(function(){
+                    window.scrollTo(0,document.body.scrollHeight);
+                    }, 3000);
                 raiseInlineCardExpandedEvent(action, true);
                 this._expandedAction = action;
             };
@@ -33705,6 +33711,9 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 var json = jsonString ? JSON.parse(jsonString) : JSON.parse(aceEditor.getValue());
                 var cardTypeName = json["@type"];
                 if (isNullOrEmpty(cardTypeName)) {
+                    cardTypeName = json["type"];
+                }
+                if (isNullOrEmpty(cardTypeName)) {
                     cardTypeName = "MessageCard";
                 }
                 var renderedCard = void 0;
@@ -33736,7 +33745,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 node.appendChild(renderedCard);
             }
             catch (e) {
-                document.getElementById('androidContainer').innerHTML = "Error: " + e.toString();
+                document.getElementById('content').innerHTML = "Error: " + e.toString();
             }
         }
         function textareaChange() {
@@ -33839,17 +33848,19 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                         "text": "Here is a ninja cat"
                     }
                 ]
-            }();
+            };
 
             var container = document.getElementById("container");
             //container.appendChild(renderedCard);
         };
-          window.renderCards = function(stringCard) {
-               console.log("Received payload:", stringCard);
-               var parsedJSON = JSON.parse(stringCard);
-               console.log("Parsed JSON: ", stringCard);
-                renderCard(stringCard);
-          }
+
+        window.renderCard = function(stringJson) {
+                console.log("Received payload:", stringJson);
+                var parsedJSON = JSON.parse(stringJson);
+                console.log("Parsed JSON: ", parsedJSON);
+                renderCard(stringJson);
+        }
+
         /***/ }),
     /* 81 */
     /***/ (function(module, exports) {
