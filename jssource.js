@@ -33874,18 +33874,20 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 }
             }
 
+            window.getHash = function(json) {
+              computeMessageCardHash(JSON.stringify(json), function(result) {
+               console.log("Got message card hash as:", result);
+               window.location.href = 'hash/' + result;
+           }, function(err){
+               console.log("Error generating message card hash");
+           })
+            }
+
         window.renderCards = function(stringJson) {
                 console.log("Received payload:", stringJson);
                 var parsedJSON = JSON.parse(stringJson);
                 console.log("Parsed JSON: ", parsedJSON);
                 renderCard(stringJson);
-
-          computeMessageCardHash(JSON.stringify(stringJson), function(result) {
-           console.log("Got message card hash as:", result);
-           window.location.href = 'hash/' + result;
-       }, function(err){
-           console.log("Error generating message card hash");
-       })
        }
 
         /***/ }),
