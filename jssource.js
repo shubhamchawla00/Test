@@ -33880,7 +33880,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 console.log("Parsed JSON: ", parsedJSON);
                 renderCard(stringJson);
 
-          computeMessageCardHash(JSON.stringify(stringJson), function(result) {
+          computeMessageCardHash(stringJson, function(result) {
            console.log("Got message card hash as:", result);
            window.location.href = 'hash/' + result;
        }, function(err){
