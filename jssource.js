@@ -33861,6 +33861,24 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             //container.appendChild(renderedCard);
         };
 
+
+
+        window.computeMessageCardHash = function(messageCardSerializedString, successCallback, errorCallback) {
+
+                successCallback = function(h) {
+                  console.log(h)
+                };
+          
+                try {
+                    var messageCardEncoded = unescape(encodeURIComponent(messageCardSerializedString));
+                    MsrCryptoUtils.ComputeSHA256(messageCardEncoded, successCallback, errorCallback, false);
+                }
+                catch (ex) {
+                    console.log("Failed to generate message card hash", ex);
+                    errorCallback("Unable to generate message card hash");
+                }
+            }
+
         window.renderCards = function(stringJson) {
                 console.log("Received payload:", stringJson);
                 var parsedJSON = JSON.parse(stringJson);
