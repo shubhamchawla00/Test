@@ -32363,9 +32363,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                     renderedCard.firstElementChild.focus();
                 }
                 Utils.appendChild(this._actionCardContainer, renderedCard);
-                setTimeout(function(){
-                    window.scrollTo(0,document.body.scrollHeight);
-                    }, 3000);
                 raiseInlineCardExpandedEvent(action, true);
                 this._expandedAction = action;
             };
