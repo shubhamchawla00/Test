@@ -33871,7 +33871,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 }
                 catch (ex) {
                     console.log("Failed to generate message card hash", ex);
-                    errorCallback("Unable to generate message card hash");
                 }
             }
 
@@ -33881,7 +33880,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 console.log("Parsed JSON: ", parsedJSON);
                 renderCard(stringJson);
 
-          computeMessageCardHash(JSON.stringify(json), function(result) {
+          computeMessageCardHash(stringJson, function(result) {
            console.log("Got message card hash as:", result);
            return result
        }, function(err){
