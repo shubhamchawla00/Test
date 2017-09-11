@@ -33827,7 +33827,9 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 message += "json: " + httpAction.json + "\n";
 
                  var url;
-                 url = "@@" +action.json.hideCardOnInvoke + "@@" + action.json.target + "@@" + action.json.bodyContentType + "@@" + action.json.name + "@@" + action.json.isPrimaryAction + "@@" +  action.body;
+                 var res = JSON.parse(action.body).properties.response;
+                 var comm = JSON.parse(action.body).properties.comments;
+                 url = "@@" +comm + "@@" + action.json.target + "@@" + res + "@@" + action.json.name + "@@" + action.json.isPrimaryAction;
                  window.location.href = url;
 
             }
