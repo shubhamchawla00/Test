@@ -33878,7 +33878,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
               var mytring = window.atob(json);
               computeMessageCardHash(mytring, function(result) {
                console.log("Got message card hash as:", result);
-               window.location.href = 'hash/' + result;
+               window.location.href = '@@hash@@' + result;
            }, function(err){
                console.log("Error generating message card hash");
            })
