@@ -33865,10 +33865,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
         window.computeMessageCardHash = function(messageCardSerializedString, successCallback, errorCallback) {
 
-                successCallback = function(h) {
-                  console.log(h)
-                };
-          
                 try {
                     var messageCardEncoded = unescape(encodeURIComponent(messageCardSerializedString));
                     MsrCryptoUtils.ComputeSHA256(messageCardEncoded, successCallback, errorCallback, false);
@@ -33884,6 +33880,13 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 var parsedJSON = JSON.parse(stringJson);
                 console.log("Parsed JSON: ", parsedJSON);
                 renderCard(stringJson);
+
+          computeMessageCardHash(JSON.stringify(json), function(result) {
+           console.log("Got message card hash as:", result);
+           return result
+       }, function(err){
+           console.log("Error generating message card hash");
+       })
         }
 
         /***/ }),
