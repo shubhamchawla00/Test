@@ -32360,7 +32360,9 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                     renderedCard.style.paddingLeft = "0px";
                     renderedCard.style.paddingRight = "0px";
                     renderedCard.firstElementChild.autofocus = true;
-                    renderedCard.firstElementChild.focus();
+                    if(!renderedCard.firstElementChild.hasFocus) {
+                      renderedCard.firstElementChild.focus();
+                    }
                 }
                 Utils.appendChild(this._actionCardContainer, renderedCard);
                 raiseInlineCardExpandedEvent(action, true);
