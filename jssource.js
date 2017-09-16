@@ -1812,24 +1812,26 @@
                 this._processed = null;
             }
             StringWithSubstitutions.prototype.substituteInputValues = function (inputs) {
-                this._processed = this._original;
-                var regEx = /\{{2}([a-z0-9_$@]+).value\}{2}/gi;
-                var matches;
-                while ((matches = regEx.exec(this._original)) != null) {
-                    var matchedInput = null;
-                    for (var i = 0; i < inputs.length; i++) {
-                        if (inputs[i].id.toLowerCase() == matches[1].toLowerCase()) {
-                            matchedInput = inputs[i];
-                            break;
-                        }
-                    }
-                    if (matchedInput) {
-                        this._processed = this._processed.replace(matches[0], matchedInput.value ? matchedInput.value : "");
-                    }
-                }
-                ;
-                this._isProcessed = true;
-            };
+                          this._processed = this._original;
+                          var regEx = /\{{2}([a-z0-9_$@]+).value\}{2}/gi;
+                          var matches;
+                          while ((matches = regEx.exec(this._original)) != null) {
+                              var matchedInput = null;
+                              for (var i = 0; i < inputs.length; i++) {
+                                  var elem = inputs[i]._textareaElement || inputs[i]._inputElement;
+                                  var displayProperty = elem ? window.getComputedStyle(elem, null).getPropertyValue("display") : "";
+                                  if (inputs[i].id.toLowerCase() == matches[1].toLowerCase() && displayProperty != "") {
+                                      matchedInput = inputs[i];
+                                      break;
+                                  }
+                              }
+                              if (matchedInput) {
+                                  this._processed = this._processed.replace(matches[0], matchedInput.value ? matchedInput.value : "");
+                              }
+                          }
+                          ;
+                          this._isProcessed = true;
+                      };
             StringWithSubstitutions.prototype.get = function () {
                 if (!this._isProcessed) {
                     return this._original;
