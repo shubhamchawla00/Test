@@ -33885,7 +33885,8 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
            })
             }
 
-        window.renderCards = function(stringJson) {
+        window.renderCards = function(json) {
+                var stringJson = window.atob(json);
                 console.log("Received payload:", stringJson);
                 var parsedJSON = JSON.parse(stringJson);
                 console.log("Parsed JSON: ", parsedJSON);
