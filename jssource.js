@@ -33829,7 +33829,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                  var url;
                  var res = JSON.parse(action.body).properties.response;
                  var comm = JSON.parse(action.body).properties.comments;
-                 url = "@@" +comm + "@@" + action.json.target + "@@" + res + "@@" + action.json.name + "@@" + action.json.isPrimaryAction;
+                 url = "https://www.microsoft.com" + "@@" +comm + "@@" + action.json.target + "@@" + res + "@@" + action.json.name + "@@" + action.json.isPrimaryAction;
                  window.location.href = url;
 
             }
