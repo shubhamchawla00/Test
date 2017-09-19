@@ -33746,7 +33746,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 node.appendChild(renderedCard);
             }
             catch (e) {
-                document.getElementById('content').innerHTML = "Error: " + e.toString();
             }
         }
         function textareaChange() {
