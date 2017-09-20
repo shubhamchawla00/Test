@@ -33839,7 +33839,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
             // alert(message);
         }
-        window.onload = function () {
+	$( document ).ready(function() {
             HostContainers.initializeHostContainers();
             Adaptive.AdaptiveCard.actionTypeRegistry.unregisterType("Action.Submit");
             Adaptive.AdaptiveCard.actionTypeRegistry.registerType("Action.InvokeAddInCommand", function () { return new MessageCards.InvokeAddInCommandAction(); });
