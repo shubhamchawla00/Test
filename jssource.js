@@ -33839,29 +33839,30 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
             // alert(message);
         }
-        window.onload = function() {
-            HostContainers.initializeHostContainers();
-            Adaptive.AdaptiveCard.actionTypeRegistry.unregisterType("Action.Submit");
-            Adaptive.AdaptiveCard.actionTypeRegistry.registerType("Action.InvokeAddInCommand", function () { return new MessageCards.InvokeAddInCommandAction(); });
-            Adaptive.AdaptiveCard.onExecuteAction = actionExecuted;
-            var json = {
-                "type": "AdaptiveCard",
-                "version": "0.5",
-                "body": [
-                    {
-                        "type": "Image",
-                        "url": "http://adaptivecards.io/api/cat"
-                    },
-                    {
-                        "type": "TextBlock",
-                        "text": "Here is a ninja cat"
-                    }
-                ]
-            };
 
-            var container = document.getElementById("container");
-            //container.appendChild(renderedCard);
-        };
+        document.addEventListener("DOMContentLoaded", function(event) {
+          HostContainers.initializeHostContainers();
+          Adaptive.AdaptiveCard.actionTypeRegistry.unregisterType("Action.Submit");
+          Adaptive.AdaptiveCard.actionTypeRegistry.registerType("Action.InvokeAddInCommand", function () { return new MessageCards.InvokeAddInCommandAction(); });
+          Adaptive.AdaptiveCard.onExecuteAction = actionExecuted;
+          var json = {
+              "type": "AdaptiveCard",
+              "version": "0.5",
+              "body": [
+                  {
+                      "type": "Image",
+                      "url": "http://adaptivecards.io/api/cat"
+                  },
+                  {
+                      "type": "TextBlock",
+                      "text": "Here is a ninja cat"
+                  }
+              ]
+          };
+
+          var container = document.getElementById("container");
+          //container.appendChild(renderedCard);
+         });
 
 
 
