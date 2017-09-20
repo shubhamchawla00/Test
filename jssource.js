@@ -33840,7 +33840,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             // alert(message);
         }
 
-        window.onLoad = function() {
+        window.onload = function() {
             HostContainers.initializeHostContainers();
             Adaptive.AdaptiveCard.actionTypeRegistry.unregisterType("Action.Submit");
             Adaptive.AdaptiveCard.actionTypeRegistry.registerType("Action.InvokeAddInCommand", function () { return new MessageCards.InvokeAddInCommandAction(); });
@@ -33858,7 +33858,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                         "text": "Here is a ninja cat"
                     }
                 ]
-            };
+            }();
 
             var container = document.getElementById("container");
             //container.appendChild(renderedCard);
