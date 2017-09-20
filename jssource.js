@@ -33839,11 +33839,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
             // alert(message);
         }
-	$( document ).ready(function() {
-            HostContainers.initializeHostContainers();
-            Adaptive.AdaptiveCard.actionTypeRegistry.unregisterType("Action.Submit");
-            Adaptive.AdaptiveCard.actionTypeRegistry.registerType("Action.InvokeAddInCommand", function () { return new MessageCards.InvokeAddInCommandAction(); });
-            Adaptive.AdaptiveCard.onExecuteAction = actionExecuted;
+        window.onload = function() {
             var json = {
                 "type": "AdaptiveCard",
                 "version": "0.5",
@@ -33887,6 +33883,11 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
             }
 
         window.renderCards = function(json) {
+          HostContainers.initializeHostContainers();
+          Adaptive.AdaptiveCard.actionTypeRegistry.unregisterType("Action.Submit");
+          Adaptive.AdaptiveCard.actionTypeRegistry.registerType("Action.InvokeAddInCommand", function () { return new MessageCards.InvokeAddInCommandAction(); });
+          Adaptive.AdaptiveCard.onExecuteAction = actionExecuted;
+
                 var stringJson = window.atob(json);
                 console.log("Received payload:", stringJson);
                 var parsedJSON = JSON.parse(stringJson);
