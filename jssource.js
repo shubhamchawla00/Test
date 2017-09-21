@@ -33862,6 +33862,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
             var container = document.getElementById("container");
             //container.appendChild(renderedCard);
+            
             document.location.href = 'https://shubhhack.github.io/loaded'
         };
 
