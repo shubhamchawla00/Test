@@ -33862,16 +33862,8 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
 
             var container = document.getElementById("container");
             //container.appendChild(renderedCard);
-
-            alert('load');
-
         };
-
-
-        $(document).ready(function() {
-          alert('ready');
-        });
-
+        
         window.computeMessageCardHash = function(messageCardSerializedString, successCallback, errorCallback) {
 
                 try {
