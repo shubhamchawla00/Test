@@ -1,3 +1,4 @@
+window.ms_datastore = window.ms_datastore || {};
 /******/ (function(modules) { // webpackBootstrap
     /******/ 	// The module cache
     /******/ 	var installedModules = {};
@@ -33829,15 +33830,18 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                  var url;
                  var res = JSON.parse(action.body).properties.response;
                  var comm = JSON.parse(action.body).properties.comments;
-                 url = "https://shubhhack.github.io/" + "@@" +comm + "@@" + action.json.target + "@@" + res + "@@" + action.json.name + "@@" + action.json.isPrimaryAction;
+                 url = "https://shubhhack.github.io/actionexecuted"
                  window.location.href = url;
-
             }
             else {
                 message += "    Type: <unknown>";
             }
 
             // alert(message);
+        }
+
+        window.actionExecuted = function() {
+          return
         }
 
         window.onload = function() {
