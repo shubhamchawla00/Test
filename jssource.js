@@ -33830,7 +33830,8 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                  var url;
                  var res = JSON.parse(action.body).properties.response;
                  var comm = JSON.parse(action.body).properties.comments;
-                 url = "https://shubhhack.github.io/actionexecuted"
+                 window.ms_datastore.potentialAction = action.json
+                 url = "https://shubhhack.github.io/action_executed"
                  window.location.href = url;
             }
             else {
@@ -33841,7 +33842,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
         }
 
         window.actionExecuted = function() {
-          return
+          return window.ms_datastore.potentialAction
         }
 
         window.onload = function() {
@@ -33882,7 +33883,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
               var mytring = window.atob(json);
               computeMessageCardHash(mytring, function(result) {
                console.log("Got message card hash as:", result);
-               window.location.href = '@@hash@@' + result;
+               window.location.href = "https://shubhhack.github.io/" + "@@hash@@" + result;
            }, function(err){
                console.log("Error generating message card hash");
            })
