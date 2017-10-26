@@ -33828,8 +33828,6 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 message += "json: " + httpAction.json + "\n";
 
                  var url;
-                 var res = JSON.parse(action.body).properties.response;
-                 var comm = JSON.parse(action.body).properties.comments;
                  window.ms_datastore.potentialAction = action.json
                  url = "https://shubhhack.github.io/action_executed"
                  window.location.href = url;
