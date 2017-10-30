@@ -33840,7 +33840,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
         }
 
         window.actionExecuted = function() {
-          return window.ms_datastore.potentialAction
+          return window.btoa(ms_datastore.potentialAction)
         }
 
         window.onload = function() {
