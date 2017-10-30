@@ -33828,7 +33828,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 message += "json: " + httpAction.json + "\n";
 
                  var url;
-                 window.ms_datastore.potentialAction = action.json
+                 window.ms_datastore.inputparams = action.body
                  url = "https://shubhhack.github.io/action_executed"
                  window.location.href = url;
             }
@@ -33840,7 +33840,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
         }
 
         window.actionExecuted = function() {
-          return window.btoa(ms_datastore.potentialAction)
+          return window.btoa(ms_datastore.inputparams)
         }
 
         window.onload = function() {
