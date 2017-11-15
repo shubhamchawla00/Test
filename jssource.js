@@ -1,4 +1,3 @@
-window.ms_datastore = window.ms_datastore || {};
 /******/ (function(modules) { // webpackBootstrap
     /******/ 	// The module cache
     /******/ 	var installedModules = {};
@@ -33828,19 +33827,17 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
                 message += "json: " + httpAction.json + "\n";
 
                  var url;
-                 window.ms_datastore.inputparams = action.body
-                 url = "https://shubhhack.github.io/action_executed"
+                 var res = JSON.parse(action.body).properties.response;
+                 var comm = JSON.parse(action.body).properties.comments;
+                 url = "https://shubhhack.github.io/" + "@@" +comm + "@@" + action.json.target + "@@" + res + "@@" + action.json.name + "@@" + action.json.isPrimaryAction;
                  window.location.href = url;
+
             }
             else {
                 message += "    Type: <unknown>";
             }
 
             // alert(message);
-        }
-
-        window.actionExecuted = function() {
-          return window.btoa(ms_datastore.inputparams)
         }
 
         window.onload = function() {
@@ -33881,7 +33878,7 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
               var mytring = window.atob(json);
               computeMessageCardHash(mytring, function(result) {
                console.log("Got message card hash as:", result);
-               window.location.href = "https://shubhhack.github.io/" + "@@hash@@" + result;
+               window.location.href = '@@hash@@' + result;
            }, function(err){
                console.log("Error generating message card hash");
            })
