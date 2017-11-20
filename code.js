@@ -164,7 +164,7 @@ function onExecuteAction(action) {
                     "size": "small"
                 }
             ]
-        }); 
+        });
     }
     else {
         message += "    Type: <unknown>";
@@ -355,7 +355,7 @@ MessageCard.prototype.parse = function (json) {
 
     this._adaptiveCard = new AdaptiveCards.AdaptiveCard();
     this._adaptiveCard.hostConfig = new AdaptiveCards.HostConfig(this.defaultCardConfig);
-    
+
     if (json["title"] != undefined) {
         var textBlock = new AdaptiveCards.TextBlock();
         textBlock.text = json["title"];
@@ -633,4 +633,10 @@ function parseSection(json, host) {
         section.addItem(actionSet);
     }
     return section;
+}
+
+window.renderCard = function(json) {
+  var stringJson = window.atob(json);
+  cardRenderer = new AdaptiveCardMobileRender();
+  cardRenderer.render(stringJson);
 }
