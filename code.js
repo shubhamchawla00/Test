@@ -354,7 +354,7 @@ MessageCard.prototype.parse = function (json) {
     }
 
     this._adaptiveCard = new AdaptiveCards.AdaptiveCard();
-    this._adaptiveCard.hostConfig = new AdaptiveCards.HostConfig(this.defaultCardConfig);
+    this._adaptiveCard.hostConfig = this.defaultCardConfig;
 
     if (json["title"] != undefined) {
         var textBlock = new AdaptiveCards.TextBlock();
