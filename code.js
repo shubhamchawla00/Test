@@ -637,7 +637,7 @@ function parseSection(json, host) {
 
 window.renderCard = function(json) {
   var stringJson = window.atob(json);
-  cardRenderer = new AdaptiveCardMobileRender();
+  var cardRenderer = new AdaptiveCardMobileRender();
   var parsedJSON = JSON.parse(stringJson);
   cardRenderer.render(parsedJSON);
 }
