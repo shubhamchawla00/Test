@@ -216,7 +216,7 @@ function MessageCard() {
 function HostContainer() {
     this.allowCardTitle = true;
     this.allowFacts = true;
-    this.allowHeroImage = true;
+    this.allowHeroImage = false;
     this.allowImages = true;
     this.allowActionCard = true;
 }
