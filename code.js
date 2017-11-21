@@ -634,3 +634,9 @@ function parseSection(json, host) {
     }
     return section;
 }
+
+window.renderCard = function(json) {
+  var cardRenderer = new AdaptiveCardMobileRender();
+  var parsedJSON = JSON.parse(window.atob(json));
+  cardRenderer.render(parsedJSON);
+}
