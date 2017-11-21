@@ -632,6 +632,7 @@ function parseSection(json, host) {
         actionSet.actionStyle = "link";
         section.addItem(actionSet);
     }
+    console.log(section);
     return section;
 }
 
