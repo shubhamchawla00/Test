@@ -7,9 +7,9 @@ var AdaptiveCards =
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -151,7 +151,7 @@ var UNESCAPE_ALL_RE = new RegExp(UNESCAPE_MD_RE.source + '|' + ENTITY_RE.source,
 
 var DIGITAL_ENTITY_TEST_RE = /^#((?:x[a-f0-9]{1,8}|[0-9]{1,8}))/i;
 
-var entities = __webpack_require__(5);
+var entities = __webpack_require__(6);
 
 function replaceEntityPattern(match, name) {
   var code = 0;
@@ -257,7 +257,7 @@ function isWhiteSpace(code) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /*eslint-disable max-len*/
-var UNICODE_PUNCT_RE = __webpack_require__(3);
+var UNICODE_PUNCT_RE = __webpack_require__(4);
 
 // Currently without astral characters support.
 function isPunctChar(ch) {
@@ -328,7 +328,7 @@ function normalizeReference(str) {
 // bundled size (e.g. a browser build).
 //
 exports.lib                 = {};
-exports.lib.mdurl           = __webpack_require__(9);
+exports.lib.mdurl           = __webpack_require__(10);
 exports.lib.ucmicro         = __webpack_require__(72);
 
 exports.assign              = assign;
@@ -351,6 +351,122 @@ exports.normalizeReference  = normalizeReference;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Size;
+(function (Size) {
+    Size[Size["Auto"] = 0] = "Auto";
+    Size[Size["Stretch"] = 1] = "Stretch";
+    Size[Size["Small"] = 2] = "Small";
+    Size[Size["Medium"] = 3] = "Medium";
+    Size[Size["Large"] = 4] = "Large";
+})(Size = exports.Size || (exports.Size = {}));
+var TextSize;
+(function (TextSize) {
+    TextSize[TextSize["Small"] = 0] = "Small";
+    TextSize[TextSize["Default"] = 1] = "Default";
+    TextSize[TextSize["Medium"] = 2] = "Medium";
+    TextSize[TextSize["Large"] = 3] = "Large";
+    TextSize[TextSize["ExtraLarge"] = 4] = "ExtraLarge";
+})(TextSize = exports.TextSize || (exports.TextSize = {}));
+var Spacing;
+(function (Spacing) {
+    Spacing[Spacing["None"] = 0] = "None";
+    Spacing[Spacing["Small"] = 1] = "Small";
+    Spacing[Spacing["Default"] = 2] = "Default";
+    Spacing[Spacing["Medium"] = 3] = "Medium";
+    Spacing[Spacing["Large"] = 4] = "Large";
+    Spacing[Spacing["ExtraLarge"] = 5] = "ExtraLarge";
+    Spacing[Spacing["Padding"] = 6] = "Padding";
+})(Spacing = exports.Spacing || (exports.Spacing = {}));
+var Padding;
+(function (Padding) {
+    Padding[Padding["None"] = 0] = "None";
+    Padding[Padding["Default"] = 1] = "Default";
+})(Padding = exports.Padding || (exports.Padding = {}));
+var TextWeight;
+(function (TextWeight) {
+    TextWeight[TextWeight["Lighter"] = 0] = "Lighter";
+    TextWeight[TextWeight["Default"] = 1] = "Default";
+    TextWeight[TextWeight["Bolder"] = 2] = "Bolder";
+})(TextWeight = exports.TextWeight || (exports.TextWeight = {}));
+var TextColor;
+(function (TextColor) {
+    TextColor[TextColor["Default"] = 0] = "Default";
+    TextColor[TextColor["Accent"] = 1] = "Accent";
+    TextColor[TextColor["Good"] = 2] = "Good";
+    TextColor[TextColor["Warning"] = 3] = "Warning";
+    TextColor[TextColor["Attention"] = 4] = "Attention";
+})(TextColor = exports.TextColor || (exports.TextColor = {}));
+var HorizontalAlignment;
+(function (HorizontalAlignment) {
+    HorizontalAlignment[HorizontalAlignment["Left"] = 0] = "Left";
+    HorizontalAlignment[HorizontalAlignment["Center"] = 1] = "Center";
+    HorizontalAlignment[HorizontalAlignment["Right"] = 2] = "Right";
+})(HorizontalAlignment = exports.HorizontalAlignment || (exports.HorizontalAlignment = {}));
+var VerticalAlignment;
+(function (VerticalAlignment) {
+    VerticalAlignment[VerticalAlignment["Top"] = 0] = "Top";
+    VerticalAlignment[VerticalAlignment["Center"] = 1] = "Center";
+    VerticalAlignment[VerticalAlignment["Bottom"] = 2] = "Bottom";
+})(VerticalAlignment = exports.VerticalAlignment || (exports.VerticalAlignment = {}));
+var ActionAlignment;
+(function (ActionAlignment) {
+    ActionAlignment[ActionAlignment["Left"] = 0] = "Left";
+    ActionAlignment[ActionAlignment["Center"] = 1] = "Center";
+    ActionAlignment[ActionAlignment["Right"] = 2] = "Right";
+    ActionAlignment[ActionAlignment["Stretch"] = 3] = "Stretch";
+})(ActionAlignment = exports.ActionAlignment || (exports.ActionAlignment = {}));
+var ImageStyle;
+(function (ImageStyle) {
+    ImageStyle[ImageStyle["Default"] = 0] = "Default";
+    ImageStyle[ImageStyle["Person"] = 1] = "Person";
+})(ImageStyle = exports.ImageStyle || (exports.ImageStyle = {}));
+var ShowCardActionMode;
+(function (ShowCardActionMode) {
+    ShowCardActionMode[ShowCardActionMode["Inline"] = 0] = "Inline";
+    ShowCardActionMode[ShowCardActionMode["Popup"] = 1] = "Popup";
+})(ShowCardActionMode = exports.ShowCardActionMode || (exports.ShowCardActionMode = {}));
+var Orientation;
+(function (Orientation) {
+    Orientation[Orientation["Horizontal"] = 0] = "Horizontal";
+    Orientation[Orientation["Vertical"] = 1] = "Vertical";
+})(Orientation = exports.Orientation || (exports.Orientation = {}));
+var BackgroundImageMode;
+(function (BackgroundImageMode) {
+    BackgroundImageMode[BackgroundImageMode["Stretch"] = 0] = "Stretch";
+    BackgroundImageMode[BackgroundImageMode["RepeatHorizontally"] = 1] = "RepeatHorizontally";
+    BackgroundImageMode[BackgroundImageMode["RepeatVertically"] = 2] = "RepeatVertically";
+    BackgroundImageMode[BackgroundImageMode["Repeat"] = 3] = "Repeat";
+})(BackgroundImageMode = exports.BackgroundImageMode || (exports.BackgroundImageMode = {}));
+var ContainerStyle;
+(function (ContainerStyle) {
+    ContainerStyle[ContainerStyle["Default"] = 0] = "Default";
+    ContainerStyle[ContainerStyle["Emphasis"] = 1] = "Emphasis";
+})(ContainerStyle = exports.ContainerStyle || (exports.ContainerStyle = {}));
+var ValidationError;
+(function (ValidationError) {
+    ValidationError[ValidationError["Hint"] = 0] = "Hint";
+    ValidationError[ValidationError["ActionTypeNotAllowed"] = 1] = "ActionTypeNotAllowed";
+    ValidationError[ValidationError["CollectionCantBeEmpty"] = 2] = "CollectionCantBeEmpty";
+    ValidationError[ValidationError["Deprecated"] = 3] = "Deprecated";
+    ValidationError[ValidationError["ElementTypeNotAllowed"] = 4] = "ElementTypeNotAllowed";
+    ValidationError[ValidationError["InteractivityNotAllowed"] = 5] = "InteractivityNotAllowed";
+    ValidationError[ValidationError["InvalidPropertyValue"] = 6] = "InvalidPropertyValue";
+    ValidationError[ValidationError["MissingCardType"] = 7] = "MissingCardType";
+    ValidationError[ValidationError["PropertyCantBeNull"] = 8] = "PropertyCantBeNull";
+    ValidationError[ValidationError["TooManyActions"] = 9] = "TooManyActions";
+    ValidationError[ValidationError["UnknownActionType"] = 10] = "UnknownActionType";
+    ValidationError[ValidationError["UnknownElementType"] = 11] = "UnknownElementType";
+    ValidationError[ValidationError["UnsupportedCardVersion"] = 12] = "UnsupportedCardVersion";
+})(ValidationError = exports.ValidationError || (exports.ValidationError = {}));
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -709,7 +825,7 @@ module.exports = Ruler;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -913,36 +1029,385 @@ module.exports = Token;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ValidationError;
-(function (ValidationError) {
-    ValidationError[ValidationError["ActionTypeNotAllowed"] = 0] = "ActionTypeNotAllowed";
-    ValidationError[ValidationError["CollectionCantBeEmpty"] = 1] = "CollectionCantBeEmpty";
-    ValidationError[ValidationError["ElementTypeNotAllowed"] = 2] = "ElementTypeNotAllowed";
-    ValidationError[ValidationError["InteractivityNotAllowed"] = 3] = "InteractivityNotAllowed";
-    ValidationError[ValidationError["InvalidPropertyValue"] = 4] = "InvalidPropertyValue";
-    ValidationError[ValidationError["MissingCardType"] = 5] = "MissingCardType";
-    ValidationError[ValidationError["PropertyCantBeNull"] = 6] = "PropertyCantBeNull";
-    ValidationError[ValidationError["TooManyActions"] = 7] = "TooManyActions";
-    ValidationError[ValidationError["UnknownActionType"] = 8] = "UnknownActionType";
-    ValidationError[ValidationError["UnknownElementType"] = 9] = "UnknownElementType";
-    ValidationError[ValidationError["UnsupportedCardVersion"] = 10] = "UnsupportedCardVersion";
-})(ValidationError = exports.ValidationError || (exports.ValidationError = {}));
+var Enums = __webpack_require__(1);
+var Utils = __webpack_require__(11);
+var SpacingDefinition = (function () {
+    function SpacingDefinition(obj) {
+        this.left = 0;
+        this.top = 0;
+        this.right = 0;
+        this.bottom = 0;
+        if (obj) {
+            this.top = obj["top"] || this.top;
+            this.right = obj["right"] || this.right;
+            this.bottom = obj["bottom"] || this.bottom;
+            this.left = obj["left"] || this.left;
+        }
+    }
+    return SpacingDefinition;
+}());
+exports.SpacingDefinition = SpacingDefinition;
+var PaddingDefinition = (function () {
+    function PaddingDefinition(obj) {
+        this.top = Enums.Padding.None;
+        this.right = Enums.Padding.None;
+        this.bottom = Enums.Padding.None;
+        this.left = Enums.Padding.None;
+        if (obj) {
+            this.top = Utils.parseHostConfigEnum(Enums.Padding, obj["top"], Enums.Padding.None);
+            this.right = Utils.parseHostConfigEnum(Enums.Padding, obj["right"], Enums.Padding.None);
+            this.bottom = Utils.parseHostConfigEnum(Enums.Padding, obj["bottom"], Enums.Padding.None);
+            this.left = Utils.parseHostConfigEnum(Enums.Padding, obj["left"], Enums.Padding.None);
+        }
+    }
+    PaddingDefinition.prototype.toJSON = function () {
+        return {
+            top: Enums.Padding[this.top],
+            right: Enums.Padding[this.right],
+            bottom: Enums.Padding[this.bottom],
+            left: Enums.Padding[this.left],
+        };
+    };
+    return PaddingDefinition;
+}());
+exports.PaddingDefinition = PaddingDefinition;
+var TextColorDefinition = (function () {
+    function TextColorDefinition(obj) {
+        this.normal = "#0000FF";
+        this.subtle = "#222222";
+        if (obj) {
+            this.normal = obj["normal"] || this.normal;
+            this.subtle = obj["subtle"] || this.subtle;
+        }
+    }
+    return TextColorDefinition;
+}());
+exports.TextColorDefinition = TextColorDefinition;
+var ContainerStyleDefinition = (function () {
+    function ContainerStyleDefinition(obj) {
+        this.fontColors = {
+            default: new TextColorDefinition(),
+            accent: new TextColorDefinition(),
+            good: new TextColorDefinition(),
+            warning: new TextColorDefinition(),
+            attention: new TextColorDefinition()
+        };
+        if (obj) {
+            this.backgroundColor = obj["backgroundColor"];
+            this.fontColors = {
+                default: new TextColorDefinition(obj["fontColors"]["default"]),
+                accent: new TextColorDefinition(obj["fontColors"]["accent"]),
+                good: new TextColorDefinition(obj["fontColors"]["good"]),
+                warning: new TextColorDefinition(obj["fontColors"]["warning"]),
+                attention: new TextColorDefinition(obj["fontColors"]["attention"])
+            };
+        }
+    }
+    return ContainerStyleDefinition;
+}());
+exports.ContainerStyleDefinition = ContainerStyleDefinition;
+var AdaptiveCardConfig = (function () {
+    function AdaptiveCardConfig(obj) {
+        this.allowCustomStyle = false;
+        if (obj) {
+            this.allowCustomStyle = obj["allowCustomStyle"] || this.allowCustomStyle;
+        }
+    }
+    return AdaptiveCardConfig;
+}());
+exports.AdaptiveCardConfig = AdaptiveCardConfig;
+var ImageSetConfig = (function () {
+    function ImageSetConfig(obj) {
+        this.imageSize = Enums.Size.Medium;
+        this.maxImageHeight = 100;
+        if (obj) {
+            this.imageSize = obj["imageSize"] || this.imageSize;
+            this.maxImageHeight = Utils.getValueOrDefault("maxImageHeight", 100);
+        }
+    }
+    ImageSetConfig.prototype.toJSON = function () {
+        return {
+            imageSize: Enums.Size[this.imageSize],
+            maxImageHeight: this.maxImageHeight
+        };
+    };
+    return ImageSetConfig;
+}());
+exports.ImageSetConfig = ImageSetConfig;
+var FactTextDefinition = (function () {
+    function FactTextDefinition(obj) {
+        this.size = Enums.TextSize.Default;
+        this.color = Enums.TextColor.Default;
+        this.isSubtle = false;
+        this.weight = Enums.TextWeight.Default;
+        this.wrap = true;
+        if (obj) {
+            this.size = Utils.parseHostConfigEnum(Enums.TextSize, obj["size"], Enums.TextSize.Default);
+            this.color = Utils.parseHostConfigEnum(Enums.TextColor, obj["color"], Enums.TextColor.Default);
+            this.isSubtle = obj["isSubtle"] || this.isSubtle;
+            this.weight = Utils.parseHostConfigEnum(Enums.TextWeight, obj["weight"], Enums.TextWeight.Default);
+            this.wrap = obj["wrap"] || this.wrap;
+        }
+    }
+    ;
+    FactTextDefinition.prototype.toJSON = function () {
+        return {
+            size: Enums.TextSize[this.size],
+            color: Enums.TextColor[this.color],
+            isSubtle: this.isSubtle,
+            weight: Enums.TextWeight[this.weight],
+            warp: this.wrap
+        };
+    };
+    return FactTextDefinition;
+}());
+exports.FactTextDefinition = FactTextDefinition;
+var FactTitleDefinition = (function (_super) {
+    __extends(FactTitleDefinition, _super);
+    function FactTitleDefinition(obj) {
+        var _this = _super.call(this, obj) || this;
+        _this.maxWidth = 150;
+        _this.weight = Enums.TextWeight.Bolder;
+        if (obj) {
+            _this.maxWidth = obj["maxWidth"] || _this.maxWidth;
+        }
+        return _this;
+    }
+    return FactTitleDefinition;
+}(FactTextDefinition));
+exports.FactTitleDefinition = FactTitleDefinition;
+var FactSetConfig = (function () {
+    function FactSetConfig(obj) {
+        this.title = new FactTitleDefinition();
+        this.value = new FactTextDefinition();
+        this.spacing = 10;
+        if (obj) {
+            this.title = new FactTitleDefinition(obj["title"]);
+            this.value = new FactTextDefinition(obj["value"]);
+            this.spacing = obj["spacing"] || this.spacing;
+        }
+    }
+    return FactSetConfig;
+}());
+exports.FactSetConfig = FactSetConfig;
+var ShowCardActionConfig = (function () {
+    function ShowCardActionConfig(obj) {
+        this.actionMode = Enums.ShowCardActionMode.Inline;
+        this.inlineTopMargin = 16;
+        this.style = Enums.ContainerStyle.Emphasis;
+        if (obj) {
+            this.actionMode = Utils.parseHostConfigEnum(Enums.ShowCardActionMode, obj["actionMode"], Enums.ShowCardActionMode.Inline);
+            this.inlineTopMargin = obj["inlineTopMargin"] || this.inlineTopMargin;
+            this.style = Utils.parseHostConfigEnum(Enums.ContainerStyle, obj["style"], Enums.ContainerStyle.Emphasis);
+        }
+    }
+    ShowCardActionConfig.prototype.toJSON = function () {
+        return {
+            actionMode: Enums.ShowCardActionMode[this.actionMode],
+            inlineTopMargin: this.inlineTopMargin,
+            style: Enums.ContainerStyle[this.style]
+        };
+    };
+    return ShowCardActionConfig;
+}());
+exports.ShowCardActionConfig = ShowCardActionConfig;
+var ActionsConfig = (function () {
+    function ActionsConfig(obj) {
+        this.maxActions = 5;
+        this.spacing = Enums.Spacing.Default;
+        this.buttonSpacing = 20;
+        this.showCard = new ShowCardActionConfig();
+        this.preExpandSingleShowCardAction = false;
+        this.actionsOrientation = Enums.Orientation.Horizontal;
+        this.actionAlignment = Enums.ActionAlignment.Left;
+        if (obj) {
+            this.maxActions = obj["maxActions"] || this.maxActions;
+            this.spacing = Utils.parseHostConfigEnum(Enums.Spacing, obj["spacing"], Enums.Spacing.Default);
+            this.buttonSpacing = obj["buttonSpacing"] || this.buttonSpacing;
+            this.showCard = new ShowCardActionConfig(obj["showCard"]);
+            this.preExpandSingleShowCardAction = Utils.getValueOrDefault(obj["preExpandSingleShowCardAction"], false);
+            this.actionsOrientation = Utils.parseHostConfigEnum(Enums.Orientation, obj["actionsOrientation"], Enums.Orientation.Horizontal);
+            this.actionAlignment = Utils.parseHostConfigEnum(Enums.ActionAlignment, obj["actionAlignment"], Enums.ActionAlignment.Left);
+        }
+    }
+    ActionsConfig.prototype.toJSON = function () {
+        return {
+            maxActions: this.maxActions,
+            spacing: Enums.Spacing[this.spacing],
+            buttonSpacing: this.buttonSpacing,
+            showCard: this.showCard,
+            preExpandSingleShowCardAction: this.preExpandSingleShowCardAction,
+            actionsOrientation: Enums.Orientation[this.actionsOrientation],
+            actionAlignment: Enums.ActionAlignment[this.actionAlignment]
+        };
+    };
+    return ActionsConfig;
+}());
+exports.ActionsConfig = ActionsConfig;
+var ContainerStyleSet = (function () {
+    function ContainerStyleSet(obj) {
+        this.default = new ContainerStyleDefinition();
+        this.emphasis = new ContainerStyleDefinition();
+        this.emphasis.backgroundColor = "#EEEEEE";
+        if (obj) {
+            this.default = new ContainerStyleDefinition(obj["default"]);
+            this.emphasis = new ContainerStyleDefinition(obj["emphasis"]);
+        }
+    }
+    return ContainerStyleSet;
+}());
+exports.ContainerStyleSet = ContainerStyleSet;
+var HostConfig = (function () {
+    function HostConfig(obj) {
+        this.supportsInteractivity = true;
+        this.fontFamily = "Segoe UI";
+        this.fontSizes = {
+            small: 8,
+            default: 10,
+            medium: 12,
+            large: 14,
+            extraLarge: 16
+        };
+        this.fontWeights = {
+            lighter: 200,
+            default: 400,
+            bolder: 600
+        };
+        this.imageSizes = {
+            small: 40,
+            medium: 80,
+            large: 160
+        };
+        this.containerStyles = new ContainerStyleSet();
+        this.spacing = {
+            small: 3,
+            default: 8,
+            medium: 20,
+            large: 30,
+            extraLarge: 40,
+            padding: 20
+        };
+        this.separator = {
+            lineThickness: 1,
+            lineColor: "#EEEEEE"
+        };
+        this.actions = new ActionsConfig();
+        this.adaptiveCard = new AdaptiveCardConfig();
+        this.imageSet = new ImageSetConfig();
+        this.factSet = new FactSetConfig();
+        if (obj) {
+            if (typeof obj === "string" || obj instanceof String) {
+                obj = JSON.parse(obj);
+            }
+            this.supportsInteractivity = obj["supportsInteractivity"] || this.supportsInteractivity;
+            this.fontFamily = obj["fontFamily"] || this.fontFamily;
+            this.fontSizes = {
+                small: obj["fontSizes"]["small"] || this.fontSizes.small,
+                default: obj["fontSizes"]["default"] || this.fontSizes.default,
+                medium: obj["fontSizes"]["medium"] || this.fontSizes.medium,
+                large: obj["fontSizes"]["large"] || this.fontSizes.large,
+                extraLarge: obj["fontSizes"]["extraLarge"] || this.fontSizes.extraLarge
+            };
+            this.fontWeights = {
+                lighter: obj["fontWeights"]["lighter"] || this.fontWeights.lighter,
+                default: obj["fontWeights"]["default"] || this.fontWeights.default,
+                bolder: obj["fontWeights"]["bolder"] || this.fontWeights.bolder
+            };
+            this.imageSizes = {
+                small: obj["imageSizes"]["small"] || this.imageSizes.small,
+                medium: obj["imageSizes"]["medium"] || this.imageSizes.medium,
+                large: obj["imageSizes"]["large"] || this.imageSizes.large,
+            };
+            this.containerStyles = new ContainerStyleSet(obj["containerStyles"]);
+            this.spacing = {
+                small: obj["spacing"]["small"] || this.spacing.small,
+                default: obj["spacing"]["default"] || this.spacing.default,
+                medium: obj["spacing"]["medium"] || this.spacing.medium,
+                large: obj["spacing"]["large"] || this.spacing.large,
+                extraLarge: obj["spacing"]["extraLarge"] || this.spacing.extraLarge,
+                padding: obj["spacing"]["padding"] || this.spacing.padding
+            };
+            this.separator = {
+                lineThickness: obj["separator"]["lineThickness"] || this.separator.lineThickness,
+                lineColor: obj["separator"]["lineColor"] || this.separator.lineColor
+            };
+            this.actions = new ActionsConfig(obj["actions"]);
+            this.adaptiveCard = new AdaptiveCardConfig(obj["adaptiveCard"]);
+            this.imageSet = new ImageSetConfig(obj["imageSet"]);
+            this.factSet = new FactSetConfig(obj["factSet"]);
+        }
+    }
+    HostConfig.prototype.getEffectiveSpacing = function (spacing) {
+        switch (spacing) {
+            case Enums.Spacing.Small:
+                return this.spacing.small;
+            case Enums.Spacing.Default:
+                return this.spacing.default;
+            case Enums.Spacing.Medium:
+                return this.spacing.medium;
+            case Enums.Spacing.Large:
+                return this.spacing.large;
+            case Enums.Spacing.ExtraLarge:
+                return this.spacing.extraLarge;
+            case Enums.Spacing.Padding:
+                return this.spacing.padding;
+            default:
+                return 0;
+        }
+    };
+    HostConfig.prototype.getEffectivePadding = function (padding) {
+        switch (padding) {
+            case Enums.Padding.Default:
+                return this.spacing.padding;
+            default:
+                return 0;
+        }
+    };
+    HostConfig.prototype.paddingToSpacingDefinition = function (padding) {
+        return new SpacingDefinition({
+            top: this.getEffectivePadding(padding.top),
+            right: this.getEffectivePadding(padding.right),
+            bottom: this.getEffectivePadding(padding.bottom),
+            left: this.getEffectivePadding(padding.left)
+        });
+    };
+    HostConfig.prototype.getContainerStyleDefinition = function (containerStyle) {
+        switch (containerStyle) {
+            case Enums.ContainerStyle.Emphasis:
+                return this.containerStyles.emphasis;
+            default:
+                return this.containerStyles.default;
+        }
+    };
+    return HostConfig;
+}());
+exports.HostConfig = HostConfig;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -955,7 +1420,7 @@ module.exports = __webpack_require__(16);
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -990,7 +1455,7 @@ module.exports.HTML_OPEN_CLOSE_TAG_RE = HTML_OPEN_CLOSE_TAG_RE;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1124,7 +1589,7 @@ module.exports.postProcess = function emphasis(state) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1248,7 +1713,7 @@ module.exports.postProcess = function strikethrough(state) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1262,12 +1727,13 @@ module.exports.parse  = __webpack_require__(67);
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var Enums = __webpack_require__(1);
 var markdownIt = __webpack_require__(19);
 var markdownProcessor = new markdownIt();
 function processMarkdown(text) {
@@ -1288,35 +1754,71 @@ function appendChild(node, child) {
     }
 }
 exports.appendChild = appendChild;
-function renderSeparation(separationDefinition, orientation) {
-    var separator = document.createElement("div");
-    if (orientation == "vertical") {
-        if (separationDefinition.lineThickness) {
-            separator.style.marginTop = (separationDefinition.spacing / 2) + "px";
-            separator.style.paddingTop = (separationDefinition.spacing / 2) + "px";
-            separator.style.borderTop = separationDefinition.lineThickness + "px solid " + stringToCssColor(separationDefinition.lineColor);
+function getEnumValueOrDefault(targetEnum, name, defaultValue) {
+    if (isNullOrEmpty(name)) {
+        return defaultValue;
+    }
+    for (var key in targetEnum) {
+        var isValueProperty = parseInt(key, 10) >= 0;
+        if (isValueProperty) {
+            var value = targetEnum[key];
+            if (value && typeof value === "string") {
+                if (value.toLowerCase() === name.toLowerCase()) {
+                    return parseInt(key, 10);
+                }
+            }
         }
-        else {
-            separator.style.height = separationDefinition.spacing + "px";
-        }
+    }
+    return defaultValue;
+}
+exports.getEnumValueOrDefault = getEnumValueOrDefault;
+function parseHostConfigEnum(targetEnum, value, defaultValue) {
+    if (typeof value === "string") {
+        return getEnumValueOrDefault(targetEnum, value, defaultValue);
+    }
+    else if (typeof value === "number") {
+        return getValueOrDefault(value, defaultValue);
     }
     else {
-        if (separationDefinition.lineThickness) {
-            separator.style.marginLeft = (separationDefinition.spacing / 2) + "px";
-            separator.style.paddingLeft = (separationDefinition.spacing / 2) + "px";
-            separator.style.borderLeft = separationDefinition.lineThickness + "px solid " + stringToCssColor(separationDefinition.lineColor);
+        return defaultValue;
+    }
+}
+exports.parseHostConfigEnum = parseHostConfigEnum;
+function renderSeparation(separationDefinition, orientation) {
+    if (separationDefinition.spacing > 0 || separationDefinition.lineThickness > 0) {
+        var separator = document.createElement("div");
+        if (orientation == Enums.Orientation.Horizontal) {
+            if (separationDefinition.lineThickness) {
+                separator.style.marginTop = (separationDefinition.spacing / 2) + "px";
+                separator.style.paddingTop = (separationDefinition.spacing / 2) + "px";
+                separator.style.borderTop = separationDefinition.lineThickness + "px solid " + stringToCssColor(separationDefinition.lineColor);
+            }
+            else {
+                separator.style.height = separationDefinition.spacing + "px";
+            }
         }
         else {
-            separator.style.width = separationDefinition.spacing + "px";
+            if (separationDefinition.lineThickness) {
+                separator.style.marginLeft = (separationDefinition.spacing / 2) + "px";
+                separator.style.paddingLeft = (separationDefinition.spacing / 2) + "px";
+                separator.style.borderLeft = separationDefinition.lineThickness + "px solid " + stringToCssColor(separationDefinition.lineColor);
+            }
+            else {
+                separator.style.width = separationDefinition.spacing + "px";
+            }
         }
+        separator.style.overflow = "hidden";
+        return separator;
     }
-    return separator;
+    else {
+        return null;
+    }
 }
 exports.renderSeparation = renderSeparation;
 function stringToCssColor(color) {
     var regEx = /#([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})?/gi;
     var matches = regEx.exec(color);
-    if (matches[4]) {
+    if (matches && matches[4]) {
         var a = parseInt(matches[1], 16) / 255;
         var r = parseInt(matches[2], 16);
         var g = parseInt(matches[3], 16);
@@ -1371,25 +1873,25 @@ exports.StringWithSubstitutions = StringWithSubstitutions;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports=/[\0-\x1F\x7F-\x9F]/
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1405,13 +1907,21 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Enums = __webpack_require__(4);
-var Utils = __webpack_require__(10);
+var Enums = __webpack_require__(1);
+var Utils = __webpack_require__(11);
+var HostConfig = __webpack_require__(5);
 var TextFormatters = __webpack_require__(70);
 function invokeSetParent(obj, parent) {
-    // This is not super pretty, but it the closest emulation of
-    // "internal" in TypeScript.
-    obj["setParent"](parent);
+    if (obj) {
+        // Closest emulation of "internal" in TypeScript.
+        obj["setParent"](parent);
+    }
+}
+function invokeSetCollection(action, collection) {
+    if (action) {
+        // Closest emulation of "internal" in TypeScript.
+        action["setCollection"](collection);
+    }
 }
 function isActionAllowed(action, forbiddenActionTypes) {
     if (forbiddenActionTypes) {
@@ -1423,49 +1933,80 @@ function isActionAllowed(action, forbiddenActionTypes) {
     }
     return true;
 }
-function isElementAllowed(element, forbiddenElementTypes) {
-    if (!hostConfig.supportsInteractivity && element.isInteractive) {
-        return false;
+function createActionInstance(json) {
+    var actionType = json["type"];
+    var result = AdaptiveCard.actionTypeRegistry.createInstance(actionType);
+    if (result) {
+        result.parse(json);
     }
-    if (forbiddenElementTypes) {
-        for (var i = 0; i < forbiddenElementTypes.length; i++) {
-            if (element.getJsonTypeName() === forbiddenElementTypes[i]) {
-                return false;
-            }
-        }
+    else {
+        raiseParseError({
+            error: Enums.ValidationError.UnknownActionType,
+            message: "Unknown action type: " + actionType
+        });
     }
-    return true;
+    return result;
 }
 var CardElement = (function () {
     function CardElement() {
+        this._internalPadding = null;
         this._parent = null;
-        this.horizontalAlignment = "left";
+        this._isVisibile = true;
+        this._renderedElement = null;
+        this._separatorElement = null;
+        this.horizontalAlignment = null;
+        this.spacing = Enums.Spacing.Default;
+        this.separator = false;
+        this.height = "auto";
     }
-    CardElement.prototype.internalGetNonZeroPadding = function (element, padding) {
-        if (padding.top == 0) {
-            padding.top = element.padding.top;
+    CardElement.prototype.internalRenderSeparator = function () {
+        return Utils.renderSeparation({
+            spacing: this.hostConfig.getEffectiveSpacing(this.spacing),
+            lineThickness: this.separator ? this.hostConfig.separator.lineThickness : null,
+            lineColor: this.separator ? this.hostConfig.separator.lineColor : null
+        }, this.separatorOrientation);
+    };
+    CardElement.prototype.updateRenderedElementVisibility = function () {
+        if (this._renderedElement) {
+            this._renderedElement.style.visibility = this._isVisibile ? null : "collapse";
         }
-        if (padding.right == 0) {
-            padding.right = element.padding.right;
+        if (this._separatorElement) {
+            this._separatorElement.style.visibility = this._isVisibile ? null : "collapse";
         }
-        if (padding.bottom == 0) {
-            padding.bottom = element.padding.bottom;
+    };
+    CardElement.prototype.internalGetNonZeroPadding = function (padding) {
+        if (padding.top == Enums.Padding.None) {
+            padding.top = this.internalPadding.top;
         }
-        if (padding.left == 0) {
-            padding.left = element.padding.left;
+        if (padding.right == Enums.Padding.None) {
+            padding.right = this.internalPadding.right;
         }
-        if (element.parent) {
-            this.internalGetNonZeroPadding(element.parent, padding);
+        if (padding.bottom == Enums.Padding.None) {
+            padding.bottom = this.internalPadding.bottom;
+        }
+        if (padding.left == Enums.Padding.None) {
+            padding.left = this.internalPadding.left;
+        }
+        if (this.parent) {
+            this.parent.internalGetNonZeroPadding(padding);
+        }
+    };
+    CardElement.prototype.adjustRenderedElementSize = function (renderedElement) {
+        if (this.height === "auto") {
+            renderedElement.style.flex = "0 0 auto";
+        }
+        else {
+            renderedElement.style.flex = "1 1 100%";
         }
     };
     CardElement.prototype.showBottomSpacer = function (requestingElement) {
         if (this.parent) {
-            this.parent.showBottomSpacer(this);
+            this.parent.showBottomSpacer(requestingElement);
         }
     };
     CardElement.prototype.hideBottomSpacer = function (requestingElement) {
         if (this.parent) {
-            this.parent.hideBottomSpacer(this);
+            this.parent.hideBottomSpacer(requestingElement);
         }
     };
     CardElement.prototype.setParent = function (value) {
@@ -1478,16 +2019,50 @@ var CardElement = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CardElement.prototype, "padding", {
+    Object.defineProperty(CardElement.prototype, "allowCustomPadding", {
         get: function () {
-            return { top: 0, right: 0, bottom: 0, left: 0 };
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CardElement.prototype, "defaultPadding", {
+        get: function () {
+            return new HostConfig.PaddingDefinition({
+                top: Enums.Padding.None,
+                right: Enums.Padding.None,
+                bottom: Enums.Padding.None,
+                left: Enums.Padding.None
+            });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CardElement.prototype, "internalPadding", {
+        get: function () {
+            return (this._internalPadding && this.allowCustomPadding) ? this._internalPadding : this.defaultPadding;
+        },
+        set: function (value) {
+            this._internalPadding = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CardElement.prototype, "separatorOrientation", {
+        get: function () {
+            return Enums.Orientation.Horizontal;
         },
         enumerable: true,
         configurable: true
     });
     CardElement.prototype.getNonZeroPadding = function () {
-        var padding = { top: 0, right: 0, bottom: 0, left: 0 };
-        this.internalGetNonZeroPadding(this, padding);
+        var padding = new HostConfig.PaddingDefinition({
+            top: Enums.Padding.None,
+            right: Enums.Padding.None,
+            bottom: Enums.Padding.None,
+            left: Enums.Padding.None
+        });
+        this.internalGetNonZeroPadding(padding);
         return padding;
     };
     CardElement.prototype.getForbiddenElementTypes = function () {
@@ -1497,22 +2072,80 @@ var CardElement = (function () {
         return null;
     };
     CardElement.prototype.parse = function (json) {
+        raiseParseElementEvent(this, json);
+        this.id = json["id"];
         this.speak = json["speak"];
-        this.horizontalAlignment = Utils.getValueOrDefault(json["horizontalAlignment"], "left");
-        this.separation = Utils.getValueOrDefault(json["separation"], "default");
+        this.horizontalAlignment = Utils.getEnumValueOrDefault(Enums.HorizontalAlignment, json["horizontalAlignment"], null);
+        this.spacing = Utils.getEnumValueOrDefault(Enums.Spacing, json["spacing"], Enums.Spacing.Default);
+        this.separator = json["separator"];
+        var jsonSeparation = json["separation"];
+        if (jsonSeparation !== undefined) {
+            if (jsonSeparation === "none") {
+                this.spacing = Enums.Spacing.None;
+                this.separator = false;
+            }
+            else if (jsonSeparation === "strong") {
+                this.spacing = Enums.Spacing.Large;
+                this.separator = true;
+            }
+            else if (jsonSeparation === "default") {
+                this.spacing = Enums.Spacing.Default;
+                this.separator = false;
+            }
+            raiseParseError({
+                error: Enums.ValidationError.Deprecated,
+                message: "The \"separation\" property is deprecated and will be removed. Use the \"spacing\" and \"separator\" properties instead."
+            });
+        }
+        var jsonHeight = json["height"];
+        if (jsonHeight === "auto" || jsonHeight === "stretch") {
+            this.height = jsonHeight;
+        }
     };
     CardElement.prototype.validate = function () {
         return [];
     };
     CardElement.prototype.render = function () {
-        var renderedElement = this.internalRender();
-        if (renderedElement != null) {
-            renderedElement.style.boxSizing = "border-box";
+        this._renderedElement = this.internalRender();
+        this._separatorElement = this.internalRenderSeparator();
+        if (this._renderedElement) {
+            this._renderedElement.style.boxSizing = "border-box";
+            this.adjustRenderedElementSize(this._renderedElement);
+            this.updateLayout(false);
+            this.updateRenderedElementVisibility();
         }
-        return renderedElement;
+        return this._renderedElement;
     };
-    CardElement.prototype.isLastItem = function (item) {
-        return this.parent ? this.parent.isLastItem(item) : true;
+    CardElement.prototype.updateLayout = function (processChildren) {
+        if (processChildren === void 0) { processChildren = true; }
+        // Does nothing in base implementation
+    };
+    CardElement.prototype.isAtTheVeryTop = function () {
+        return this.parent ? this.parent.isFirstElement(this) && this.parent.isAtTheVeryTop() : true;
+    };
+    CardElement.prototype.isFirstElement = function (element) {
+        return true;
+    };
+    CardElement.prototype.isAtTheVeryBottom = function () {
+        return this.parent ? this.parent.isLastElement(this) && this.parent.isAtTheVeryBottom() : true;
+    };
+    CardElement.prototype.isLastElement = function (element) {
+        return true;
+    };
+    CardElement.prototype.isAtTheVeryLeft = function () {
+        return this.parent ? this.parent.isLeftMostElement(this) && this.parent.isAtTheVeryLeft() : true;
+    };
+    CardElement.prototype.isLeftMostElement = function (element) {
+        return true;
+    };
+    CardElement.prototype.isAtTheVeryRight = function () {
+        return this.parent ? this.parent.isRightMostElement(this) && this.parent.isAtTheVeryRight() : true;
+    };
+    CardElement.prototype.isRightMostElement = function (element) {
+        return true;
+    };
+    CardElement.prototype.canContentBleed = function () {
+        return this.parent ? this.parent.canContentBleed() : true;
     };
     CardElement.prototype.getRootElement = function () {
         var rootElement = this;
@@ -1521,9 +2154,39 @@ var CardElement = (function () {
         }
         return rootElement;
     };
+    CardElement.prototype.getParentContainer = function () {
+        var currentElement = this.parent;
+        while (currentElement) {
+            if (currentElement instanceof Container) {
+                return currentElement;
+            }
+            currentElement = currentElement.parent;
+        }
+        return null;
+    };
     CardElement.prototype.getAllInputs = function () {
         return [];
     };
+    CardElement.prototype.getElementById = function (id) {
+        return this.id === id ? this : null;
+    };
+    CardElement.prototype.getActionById = function (id) {
+        return null;
+    };
+    Object.defineProperty(CardElement.prototype, "hostConfig", {
+        get: function () {
+            if (!this._hostConfig) {
+                var result = this.parent.hostConfig;
+                this._hostConfig = result ? result : defaultHostConfig;
+            }
+            return this._hostConfig;
+        },
+        set: function (value) {
+            this._hostConfig = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(CardElement.prototype, "isInteractive", {
         get: function () {
             return false;
@@ -1545,6 +2208,36 @@ var CardElement = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(CardElement.prototype, "isVisible", {
+        get: function () {
+            return this._isVisibile;
+        },
+        set: function (value) {
+            if (this._isVisibile != value) {
+                this._isVisibile = value;
+                this.updateRenderedElementVisibility();
+                if (this._renderedElement) {
+                    raiseElementVisibilityChangedEvent(this);
+                }
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CardElement.prototype, "renderedElement", {
+        get: function () {
+            return this._renderedElement;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CardElement.prototype, "separatorElement", {
+        get: function () {
+            return this._separatorElement;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return CardElement;
 }());
 exports.CardElement = CardElement;
@@ -1552,8 +2245,9 @@ var TextBlock = (function (_super) {
     __extends(TextBlock, _super);
     function TextBlock() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.size = "normal";
-        _this.weight = "normal";
+        _this.size = Enums.TextSize.Default;
+        _this.weight = Enums.TextWeight.Default;
+        _this.color = Enums.TextColor.Default;
         _this.isSubtle = false;
         _this.wrap = false;
         return _this;
@@ -1561,14 +2255,15 @@ var TextBlock = (function (_super) {
     TextBlock.prototype.internalRender = function () {
         if (!Utils.isNullOrEmpty(this.text)) {
             var element = document.createElement("div");
-            if (hostConfig.fontFamily) {
-                element.style.fontFamily = hostConfig.fontFamily;
+            element.style.overflow = "hidden";
+            if (this.hostConfig.fontFamily) {
+                element.style.fontFamily = this.hostConfig.fontFamily;
             }
             switch (this.horizontalAlignment) {
-                case "center":
+                case Enums.HorizontalAlignment.Center:
                     element.style.textAlign = "center";
                     break;
-                case "right":
+                case Enums.HorizontalAlignment.Right:
                     element.style.textAlign = "right";
                     break;
                 default:
@@ -1578,20 +2273,20 @@ var TextBlock = (function (_super) {
             var cssStyle = "text ";
             var fontSize;
             switch (this.size) {
-                case "small":
-                    fontSize = hostConfig.fontSizes.small;
+                case Enums.TextSize.Small:
+                    fontSize = this.hostConfig.fontSizes.small;
                     break;
-                case "medium":
-                    fontSize = hostConfig.fontSizes.medium;
+                case Enums.TextSize.Medium:
+                    fontSize = this.hostConfig.fontSizes.medium;
                     break;
-                case "large":
-                    fontSize = hostConfig.fontSizes.large;
+                case Enums.TextSize.Large:
+                    fontSize = this.hostConfig.fontSizes.large;
                     break;
-                case "extraLarge":
-                    fontSize = hostConfig.fontSizes.extraLarge;
+                case Enums.TextSize.ExtraLarge:
+                    fontSize = this.hostConfig.fontSizes.extraLarge;
                     break;
                 default:
-                    fontSize = hostConfig.fontSizes.normal;
+                    fontSize = this.hostConfig.fontSizes.default;
                     break;
             }
             // Looks like 1.33 is the magic number to compute line-height
@@ -1599,42 +2294,38 @@ var TextBlock = (function (_super) {
             var computedLineHeight = fontSize * 1.33;
             element.style.fontSize = fontSize + "px";
             element.style.lineHeight = computedLineHeight + "px";
-            var actualTextColor = this.color ? this.color : hostConfig.textBlock.color;
+            var parentContainer = this.getParentContainer();
+            var styleDefinition = this.hostConfig.getContainerStyleDefinition(parentContainer ? parentContainer.style : Enums.ContainerStyle.Default);
+            var actualTextColor = this.color ? this.color : Enums.TextColor.Default;
             var colorDefinition;
             switch (actualTextColor) {
-                case "dark":
-                    colorDefinition = hostConfig.colors.dark;
+                case Enums.TextColor.Accent:
+                    colorDefinition = styleDefinition.fontColors.accent;
                     break;
-                case "light":
-                    colorDefinition = hostConfig.colors.light;
+                case Enums.TextColor.Good:
+                    colorDefinition = styleDefinition.fontColors.good;
                     break;
-                case "accent":
-                    colorDefinition = hostConfig.colors.accent;
+                case Enums.TextColor.Warning:
+                    colorDefinition = styleDefinition.fontColors.warning;
                     break;
-                case "good":
-                    colorDefinition = hostConfig.colors.good;
-                    break;
-                case "warning":
-                    colorDefinition = hostConfig.colors.warning;
-                    break;
-                case "attention":
-                    colorDefinition = hostConfig.colors.attention;
+                case Enums.TextColor.Attention:
+                    colorDefinition = styleDefinition.fontColors.attention;
                     break;
                 default:
-                    colorDefinition = hostConfig.colors.dark;
+                    colorDefinition = styleDefinition.fontColors.default;
                     break;
             }
             element.style.color = Utils.stringToCssColor(this.isSubtle ? colorDefinition.subtle : colorDefinition.normal);
             var fontWeight;
             switch (this.weight) {
-                case "lighter":
-                    fontWeight = hostConfig.fontWeights.lighter;
+                case Enums.TextWeight.Lighter:
+                    fontWeight = this.hostConfig.fontWeights.lighter;
                     break;
-                case "bolder":
-                    fontWeight = hostConfig.fontWeights.bolder;
+                case Enums.TextWeight.Bolder:
+                    fontWeight = this.hostConfig.fontWeights.bolder;
                     break;
                 default:
-                    fontWeight = hostConfig.fontWeights.normal;
+                    fontWeight = this.hostConfig.fontWeights.default;
                     break;
             }
             element.style.fontWeight = fontWeight.toString();
@@ -1654,7 +2345,14 @@ var TextBlock = (function (_super) {
             }
             var anchors = element.getElementsByTagName("a");
             for (var i = 0; i < anchors.length; i++) {
-                anchors[i].target = "_blank";
+                var anchor = anchors[i];
+                anchor.classList.add("ac-anchor");
+                anchor.target = "_blank";
+                anchor.onclick = function (e) {
+                    if (raiseAnchorClickedEvent(anchor)) {
+                        e.preventDefault();
+                    }
+                };
             }
             if (this.wrap) {
                 element.style.wordWrap = "break-word";
@@ -1675,29 +2373,35 @@ var TextBlock = (function (_super) {
     TextBlock.prototype.parse = function (json) {
         _super.prototype.parse.call(this, json);
         this.text = json["text"];
-        this.size = Utils.getValueOrDefault(json["size"], "normal");
-        this.weight = Utils.getValueOrDefault(json["weight"], "normal");
-        this.color = Utils.getValueOrDefault(json["color"], hostConfig.textBlock.color);
+        var sizeString = json["size"];
+        if (sizeString && typeof sizeString === "string" && sizeString.toLowerCase() === "normal") {
+            this.size = Enums.TextSize.Default;
+            raiseParseError({
+                error: Enums.ValidationError.Deprecated,
+                message: "The TextBlock.size value \"normal\" is deprecated and will be removed. Use \"default\" instead."
+            });
+        }
+        else {
+            this.size = Utils.getEnumValueOrDefault(Enums.TextSize, sizeString, this.size);
+        }
+        var weightString = json["weight"];
+        if (weightString && typeof weightString === "string" && weightString.toLowerCase() === "normal") {
+            this.weight = Enums.TextWeight.Default;
+            raiseParseError({
+                error: Enums.ValidationError.Deprecated,
+                message: "The TextBlock.weight value \"normal\" is deprecated and will be removed. Use \"default\" instead."
+            });
+        }
+        else {
+            this.weight = Utils.getEnumValueOrDefault(Enums.TextWeight, weightString, this.weight);
+        }
+        this.color = Utils.getEnumValueOrDefault(Enums.TextColor, json["color"], this.color);
         this.isSubtle = json["isSubtle"];
         this.wrap = json["wrap"] === undefined ? false : json["wrap"];
         this.maxLines = json["maxLines"];
     };
     TextBlock.prototype.getJsonTypeName = function () {
         return "TextBlock";
-    };
-    TextBlock.prototype.getDefaultSeparationDefinition = function () {
-        switch (this.size) {
-            case "small":
-                return hostConfig.textBlock.separations.small;
-            case "medium":
-                return hostConfig.textBlock.separations.medium;
-            case "large":
-                return hostConfig.textBlock.separations.large;
-            case "extraLarge":
-                return hostConfig.textBlock.separations.extraLarge;
-            default:
-                return hostConfig.textBlock.separations.normal;
-        }
     };
     TextBlock.prototype.renderSpeech = function () {
         if (this.speak != null)
@@ -1748,35 +2452,37 @@ var FactSet = (function (_super) {
             for (var i = 0; i < this.facts.length; i++) {
                 var trElement = document.createElement("tr");
                 if (i > 0) {
-                    trElement.style.marginTop = hostConfig.factSet.spacing + "px";
+                    trElement.style.marginTop = this.hostConfig.factSet.spacing + "px";
                 }
                 var tdElement = document.createElement("td");
                 tdElement.style.padding = "0";
-                if (hostConfig.factSet.title.maxWidth) {
-                    tdElement.style.maxWidth = hostConfig.factSet.title.maxWidth + "px";
+                if (this.hostConfig.factSet.title.maxWidth) {
+                    tdElement.style.maxWidth = this.hostConfig.factSet.title.maxWidth + "px";
                 }
                 tdElement.style.verticalAlign = "top";
                 var textBlock = new TextBlock();
+                textBlock.hostConfig = this.hostConfig;
                 textBlock.text = this.facts[i].name;
-                textBlock.size = hostConfig.factSet.title.size;
-                textBlock.color = hostConfig.factSet.title.color;
-                textBlock.isSubtle = hostConfig.factSet.title.isSubtle;
-                textBlock.weight = hostConfig.factSet.title.weight;
-                textBlock.wrap = hostConfig.factSet.title.wrap;
-                textBlock.separation = "none";
+                textBlock.size = this.hostConfig.factSet.title.size;
+                textBlock.color = this.hostConfig.factSet.title.color;
+                textBlock.isSubtle = this.hostConfig.factSet.title.isSubtle;
+                textBlock.weight = this.hostConfig.factSet.title.weight;
+                textBlock.wrap = this.hostConfig.factSet.title.wrap;
+                textBlock.spacing = Enums.Spacing.None;
                 Utils.appendChild(tdElement, textBlock.render());
                 Utils.appendChild(trElement, tdElement);
                 tdElement = document.createElement("td");
                 tdElement.style.padding = "0px 0px 0px 10px";
                 tdElement.style.verticalAlign = "top";
                 textBlock = new TextBlock();
+                textBlock.hostConfig = this.hostConfig;
                 textBlock.text = this.facts[i].value;
-                textBlock.size = hostConfig.factSet.value.size;
-                textBlock.color = hostConfig.factSet.value.color;
-                textBlock.isSubtle = hostConfig.factSet.value.isSubtle;
-                textBlock.weight = hostConfig.factSet.value.weight;
-                textBlock.wrap = hostConfig.factSet.value.wrap;
-                textBlock.separation = "none";
+                textBlock.size = this.hostConfig.factSet.value.size;
+                textBlock.color = this.hostConfig.factSet.value.color;
+                textBlock.isSubtle = this.hostConfig.factSet.value.isSubtle;
+                textBlock.weight = this.hostConfig.factSet.value.weight;
+                textBlock.wrap = this.hostConfig.factSet.value.wrap;
+                textBlock.spacing = Enums.Spacing.None;
                 Utils.appendChild(tdElement, textBlock.render());
                 Utils.appendChild(trElement, tdElement);
                 Utils.appendChild(element, trElement);
@@ -1786,9 +2492,6 @@ var FactSet = (function (_super) {
     };
     FactSet.prototype.getJsonTypeName = function () {
         return "FactSet";
-    };
-    FactSet.prototype.getDefaultSeparationDefinition = function () {
-        return hostConfig.factSet.separation;
     };
     FactSet.prototype.parse = function (json) {
         _super.prototype.parse.call(this, json);
@@ -1827,8 +2530,11 @@ var Image = (function (_super) {
     __extends(Image, _super);
     function Image() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.style = "normal";
-        _this.size = "medium";
+        _this.style = Enums.ImageStyle.Default;
+        _this.size = Enums.Size.Auto;
+        _this.pixelWidth = null;
+        _this.pixelHeight = null;
+        _this.altText = "";
         return _this;
     }
     Object.defineProperty(Image.prototype, "useDefaultSizing", {
@@ -1843,51 +2549,79 @@ var Image = (function (_super) {
         var element = null;
         if (!Utils.isNullOrEmpty(this.url)) {
             element = document.createElement("div");
+            element.classList.add("ac-image");
             element.style.display = "flex";
             element.style.alignItems = "flex-start";
+            if (this.selectAction != null) {
+                element.tabIndex = 0;
+                element.setAttribute("role", "button");
+                element.setAttribute("aria-label", this.selectAction.title);
+                element.classList.add("ac-selectable");
+            }
+            element.onkeypress = function (e) {
+                if (_this.selectAction) {
+                    if (e.keyCode == 13 || e.keyCode == 32) {
+                        _this.selectAction.execute();
+                    }
+                }
+            };
             element.onclick = function (e) {
-                if (_this.selectAction != null) {
-                    raiseExecuteActionEvent(_this.selectAction);
+                if (_this.selectAction) {
+                    _this.selectAction.execute();
                     e.cancelBubble = true;
                 }
             };
-            element.classList.add("ac-image");
             switch (this.horizontalAlignment) {
-                case "center":
+                case Enums.HorizontalAlignment.Center:
                     element.style.justifyContent = "center";
                     break;
-                case "right":
+                case Enums.HorizontalAlignment.Right:
                     element.style.justifyContent = "flex-end";
                     break;
                 default:
                     element.style.justifyContent = "flex-start";
                     break;
             }
-            if (this.selectAction != null) {
-                element.classList.add("ac-selectable");
-            }
             var imageElement = document.createElement("img");
-            imageElement.style.width = "100%";
-            switch (this.size) {
-                case "auto":
-                    imageElement.style.maxWidth = "100%";
-                    break;
-                case "small":
-                    imageElement.style.maxWidth = hostConfig.imageSizes.small + "px";
-                    break;
-                case "large":
-                    imageElement.style.maxWidth = hostConfig.imageSizes.large + "px";
-                    break;
-                case "medium":
-                    imageElement.style.maxWidth = hostConfig.imageSizes.medium + "px";
-                    break;
+            imageElement.style.maxHeight = "100%";
+            imageElement.style.minWidth = "0";
+            if (this.pixelWidth || this.pixelHeight) {
+                if (this.pixelWidth) {
+                    imageElement.style.width = this.pixelWidth + "px";
+                }
+                if (this.pixelHeight) {
+                    imageElement.style.height = this.pixelHeight + "px";
+                }
             }
-            if (this.style == "person") {
+            else {
+                switch (this.size) {
+                    case Enums.Size.Stretch:
+                        imageElement.style.width = "100%";
+                        break;
+                    case Enums.Size.Auto:
+                        imageElement.style.maxWidth = "100%";
+                        break;
+                    case Enums.Size.Small:
+                        imageElement.style.width = this.hostConfig.imageSizes.small + "px";
+                        break;
+                    case Enums.Size.Large:
+                        imageElement.style.width = this.hostConfig.imageSizes.large + "px";
+                        break;
+                    case Enums.Size.Medium:
+                        imageElement.style.width = this.hostConfig.imageSizes.medium + "px";
+                        break;
+                }
+            }
+            if (this.style === Enums.ImageStyle.Person) {
                 imageElement.style.borderRadius = "50%";
                 imageElement.style.backgroundPosition = "50% 50%";
                 imageElement.style.backgroundRepeat = "no-repeat";
             }
+            if (!Utils.isNullOrEmpty(this.backgroundColor)) {
+                imageElement.style.backgroundColor = Utils.stringToCssColor(this.backgroundColor);
+            }
             imageElement.src = this.url;
+            imageElement.alt = this.altText;
             element.appendChild(imageElement);
         }
         return element;
@@ -1895,18 +2629,38 @@ var Image = (function (_super) {
     Image.prototype.getJsonTypeName = function () {
         return "Image";
     };
-    Image.prototype.getDefaultSeparationDefinition = function () {
-        return hostConfig.image.separation;
+    Image.prototype.getActionById = function (id) {
+        var result = _super.prototype.getActionById.call(this, id);
+        if (!result && this.selectAction) {
+            result = this.selectAction.getActionById(id);
+        }
+        return result;
     };
     Image.prototype.parse = function (json) {
         _super.prototype.parse.call(this, json);
         this.url = json["url"];
-        this.style = Utils.getValueOrDefault(json["style"], "normal");
-        this.size = Utils.getValueOrDefault(json["size"], "medium");
+        var styleString = json["style"];
+        if (styleString && typeof styleString === "string" && styleString.toLowerCase() === "normal") {
+            this.style = Enums.ImageStyle.Default;
+            raiseParseError({
+                error: Enums.ValidationError.Deprecated,
+                message: "The Image.style value \"normal\" is deprecated and will be removed. Use \"default\" instead."
+            });
+        }
+        else {
+            this.style = Utils.getEnumValueOrDefault(Enums.ImageStyle, styleString, this.style);
+        }
+        this.size = Utils.getEnumValueOrDefault(Enums.Size, json["size"], this.size);
+        this.altText = json["altText"];
         var selectActionJson = json["selectAction"];
         if (selectActionJson != undefined) {
-            this.selectAction = Action.createAction(selectActionJson);
-            invokeSetParent(this.selectAction, this);
+            this.selectAction = createActionInstance(selectActionJson);
+        }
+        if (json["pixelWidth"] && typeof json["pixelWidth"] === "number") {
+            this.pixelWidth = json["pixelWidth"];
+        }
+        if (json["pixelHeight"] && typeof json["pixelHeight"] === "number") {
+            this.pixelHeight = json["pixelHeight"];
         }
     };
     Image.prototype.renderSpeech = function () {
@@ -1915,6 +2669,19 @@ var Image = (function (_super) {
         }
         return null;
     };
+    Object.defineProperty(Image.prototype, "selectAction", {
+        get: function () {
+            return this._selectAction;
+        },
+        set: function (value) {
+            this._selectAction = value;
+            if (this._selectAction) {
+                invokeSetParent(this._selectAction, this);
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Image;
 }(CardElement));
 exports.Image = Image;
@@ -1923,22 +2690,21 @@ var ImageSet = (function (_super) {
     function ImageSet() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this._images = [];
-        _this.imageSize = "medium";
+        _this.imageSize = Enums.Size.Medium;
         return _this;
     }
     ImageSet.prototype.internalRender = function () {
         var element = null;
         if (this._images.length > 0) {
             element = document.createElement("div");
+            element.style.display = "flex";
+            element.style.flexWrap = "wrap";
             for (var i = 0; i < this._images.length; i++) {
                 var renderedImage = this._images[i].render();
-                // Default display for Image is "block" but that forces them to stack vertically
-                // in a div. So we need to override display and set it to "inline-block". The
-                // drawback is that it adds a small spacing at the bottom of each image, which
-                // simply can't be removed cleanly in a cross-browser compatible way.
-                renderedImage.style.display = "inline-block";
+                renderedImage.style.display = "inline-flex";
                 renderedImage.style.margin = "0px";
                 renderedImage.style.marginRight = "10px";
+                renderedImage.style.maxHeight = this.hostConfig.imageSet.maxImageHeight + "px";
                 Utils.appendChild(element, renderedImage);
             }
         }
@@ -1947,18 +2713,16 @@ var ImageSet = (function (_super) {
     ImageSet.prototype.getJsonTypeName = function () {
         return "ImageSet";
     };
-    ImageSet.prototype.getDefaultSeparationDefinition = function () {
-        return hostConfig.imageSet.separation;
-    };
     ImageSet.prototype.parse = function (json) {
         _super.prototype.parse.call(this, json);
-        this.imageSize = Utils.getValueOrDefault(json["imageSize"], "medium");
+        //this.imageSize = Utils.getValueOrDefault<Enums.Size>(json["imageSize"], Enums.Size.medium);
+        this.imageSize = Utils.getEnumValueOrDefault(Enums.Size, json["imageSize"], Enums.Size.Medium);
         if (json["images"] != null) {
             var jsonImages = json["images"];
             for (var i = 0; i < jsonImages.length; i++) {
                 var image = new Image();
+                image.parse(jsonImages[i]);
                 image.size = this.imageSize;
-                image.url = jsonImages[i]["url"];
                 this.addImage(image);
             }
         }
@@ -1993,9 +2757,6 @@ var Input = (function (_super) {
     function Input() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Input.prototype.getDefaultSeparationDefinition = function () {
-        return hostConfig.input.separation;
-    };
     Input.prototype.validate = function () {
         if (!this.id) {
             return [{ error: Enums.ValidationError.PropertyCantBeNull, message: "All inputs must have a unique Id" }];
@@ -2037,22 +2798,41 @@ var TextInput = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     TextInput.prototype.internalRender = function () {
-        this._textareaElement = document.createElement("textarea");
-        this._textareaElement.className = "ac-input ac-textInput";
-        this._textareaElement.style.width = "100%";
         if (this.isMultiline) {
-            this._textareaElement.classList.add("ac-multiline");
+            this._textareaElement = document.createElement("textarea");
+            this._textareaElement.className = "ac-input ac-textInput ac-multiline";
+            this._textareaElement.style.width = "100%";
+            this._textareaElement.tabIndex = 0;
+            if (!Utils.isNullOrEmpty(this.placeholder)) {
+                this._textareaElement.placeholder = this.placeholder;
+                this._textareaElement.setAttribute("aria-label", this.placeholder);
+            }
+            if (!Utils.isNullOrEmpty(this.defaultValue)) {
+                this._textareaElement.value = this.defaultValue;
+            }
+            if (this.maxLength > 0) {
+                this._textareaElement.maxLength = this.maxLength;
+            }
+            return this._textareaElement;
         }
-        if (!Utils.isNullOrEmpty(this.placeholder)) {
-            this._textareaElement.placeholder = this.placeholder;
+        else {
+            this._inputElement = document.createElement("input");
+            this._inputElement.type = "text";
+            this._inputElement.className = "ac-input ac-textInput";
+            this._inputElement.style.width = "100%";
+            this._inputElement.tabIndex = 0;
+            if (!Utils.isNullOrEmpty(this.placeholder)) {
+                this._inputElement.placeholder = this.placeholder;
+                this._inputElement.setAttribute("aria-label", this.placeholder);
+            }
+            if (!Utils.isNullOrEmpty(this.defaultValue)) {
+                this._inputElement.value = this.defaultValue;
+            }
+            if (this.maxLength > 0) {
+                this._inputElement.maxLength = this.maxLength;
+            }
+            return this._inputElement;
         }
-        if (!Utils.isNullOrEmpty(this.defaultValue)) {
-            this._textareaElement.value = this.defaultValue;
-        }
-        if (this.maxLength > 0) {
-            this._textareaElement.maxLength = this.maxLength;
-        }
-        return this._textareaElement;
     };
     TextInput.prototype.getJsonTypeName = function () {
         return "Input.Text";
@@ -2065,7 +2845,12 @@ var TextInput = (function (_super) {
     };
     Object.defineProperty(TextInput.prototype, "value", {
         get: function () {
-            return this._textareaElement ? this._textareaElement.value : null;
+            if (this.isMultiline) {
+                return this._textareaElement ? this._textareaElement.value : null;
+            }
+            else {
+                return this._inputElement ? this._inputElement.value : null;
+            }
         },
         enumerable: true,
         configurable: true
@@ -2076,21 +2861,29 @@ exports.TextInput = TextInput;
 var ToggleInput = (function (_super) {
     __extends(ToggleInput, _super);
     function ToggleInput() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.valueOn = "true";
+        _this.valueOff = "false";
+        return _this;
     }
     ToggleInput.prototype.internalRender = function () {
         var element = document.createElement("div");
         element.className = "ac-input";
         element.style.width = "100%";
+        element.style.display = "flex";
         this._checkboxInputElement = document.createElement("input");
         this._checkboxInputElement.type = "checkbox";
         this._checkboxInputElement.style.display = "inline-block";
         this._checkboxInputElement.style.verticalAlign = "middle";
         this._checkboxInputElement.style.margin = "0";
+        this._checkboxInputElement.style.flex = "0 0 auto";
+        this._checkboxInputElement.setAttribute("aria-label", this.title);
+        this._checkboxInputElement.tabIndex = 0;
         if (this.defaultValue == this.valueOn) {
             this._checkboxInputElement.checked = true;
         }
         var label = new TextBlock();
+        label.hostConfig = this.hostConfig;
         label.text = this.title;
         var labelElement = label.render();
         labelElement.style.display = "inline-block";
@@ -2107,8 +2900,8 @@ var ToggleInput = (function (_super) {
     ToggleInput.prototype.parse = function (json) {
         _super.prototype.parse.call(this, json);
         this.title = json["title"];
-        this.valueOn = json["valueOn"];
-        this.valueOff = json["valueOff"];
+        this.valueOn = Utils.getValueOrDefault(json["valueOn"], this.valueOn);
+        this.valueOff = Utils.getValueOrDefault(json["valueOff"], this.valueOff);
     };
     Object.defineProperty(ToggleInput.prototype, "value", {
         get: function () {
@@ -2157,6 +2950,10 @@ var ChoiceSetInput = (function (_super) {
                     var option = document.createElement("option");
                     option.value = this.choices[i].value;
                     option.text = this.choices[i].title;
+                    option.setAttribute("aria-label", this.choices[i].title);
+                    if (this.choices[i].value == this.defaultValue) {
+                        option.selected = true;
+                    }
                     Utils.appendChild(this._selectElement, option);
                 }
                 return this._selectElement;
@@ -2175,14 +2972,21 @@ var ChoiceSetInput = (function (_super) {
                     radioInput.style.verticalAlign = "middle";
                     radioInput.name = this.id;
                     radioInput.value = this.choices[i].value;
+                    radioInput.style.flex = "0 0 auto";
+                    radioInput.setAttribute("aria-label", this.choices[i].title);
+                    if (this.choices[i].value == this.defaultValue) {
+                        radioInput.checked = true;
+                    }
                     this._toggleInputs.push(radioInput);
                     var label = new TextBlock();
+                    label.hostConfig = this.hostConfig;
                     label.text = this.choices[i].title;
                     var labelElement = label.render();
                     labelElement.style.display = "inline-block";
                     labelElement.style.marginLeft = "6px";
                     labelElement.style.verticalAlign = "middle";
                     var compoundInput = document.createElement("div");
+                    compoundInput.style.display = "flex";
                     Utils.appendChild(compoundInput, radioInput);
                     Utils.appendChild(compoundInput, labelElement);
                     Utils.appendChild(element, compoundInput);
@@ -2192,6 +2996,7 @@ var ChoiceSetInput = (function (_super) {
         }
         else {
             // Render as a list of toggle inputs
+            var defaultValues = this.defaultValue ? this.defaultValue.split(",") : null;
             var element = document.createElement("div");
             element.className = "ac-input";
             element.style.width = "100%";
@@ -2203,14 +3008,23 @@ var ChoiceSetInput = (function (_super) {
                 checkboxInput.style.display = "inline-block";
                 checkboxInput.style.verticalAlign = "middle";
                 checkboxInput.value = this.choices[i].value;
+                checkboxInput.style.flex = "0 0 auto";
+                checkboxInput.setAttribute("aria-label", this.choices[i].title);
+                if (defaultValues) {
+                    if (defaultValues.indexOf(this.choices[i].value) >= 0) {
+                        checkboxInput.checked = true;
+                    }
+                }
                 this._toggleInputs.push(checkboxInput);
                 var label = new TextBlock();
+                label.hostConfig = this.hostConfig;
                 label.text = this.choices[i].title;
                 var labelElement = label.render();
                 labelElement.style.display = "inline-block";
                 labelElement.style.marginLeft = "6px";
                 labelElement.style.verticalAlign = "middle";
                 var compoundInput = document.createElement("div");
+                compoundInput.style.display = "flex";
                 Utils.appendChild(compoundInput, checkboxInput);
                 Utils.appendChild(compoundInput, labelElement);
                 Utils.appendChild(element, compoundInput);
@@ -2256,7 +3070,7 @@ var ChoiceSetInput = (function (_super) {
                     return this._selectElement ? this._selectElement.value : null;
                 }
                 else {
-                    if (this._toggleInputs.length == 0) {
+                    if (!this._toggleInputs || this._toggleInputs.length == 0) {
                         return null;
                     }
                     for (var i = 0; i < this._toggleInputs.length; i++) {
@@ -2268,7 +3082,7 @@ var ChoiceSetInput = (function (_super) {
                 }
             }
             else {
-                if (this._toggleInputs.length == 0) {
+                if (!this._toggleInputs || this._toggleInputs.length == 0) {
                     return null;
                 }
                 var result = "";
@@ -2301,8 +3115,13 @@ var NumberInput = (function (_super) {
         this._numberInputElement.min = this.min;
         this._numberInputElement.max = this.max;
         this._numberInputElement.style.width = "100%";
+        this._numberInputElement.tabIndex = 0;
         if (!Utils.isNullOrEmpty(this.defaultValue)) {
             this._numberInputElement.value = this.defaultValue;
+        }
+        if (!Utils.isNullOrEmpty(this.placeholder)) {
+            this._numberInputElement.placeholder = this.placeholder;
+            this._numberInputElement.setAttribute("aria-label", this.placeholder);
         }
         return this._numberInputElement;
     };
@@ -2311,6 +3130,7 @@ var NumberInput = (function (_super) {
     };
     NumberInput.prototype.parse = function (json) {
         _super.prototype.parse.call(this, json);
+        this.placeholder = json["placeholder"];
         this.min = json["min"];
         this.max = json["max"];
     };
@@ -2334,6 +3154,9 @@ var DateInput = (function (_super) {
         this._dateInputElement.type = "date";
         this._dateInputElement.className = "ac-input ac-dateInput";
         this._dateInputElement.style.width = "100%";
+        if (!Utils.isNullOrEmpty(this.defaultValue)) {
+            this._dateInputElement.value = this.defaultValue;
+        }
         return this._dateInputElement;
     };
     DateInput.prototype.getJsonTypeName = function () {
@@ -2359,6 +3182,9 @@ var TimeInput = (function (_super) {
         this._timeInputElement.type = "time";
         this._timeInputElement.className = "ac-input ac-timeInput";
         this._timeInputElement.style.width = "100%";
+        if (!Utils.isNullOrEmpty(this.defaultValue)) {
+            this._timeInputElement.value = this.defaultValue;
+        }
         return this._timeInputElement;
     };
     TimeInput.prototype.getJsonTypeName = function () {
@@ -2374,11 +3200,6 @@ var TimeInput = (function (_super) {
     return TimeInput;
 }(Input));
 exports.TimeInput = TimeInput;
-var ActionButtonStyle;
-(function (ActionButtonStyle) {
-    ActionButtonStyle[ActionButtonStyle["Link"] = 0] = "Link";
-    ActionButtonStyle[ActionButtonStyle["Push"] = 1] = "Push";
-})(ActionButtonStyle || (ActionButtonStyle = {}));
 var ActionButtonState;
 (function (ActionButtonState) {
     ActionButtonState[ActionButtonState["Normal"] = 0] = "Normal";
@@ -2386,14 +3207,14 @@ var ActionButtonState;
     ActionButtonState[ActionButtonState["Subdued"] = 2] = "Subdued";
 })(ActionButtonState || (ActionButtonState = {}));
 var ActionButton = (function () {
-    function ActionButton(action, style) {
+    function ActionButton(action) {
         var _this = this;
         this._element = null;
         this._state = ActionButtonState.Normal;
         this.onClick = null;
         this._action = action;
-        this._style = style;
         this._element = document.createElement("button");
+        this._element.type = "button";
         this._element.style.overflow = "hidden";
         this._element.style.whiteSpace = "nowrap";
         this._element.style.textOverflow = "ellipsis";
@@ -2406,13 +3227,16 @@ var ActionButton = (function () {
         }
     };
     ActionButton.prototype.updateCssStyle = function () {
-        this._element.className = this._style == ActionButtonStyle.Link ? "ac-linkButton " : "ac-pushButton ";
+        this._element.className = "ac-pushButton";
+        if (this._action instanceof ShowCardAction) {
+            this._element.classList.add("expandable");
+        }
         switch (this._state) {
             case ActionButtonState.Expanded:
-                this._element.classList.add("ac-expanded");
+                this._element.classList.add("expanded");
                 break;
             case ActionButtonState.Subdued:
-                this._element.classList.add("ac-subdued");
+                this._element.classList.add("subdued");
                 break;
         }
     };
@@ -2430,6 +3254,7 @@ var ActionButton = (function () {
         set: function (value) {
             this._text = value;
             this._element.innerText = this._text;
+            this._element.setAttribute("aria-label", this._text);
         },
         enumerable: true,
         configurable: true
@@ -2457,23 +3282,31 @@ var ActionButton = (function () {
 var Action = (function () {
     function Action() {
         this._parent = null;
+        this._actionCollection = null; // hold the reference to its action collection
     }
-    Action.createAction = function (json) {
-        var actionType = json["type"];
-        var result = AdaptiveCard.actionTypeRegistry.createInstance(actionType);
-        if (result) {
-            result.parse(json);
-        }
-        else {
-            raiseParseError({
-                error: Enums.ValidationError.UnknownActionType,
-                message: "Unknown action type: " + actionType
-            });
-        }
-        return result;
-    };
     Action.prototype.setParent = function (value) {
         this._parent = value;
+    };
+    Action.prototype.execute = function () {
+        raiseExecuteActionEvent(this);
+    };
+    Action.prototype.setCollection = function (actionCollection) {
+        this._actionCollection = actionCollection;
+    };
+    // Expand the action card pane with a inline status card
+    // Null status will clear the status bar
+    Action.prototype.setStatus = function (status) {
+        if (this._actionCollection == null) {
+            return;
+        }
+        if (status) {
+            var statusCard = new InlineAdaptiveCard();
+            statusCard.parse(status);
+            this._actionCollection.showStatusCard(statusCard);
+        }
+        else {
+            this._actionCollection.hideStatusCard();
+        }
     };
     Action.prototype.validate = function () {
         return [];
@@ -2483,10 +3316,16 @@ var Action = (function () {
     };
     ;
     Action.prototype.parse = function (json) {
+        this.id = json["id"];
         this.title = json["title"];
     };
     Action.prototype.getAllInputs = function () {
         return [];
+    };
+    Action.prototype.getActionById = function (id) {
+        if (this.id == id) {
+            return this;
+        }
     };
     Object.defineProperty(Action.prototype, "parent", {
         get: function () {
@@ -2498,14 +3337,6 @@ var Action = (function () {
     return Action;
 }());
 exports.Action = Action;
-var ExternalAction = (function (_super) {
-    __extends(ExternalAction, _super);
-    function ExternalAction() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ExternalAction;
-}(Action));
-exports.ExternalAction = ExternalAction;
 var SubmitAction = (function (_super) {
     __extends(SubmitAction, _super);
     function SubmitAction() {
@@ -2547,7 +3378,7 @@ var SubmitAction = (function (_super) {
         configurable: true
     });
     return SubmitAction;
-}(ExternalAction));
+}(Action));
 exports.SubmitAction = SubmitAction;
 var OpenUrlAction = (function (_super) {
     __extends(OpenUrlAction, _super);
@@ -2570,7 +3401,7 @@ var OpenUrlAction = (function (_super) {
         this.url = json["url"];
     };
     return OpenUrlAction;
-}(ExternalAction));
+}(Action));
 exports.OpenUrlAction = OpenUrlAction;
 var HttpHeader = (function () {
     function HttpHeader() {
@@ -2670,7 +3501,7 @@ var HttpAction = (function (_super) {
         configurable: true
     });
     return HttpAction;
-}(ExternalAction));
+}(Action));
 exports.HttpAction = HttpAction;
 var ShowCardAction = (function (_super) {
     __extends(ShowCardAction, _super);
@@ -2696,6 +3527,13 @@ var ShowCardAction = (function (_super) {
     ShowCardAction.prototype.getAllInputs = function () {
         return this.card.getAllInputs();
     };
+    ShowCardAction.prototype.getActionById = function (id) {
+        var result = _super.prototype.getActionById.call(this, id);
+        if (!result) {
+            result = this.card.getActionById(id);
+        }
+        return result;
+    };
     return ShowCardAction;
 }(Action));
 exports.ShowCardAction = ShowCardAction;
@@ -2703,61 +3541,88 @@ var ActionCollection = (function () {
     function ActionCollection(owner) {
         this._actionButtons = [];
         this._expandedAction = null;
+        this._renderedActionCount = 0;
+        this._statusCard = null;
+        this._actionCard = null;
         this.items = [];
         this.onHideActionCardPane = null;
         this.onShowActionCardPane = null;
         this._owner = owner;
     }
-    ActionCollection.prototype.hideActionCardPane = function () {
-        this._actionCardContainer.innerHTML = '';
-        this._actionCardContainer.style.padding = "0px";
-        this._actionCardContainer.style.marginTop = "0px";
-        if (this.onHideActionCardPane) {
-            this.onHideActionCardPane();
+    ActionCollection.prototype.showStatusCard = function (status) {
+        invokeSetParent(status, this._owner);
+        this._statusCard = status.render();
+        this.refreshContainer();
+    };
+    ActionCollection.prototype.hideStatusCard = function () {
+        this._statusCard = null;
+        this.refreshContainer();
+    };
+    ActionCollection.prototype.refreshContainer = function () {
+        this._actionCardContainer.innerHTML = "";
+        if (this._actionCard === null && this._statusCard === null) {
+            this._actionCardContainer.style.padding = "0px";
+            this._actionCardContainer.style.marginTop = "0px";
+            if (this.onHideActionCardPane) {
+                this.onHideActionCardPane();
+            }
+            return;
         }
+        if (this.onShowActionCardPane) {
+            this.onShowActionCardPane(null);
+        }
+        this._actionCardContainer.style.marginTop = this._renderedActionCount > 0 ? this._owner.hostConfig.actions.showCard.inlineTopMargin + "px" : "0px";
+        var padding = this._owner.hostConfig.paddingToSpacingDefinition(this._owner.getNonZeroPadding());
+        if (this._actionCard !== null) {
+            this._actionCard.style.paddingLeft = padding.left + "px";
+            this._actionCard.style.paddingRight = padding.right + "px";
+            this._actionCard.style.marginLeft = "-" + padding.left + "px";
+            this._actionCard.style.marginRight = "-" + padding.right + "px";
+            Utils.appendChild(this._actionCardContainer, this._actionCard);
+        }
+        if (this._statusCard !== null) {
+            this._statusCard.style.paddingLeft = padding.left + "px";
+            this._statusCard.style.paddingRight = padding.right + "px";
+            this._statusCard.style.marginLeft = "-" + padding.left + "px";
+            this._statusCard.style.marginRight = "-" + padding.right + "px";
+            Utils.appendChild(this._actionCardContainer, this._statusCard);
+        }
+    };
+    ActionCollection.prototype.hideActionCard = function () {
         if (this._expandedAction) {
             raiseInlineCardExpandedEvent(this._expandedAction, false);
         }
         this._expandedAction = null;
+        this._actionCard = null;
+        this.refreshContainer();
     };
-    ActionCollection.prototype.showActionCardPane = function (action) {
-        if (this.onShowActionCardPane) {
-            this.onShowActionCardPane(action);
-        }
+    ActionCollection.prototype.showActionCard = function (action) {
+        if (action.card == null)
+            return;
         var renderedCard = action.card.render();
-        this._actionCardContainer.innerHTML = '';
-        this._actionCardContainer.style.marginTop = this.items.length > 1 ? hostConfig.actions.showCard.inlineTopMargin + "px" : "0px";
-        if (hostConfig.actions.showCard.actionMode == "inlineEdgeToEdge") {
-            var padding = this._owner.getNonZeroPadding();
-            this._actionCardContainer.style.paddingLeft = padding.left + "px";
-            this._actionCardContainer.style.paddingRight = padding.right + "px";
-            this._actionCardContainer.style.marginLeft = "-" + padding.left + "px";
-            this._actionCardContainer.style.marginRight = "-" + padding.right + "px";
-            renderedCard.style.paddingLeft = "0px";
-            renderedCard.style.paddingRight = "0px";
-        }
-        Utils.appendChild(this._actionCardContainer, renderedCard);
-        raiseInlineCardExpandedEvent(action, true);
+        this._actionCard = renderedCard;
         this._expandedAction = action;
+        this.refreshContainer();
+        raiseInlineCardExpandedEvent(action, true);
     };
     ActionCollection.prototype.actionClicked = function (actionButton) {
         if (!(actionButton.action instanceof ShowCardAction)) {
             for (var i = 0; i < this._actionButtons.length; i++) {
                 this._actionButtons[i].state = ActionButtonState.Normal;
             }
-            this.hideActionCardPane();
-            raiseExecuteActionEvent(actionButton.action);
+            this.hideActionCard();
+            actionButton.action.execute();
         }
         else {
-            if (hostConfig.actions.showCard.actionMode == "popup") {
-                var actionShowCard = actionButton.action;
-                raiseShowPopupCardEvent(actionShowCard);
+            this.hideStatusCard();
+            if (this._owner.hostConfig.actions.showCard.actionMode === Enums.ShowCardActionMode.Popup) {
+                actionButton.action.execute();
             }
             else if (actionButton.action === this._expandedAction) {
                 for (var i = 0; i < this._actionButtons.length; i++) {
                     this._actionButtons[i].state = ActionButtonState.Normal;
                 }
-                this.hideActionCardPane();
+                this.hideActionCard();
             }
             else {
                 for (var i = 0; i < this._actionButtons.length; i++) {
@@ -2766,19 +3631,29 @@ var ActionCollection = (function () {
                     }
                 }
                 actionButton.state = ActionButtonState.Expanded;
-                this.showActionCardPane(actionButton.action);
+                this.showActionCard(actionButton.action);
             }
         }
     };
+    ActionCollection.prototype.getActionById = function (id) {
+        var result = null;
+        for (var i = 0; i < this.items.length; i++) {
+            result = this.items[i].getActionById(id);
+            if (result) {
+                break;
+            }
+        }
+        return result;
+    };
     ActionCollection.prototype.validate = function () {
         var result = [];
-        if (hostConfig.actions.maxActions && this.items.length > hostConfig.actions.maxActions) {
+        if (this._owner.hostConfig.actions.maxActions && this.items.length > this._owner.hostConfig.actions.maxActions) {
             result.push({
                 error: Enums.ValidationError.TooManyActions,
-                message: "A maximum of " + hostConfig.actions.maxActions + " actions are allowed."
+                message: "A maximum of " + this._owner.hostConfig.actions.maxActions + " actions are allowed."
             });
         }
-        if (this.items.length > 0 && !hostConfig.supportsInteractivity) {
+        if (this.items.length > 0 && !this._owner.hostConfig.supportsInteractivity) {
             result.push({
                 error: Enums.ValidationError.InteractivityNotAllowed,
                 message: "Interactivity is not allowed."
@@ -2797,92 +3672,124 @@ var ActionCollection = (function () {
         }
         return result;
     };
-    ActionCollection.prototype.render = function () {
+    ActionCollection.prototype.render = function (orientation) {
         var _this = this;
-        if (!hostConfig.supportsInteractivity) {
+        if (!this._owner.hostConfig.supportsInteractivity) {
             return null;
         }
         var element = document.createElement("div");
-        var buttonStrip = document.createElement("div");
-        buttonStrip.style.display = "flex";
-        if (hostConfig.actions.actionsOrientation == "horizontal") {
-            buttonStrip.style.flexDirection = "row";
-            switch (hostConfig.actions.actionAlignment) {
-                case "center":
-                    buttonStrip.style.justifyContent = "center";
-                    break;
-                case "right":
-                    buttonStrip.style.justifyContent = "flex-end";
-                    break;
-                default:
-                    buttonStrip.style.justifyContent = "flex-start";
-                    break;
-            }
+        this._actionCardContainer = document.createElement("div");
+        this._renderedActionCount = 0;
+        var maxActions = this._owner.hostConfig.actions.maxActions ? Math.min(this._owner.hostConfig.actions.maxActions, this.items.length) : this.items.length;
+        var forbiddenActionTypes = this._owner.getForbiddenActionTypes();
+        if (AdaptiveCard.preExpandSingleShowCardAction && maxActions == 1 && this.items[0] instanceof ShowCardAction && isActionAllowed(this.items[i], forbiddenActionTypes)) {
+            this.showActionCard(this.items[0]);
+            this._renderedActionCount = 1;
         }
         else {
-            buttonStrip.style.flexDirection = "column";
-            switch (hostConfig.actions.actionAlignment) {
-                case "center":
-                    buttonStrip.style.alignItems = "center";
-                    break;
-                case "right":
-                    buttonStrip.style.alignItems = "flex-end";
-                    break;
-                case "stretch":
-                    buttonStrip.style.alignItems = "stretch";
-                    break;
-                default:
-                    buttonStrip.style.alignItems = "flex-start";
-                    break;
-            }
-        }
-        this._actionCardContainer = document.createElement("div");
-        this._actionCardContainer.style.backgroundColor = Utils.stringToCssColor(hostConfig.actions.showCard.backgroundColor);
-        var renderedActions = 0;
-        var actionButtonStyle = ActionButtonStyle.Push;
-        var maxActions = hostConfig.actions.maxActions ? Math.min(hostConfig.actions.maxActions, this.items.length) : this.items.length;
-        for (var i = 0; i < maxActions; i++) {
-            if (this.items[i] instanceof ShowCardAction) {
-                actionButtonStyle = ActionButtonStyle.Link;
-                break;
-            }
-        }
-        var forbiddenActionTypes = this._owner.getForbiddenActionTypes();
-        for (var i = 0; i < maxActions; i++) {
-            if (isActionAllowed(this.items[i], forbiddenActionTypes)) {
-                var actionButton = new ActionButton(this.items[i], actionButtonStyle);
-                actionButton.element.style.overflow = "hidden";
-                actionButton.element.style.overflow = "table-cell";
-                actionButton.element.style.flex = hostConfig.actions.actionAlignment == "stretch" ? "0 1 100%" : "0 1 auto";
-                actionButton.text = this.items[i].title;
-                actionButton.onClick = function (ab) { _this.actionClicked(ab); };
-                this._actionButtons.push(actionButton);
-                buttonStrip.appendChild(actionButton.element);
-                if (i < this.items.length - 1 && hostConfig.actions.buttonSpacing > 0) {
-                    var spacer = document.createElement("div");
-                    if (hostConfig.actions.actionsOrientation == "horizontal") {
-                        spacer.style.flex = "0 0 auto";
-                        spacer.style.width = hostConfig.actions.buttonSpacing + "px";
+            var buttonStrip = document.createElement("div");
+            buttonStrip.style.display = "flex";
+            if (orientation == Enums.Orientation.Horizontal) {
+                buttonStrip.style.flexDirection = "row";
+                if (this._owner.horizontalAlignment && this._owner.hostConfig.actions.actionAlignment != Enums.ActionAlignment.Stretch) {
+                    switch (this._owner.horizontalAlignment) {
+                        case Enums.HorizontalAlignment.Center:
+                            buttonStrip.style.justifyContent = "center";
+                            break;
+                        case Enums.HorizontalAlignment.Right:
+                            buttonStrip.style.justifyContent = "flex-end";
+                            break;
+                        default:
+                            buttonStrip.style.justifyContent = "flex-start";
+                            break;
                     }
-                    else {
-                        spacer.style.height = hostConfig.actions.buttonSpacing + "px";
-                    }
-                    Utils.appendChild(buttonStrip, spacer);
                 }
-                renderedActions++;
+                else {
+                    switch (this._owner.hostConfig.actions.actionAlignment) {
+                        case Enums.ActionAlignment.Center:
+                            buttonStrip.style.justifyContent = "center";
+                            break;
+                        case Enums.ActionAlignment.Right:
+                            buttonStrip.style.justifyContent = "flex-end";
+                            break;
+                        default:
+                            buttonStrip.style.justifyContent = "flex-start";
+                            break;
+                    }
+                }
             }
+            else {
+                buttonStrip.style.flexDirection = "column";
+                if (this._owner.horizontalAlignment && this._owner.hostConfig.actions.actionAlignment != Enums.ActionAlignment.Stretch) {
+                    switch (this._owner.horizontalAlignment) {
+                        case Enums.HorizontalAlignment.Center:
+                            buttonStrip.style.alignItems = "center";
+                            break;
+                        case Enums.HorizontalAlignment.Right:
+                            buttonStrip.style.alignItems = "flex-end";
+                            break;
+                        default:
+                            buttonStrip.style.alignItems = "flex-start";
+                            break;
+                    }
+                }
+                else {
+                    switch (this._owner.hostConfig.actions.actionAlignment) {
+                        case Enums.ActionAlignment.Center:
+                            buttonStrip.style.alignItems = "center";
+                            break;
+                        case Enums.ActionAlignment.Right:
+                            buttonStrip.style.alignItems = "flex-end";
+                            break;
+                        case Enums.ActionAlignment.Stretch:
+                            buttonStrip.style.alignItems = "stretch";
+                            break;
+                        default:
+                            buttonStrip.style.alignItems = "flex-start";
+                            break;
+                    }
+                }
+            }
+            for (var i = 0; i < this.items.length; i++) {
+                if (isActionAllowed(this.items[i], forbiddenActionTypes)) {
+                    var actionButton = new ActionButton(this.items[i]);
+                    actionButton.element.style.overflow = "hidden";
+                    actionButton.element.style.overflow = "table-cell";
+                    actionButton.element.style.flex = this._owner.hostConfig.actions.actionAlignment === Enums.ActionAlignment.Stretch ? "0 1 100%" : "0 1 auto";
+                    actionButton.text = this.items[i].title;
+                    actionButton.onClick = function (ab) { _this.actionClicked(ab); };
+                    this._actionButtons.push(actionButton);
+                    buttonStrip.appendChild(actionButton.element);
+                    this._renderedActionCount++;
+                    if (this._renderedActionCount >= this._owner.hostConfig.actions.maxActions || i == this.items.length - 1) {
+                        break;
+                    }
+                    else if (this._owner.hostConfig.actions.buttonSpacing > 0) {
+                        var spacer = document.createElement("div");
+                        if (orientation === Enums.Orientation.Horizontal) {
+                            spacer.style.flex = "0 0 auto";
+                            spacer.style.width = this._owner.hostConfig.actions.buttonSpacing + "px";
+                        }
+                        else {
+                            spacer.style.height = this._owner.hostConfig.actions.buttonSpacing + "px";
+                        }
+                        Utils.appendChild(buttonStrip, spacer);
+                    }
+                }
+            }
+            var buttonStripContainer = document.createElement("div");
+            buttonStripContainer.style.overflow = "hidden";
+            buttonStripContainer.appendChild(buttonStrip);
+            Utils.appendChild(element, buttonStripContainer);
         }
-        var buttonStripContainer = document.createElement("div");
-        buttonStripContainer.style.overflow = "hidden";
-        buttonStripContainer.appendChild(buttonStrip);
-        Utils.appendChild(element, buttonStripContainer);
         Utils.appendChild(element, this._actionCardContainer);
-        return renderedActions > 0 ? element : null;
+        return this._renderedActionCount > 0 ? element : null;
     };
     ActionCollection.prototype.addAction = function (action) {
         if (!action.parent) {
             this.items.push(action);
             invokeSetParent(action, this._owner);
+            invokeSetCollection(action, this);
         }
         else {
             throw new Error("The action already belongs to another element.");
@@ -2905,19 +3812,17 @@ var ActionSet = (function (_super) {
     __extends(ActionSet, _super);
     function ActionSet() {
         var _this = _super.call(this) || this;
+        _this.orientation = null;
         _this._actionCollection = new ActionCollection(_this);
         _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(_this); };
         _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(_this); };
         return _this;
     }
     ActionSet.prototype.internalRender = function () {
-        return this._actionCollection.render();
+        return this._actionCollection.render(this.orientation ? this.orientation : this.hostConfig.actions.actionsOrientation);
     };
     ActionSet.prototype.getJsonTypeName = function () {
         return "ActionSet";
-    };
-    ActionSet.prototype.getDefaultSeparationDefinition = function () {
-        return hostConfig.actions.separation;
     };
     ActionSet.prototype.validate = function () {
         return this._actionCollection.validate();
@@ -2925,10 +3830,14 @@ var ActionSet = (function (_super) {
     ActionSet.prototype.parse = function (json, itemsCollectionPropertyName) {
         if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
         _super.prototype.parse.call(this, json);
+        var jsonOrientation = json["orientation"];
+        if (jsonOrientation) {
+            this.orientation = Utils.getEnumValueOrDefault(Enums.Orientation, jsonOrientation, Enums.Orientation.Horizontal);
+        }
         if (json["actions"] != undefined) {
             var jsonActions = json["actions"];
             for (var i = 0; i < jsonActions.length; i++) {
-                this.addAction(Action.createAction(jsonActions[i]));
+                this.addAction(createActionInstance(jsonActions[i]));
             }
         }
     };
@@ -2954,95 +3863,335 @@ var ActionSet = (function (_super) {
     return ActionSet;
 }(CardElement));
 exports.ActionSet = ActionSet;
-var ContainerBase = (function (_super) {
-    __extends(ContainerBase, _super);
-    function ContainerBase() {
+var BackgroundImage = (function () {
+    function BackgroundImage() {
+        this.mode = Enums.BackgroundImageMode.Stretch;
+        this.horizontalAlignment = Enums.HorizontalAlignment.Left;
+        this.verticalAlignment = Enums.VerticalAlignment.Top;
+    }
+    BackgroundImage.prototype.parse = function (json) {
+        this.url = json["url"];
+        this.mode = Utils.getEnumValueOrDefault(Enums.BackgroundImageMode, json["mode"], this.mode);
+        this.horizontalAlignment = Utils.getEnumValueOrDefault(Enums.HorizontalAlignment, json["horizontalAlignment"], this.horizontalAlignment);
+        this.verticalAlignment = Utils.getEnumValueOrDefault(Enums.VerticalAlignment, json["verticalAlignment"], this.verticalAlignment);
+    };
+    BackgroundImage.prototype.apply = function (element) {
+        if (this.url) {
+            element.style.backgroundImage = "url('" + this.url + "')";
+            switch (this.mode) {
+                case Enums.BackgroundImageMode.Repeat:
+                    element.style.backgroundRepeat = "repeat";
+                    break;
+                case Enums.BackgroundImageMode.RepeatHorizontally:
+                    element.style.backgroundRepeat = "repeat-x";
+                    break;
+                case Enums.BackgroundImageMode.RepeatVertically:
+                    element.style.backgroundRepeat = "repeat-y";
+                    break;
+                case Enums.BackgroundImageMode.Stretch:
+                default:
+                    element.style.backgroundRepeat = "no-repeat";
+                    element.style.backgroundSize = "cover";
+                    break;
+            }
+            switch (this.horizontalAlignment) {
+                case Enums.HorizontalAlignment.Center:
+                    element.style.backgroundPositionX = "center";
+                    break;
+                case Enums.HorizontalAlignment.Right:
+                    element.style.backgroundPositionX = "right";
+                    break;
+            }
+            switch (this.verticalAlignment) {
+                case Enums.VerticalAlignment.Center:
+                    element.style.backgroundPositionY = "center";
+                    break;
+                case Enums.VerticalAlignment.Bottom:
+                    element.style.backgroundPositionY = "bottom";
+                    break;
+            }
+        }
+    };
+    return BackgroundImage;
+}());
+exports.BackgroundImage = BackgroundImage;
+var Container = (function (_super) {
+    __extends(Container, _super);
+    function Container() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this._items = [];
+        _this._style = null;
+        _this.bleed = false;
+        _this.verticalContentAlignment = Enums.VerticalAlignment.Top;
         return _this;
     }
-    ContainerBase.prototype.showBottomSpacer = function (requestingElement) {
-        if ((!requestingElement || this.isLastItem(requestingElement)) && hostConfig.actions.showCard.actionMode == "inlineEdgeToEdge") {
-            this._element.style.paddingBottom = this.padding.bottom + "px";
-            _super.prototype.showBottomSpacer.call(this, this);
+    Container.prototype.isElementAllowed = function (element, forbiddenElementTypes) {
+        if (!this.hostConfig.supportsInteractivity && element.isInteractive) {
+            return false;
         }
-    };
-    ContainerBase.prototype.hideBottomSpacer = function (requestingElement) {
-        if ((!requestingElement || this.isLastItem(requestingElement)) && hostConfig.actions.showCard.actionMode == "inlineEdgeToEdge") {
-            this._element.style.paddingBottom = "0px";
-            _super.prototype.hideBottomSpacer.call(this, this);
-        }
-    };
-    ContainerBase.prototype.internalRender = function () {
-        var _this = this;
-        this._element = document.createElement("div");
-        this._element.className = "ac-container";
-        if (this.backgroundImage) {
-            this._element.style.backgroundImage = "url('" + this.backgroundImage + "')";
-            this._element.style.backgroundRepeat = "no-repeat";
-            this._element.style.backgroundSize = "cover";
-        }
-        else {
-            var backgroundColor = this.getBackgroundColor();
-            if (backgroundColor) {
-                this._element.style.backgroundColor = Utils.stringToCssColor(backgroundColor);
-            }
-        }
-        if (this.selectAction) {
-            this._element.classList.add("ac-selectable");
-        }
-        this._element.style.paddingTop = this.padding.top + "px";
-        this._element.style.paddingRight = this.padding.right + "px";
-        this._element.style.paddingBottom = this.padding.bottom + "px";
-        this._element.style.paddingLeft = this.padding.left + "px";
-        this._element.onclick = function (e) {
-            if (_this.selectAction != null) {
-                raiseExecuteActionEvent(_this.selectAction);
-                e.cancelBubble = true;
-            }
-        };
-        if (this._items.length > 0) {
-            var renderedElementCount = 0;
-            for (var i = 0; i < this._items.length; i++) {
-                var renderedElement = isElementAllowed(this._items[i], this.getForbiddenElementTypes()) ? this._items[i].render() : null;
-                if (renderedElement != null) {
-                    if (renderedElementCount > 0 && this._items[i].separation != "none") {
-                        var separationDefinition = this._items[i].separation == "default" ? this._items[i].getDefaultSeparationDefinition() : hostConfig.strongSeparation;
-                        Utils.appendChild(this._element, Utils.renderSeparation(separationDefinition, "vertical"));
-                    }
-                    Utils.appendChild(this._element, renderedElement);
-                    renderedElementCount++;
+        if (forbiddenElementTypes) {
+            for (var i = 0; i < forbiddenElementTypes.length; i++) {
+                if (element.getJsonTypeName() === forbiddenElementTypes[i]) {
+                    return false;
                 }
             }
         }
-        return renderedElementCount > 0 ? this._element : null;
+        return true;
     };
-    ContainerBase.prototype.getBackgroundColor = function () {
-        return null;
-    };
-    Object.defineProperty(ContainerBase.prototype, "padding", {
+    Object.defineProperty(Container.prototype, "hasExplicitStyle", {
         get: function () {
-            return { left: 0, top: 0, right: 0, bottom: 0 };
+            return this._style != null;
         },
         enumerable: true,
         configurable: true
     });
-    ContainerBase.prototype.isLastItem = function (item) {
-        return this._items.indexOf(item) == (this._items.length - 1);
+    Container.prototype.showBottomSpacer = function (requestingElement) {
+        if ((!requestingElement || this.isLastElement(requestingElement))) {
+            this.applyPadding();
+            _super.prototype.showBottomSpacer.call(this, requestingElement);
+        }
     };
-    ContainerBase.prototype.getDefaultSeparationDefinition = function () {
-        return hostConfig.container.separation;
+    Container.prototype.hideBottomSpacer = function (requestingElement) {
+        if ((!requestingElement || this.isLastElement(requestingElement))) {
+            this.renderedElement.style.paddingBottom = "0px";
+            _super.prototype.hideBottomSpacer.call(this, requestingElement);
+        }
     };
-    ContainerBase.prototype.validate = function () {
+    Container.prototype.applyPadding = function () {
+        if (this.hasBackground) {
+            var physicalMargin = new HostConfig.SpacingDefinition();
+            var physicalPadding = new HostConfig.SpacingDefinition();
+            var useAutoPadding = (this.parent ? this.parent.canContentBleed() : false) && this.bleed;
+            if (useAutoPadding) {
+                var effectivePadding = this.getNonZeroPadding();
+                var effectiveMargin = new HostConfig.PaddingDefinition({
+                    top: effectivePadding.top,
+                    right: effectivePadding.right,
+                    bottom: effectivePadding.bottom,
+                    left: effectivePadding.left,
+                });
+                if (!this.isAtTheVeryTop()) {
+                    effectivePadding.top = Enums.Padding.None;
+                    effectiveMargin.top = Enums.Padding.None;
+                }
+                if (!this.isAtTheVeryBottom()) {
+                    effectivePadding.bottom = Enums.Padding.None;
+                    effectiveMargin.bottom = Enums.Padding.None;
+                }
+                if (!this.isAtTheVeryLeft()) {
+                    effectivePadding.left = Enums.Padding.None;
+                    effectiveMargin.left = Enums.Padding.None;
+                }
+                if (!this.isAtTheVeryRight()) {
+                    effectivePadding.right = Enums.Padding.None;
+                    effectiveMargin.right = Enums.Padding.None;
+                }
+                if (effectivePadding.left != Enums.Padding.None || effectivePadding.right != Enums.Padding.None) {
+                    if (effectivePadding.left == Enums.Padding.None) {
+                        effectivePadding.left = effectivePadding.right;
+                    }
+                    if (effectivePadding.right == Enums.Padding.None) {
+                        effectivePadding.right = effectivePadding.left;
+                    }
+                }
+                if (effectivePadding.top != Enums.Padding.None || effectivePadding.bottom != Enums.Padding.None) {
+                    if (effectivePadding.top == Enums.Padding.None) {
+                        effectivePadding.top = effectivePadding.bottom;
+                    }
+                    if (effectivePadding.bottom == Enums.Padding.None) {
+                        effectivePadding.bottom = effectivePadding.top;
+                    }
+                }
+                if (effectivePadding.top != Enums.Padding.None
+                    || effectivePadding.right != Enums.Padding.None
+                    || effectivePadding.bottom != Enums.Padding.None
+                    || effectivePadding.left != Enums.Padding.None) {
+                    if (effectivePadding.top == Enums.Padding.None) {
+                        effectivePadding.top = Enums.Padding.Default;
+                    }
+                    if (effectivePadding.right == Enums.Padding.None) {
+                        effectivePadding.right = Enums.Padding.Default;
+                    }
+                    if (effectivePadding.bottom == Enums.Padding.None) {
+                        effectivePadding = Object.assign({}, effectivePadding, {
+                            bottom: Enums.Padding.Default
+                        });
+                    }
+                    if (effectivePadding.left == Enums.Padding.None) {
+                        effectivePadding = Object.assign({}, effectivePadding, {
+                            left: Enums.Padding.Default
+                        });
+                    }
+                }
+                if (effectivePadding.top == Enums.Padding.None &&
+                    effectivePadding.right == Enums.Padding.None &&
+                    effectivePadding.bottom == Enums.Padding.None &&
+                    effectivePadding.left == Enums.Padding.None) {
+                    effectivePadding = new HostConfig.PaddingDefinition({
+                        top: Enums.Padding.Default,
+                        right: Enums.Padding.Default,
+                        bottom: Enums.Padding.Default,
+                        left: Enums.Padding.Default,
+                    });
+                }
+                physicalMargin = this.hostConfig.paddingToSpacingDefinition(effectiveMargin);
+                physicalPadding = this.hostConfig.paddingToSpacingDefinition(effectivePadding);
+            }
+            else {
+                physicalPadding = this.hostConfig.paddingToSpacingDefinition(new HostConfig.PaddingDefinition({
+                    top: Enums.Padding.Default,
+                    right: Enums.Padding.Default,
+                    bottom: Enums.Padding.Default,
+                    left: Enums.Padding.Default
+                }));
+            }
+            if (this.renderedElement) {
+                this.renderedElement.style.marginTop = "-" + physicalMargin.top + "px";
+                this.renderedElement.style.marginRight = "-" + physicalMargin.right + "px";
+                this.renderedElement.style.marginBottom = "-" + physicalMargin.bottom + "px";
+                this.renderedElement.style.marginLeft = "-" + physicalMargin.left + "px";
+                this.renderedElement.style.paddingTop = physicalPadding.top + "px";
+                this.renderedElement.style.paddingRight = physicalPadding.right + "px";
+                this.renderedElement.style.paddingBottom = physicalPadding.bottom + "px";
+                this.renderedElement.style.paddingLeft = physicalPadding.left + "px";
+            }
+            if (this.separatorElement) {
+                if (this.separatorOrientation == Enums.Orientation.Horizontal) {
+                    this.separatorElement.style.marginLeft = "-" + physicalMargin.left + "px";
+                    this.separatorElement.style.marginRight = "-" + physicalMargin.right + "px";
+                }
+                else {
+                    this.separatorElement.style.marginTop = "-" + physicalMargin.top + "px";
+                    this.separatorElement.style.marginBottom = "-" + physicalMargin.bottom + "px";
+                }
+            }
+        }
+    };
+    Container.prototype.internalRender = function () {
+        var _this = this;
+        var element = document.createElement("div");
+        element.className = "ac-container";
+        element.style.display = "flex";
+        element.style.flexDirection = "column";
+        switch (this.verticalContentAlignment) {
+            case Enums.VerticalAlignment.Center:
+                element.style.justifyContent = "center";
+                break;
+            case Enums.VerticalAlignment.Bottom:
+                element.style.justifyContent = "flex-end";
+                break;
+            default:
+                element.style.justifyContent = "flex-start";
+                break;
+        }
+        if (this.hasBackground) {
+            if (this.backgroundImage) {
+                this.backgroundImage.apply(element);
+            }
+            var styleDefinition = this.hostConfig.getContainerStyleDefinition(this.style);
+            if (!Utils.isNullOrEmpty(styleDefinition.backgroundColor)) {
+                element.style.backgroundColor = Utils.stringToCssColor(styleDefinition.backgroundColor);
+            }
+        }
+        if (this.selectAction) {
+            element.classList.add("ac-selectable");
+            element.tabIndex = 0;
+            element.setAttribute("role", "button");
+            element.setAttribute("aria-label", this.selectAction.title);
+            element.onclick = function (e) {
+                if (_this.selectAction != null) {
+                    _this.selectAction.execute();
+                    e.cancelBubble = true;
+                }
+            };
+            element.onkeypress = function (e) {
+                if (_this.selectAction != null) {
+                    // Enter or space pressed
+                    if (e.keyCode == 13 || e.keyCode == 32) {
+                        _this.selectAction.execute();
+                    }
+                }
+            };
+        }
+        if (this._items.length > 0) {
+            var renderedElementCount = 0;
+            for (var i = 0; i < this._items.length; i++) {
+                var renderedElement = this.isElementAllowed(this._items[i], this.getForbiddenElementTypes()) ? this._items[i].render() : null;
+                if (renderedElement) {
+                    if (renderedElementCount > 0 && this._items[i].separatorElement) {
+                        this._items[i].separatorElement.style.flex = "0 0 auto";
+                        Utils.appendChild(element, this._items[i].separatorElement);
+                    }
+                    Utils.appendChild(element, renderedElement);
+                    renderedElementCount++;
+                }
+            }
+        }
+        return element;
+    };
+    Object.defineProperty(Container.prototype, "hasBackground", {
+        get: function () {
+            var parentContainer = this.getParentContainer();
+            return this.backgroundImage != undefined || (this.hasExplicitStyle && (parentContainer ? parentContainer.style != this.style : false));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Container.prototype, "defaultStyle", {
+        get: function () {
+            return Enums.ContainerStyle.Default;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Container.prototype, "allowCustomStyle", {
+        get: function () {
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Container.prototype, "style", {
+        get: function () {
+            if (this.allowCustomStyle) {
+                return this._style ? this._style : this.defaultStyle;
+            }
+            else {
+                return this.defaultStyle;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Container.prototype.getJsonTypeName = function () {
+        return "Container";
+    };
+    Container.prototype.isFirstElement = function (element) {
+        for (var i = 0; i < this._items.length; i++) {
+            if (this._items[i].isVisible) {
+                return this._items[i] == element;
+            }
+        }
+        return false;
+    };
+    Container.prototype.isLastElement = function (element) {
+        for (var i = this._items.length - 1; i >= 0; i--) {
+            if (this._items[i].isVisible) {
+                return this._items[i] == element;
+            }
+        }
+        return false;
+    };
+    Container.prototype.validate = function () {
         var result = [];
         for (var i = 0; i < this._items.length; i++) {
-            if (!hostConfig.supportsInteractivity && this._items[i].isInteractive) {
+            if (!this.hostConfig.supportsInteractivity && this._items[i].isInteractive) {
                 result.push({
                     error: Enums.ValidationError.InteractivityNotAllowed,
                     message: "Interactivity is not allowed."
                 });
             }
-            if (!isElementAllowed(this._items[i], this.getForbiddenElementTypes())) {
+            if (!this.isElementAllowed(this._items[i], this.getForbiddenElementTypes())) {
                 result.push({
                     error: Enums.ValidationError.InteractivityNotAllowed,
                     message: "Elements of type " + this._items[i].getJsonTypeName() + " are not allowed in this container."
@@ -3052,10 +4201,23 @@ var ContainerBase = (function (_super) {
         }
         return result;
     };
-    ContainerBase.prototype.parse = function (json, itemsCollectionPropertyName) {
+    Container.prototype.parse = function (json, itemsCollectionPropertyName) {
         if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
         _super.prototype.parse.call(this, json);
-        this.backgroundImage = json["backgroundImage"];
+        var jsonBackgroundImage = json["backgroundImage"];
+        if (jsonBackgroundImage) {
+            this.backgroundImage = new BackgroundImage();
+            if (typeof jsonBackgroundImage === "string") {
+                this.backgroundImage.url = jsonBackgroundImage;
+                this.backgroundImage.mode = Enums.BackgroundImageMode.Stretch;
+            }
+            else if (typeof jsonBackgroundImage === "object") {
+                this.backgroundImage = new BackgroundImage();
+                this.backgroundImage.parse(json["backgroundImage"]);
+            }
+        }
+        this.verticalContentAlignment = Utils.getEnumValueOrDefault(Enums.VerticalAlignment, json["verticalContentAlignment"], this.verticalContentAlignment);
+        this._style = Utils.getEnumValueOrDefault(Enums.ContainerStyle, json["style"], null);
         if (json[itemsCollectionPropertyName] != null) {
             var items = json[itemsCollectionPropertyName];
             for (var i = 0; i < items.length; i++) {
@@ -3075,11 +4237,10 @@ var ContainerBase = (function (_super) {
         }
         var selectActionJson = json["selectAction"];
         if (selectActionJson != undefined) {
-            this.selectAction = Action.createAction(selectActionJson);
-            invokeSetParent(this.selectAction, this);
+            this.selectAction = createActionInstance(selectActionJson);
         }
     };
-    ContainerBase.prototype.addItem = function (item) {
+    Container.prototype.addItem = function (item) {
         if (!item.parent) {
             if (item.isStandalone) {
                 this._items.push(item);
@@ -3093,10 +4254,13 @@ var ContainerBase = (function (_super) {
             throw new Error("The element already belongs to another container.");
         }
     };
-    ContainerBase.prototype.clear = function () {
+    Container.prototype.clear = function () {
         this._items = [];
     };
-    ContainerBase.prototype.getAllInputs = function () {
+    Container.prototype.canContentBleed = function () {
+        return this.hasBackground ? false : _super.prototype.canContentBleed.call(this);
+    };
+    Container.prototype.getAllInputs = function () {
         var result = [];
         for (var i = 0; i < this._items.length; i++) {
             var item = this._items[i];
@@ -3104,7 +4268,36 @@ var ContainerBase = (function (_super) {
         }
         return result;
     };
-    ContainerBase.prototype.renderSpeech = function () {
+    Container.prototype.getElementById = function (id) {
+        var result = _super.prototype.getElementById.call(this, id);
+        if (!result) {
+            for (var i = 0; i < this._items.length; i++) {
+                result = this._items[i].getElementById(id);
+                if (result) {
+                    break;
+                }
+            }
+        }
+        return result;
+    };
+    Container.prototype.getActionById = function (id) {
+        var result = _super.prototype.getActionById.call(this, id);
+        if (!result) {
+            if (this.selectAction) {
+                result = this.selectAction.getActionById(id);
+            }
+            if (!result) {
+                for (var i = 0; i < this._items.length; i++) {
+                    result = this._items[i].getActionById(id);
+                    if (result) {
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
+    };
+    Container.prototype.renderSpeech = function () {
         if (this.speak != null) {
             return this.speak;
         }
@@ -3121,117 +4314,107 @@ var ContainerBase = (function (_super) {
         }
         return speak;
     };
-    return ContainerBase;
-}(CardElement));
-exports.ContainerBase = ContainerBase;
-var Container = (function (_super) {
-    __extends(Container, _super);
-    function Container() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.style = "normal";
-        return _this;
-    }
-    Container.prototype.getBackgroundColor = function () {
-        return this.style == "normal" ? hostConfig.container.normal.backgroundColor : hostConfig.container.emphasis.backgroundColor;
-    };
-    Container.prototype.internalRender = function () {
-        var renderedContainer = _super.prototype.internalRender.call(this);
-        var styleDefinition = this.style == "normal" ? hostConfig.container.normal : hostConfig.container.emphasis;
-        if (styleDefinition.borderThickness) {
-            renderedContainer.style.borderTop = styleDefinition.borderThickness.top + "px solid";
-            renderedContainer.style.borderRight = styleDefinition.borderThickness.right + "px solid";
-            renderedContainer.style.borderBottom = styleDefinition.borderThickness.bottom + "px solid";
-            renderedContainer.style.borderLeft = styleDefinition.borderThickness.left + "px solid";
+    Container.prototype.updateLayout = function (processChildren) {
+        if (processChildren === void 0) { processChildren = true; }
+        this.applyPadding();
+        if (processChildren) {
+            for (var i = 0; i < this._items.length; i++) {
+                this._items[i].updateLayout();
+            }
         }
-        if (styleDefinition.borderColor) {
-            renderedContainer.style.borderColor = Utils.stringToCssColor(styleDefinition.borderColor);
-        }
-        return renderedContainer;
     };
-    Object.defineProperty(Container.prototype, "padding", {
+    Object.defineProperty(Container.prototype, "selectAction", {
         get: function () {
-            var styleDefinition = this.style == "normal" ? hostConfig.container.normal : hostConfig.container.emphasis;
-            return styleDefinition.padding ? styleDefinition.padding : { top: 0, right: 0, bottom: 0, left: 0 };
+            return this._selectAction;
+        },
+        set: function (value) {
+            this._selectAction = value;
+            if (this._selectAction) {
+                invokeSetParent(this._selectAction, this);
+            }
         },
         enumerable: true,
         configurable: true
     });
-    Container.prototype.getJsonTypeName = function () {
-        return "Container";
-    };
-    Container.prototype.parse = function (json) {
-        _super.prototype.parse.call(this, json);
-        this.style = Utils.getValueOrDefault(json["style"], "normal");
-    };
     return Container;
-}(ContainerBase));
+}(CardElement));
 exports.Container = Container;
 var Column = (function (_super) {
     __extends(Column, _super);
     function Column() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this._computedWeight = 0;
-        _this.size = "auto";
+        _this.width = "auto";
+        _this.pixelWidth = 0;
         return _this;
     }
-    Object.defineProperty(Column.prototype, "padding", {
+    Column.prototype.adjustRenderedElementSize = function (renderedElement) {
+        renderedElement.style.minWidth = "0";
+        if (this.pixelWidth > 0) {
+            renderedElement.style.flex = "0 0 " + this.pixelWidth + "px";
+        }
+        else {
+            if (typeof this.width === "number") {
+                renderedElement.style.flex = "1 1 " + (this._computedWeight > 0 ? this._computedWeight : this.width) + "%";
+            }
+            else if (this.width === "auto") {
+                renderedElement.style.flex = "0 1 auto";
+            }
+            else {
+                renderedElement.style.flex = "1 1 50px";
+            }
+        }
+    };
+    Object.defineProperty(Column.prototype, "separatorOrientation", {
         get: function () {
-            return { left: 0, top: 0, right: 0, bottom: 0 };
+            return Enums.Orientation.Vertical;
         },
         enumerable: true,
         configurable: true
     });
-    Column.prototype.internalRender = function () {
-        var element = _super.prototype.internalRender.call(this);
-        element.style.minWidth = "0";
-        if (typeof this.size === "number") {
-            element.style.flex = "1 1 " + (this._computedWeight > 0 ? this._computedWeight : this.size) + "%";
-        }
-        else if (this.size === "auto") {
-            element.style.flex = "0 1 auto";
-        }
-        else {
-            element.style.flex = "1 1 auto";
-        }
-        return element;
-    };
     Column.prototype.getJsonTypeName = function () {
         return "Column";
     };
-    Column.prototype.getDefaultSeparationDefinition = function () {
-        return hostConfig.column.separation;
-    };
     Column.prototype.parse = function (json) {
         _super.prototype.parse.call(this, json);
-        var parsedSize = json["size"];
-        var invalidSize = false;
-        if (typeof parsedSize === "number") {
-            if (parsedSize <= 0) {
-                invalidSize = true;
+        var jsonWidth = json["width"];
+        if (jsonWidth === undefined) {
+            jsonWidth = json["size"];
+            if (jsonWidth !== undefined) {
+                raiseParseError({
+                    error: Enums.ValidationError.Deprecated,
+                    message: "The \"Column.size\" property is deprecated and will be removed. Use the \"Column.width\" property instead."
+                });
             }
         }
-        else if (typeof parsedSize === "string") {
-            if (parsedSize != "auto" && parsedSize != "stretch") {
-                var sizeAsNumber = parseInt(parsedSize);
+        var invalidWidth = false;
+        if (typeof jsonWidth === "number") {
+            if (jsonWidth <= 0) {
+                invalidWidth = true;
+            }
+        }
+        else if (typeof jsonWidth === "string") {
+            if (jsonWidth != "auto" && jsonWidth != "stretch") {
+                var sizeAsNumber = parseInt(jsonWidth);
                 if (!isNaN(sizeAsNumber)) {
-                    parsedSize = sizeAsNumber;
+                    jsonWidth = sizeAsNumber;
                 }
                 else {
-                    invalidSize = true;
+                    invalidWidth = true;
                 }
             }
         }
-        else if (parsedSize) {
-            invalidSize = true;
+        else if (jsonWidth) {
+            invalidWidth = true;
         }
-        if (invalidSize) {
+        if (invalidWidth) {
             raiseParseError({
                 error: Enums.ValidationError.InvalidPropertyValue,
-                message: "Invalid column size: " + parsedSize
+                message: "Invalid column width: " + jsonWidth
             });
         }
         else {
-            this.size = parsedSize;
+            this.width = jsonWidth;
         }
     };
     Object.defineProperty(Column.prototype, "isStandalone", {
@@ -3252,15 +4435,23 @@ var ColumnSet = (function (_super) {
         return _this;
     }
     ColumnSet.prototype.internalRender = function () {
+        var _this = this;
         if (this._columns.length > 0) {
             var element = document.createElement("div");
+            element.className = "ac-columnSet";
             element.style.display = "flex";
-            element.style.overflow = "hidden";
+            if (this.selectAction) {
+                element.classList.add("ac-selectable");
+                element.onclick = function (e) {
+                    _this.selectAction.execute();
+                    e.cancelBubble = true;
+                };
+            }
             switch (this.horizontalAlignment) {
-                case "center":
+                case Enums.HorizontalAlignment.Center:
                     element.style.justifyContent = "center";
                     break;
-                case "right":
+                case Enums.HorizontalAlignment.Right:
                     element.style.justifyContent = "flex-end";
                     break;
                 default:
@@ -3269,28 +4460,24 @@ var ColumnSet = (function (_super) {
             }
             var totalWeight = 0;
             for (var i = 0; i < this._columns.length; i++) {
-                if (typeof this._columns[i].size === "number") {
-                    totalWeight += this._columns[i].size;
+                if (typeof this._columns[i].width === "number") {
+                    totalWeight += this._columns[i].width;
                 }
             }
             var renderedColumnCount = 0;
             for (var i = 0; i < this._columns.length; i++) {
-                if (typeof this._columns[i].size === "number" && totalWeight > 0) {
-                    var computedWeight = 100 / totalWeight * this._columns[i].size;
+                if (typeof this._columns[i].width === "number" && totalWeight > 0) {
+                    var computedWeight = 100 / totalWeight * this._columns[i].width;
                     // Best way to emulate "internal" access I know of
                     this._columns[i]["_computedWeight"] = computedWeight;
                 }
                 var renderedColumn = this._columns[i].render();
-                if (renderedColumn != null) {
-                    Utils.appendChild(element, renderedColumn);
-                    if (this._columns.length > 1 && i < this._columns.length - 1 && this._columns[i + 1].separation != "none") {
-                        var separationDefinition = this._columns[i + 1].separation == "default" ? this._columns[i + 1].getDefaultSeparationDefinition() : hostConfig.strongSeparation;
-                        if (separationDefinition) {
-                            var separator = Utils.renderSeparation(separationDefinition, "horizontal");
-                            separator.style.flex = "0 0 auto";
-                            Utils.appendChild(element, separator);
-                        }
+                if (renderedColumn) {
+                    if (renderedColumnCount > 0 && this._columns[i].separatorElement) {
+                        this._columns[i].separatorElement.style.flex = "0 0 auto";
+                        Utils.appendChild(element, this._columns[i].separatorElement);
                     }
+                    Utils.appendChild(element, renderedColumn);
                     renderedColumnCount++;
                 }
             }
@@ -3303,17 +4490,47 @@ var ColumnSet = (function (_super) {
     ColumnSet.prototype.getJsonTypeName = function () {
         return "ColumnSet";
     };
-    ColumnSet.prototype.getDefaultSeparationDefinition = function () {
-        return hostConfig.columnSet.separation;
-    };
     ColumnSet.prototype.parse = function (json) {
         _super.prototype.parse.call(this, json);
+        var selectActionJson = json["selectAction"];
+        if (selectActionJson != undefined) {
+            this.selectAction = createActionInstance(selectActionJson);
+        }
         if (json["columns"] != null) {
             var jsonColumns = json["columns"];
             for (var i = 0; i < jsonColumns.length; i++) {
                 var column = new Column();
                 column.parse(jsonColumns[i]);
                 this.addColumn(column);
+            }
+        }
+    };
+    ColumnSet.prototype.validate = function () {
+        var result = [];
+        var weightedColumns = 0;
+        var stretchedColumns = 0;
+        for (var i = 0; i < this._columns.length; i++) {
+            if (typeof this._columns[i].width === "number") {
+                weightedColumns++;
+            }
+            else if (this._columns[i].width === "stretch") {
+                stretchedColumns++;
+            }
+            result = result.concat(this._columns[i].validate());
+        }
+        if (weightedColumns > 0 && stretchedColumns > 0) {
+            result.push({
+                error: Enums.ValidationError.Hint,
+                message: "It is not recommended to use weighted and stretched columns in the same ColumnSet, because in such a situation stretched columns will always get the minimum amount of space."
+            });
+        }
+        return result;
+    };
+    ColumnSet.prototype.updateLayout = function (processChildren) {
+        if (processChildren === void 0) { processChildren = true; }
+        if (processChildren) {
+            for (var i = 0; i < this._columns.length; i++) {
+                this._columns[i].updateLayout();
             }
         }
     };
@@ -3326,10 +4543,38 @@ var ColumnSet = (function (_super) {
             throw new Error("This column already belongs to another ColumnSet.");
         }
     };
+    ColumnSet.prototype.isLeftMostElement = function (element) {
+        return this._columns.indexOf(element) == 0;
+    };
+    ColumnSet.prototype.isRightMostElement = function (element) {
+        return this._columns.indexOf(element) == this._columns.length - 1;
+    };
     ColumnSet.prototype.getAllInputs = function () {
         var result = [];
         for (var i = 0; i < this._columns.length; i++) {
             result = result.concat(this._columns[i].getAllInputs());
+        }
+        return result;
+    };
+    ColumnSet.prototype.getElementById = function (id) {
+        var result = _super.prototype.getElementById.call(this, id);
+        if (!result) {
+            for (var i = 0; i < this._columns.length; i++) {
+                result = this._columns[i].getElementById(id);
+                if (result) {
+                    break;
+                }
+            }
+        }
+        return result;
+    };
+    ColumnSet.prototype.getActionById = function (id) {
+        var result = null;
+        for (var i = 0; i < this._columns.length; i++) {
+            result = this._columns[i].getActionById(id);
+            if (result) {
+                break;
+            }
         }
         return result;
     };
@@ -3346,9 +4591,25 @@ var ColumnSet = (function (_super) {
         }
         return speak;
     };
+    Object.defineProperty(ColumnSet.prototype, "selectAction", {
+        get: function () {
+            return this._selectAction;
+        },
+        set: function (value) {
+            this._selectAction = value;
+            if (this._selectAction) {
+                invokeSetParent(this._selectAction, this);
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     return ColumnSet;
 }(CardElement));
 exports.ColumnSet = ColumnSet;
+function raiseAnchorClickedEvent(anchor) {
+    return AdaptiveCard.onAnchorClicked != null ? AdaptiveCard.onAnchorClicked(anchor) : false;
+}
 function raiseExecuteActionEvent(action) {
     if (AdaptiveCard.onExecuteAction != null) {
         action.prepare(action.parent.getRootElement().getAllInputs());
@@ -3360,9 +4621,15 @@ function raiseInlineCardExpandedEvent(action, isExpanded) {
         AdaptiveCard.onInlineCardExpanded(action, isExpanded);
     }
 }
-function raiseShowPopupCardEvent(action) {
-    if (AdaptiveCard.onShowPopupCard != null) {
-        AdaptiveCard.onShowPopupCard(action);
+function raiseElementVisibilityChangedEvent(element) {
+    element.getRootElement().updateLayout();
+    if (AdaptiveCard.onElementVisibilityChanged != null) {
+        AdaptiveCard.onElementVisibilityChanged(element);
+    }
+}
+function raiseParseElementEvent(element, json) {
+    if (AdaptiveCard.onParseElement != null) {
+        AdaptiveCard.onParseElement(element, json);
     }
 }
 function raiseParseError(error) {
@@ -3370,9 +4637,79 @@ function raiseParseError(error) {
         AdaptiveCard.onParseError(error);
     }
 }
+var ContainerWithActions = (function (_super) {
+    __extends(ContainerWithActions, _super);
+    function ContainerWithActions() {
+        var _this = _super.call(this) || this;
+        _this._actionCollection = new ActionCollection(_this);
+        _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(null); };
+        _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(null); };
+        return _this;
+    }
+    ContainerWithActions.prototype.internalRender = function () {
+        var element = _super.prototype.internalRender.call(this);
+        var renderedActions = this._actionCollection.render(this.hostConfig.actions.actionsOrientation);
+        if (renderedActions) {
+            Utils.appendChild(element, Utils.renderSeparation({
+                spacing: this.hostConfig.getEffectiveSpacing(this.hostConfig.actions.spacing),
+                lineThickness: null,
+                lineColor: null
+            }, Enums.Orientation.Horizontal));
+            Utils.appendChild(element, renderedActions);
+        }
+        return element.children.length > 0 ? element : null;
+    };
+    ContainerWithActions.prototype.getActionById = function (id) {
+        var result = this._actionCollection.getActionById(id);
+        return result ? result : _super.prototype.getActionById.call(this, id);
+    };
+    ContainerWithActions.prototype.parse = function (json, itemsCollectionPropertyName) {
+        if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
+        _super.prototype.parse.call(this, json, itemsCollectionPropertyName);
+        if (json["actions"] != undefined) {
+            var jsonActions = json["actions"];
+            for (var i = 0; i < jsonActions.length; i++) {
+                var action = createActionInstance(jsonActions[i]);
+                if (action != null) {
+                    this.addAction(action);
+                }
+            }
+        }
+    };
+    ContainerWithActions.prototype.validate = function () {
+        var result = _super.prototype.validate.call(this);
+        if (this._actionCollection) {
+            result = result.concat(this._actionCollection.validate());
+        }
+        return result;
+    };
+    ContainerWithActions.prototype.isLastElement = function (element) {
+        return _super.prototype.isLastElement.call(this, element) && this._actionCollection.items.length == 0;
+    };
+    ContainerWithActions.prototype.addAction = function (action) {
+        this._actionCollection.addAction(action);
+    };
+    ContainerWithActions.prototype.clear = function () {
+        _super.prototype.clear.call(this);
+        this._actionCollection.clear();
+    };
+    ContainerWithActions.prototype.getAllInputs = function () {
+        return _super.prototype.getAllInputs.call(this).concat(this._actionCollection.getAllInputs());
+    };
+    Object.defineProperty(ContainerWithActions.prototype, "isStandalone", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ContainerWithActions;
+}(Container));
+exports.ContainerWithActions = ContainerWithActions;
 var TypeRegistry = (function () {
     function TypeRegistry() {
         this._items = [];
+        this.reset();
     }
     TypeRegistry.prototype.findTypeRegistration = function (typeName) {
         for (var i = 0; i < this._items.length; i++) {
@@ -3401,7 +4738,7 @@ var TypeRegistry = (function () {
     TypeRegistry.prototype.unregisterType = function (typeName) {
         for (var i = 0; i < this._items.length; i++) {
             if (this._items[i].typeName === typeName) {
-                this._items = this._items.splice(i, 1);
+                this._items.splice(i, 1);
                 return;
             }
         }
@@ -3413,60 +4750,43 @@ var TypeRegistry = (function () {
     return TypeRegistry;
 }());
 exports.TypeRegistry = TypeRegistry;
-var ContainerWithActions = (function (_super) {
-    __extends(ContainerWithActions, _super);
-    function ContainerWithActions() {
-        var _this = _super.call(this) || this;
-        _this._actionCollection = new ActionCollection(_this);
-        _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(null); };
-        _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(null); };
-        return _this;
+var ElementTypeRegistry = (function (_super) {
+    __extends(ElementTypeRegistry, _super);
+    function ElementTypeRegistry() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    ContainerWithActions.prototype.internalRender = function () {
-        _super.prototype.internalRender.call(this);
-        var renderedActions = this._actionCollection.render();
-        if (renderedActions) {
-            Utils.appendChild(this._element, Utils.renderSeparation(hostConfig.actions.separation, "vertical"));
-            Utils.appendChild(this._element, renderedActions);
-        }
-        return this._element.children.length > 0 ? this._element : null;
+    ElementTypeRegistry.prototype.reset = function () {
+        this.clear();
+        this.registerType("Container", function () { return new Container(); });
+        this.registerType("TextBlock", function () { return new TextBlock(); });
+        this.registerType("Image", function () { return new Image(); });
+        this.registerType("ImageSet", function () { return new ImageSet(); });
+        this.registerType("FactSet", function () { return new FactSet(); });
+        this.registerType("ColumnSet", function () { return new ColumnSet(); });
+        this.registerType("Input.Text", function () { return new TextInput(); });
+        this.registerType("Input.Date", function () { return new DateInput(); });
+        this.registerType("Input.Time", function () { return new TimeInput(); });
+        this.registerType("Input.Number", function () { return new NumberInput(); });
+        this.registerType("Input.ChoiceSet", function () { return new ChoiceSetInput(); });
+        this.registerType("Input.Toggle", function () { return new ToggleInput(); });
     };
-    ContainerWithActions.prototype.parse = function (json, itemsCollectionPropertyName) {
-        if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
-        _super.prototype.parse.call(this, json, itemsCollectionPropertyName);
-        if (json["actions"] != undefined) {
-            var jsonActions = json["actions"];
-            for (var i = 0; i < jsonActions.length; i++) {
-                var action = Action.createAction(jsonActions[i]);
-                if (action != null) {
-                    this.addAction(action);
-                }
-            }
-        }
+    return ElementTypeRegistry;
+}(TypeRegistry));
+exports.ElementTypeRegistry = ElementTypeRegistry;
+var ActionTypeRegistry = (function (_super) {
+    __extends(ActionTypeRegistry, _super);
+    function ActionTypeRegistry() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ActionTypeRegistry.prototype.reset = function () {
+        this.clear();
+        this.registerType("Action.OpenUrl", function () { return new OpenUrlAction(); });
+        this.registerType("Action.Submit", function () { return new SubmitAction(); });
+        this.registerType("Action.ShowCard", function () { return new ShowCardAction(); });
     };
-    ContainerWithActions.prototype.isLastItem = function (item) {
-        return _super.prototype.isLastItem.call(this, item) && this._actionCollection.items.length == 0;
-    };
-    ContainerWithActions.prototype.addAction = function (action) {
-        this._actionCollection.addAction(action);
-    };
-    ContainerWithActions.prototype.clear = function () {
-        _super.prototype.clear.call(this);
-        this._actionCollection.clear();
-    };
-    ContainerWithActions.prototype.getAllInputs = function () {
-        return _super.prototype.getAllInputs.call(this).concat(this._actionCollection.getAllInputs());
-    };
-    Object.defineProperty(ContainerWithActions.prototype, "isStandalone", {
-        get: function () {
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return ContainerWithActions;
-}(ContainerBase));
-exports.ContainerWithActions = ContainerWithActions;
+    return ActionTypeRegistry;
+}(TypeRegistry));
+exports.ActionTypeRegistry = ActionTypeRegistry;
 var AdaptiveCard = (function (_super) {
     __extends(AdaptiveCard, _super);
     function AdaptiveCard() {
@@ -3474,38 +4794,47 @@ var AdaptiveCard = (function (_super) {
         _this.minVersion = { major: 1, minor: 0 };
         return _this;
     }
-    AdaptiveCard.initialize = function () {
-        AdaptiveCard.elementTypeRegistry.clear();
-        AdaptiveCard.elementTypeRegistry.registerType("Container", function () { return new Container(); });
-        AdaptiveCard.elementTypeRegistry.registerType("TextBlock", function () { return new TextBlock(); });
-        AdaptiveCard.elementTypeRegistry.registerType("Image", function () { return new Image(); });
-        AdaptiveCard.elementTypeRegistry.registerType("ImageSet", function () { return new ImageSet(); });
-        AdaptiveCard.elementTypeRegistry.registerType("FactSet", function () { return new FactSet(); });
-        AdaptiveCard.elementTypeRegistry.registerType("ColumnSet", function () { return new ColumnSet(); });
-        AdaptiveCard.elementTypeRegistry.registerType("ActionSet", function () { return new ActionSet(); });
-        AdaptiveCard.elementTypeRegistry.registerType("Input.Text", function () { return new TextInput(); });
-        AdaptiveCard.elementTypeRegistry.registerType("Input.Date", function () { return new DateInput(); });
-        AdaptiveCard.elementTypeRegistry.registerType("Input.Time", function () { return new TimeInput(); });
-        AdaptiveCard.elementTypeRegistry.registerType("Input.Number", function () { return new NumberInput(); });
-        AdaptiveCard.elementTypeRegistry.registerType("Input.ChoiceSet", function () { return new ChoiceSetInput(); });
-        AdaptiveCard.elementTypeRegistry.registerType("Input.Toggle", function () { return new ToggleInput(); });
-        AdaptiveCard.actionTypeRegistry.clear();
-        AdaptiveCard.actionTypeRegistry.registerType("Action.Http", function () { return new HttpAction(); });
-        AdaptiveCard.actionTypeRegistry.registerType("Action.OpenUrl", function () { return new OpenUrlAction(); });
-        AdaptiveCard.actionTypeRegistry.registerType("Action.Submit", function () { return new SubmitAction(); });
-        AdaptiveCard.actionTypeRegistry.registerType("Action.ShowCard", function () { return new ShowCardAction(); });
-    };
     AdaptiveCard.prototype.isVersionSupported = function () {
         var unsupportedVersion = (AdaptiveCard.currentVersion.major < this.minVersion.major) ||
             (AdaptiveCard.currentVersion.major == this.minVersion.major && AdaptiveCard.currentVersion.minor < this.minVersion.minor);
         return !unsupportedVersion;
     };
-    AdaptiveCard.prototype.getBackgroundColor = function () {
-        return hostConfig.adaptiveCard.backgroundColor;
+    AdaptiveCard.prototype.applyPadding = function () {
+        var effectivePadding = this.hostConfig.paddingToSpacingDefinition(this.internalPadding);
+        this.renderedElement.style.paddingTop = effectivePadding.top + "px";
+        this.renderedElement.style.paddingRight = effectivePadding.right + "px";
+        this.renderedElement.style.paddingBottom = effectivePadding.bottom + "px";
+        this.renderedElement.style.paddingLeft = effectivePadding.left + "px";
     };
-    Object.defineProperty(AdaptiveCard.prototype, "padding", {
+    Object.defineProperty(AdaptiveCard.prototype, "defaultPadding", {
         get: function () {
-            return hostConfig.adaptiveCard.padding;
+            return new HostConfig.PaddingDefinition({
+                top: Enums.Padding.Default,
+                right: Enums.Padding.Default,
+                bottom: Enums.Padding.Default,
+                left: Enums.Padding.Default
+            });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AdaptiveCard.prototype, "allowCustomPadding", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AdaptiveCard.prototype, "allowCustomStyle", {
+        get: function () {
+            return this.hostConfig.adaptiveCard.allowCustomStyle;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AdaptiveCard.prototype, "hasBackground", {
+        get: function () {
+            return true;
         },
         enumerable: true,
         configurable: true
@@ -3546,425 +4875,70 @@ var AdaptiveCard = (function (_super) {
         if (!this.isVersionSupported()) {
             renderedCard = document.createElement("div");
             renderedCard.innerHTML = this.fallbackText ? this.fallbackText : "The specified card version is not supported.";
-            return renderedCard;
         }
         else {
-            return _super.prototype.render.call(this);
+            renderedCard = _super.prototype.render.call(this);
+            if (renderedCard) {
+                renderedCard.tabIndex = 0;
+                if (!Utils.isNullOrEmpty(this.speak)) {
+                    renderedCard.setAttribute("aria-label", this.speak);
+                }
+            }
         }
+        return renderedCard;
     };
+    AdaptiveCard.prototype.canContentBleed = function () {
+        return true;
+    };
+    AdaptiveCard.currentVersion = { major: 1, minor: 0 };
+    AdaptiveCard.preExpandSingleShowCardAction = false;
+    AdaptiveCard.elementTypeRegistry = new ElementTypeRegistry();
+    AdaptiveCard.actionTypeRegistry = new ActionTypeRegistry();
+    AdaptiveCard.onAnchorClicked = null;
+    AdaptiveCard.onExecuteAction = null;
+    AdaptiveCard.onElementVisibilityChanged = null;
+    AdaptiveCard.onInlineCardExpanded = null;
+    AdaptiveCard.onParseElement = null;
+    AdaptiveCard.onParseError = null;
     return AdaptiveCard;
 }(ContainerWithActions));
-
-function showPopupCard(action) {
-    var myWindow = window.open("", "MsgWindow", "width=200,height=100");
-    var overlayElement = myWindow.document.createElement("div");
-    overlayElement.id = "popupOverlay";
-    overlayElement.className = "popupOverlay";
-    overlayElement.tabIndex = 0;
-    overlayElement.style.width = myWindow.document.documentElement.scrollWidth + "px";
-    overlayElement.style.height = myWindow.document.documentElement.scrollHeight + "px";
-    overlayElement.onclick = function (e) {
-        document.body.removeChild(overlayElement);
-    };
-    var cardContainer = myWindow.document.createElement("div");
-    cardContainer.className = "popupCardContainer";
-    cardContainer.onclick = function (e) { e.stopPropagation(); };
-    var hostContainer = hostContainerOptions[hostContainerPicker.selectedIndex].hostContainer;
-    cardContainer.appendChild(hostContainer.render(action.card.render(), action.card.renderSpeech()));
-    overlayElement.appendChild(cardContainer);
-    myWindow.document.body.appendChild(overlayElement);
-    var cardContainerBounds = cardContainer.getBoundingClientRect();
-    cardContainer.style.left = (window.innerWidth - cardContainerBounds.width) / 2 + "px";
-    cardContainer.style.top = (window.innerHeight - cardContainerBounds.height) / 2 + "px";
-}
-
-AdaptiveCard.currentVersion = { major: 1, minor: 0 };
-AdaptiveCard.elementTypeRegistry = new TypeRegistry();
-AdaptiveCard.actionTypeRegistry = new TypeRegistry();
-AdaptiveCard.onExecuteAction = null;
-AdaptiveCard.onShowPopupCard = showPopupCard;
-AdaptiveCard.onInlineCardExpanded = null;
-AdaptiveCard.onParseError = null;
 exports.AdaptiveCard = AdaptiveCard;
-// This calls acts as a static constructor (see https://github.com/Microsoft/TypeScript/issues/265)
-AdaptiveCard.initialize();
 var InlineAdaptiveCard = (function (_super) {
     __extends(InlineAdaptiveCard, _super);
     function InlineAdaptiveCard() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(InlineAdaptiveCard.prototype, "padding", {
+    Object.defineProperty(InlineAdaptiveCard.prototype, "defaultPadding", {
         get: function () {
-            return hostConfig.actions.showCard.padding;
+            return new HostConfig.PaddingDefinition({
+                top: Enums.Padding.Default,
+                right: Enums.Padding.Default,
+                bottom: Enums.Padding.Default,
+                left: Enums.Padding.Default
+            });
         },
         enumerable: true,
         configurable: true
     });
-    InlineAdaptiveCard.prototype.getBackgroundColor = function () {
-        return null;
+    Object.defineProperty(InlineAdaptiveCard.prototype, "defaultStyle", {
+        get: function () {
+            return this.hostConfig.actions.showCard.style ? this.hostConfig.actions.showCard.style : Enums.ContainerStyle.Emphasis;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    InlineAdaptiveCard.prototype.render = function () {
+        var renderedCard = _super.prototype.render.call(this);
+        renderedCard.setAttribute("aria-live", "polite");
+        renderedCard.removeAttribute("tabindex");
+        return renderedCard;
     };
     InlineAdaptiveCard.prototype.getForbiddenActionTypes = function () {
         return [ShowCardAction];
     };
     return InlineAdaptiveCard;
 }(AdaptiveCard));
-var defaultHostConfig = {
-    supportsInteractivity: true,
-    strongSeparation: {
-        spacing: 40,
-        lineThickness: 1,
-        lineColor: "#EEEEEE"
-    },
-    fontFamily: "Segoe UI",
-    fontSizes: {
-        small: 8,
-        normal: 10,
-        medium: 12,
-        large: 14,
-        extraLarge: 16
-    },
-    fontWeights: {
-        lighter: 200,
-        normal: 400,
-        bolder: 600
-    },
-    colors: {
-        dark: {
-            normal: "#0000FF",
-            subtle: "#222222"
-        },
-        light: {
-            normal: "#FFFFFF",
-            subtle: "#DDDDDD"
-        },
-        accent: {
-            normal: "#0000FF",
-            subtle: "#0000DD"
-        },
-        attention: {
-            normal: "#FF6600",
-            subtle: "#DD4400"
-        },
-        good: {
-            normal: "#00FF00",
-            subtle: "#00DD00"
-        },
-        warning: {
-            normal: "#FF0000",
-            subtle: "#DD0000"
-        }
-    },
-    imageSizes: {
-        small: 40,
-        medium: 80,
-        large: 160
-    },
-    actions: {
-        maxActions: 5,
-        separation: {
-            spacing: 20
-        },
-        buttonSpacing: 20,
-        showCard: {
-            actionMode: "inlineEdgeToEdge",
-            inlineTopMargin: 16,
-            backgroundColor: "#22000000",
-            padding: {
-                top: 16,
-                right: 16,
-                bottom: 16,
-                left: 16
-            }
-        },
-        actionsOrientation: "horizontal",
-        actionAlignment: "left"
-    },
-    adaptiveCard: {
-        backgroundColor: "#00000000",
-        padding: {
-            left: 20,
-            top: 20,
-            right: 20,
-            bottom: 20
-        }
-    },
-    container: {
-        separation: {
-            spacing: 20
-        },
-        normal: {},
-        emphasis: {
-            backgroundColor: "#EEEEEE",
-            borderColor: "#AAAAAA",
-            borderThickness: {
-                top: 1,
-                right: 1,
-                bottom: 1,
-                left: 1
-            },
-            padding: {
-                top: 10,
-                right: 10,
-                bottom: 10,
-                left: 10
-            }
-        }
-    },
-    textBlock: {
-        color: "dark",
-        separations: {
-            small: {
-                spacing: 20,
-            },
-            normal: {
-                spacing: 20
-            },
-            medium: {
-                spacing: 20
-            },
-            large: {
-                spacing: 20
-            },
-            extraLarge: {
-                spacing: 20
-            }
-        }
-    },
-    image: {
-        size: "medium",
-        separation: {
-            spacing: 20
-        }
-    },
-    imageSet: {
-        imageSize: "medium",
-        separation: {
-            spacing: 20
-        }
-    },
-    factSet: {
-        separation: {
-            spacing: 20
-        },
-        title: {
-            color: "dark",
-            size: "normal",
-            isSubtle: false,
-            weight: "bolder",
-            wrap: true,
-            maxWidth: 150
-        },
-        value: {
-            color: "dark",
-            size: "normal",
-            isSubtle: false,
-            weight: "normal",
-            wrap: true
-        },
-        spacing: 10
-    },
-    input: {
-        separation: {
-            spacing: 20
-        }
-    },
-    columnSet: {
-        separation: {
-            spacing: 20
-        }
-    },
-    column: {
-        separation: {
-            spacing: 20
-        }
-    }
-};
-var hostConfig = defaultHostConfig;
-function setHostConfig(configuration) {
-    hostConfig = configuration;
-}
-exports.setHostConfig = setHostConfig;
-function resetHostConfig() {
-    hostConfig = defaultHostConfig;
-}
-exports.resetHostConfig = resetHostConfig;
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Utils = __webpack_require__(10);
-function parseSpacingDefinition(obj) {
-    return obj ? {
-        top: obj["top"],
-        right: obj["right"],
-        bottom: obj["bottom"],
-        left: obj["left"]
-    } : null;
-}
-function parseColorDefinition(obj) {
-    return obj ? {
-        normal: obj["normal"],
-        subtle: obj["subtle"]
-    } : null;
-}
-function parseSeparationDefinition(obj) {
-    return obj ? {
-        spacing: obj["spacing"],
-        lineThickness: obj["lineThickness"],
-        lineColor: obj["lineColor"]
-    } : null;
-}
-function parseAdaptiveCardConfiguration(obj) {
-    return obj ? {
-        backgroundColor: obj["backgroundColor"],
-        padding: parseSpacingDefinition(obj["padding"])
-    } : null;
-}
-function parseTextBlockConfiguration(obj) {
-    return obj ? {
-        color: obj["color"],
-        separations: {
-            small: parseSeparationDefinition(obj["separations"]["small"]),
-            normal: parseSeparationDefinition(obj["separations"]["normal"]),
-            medium: parseSeparationDefinition(obj["separations"]["medium"]),
-            large: parseSeparationDefinition(obj["separations"]["large"]),
-            extraLarge: parseSeparationDefinition(obj["separations"]["extraLarge"])
-        }
-    } : null;
-}
-function parseContainerStyleDefinition(obj) {
-    return obj ? {
-        backgroundColor: obj["backgroundColor"],
-        padding: parseSpacingDefinition(obj["padding"]),
-        borderColor: obj["borderColor"],
-        borderThickness: parseSpacingDefinition(obj["borderThickness"])
-    } : null;
-}
-function parseContainerConfiguration(obj) {
-    return obj ? {
-        separation: parseSeparationDefinition(obj["separation"]),
-        normal: parseContainerStyleDefinition(obj["normal"]),
-        emphasis: parseContainerStyleDefinition(obj["emphasis"])
-    } : null;
-}
-function parseImageConfiguration(obj) {
-    return obj ? {
-        separation: parseSeparationDefinition(obj["separation"]),
-        size: obj["size"]
-    } : null;
-}
-function parseImageSetConfiguration(obj) {
-    return obj ? {
-        separation: parseSeparationDefinition(obj["separation"]),
-        imageSize: obj["imageSize"]
-    } : null;
-}
-function parseFactTextDefinition(obj) {
-    return obj ? {
-        size: Utils.getValueOrDefault(obj["size"], "normal"),
-        color: Utils.getValueOrDefault(obj["color"], "dark"),
-        isSubtle: obj["isSubtle"],
-        weight: Utils.getValueOrDefault(obj["weight"], "normal"),
-        wrap: obj["wrap"]
-    } : null;
-}
-function parseFactTitleDefinition(obj) {
-    var result = parseFactTextDefinition(obj);
-    if (result) {
-        result.maxWidth = obj["maxWidth"];
-    }
-    return result;
-}
-function parseFactSetConfiguration(obj) {
-    return obj ? {
-        separation: parseSeparationDefinition(obj["separation"]),
-        title: parseFactTitleDefinition(obj["title"]),
-        value: parseFactTextDefinition(obj["value"]),
-        spacing: obj["spacing"]
-    } : null;
-}
-function parseColumnSetConfiguration(obj) {
-    return obj ? {
-        separation: parseSeparationDefinition(obj["separation"])
-    } : null;
-}
-function parseColumnConfiguration(obj) {
-    return obj ? {
-        separation: parseSeparationDefinition(obj["separation"])
-    } : null;
-}
-function parseShowCardActionConfiguration(obj) {
-    return obj ? {
-        actionMode: Utils.getValueOrDefault(obj["actionMode"], "inlineEdgeToEdge"),
-        inlineTopMargin: obj["inlineTopMargin"],
-        backgroundColor: obj["backgroundColor"],
-        padding: parseSpacingDefinition(obj["padding"])
-    } : null;
-}
-function parseActionsConfiguration(obj) {
-    return obj ? {
-        maxActions: obj["maxActions"],
-        separation: parseSeparationDefinition(obj["separation"]),
-        buttonSpacing: obj["buttonSpacing"],
-        showCard: parseShowCardActionConfiguration(obj["showCard"]),
-        actionsOrientation: Utils.getValueOrDefault(obj["actionsOrientation"], "horizontal"),
-        actionAlignment: Utils.getValueOrDefault(obj["actionAlignment"], "left"),
-    } : null;
-}
-function parseInputConfiguration(obj) {
-    return obj ? {
-        separation: parseSeparationDefinition(obj["separation"])
-    } : null;
-}
-function parseHostConfig(serializedConfiguration) {
-    var obj = JSON.parse(serializedConfiguration);
-    return obj ? {
-        supportsInteractivity: obj["supportsInteractivity"],
-        fontFamily: obj["fontFamily"],
-        fontSizes: {
-            small: obj["fontSizes"]["small"],
-            normal: obj["fontSizes"]["normal"],
-            medium: obj["fontSizes"]["medium"],
-            large: obj["fontSizes"]["large"],
-            extraLarge: obj["fontSizes"]["extraLarge"]
-        },
-        fontWeights: {
-            lighter: obj["fontWeights"]["lighter"],
-            normal: obj["fontWeights"]["normal"],
-            bolder: obj["fontWeights"]["bolder"]
-        },
-        imageSizes: {
-            small: obj["imageSizes"]["small"],
-            medium: obj["imageSizes"]["medium"],
-            large: obj["imageSizes"]["large"],
-        },
-        colors: {
-            dark: parseColorDefinition(obj["colors"]["dark"]),
-            light: parseColorDefinition(obj["colors"]["light"]),
-            accent: parseColorDefinition(obj["colors"]["accent"]),
-            good: parseColorDefinition(obj["colors"]["good"]),
-            warning: parseColorDefinition(obj["colors"]["warning"]),
-            attention: parseColorDefinition(obj["colors"]["attention"])
-        },
-        strongSeparation: parseSeparationDefinition(obj["strongSeparation"]),
-        actions: parseActionsConfiguration(obj["actions"]),
-        adaptiveCard: parseAdaptiveCardConfiguration(obj["adaptiveCard"]),
-        container: parseContainerConfiguration(obj["container"]),
-        textBlock: parseTextBlockConfiguration(obj["textBlock"]),
-        image: parseImageConfiguration(obj["image"]),
-        imageSet: parseImageSetConfiguration(obj["imageSet"]),
-        factSet: parseFactSetConfiguration(obj["factSet"]),
-        column: parseColumnConfiguration(obj["column"]),
-        columnSet: parseColumnSetConfiguration(obj["columnSet"]),
-        input: parseInputConfiguration(obj["input"])
-    } : null;
-}
-exports.parseHostConfig = parseHostConfig;
+var defaultHostConfig = new HostConfig.HostConfig();
 
 
 /***/ }),
@@ -3972,2131 +4946,2131 @@ exports.parseHostConfig = parseHostConfig;
 /***/ (function(module, exports) {
 
 module.exports = {
-	"Aacute": "Ã",
-	"aacute": "Ã¡",
-	"Abreve": "Ä‚",
-	"abreve": "Äƒ",
-	"ac": "âˆ¾",
-	"acd": "âˆ¿",
-	"acE": "âˆ¾Ì³",
-	"Acirc": "Ã‚",
-	"acirc": "Ã¢",
-	"acute": "Â´",
-	"Acy": "Ð",
-	"acy": "Ð°",
-	"AElig": "Ã†",
-	"aelig": "Ã¦",
-	"af": "â¡",
-	"Afr": "ð”„",
-	"afr": "ð”ž",
-	"Agrave": "Ã€",
-	"agrave": "Ã ",
-	"alefsym": "â„µ",
-	"aleph": "â„µ",
-	"Alpha": "Î‘",
-	"alpha": "Î±",
-	"Amacr": "Ä€",
-	"amacr": "Ä",
-	"amalg": "â¨¿",
+	"Aacute": "Á",
+	"aacute": "á",
+	"Abreve": "Ă",
+	"abreve": "ă",
+	"ac": "∾",
+	"acd": "∿",
+	"acE": "∾̳",
+	"Acirc": "Â",
+	"acirc": "â",
+	"acute": "´",
+	"Acy": "А",
+	"acy": "а",
+	"AElig": "Æ",
+	"aelig": "æ",
+	"af": "⁡",
+	"Afr": "𝔄",
+	"afr": "𝔞",
+	"Agrave": "À",
+	"agrave": "à",
+	"alefsym": "ℵ",
+	"aleph": "ℵ",
+	"Alpha": "Α",
+	"alpha": "α",
+	"Amacr": "Ā",
+	"amacr": "ā",
+	"amalg": "⨿",
 	"amp": "&",
 	"AMP": "&",
-	"andand": "â©•",
-	"And": "â©“",
-	"and": "âˆ§",
-	"andd": "â©œ",
-	"andslope": "â©˜",
-	"andv": "â©š",
-	"ang": "âˆ ",
-	"ange": "â¦¤",
-	"angle": "âˆ ",
-	"angmsdaa": "â¦¨",
-	"angmsdab": "â¦©",
-	"angmsdac": "â¦ª",
-	"angmsdad": "â¦«",
-	"angmsdae": "â¦¬",
-	"angmsdaf": "â¦­",
-	"angmsdag": "â¦®",
-	"angmsdah": "â¦¯",
-	"angmsd": "âˆ¡",
-	"angrt": "âˆŸ",
-	"angrtvb": "âŠ¾",
-	"angrtvbd": "â¦",
-	"angsph": "âˆ¢",
-	"angst": "Ã…",
-	"angzarr": "â¼",
-	"Aogon": "Ä„",
-	"aogon": "Ä…",
-	"Aopf": "ð”¸",
-	"aopf": "ð•’",
-	"apacir": "â©¯",
-	"ap": "â‰ˆ",
-	"apE": "â©°",
-	"ape": "â‰Š",
-	"apid": "â‰‹",
+	"andand": "⩕",
+	"And": "⩓",
+	"and": "∧",
+	"andd": "⩜",
+	"andslope": "⩘",
+	"andv": "⩚",
+	"ang": "∠",
+	"ange": "⦤",
+	"angle": "∠",
+	"angmsdaa": "⦨",
+	"angmsdab": "⦩",
+	"angmsdac": "⦪",
+	"angmsdad": "⦫",
+	"angmsdae": "⦬",
+	"angmsdaf": "⦭",
+	"angmsdag": "⦮",
+	"angmsdah": "⦯",
+	"angmsd": "∡",
+	"angrt": "∟",
+	"angrtvb": "⊾",
+	"angrtvbd": "⦝",
+	"angsph": "∢",
+	"angst": "Å",
+	"angzarr": "⍼",
+	"Aogon": "Ą",
+	"aogon": "ą",
+	"Aopf": "𝔸",
+	"aopf": "𝕒",
+	"apacir": "⩯",
+	"ap": "≈",
+	"apE": "⩰",
+	"ape": "≊",
+	"apid": "≋",
 	"apos": "'",
-	"ApplyFunction": "â¡",
-	"approx": "â‰ˆ",
-	"approxeq": "â‰Š",
-	"Aring": "Ã…",
-	"aring": "Ã¥",
-	"Ascr": "ð’œ",
-	"ascr": "ð’¶",
-	"Assign": "â‰”",
+	"ApplyFunction": "⁡",
+	"approx": "≈",
+	"approxeq": "≊",
+	"Aring": "Å",
+	"aring": "å",
+	"Ascr": "𝒜",
+	"ascr": "𝒶",
+	"Assign": "≔",
 	"ast": "*",
-	"asymp": "â‰ˆ",
-	"asympeq": "â‰",
-	"Atilde": "Ãƒ",
-	"atilde": "Ã£",
-	"Auml": "Ã„",
-	"auml": "Ã¤",
-	"awconint": "âˆ³",
-	"awint": "â¨‘",
-	"backcong": "â‰Œ",
-	"backepsilon": "Ï¶",
-	"backprime": "â€µ",
-	"backsim": "âˆ½",
-	"backsimeq": "â‹",
-	"Backslash": "âˆ–",
-	"Barv": "â«§",
-	"barvee": "âŠ½",
-	"barwed": "âŒ…",
-	"Barwed": "âŒ†",
-	"barwedge": "âŒ…",
-	"bbrk": "âŽµ",
-	"bbrktbrk": "âŽ¶",
-	"bcong": "â‰Œ",
-	"Bcy": "Ð‘",
-	"bcy": "Ð±",
-	"bdquo": "â€ž",
-	"becaus": "âˆµ",
-	"because": "âˆµ",
-	"Because": "âˆµ",
-	"bemptyv": "â¦°",
-	"bepsi": "Ï¶",
-	"bernou": "â„¬",
-	"Bernoullis": "â„¬",
-	"Beta": "Î’",
-	"beta": "Î²",
-	"beth": "â„¶",
-	"between": "â‰¬",
-	"Bfr": "ð”…",
-	"bfr": "ð”Ÿ",
-	"bigcap": "â‹‚",
-	"bigcirc": "â—¯",
-	"bigcup": "â‹ƒ",
-	"bigodot": "â¨€",
-	"bigoplus": "â¨",
-	"bigotimes": "â¨‚",
-	"bigsqcup": "â¨†",
-	"bigstar": "â˜…",
-	"bigtriangledown": "â–½",
-	"bigtriangleup": "â–³",
-	"biguplus": "â¨„",
-	"bigvee": "â‹",
-	"bigwedge": "â‹€",
-	"bkarow": "â¤",
-	"blacklozenge": "â§«",
-	"blacksquare": "â–ª",
-	"blacktriangle": "â–´",
-	"blacktriangledown": "â–¾",
-	"blacktriangleleft": "â—‚",
-	"blacktriangleright": "â–¸",
-	"blank": "â£",
-	"blk12": "â–’",
-	"blk14": "â–‘",
-	"blk34": "â–“",
-	"block": "â–ˆ",
-	"bne": "=âƒ¥",
-	"bnequiv": "â‰¡âƒ¥",
-	"bNot": "â«­",
-	"bnot": "âŒ",
-	"Bopf": "ð”¹",
-	"bopf": "ð•“",
-	"bot": "âŠ¥",
-	"bottom": "âŠ¥",
-	"bowtie": "â‹ˆ",
-	"boxbox": "â§‰",
-	"boxdl": "â”",
-	"boxdL": "â••",
-	"boxDl": "â•–",
-	"boxDL": "â•—",
-	"boxdr": "â”Œ",
-	"boxdR": "â•’",
-	"boxDr": "â•“",
-	"boxDR": "â•”",
-	"boxh": "â”€",
-	"boxH": "â•",
-	"boxhd": "â”¬",
-	"boxHd": "â•¤",
-	"boxhD": "â•¥",
-	"boxHD": "â•¦",
-	"boxhu": "â”´",
-	"boxHu": "â•§",
-	"boxhU": "â•¨",
-	"boxHU": "â•©",
-	"boxminus": "âŠŸ",
-	"boxplus": "âŠž",
-	"boxtimes": "âŠ ",
-	"boxul": "â”˜",
-	"boxuL": "â•›",
-	"boxUl": "â•œ",
-	"boxUL": "â•",
-	"boxur": "â””",
-	"boxuR": "â•˜",
-	"boxUr": "â•™",
-	"boxUR": "â•š",
-	"boxv": "â”‚",
-	"boxV": "â•‘",
-	"boxvh": "â”¼",
-	"boxvH": "â•ª",
-	"boxVh": "â•«",
-	"boxVH": "â•¬",
-	"boxvl": "â”¤",
-	"boxvL": "â•¡",
-	"boxVl": "â•¢",
-	"boxVL": "â•£",
-	"boxvr": "â”œ",
-	"boxvR": "â•ž",
-	"boxVr": "â•Ÿ",
-	"boxVR": "â• ",
-	"bprime": "â€µ",
-	"breve": "Ë˜",
-	"Breve": "Ë˜",
-	"brvbar": "Â¦",
-	"bscr": "ð’·",
-	"Bscr": "â„¬",
-	"bsemi": "â",
-	"bsim": "âˆ½",
-	"bsime": "â‹",
-	"bsolb": "â§…",
+	"asymp": "≈",
+	"asympeq": "≍",
+	"Atilde": "Ã",
+	"atilde": "ã",
+	"Auml": "Ä",
+	"auml": "ä",
+	"awconint": "∳",
+	"awint": "⨑",
+	"backcong": "≌",
+	"backepsilon": "϶",
+	"backprime": "‵",
+	"backsim": "∽",
+	"backsimeq": "⋍",
+	"Backslash": "∖",
+	"Barv": "⫧",
+	"barvee": "⊽",
+	"barwed": "⌅",
+	"Barwed": "⌆",
+	"barwedge": "⌅",
+	"bbrk": "⎵",
+	"bbrktbrk": "⎶",
+	"bcong": "≌",
+	"Bcy": "Б",
+	"bcy": "б",
+	"bdquo": "„",
+	"becaus": "∵",
+	"because": "∵",
+	"Because": "∵",
+	"bemptyv": "⦰",
+	"bepsi": "϶",
+	"bernou": "ℬ",
+	"Bernoullis": "ℬ",
+	"Beta": "Β",
+	"beta": "β",
+	"beth": "ℶ",
+	"between": "≬",
+	"Bfr": "𝔅",
+	"bfr": "𝔟",
+	"bigcap": "⋂",
+	"bigcirc": "◯",
+	"bigcup": "⋃",
+	"bigodot": "⨀",
+	"bigoplus": "⨁",
+	"bigotimes": "⨂",
+	"bigsqcup": "⨆",
+	"bigstar": "★",
+	"bigtriangledown": "▽",
+	"bigtriangleup": "△",
+	"biguplus": "⨄",
+	"bigvee": "⋁",
+	"bigwedge": "⋀",
+	"bkarow": "⤍",
+	"blacklozenge": "⧫",
+	"blacksquare": "▪",
+	"blacktriangle": "▴",
+	"blacktriangledown": "▾",
+	"blacktriangleleft": "◂",
+	"blacktriangleright": "▸",
+	"blank": "␣",
+	"blk12": "▒",
+	"blk14": "░",
+	"blk34": "▓",
+	"block": "█",
+	"bne": "=⃥",
+	"bnequiv": "≡⃥",
+	"bNot": "⫭",
+	"bnot": "⌐",
+	"Bopf": "𝔹",
+	"bopf": "𝕓",
+	"bot": "⊥",
+	"bottom": "⊥",
+	"bowtie": "⋈",
+	"boxbox": "⧉",
+	"boxdl": "┐",
+	"boxdL": "╕",
+	"boxDl": "╖",
+	"boxDL": "╗",
+	"boxdr": "┌",
+	"boxdR": "╒",
+	"boxDr": "╓",
+	"boxDR": "╔",
+	"boxh": "─",
+	"boxH": "═",
+	"boxhd": "┬",
+	"boxHd": "╤",
+	"boxhD": "╥",
+	"boxHD": "╦",
+	"boxhu": "┴",
+	"boxHu": "╧",
+	"boxhU": "╨",
+	"boxHU": "╩",
+	"boxminus": "⊟",
+	"boxplus": "⊞",
+	"boxtimes": "⊠",
+	"boxul": "┘",
+	"boxuL": "╛",
+	"boxUl": "╜",
+	"boxUL": "╝",
+	"boxur": "└",
+	"boxuR": "╘",
+	"boxUr": "╙",
+	"boxUR": "╚",
+	"boxv": "│",
+	"boxV": "║",
+	"boxvh": "┼",
+	"boxvH": "╪",
+	"boxVh": "╫",
+	"boxVH": "╬",
+	"boxvl": "┤",
+	"boxvL": "╡",
+	"boxVl": "╢",
+	"boxVL": "╣",
+	"boxvr": "├",
+	"boxvR": "╞",
+	"boxVr": "╟",
+	"boxVR": "╠",
+	"bprime": "‵",
+	"breve": "˘",
+	"Breve": "˘",
+	"brvbar": "¦",
+	"bscr": "𝒷",
+	"Bscr": "ℬ",
+	"bsemi": "⁏",
+	"bsim": "∽",
+	"bsime": "⋍",
+	"bsolb": "⧅",
 	"bsol": "\\",
-	"bsolhsub": "âŸˆ",
-	"bull": "â€¢",
-	"bullet": "â€¢",
-	"bump": "â‰Ž",
-	"bumpE": "âª®",
-	"bumpe": "â‰",
-	"Bumpeq": "â‰Ž",
-	"bumpeq": "â‰",
-	"Cacute": "Ä†",
-	"cacute": "Ä‡",
-	"capand": "â©„",
-	"capbrcup": "â©‰",
-	"capcap": "â©‹",
-	"cap": "âˆ©",
-	"Cap": "â‹’",
-	"capcup": "â©‡",
-	"capdot": "â©€",
-	"CapitalDifferentialD": "â……",
-	"caps": "âˆ©ï¸€",
-	"caret": "â",
-	"caron": "Ë‡",
-	"Cayleys": "â„­",
-	"ccaps": "â©",
-	"Ccaron": "ÄŒ",
-	"ccaron": "Ä",
-	"Ccedil": "Ã‡",
-	"ccedil": "Ã§",
-	"Ccirc": "Äˆ",
-	"ccirc": "Ä‰",
-	"Cconint": "âˆ°",
-	"ccups": "â©Œ",
-	"ccupssm": "â©",
-	"Cdot": "ÄŠ",
-	"cdot": "Ä‹",
-	"cedil": "Â¸",
-	"Cedilla": "Â¸",
-	"cemptyv": "â¦²",
-	"cent": "Â¢",
-	"centerdot": "Â·",
-	"CenterDot": "Â·",
-	"cfr": "ð” ",
-	"Cfr": "â„­",
-	"CHcy": "Ð§",
-	"chcy": "Ñ‡",
-	"check": "âœ“",
-	"checkmark": "âœ“",
-	"Chi": "Î§",
-	"chi": "Ï‡",
-	"circ": "Ë†",
-	"circeq": "â‰—",
-	"circlearrowleft": "â†º",
-	"circlearrowright": "â†»",
-	"circledast": "âŠ›",
-	"circledcirc": "âŠš",
-	"circleddash": "âŠ",
-	"CircleDot": "âŠ™",
-	"circledR": "Â®",
-	"circledS": "â“ˆ",
-	"CircleMinus": "âŠ–",
-	"CirclePlus": "âŠ•",
-	"CircleTimes": "âŠ—",
-	"cir": "â—‹",
-	"cirE": "â§ƒ",
-	"cire": "â‰—",
-	"cirfnint": "â¨",
-	"cirmid": "â«¯",
-	"cirscir": "â§‚",
-	"ClockwiseContourIntegral": "âˆ²",
-	"CloseCurlyDoubleQuote": "â€",
-	"CloseCurlyQuote": "â€™",
-	"clubs": "â™£",
-	"clubsuit": "â™£",
+	"bsolhsub": "⟈",
+	"bull": "•",
+	"bullet": "•",
+	"bump": "≎",
+	"bumpE": "⪮",
+	"bumpe": "≏",
+	"Bumpeq": "≎",
+	"bumpeq": "≏",
+	"Cacute": "Ć",
+	"cacute": "ć",
+	"capand": "⩄",
+	"capbrcup": "⩉",
+	"capcap": "⩋",
+	"cap": "∩",
+	"Cap": "⋒",
+	"capcup": "⩇",
+	"capdot": "⩀",
+	"CapitalDifferentialD": "ⅅ",
+	"caps": "∩︀",
+	"caret": "⁁",
+	"caron": "ˇ",
+	"Cayleys": "ℭ",
+	"ccaps": "⩍",
+	"Ccaron": "Č",
+	"ccaron": "č",
+	"Ccedil": "Ç",
+	"ccedil": "ç",
+	"Ccirc": "Ĉ",
+	"ccirc": "ĉ",
+	"Cconint": "∰",
+	"ccups": "⩌",
+	"ccupssm": "⩐",
+	"Cdot": "Ċ",
+	"cdot": "ċ",
+	"cedil": "¸",
+	"Cedilla": "¸",
+	"cemptyv": "⦲",
+	"cent": "¢",
+	"centerdot": "·",
+	"CenterDot": "·",
+	"cfr": "𝔠",
+	"Cfr": "ℭ",
+	"CHcy": "Ч",
+	"chcy": "ч",
+	"check": "✓",
+	"checkmark": "✓",
+	"Chi": "Χ",
+	"chi": "χ",
+	"circ": "ˆ",
+	"circeq": "≗",
+	"circlearrowleft": "↺",
+	"circlearrowright": "↻",
+	"circledast": "⊛",
+	"circledcirc": "⊚",
+	"circleddash": "⊝",
+	"CircleDot": "⊙",
+	"circledR": "®",
+	"circledS": "Ⓢ",
+	"CircleMinus": "⊖",
+	"CirclePlus": "⊕",
+	"CircleTimes": "⊗",
+	"cir": "○",
+	"cirE": "⧃",
+	"cire": "≗",
+	"cirfnint": "⨐",
+	"cirmid": "⫯",
+	"cirscir": "⧂",
+	"ClockwiseContourIntegral": "∲",
+	"CloseCurlyDoubleQuote": "”",
+	"CloseCurlyQuote": "’",
+	"clubs": "♣",
+	"clubsuit": "♣",
 	"colon": ":",
-	"Colon": "âˆ·",
-	"Colone": "â©´",
-	"colone": "â‰”",
-	"coloneq": "â‰”",
+	"Colon": "∷",
+	"Colone": "⩴",
+	"colone": "≔",
+	"coloneq": "≔",
 	"comma": ",",
 	"commat": "@",
-	"comp": "âˆ",
-	"compfn": "âˆ˜",
-	"complement": "âˆ",
-	"complexes": "â„‚",
-	"cong": "â‰…",
-	"congdot": "â©­",
-	"Congruent": "â‰¡",
-	"conint": "âˆ®",
-	"Conint": "âˆ¯",
-	"ContourIntegral": "âˆ®",
-	"copf": "ð•”",
-	"Copf": "â„‚",
-	"coprod": "âˆ",
-	"Coproduct": "âˆ",
-	"copy": "Â©",
-	"COPY": "Â©",
-	"copysr": "â„—",
-	"CounterClockwiseContourIntegral": "âˆ³",
-	"crarr": "â†µ",
-	"cross": "âœ—",
-	"Cross": "â¨¯",
-	"Cscr": "ð’ž",
-	"cscr": "ð’¸",
-	"csub": "â«",
-	"csube": "â«‘",
-	"csup": "â«",
-	"csupe": "â«’",
-	"ctdot": "â‹¯",
-	"cudarrl": "â¤¸",
-	"cudarrr": "â¤µ",
-	"cuepr": "â‹ž",
-	"cuesc": "â‹Ÿ",
-	"cularr": "â†¶",
-	"cularrp": "â¤½",
-	"cupbrcap": "â©ˆ",
-	"cupcap": "â©†",
-	"CupCap": "â‰",
-	"cup": "âˆª",
-	"Cup": "â‹“",
-	"cupcup": "â©Š",
-	"cupdot": "âŠ",
-	"cupor": "â©…",
-	"cups": "âˆªï¸€",
-	"curarr": "â†·",
-	"curarrm": "â¤¼",
-	"curlyeqprec": "â‹ž",
-	"curlyeqsucc": "â‹Ÿ",
-	"curlyvee": "â‹Ž",
-	"curlywedge": "â‹",
-	"curren": "Â¤",
-	"curvearrowleft": "â†¶",
-	"curvearrowright": "â†·",
-	"cuvee": "â‹Ž",
-	"cuwed": "â‹",
-	"cwconint": "âˆ²",
-	"cwint": "âˆ±",
-	"cylcty": "âŒ­",
-	"dagger": "â€ ",
-	"Dagger": "â€¡",
-	"daleth": "â„¸",
-	"darr": "â†“",
-	"Darr": "â†¡",
-	"dArr": "â‡“",
-	"dash": "â€",
-	"Dashv": "â«¤",
-	"dashv": "âŠ£",
-	"dbkarow": "â¤",
-	"dblac": "Ë",
-	"Dcaron": "ÄŽ",
-	"dcaron": "Ä",
-	"Dcy": "Ð”",
-	"dcy": "Ð´",
-	"ddagger": "â€¡",
-	"ddarr": "â‡Š",
-	"DD": "â……",
-	"dd": "â…†",
-	"DDotrahd": "â¤‘",
-	"ddotseq": "â©·",
-	"deg": "Â°",
-	"Del": "âˆ‡",
-	"Delta": "Î”",
-	"delta": "Î´",
-	"demptyv": "â¦±",
-	"dfisht": "â¥¿",
-	"Dfr": "ð”‡",
-	"dfr": "ð”¡",
-	"dHar": "â¥¥",
-	"dharl": "â‡ƒ",
-	"dharr": "â‡‚",
-	"DiacriticalAcute": "Â´",
-	"DiacriticalDot": "Ë™",
-	"DiacriticalDoubleAcute": "Ë",
+	"comp": "∁",
+	"compfn": "∘",
+	"complement": "∁",
+	"complexes": "ℂ",
+	"cong": "≅",
+	"congdot": "⩭",
+	"Congruent": "≡",
+	"conint": "∮",
+	"Conint": "∯",
+	"ContourIntegral": "∮",
+	"copf": "𝕔",
+	"Copf": "ℂ",
+	"coprod": "∐",
+	"Coproduct": "∐",
+	"copy": "©",
+	"COPY": "©",
+	"copysr": "℗",
+	"CounterClockwiseContourIntegral": "∳",
+	"crarr": "↵",
+	"cross": "✗",
+	"Cross": "⨯",
+	"Cscr": "𝒞",
+	"cscr": "𝒸",
+	"csub": "⫏",
+	"csube": "⫑",
+	"csup": "⫐",
+	"csupe": "⫒",
+	"ctdot": "⋯",
+	"cudarrl": "⤸",
+	"cudarrr": "⤵",
+	"cuepr": "⋞",
+	"cuesc": "⋟",
+	"cularr": "↶",
+	"cularrp": "⤽",
+	"cupbrcap": "⩈",
+	"cupcap": "⩆",
+	"CupCap": "≍",
+	"cup": "∪",
+	"Cup": "⋓",
+	"cupcup": "⩊",
+	"cupdot": "⊍",
+	"cupor": "⩅",
+	"cups": "∪︀",
+	"curarr": "↷",
+	"curarrm": "⤼",
+	"curlyeqprec": "⋞",
+	"curlyeqsucc": "⋟",
+	"curlyvee": "⋎",
+	"curlywedge": "⋏",
+	"curren": "¤",
+	"curvearrowleft": "↶",
+	"curvearrowright": "↷",
+	"cuvee": "⋎",
+	"cuwed": "⋏",
+	"cwconint": "∲",
+	"cwint": "∱",
+	"cylcty": "⌭",
+	"dagger": "†",
+	"Dagger": "‡",
+	"daleth": "ℸ",
+	"darr": "↓",
+	"Darr": "↡",
+	"dArr": "⇓",
+	"dash": "‐",
+	"Dashv": "⫤",
+	"dashv": "⊣",
+	"dbkarow": "⤏",
+	"dblac": "˝",
+	"Dcaron": "Ď",
+	"dcaron": "ď",
+	"Dcy": "Д",
+	"dcy": "д",
+	"ddagger": "‡",
+	"ddarr": "⇊",
+	"DD": "ⅅ",
+	"dd": "ⅆ",
+	"DDotrahd": "⤑",
+	"ddotseq": "⩷",
+	"deg": "°",
+	"Del": "∇",
+	"Delta": "Δ",
+	"delta": "δ",
+	"demptyv": "⦱",
+	"dfisht": "⥿",
+	"Dfr": "𝔇",
+	"dfr": "𝔡",
+	"dHar": "⥥",
+	"dharl": "⇃",
+	"dharr": "⇂",
+	"DiacriticalAcute": "´",
+	"DiacriticalDot": "˙",
+	"DiacriticalDoubleAcute": "˝",
 	"DiacriticalGrave": "`",
-	"DiacriticalTilde": "Ëœ",
-	"diam": "â‹„",
-	"diamond": "â‹„",
-	"Diamond": "â‹„",
-	"diamondsuit": "â™¦",
-	"diams": "â™¦",
-	"die": "Â¨",
-	"DifferentialD": "â…†",
-	"digamma": "Ï",
-	"disin": "â‹²",
-	"div": "Ã·",
-	"divide": "Ã·",
-	"divideontimes": "â‹‡",
-	"divonx": "â‹‡",
-	"DJcy": "Ð‚",
-	"djcy": "Ñ’",
-	"dlcorn": "âŒž",
-	"dlcrop": "âŒ",
+	"DiacriticalTilde": "˜",
+	"diam": "⋄",
+	"diamond": "⋄",
+	"Diamond": "⋄",
+	"diamondsuit": "♦",
+	"diams": "♦",
+	"die": "¨",
+	"DifferentialD": "ⅆ",
+	"digamma": "ϝ",
+	"disin": "⋲",
+	"div": "÷",
+	"divide": "÷",
+	"divideontimes": "⋇",
+	"divonx": "⋇",
+	"DJcy": "Ђ",
+	"djcy": "ђ",
+	"dlcorn": "⌞",
+	"dlcrop": "⌍",
 	"dollar": "$",
-	"Dopf": "ð”»",
-	"dopf": "ð••",
-	"Dot": "Â¨",
-	"dot": "Ë™",
-	"DotDot": "âƒœ",
-	"doteq": "â‰",
-	"doteqdot": "â‰‘",
-	"DotEqual": "â‰",
-	"dotminus": "âˆ¸",
-	"dotplus": "âˆ”",
-	"dotsquare": "âŠ¡",
-	"doublebarwedge": "âŒ†",
-	"DoubleContourIntegral": "âˆ¯",
-	"DoubleDot": "Â¨",
-	"DoubleDownArrow": "â‡“",
-	"DoubleLeftArrow": "â‡",
-	"DoubleLeftRightArrow": "â‡”",
-	"DoubleLeftTee": "â«¤",
-	"DoubleLongLeftArrow": "âŸ¸",
-	"DoubleLongLeftRightArrow": "âŸº",
-	"DoubleLongRightArrow": "âŸ¹",
-	"DoubleRightArrow": "â‡’",
-	"DoubleRightTee": "âŠ¨",
-	"DoubleUpArrow": "â‡‘",
-	"DoubleUpDownArrow": "â‡•",
-	"DoubleVerticalBar": "âˆ¥",
-	"DownArrowBar": "â¤“",
-	"downarrow": "â†“",
-	"DownArrow": "â†“",
-	"Downarrow": "â‡“",
-	"DownArrowUpArrow": "â‡µ",
-	"DownBreve": "Ì‘",
-	"downdownarrows": "â‡Š",
-	"downharpoonleft": "â‡ƒ",
-	"downharpoonright": "â‡‚",
-	"DownLeftRightVector": "â¥",
-	"DownLeftTeeVector": "â¥ž",
-	"DownLeftVectorBar": "â¥–",
-	"DownLeftVector": "â†½",
-	"DownRightTeeVector": "â¥Ÿ",
-	"DownRightVectorBar": "â¥—",
-	"DownRightVector": "â‡",
-	"DownTeeArrow": "â†§",
-	"DownTee": "âŠ¤",
-	"drbkarow": "â¤",
-	"drcorn": "âŒŸ",
-	"drcrop": "âŒŒ",
-	"Dscr": "ð’Ÿ",
-	"dscr": "ð’¹",
-	"DScy": "Ð…",
-	"dscy": "Ñ•",
-	"dsol": "â§¶",
-	"Dstrok": "Ä",
-	"dstrok": "Ä‘",
-	"dtdot": "â‹±",
-	"dtri": "â–¿",
-	"dtrif": "â–¾",
-	"duarr": "â‡µ",
-	"duhar": "â¥¯",
-	"dwangle": "â¦¦",
-	"DZcy": "Ð",
-	"dzcy": "ÑŸ",
-	"dzigrarr": "âŸ¿",
-	"Eacute": "Ã‰",
-	"eacute": "Ã©",
-	"easter": "â©®",
-	"Ecaron": "Äš",
-	"ecaron": "Ä›",
-	"Ecirc": "ÃŠ",
-	"ecirc": "Ãª",
-	"ecir": "â‰–",
-	"ecolon": "â‰•",
-	"Ecy": "Ð­",
-	"ecy": "Ñ",
-	"eDDot": "â©·",
-	"Edot": "Ä–",
-	"edot": "Ä—",
-	"eDot": "â‰‘",
-	"ee": "â…‡",
-	"efDot": "â‰’",
-	"Efr": "ð”ˆ",
-	"efr": "ð”¢",
-	"eg": "âªš",
-	"Egrave": "Ãˆ",
-	"egrave": "Ã¨",
-	"egs": "âª–",
-	"egsdot": "âª˜",
-	"el": "âª™",
-	"Element": "âˆˆ",
-	"elinters": "â§",
-	"ell": "â„“",
-	"els": "âª•",
-	"elsdot": "âª—",
-	"Emacr": "Ä’",
-	"emacr": "Ä“",
-	"empty": "âˆ…",
-	"emptyset": "âˆ…",
-	"EmptySmallSquare": "â—»",
-	"emptyv": "âˆ…",
-	"EmptyVerySmallSquare": "â–«",
-	"emsp13": "â€„",
-	"emsp14": "â€…",
-	"emsp": "â€ƒ",
-	"ENG": "ÅŠ",
-	"eng": "Å‹",
-	"ensp": "â€‚",
-	"Eogon": "Ä˜",
-	"eogon": "Ä™",
-	"Eopf": "ð”¼",
-	"eopf": "ð•–",
-	"epar": "â‹•",
-	"eparsl": "â§£",
-	"eplus": "â©±",
-	"epsi": "Îµ",
-	"Epsilon": "Î•",
-	"epsilon": "Îµ",
-	"epsiv": "Ïµ",
-	"eqcirc": "â‰–",
-	"eqcolon": "â‰•",
-	"eqsim": "â‰‚",
-	"eqslantgtr": "âª–",
-	"eqslantless": "âª•",
-	"Equal": "â©µ",
+	"Dopf": "𝔻",
+	"dopf": "𝕕",
+	"Dot": "¨",
+	"dot": "˙",
+	"DotDot": "⃜",
+	"doteq": "≐",
+	"doteqdot": "≑",
+	"DotEqual": "≐",
+	"dotminus": "∸",
+	"dotplus": "∔",
+	"dotsquare": "⊡",
+	"doublebarwedge": "⌆",
+	"DoubleContourIntegral": "∯",
+	"DoubleDot": "¨",
+	"DoubleDownArrow": "⇓",
+	"DoubleLeftArrow": "⇐",
+	"DoubleLeftRightArrow": "⇔",
+	"DoubleLeftTee": "⫤",
+	"DoubleLongLeftArrow": "⟸",
+	"DoubleLongLeftRightArrow": "⟺",
+	"DoubleLongRightArrow": "⟹",
+	"DoubleRightArrow": "⇒",
+	"DoubleRightTee": "⊨",
+	"DoubleUpArrow": "⇑",
+	"DoubleUpDownArrow": "⇕",
+	"DoubleVerticalBar": "∥",
+	"DownArrowBar": "⤓",
+	"downarrow": "↓",
+	"DownArrow": "↓",
+	"Downarrow": "⇓",
+	"DownArrowUpArrow": "⇵",
+	"DownBreve": "̑",
+	"downdownarrows": "⇊",
+	"downharpoonleft": "⇃",
+	"downharpoonright": "⇂",
+	"DownLeftRightVector": "⥐",
+	"DownLeftTeeVector": "⥞",
+	"DownLeftVectorBar": "⥖",
+	"DownLeftVector": "↽",
+	"DownRightTeeVector": "⥟",
+	"DownRightVectorBar": "⥗",
+	"DownRightVector": "⇁",
+	"DownTeeArrow": "↧",
+	"DownTee": "⊤",
+	"drbkarow": "⤐",
+	"drcorn": "⌟",
+	"drcrop": "⌌",
+	"Dscr": "𝒟",
+	"dscr": "𝒹",
+	"DScy": "Ѕ",
+	"dscy": "ѕ",
+	"dsol": "⧶",
+	"Dstrok": "Đ",
+	"dstrok": "đ",
+	"dtdot": "⋱",
+	"dtri": "▿",
+	"dtrif": "▾",
+	"duarr": "⇵",
+	"duhar": "⥯",
+	"dwangle": "⦦",
+	"DZcy": "Џ",
+	"dzcy": "џ",
+	"dzigrarr": "⟿",
+	"Eacute": "É",
+	"eacute": "é",
+	"easter": "⩮",
+	"Ecaron": "Ě",
+	"ecaron": "ě",
+	"Ecirc": "Ê",
+	"ecirc": "ê",
+	"ecir": "≖",
+	"ecolon": "≕",
+	"Ecy": "Э",
+	"ecy": "э",
+	"eDDot": "⩷",
+	"Edot": "Ė",
+	"edot": "ė",
+	"eDot": "≑",
+	"ee": "ⅇ",
+	"efDot": "≒",
+	"Efr": "𝔈",
+	"efr": "𝔢",
+	"eg": "⪚",
+	"Egrave": "È",
+	"egrave": "è",
+	"egs": "⪖",
+	"egsdot": "⪘",
+	"el": "⪙",
+	"Element": "∈",
+	"elinters": "⏧",
+	"ell": "ℓ",
+	"els": "⪕",
+	"elsdot": "⪗",
+	"Emacr": "Ē",
+	"emacr": "ē",
+	"empty": "∅",
+	"emptyset": "∅",
+	"EmptySmallSquare": "◻",
+	"emptyv": "∅",
+	"EmptyVerySmallSquare": "▫",
+	"emsp13": " ",
+	"emsp14": " ",
+	"emsp": " ",
+	"ENG": "Ŋ",
+	"eng": "ŋ",
+	"ensp": " ",
+	"Eogon": "Ę",
+	"eogon": "ę",
+	"Eopf": "𝔼",
+	"eopf": "𝕖",
+	"epar": "⋕",
+	"eparsl": "⧣",
+	"eplus": "⩱",
+	"epsi": "ε",
+	"Epsilon": "Ε",
+	"epsilon": "ε",
+	"epsiv": "ϵ",
+	"eqcirc": "≖",
+	"eqcolon": "≕",
+	"eqsim": "≂",
+	"eqslantgtr": "⪖",
+	"eqslantless": "⪕",
+	"Equal": "⩵",
 	"equals": "=",
-	"EqualTilde": "â‰‚",
-	"equest": "â‰Ÿ",
-	"Equilibrium": "â‡Œ",
-	"equiv": "â‰¡",
-	"equivDD": "â©¸",
-	"eqvparsl": "â§¥",
-	"erarr": "â¥±",
-	"erDot": "â‰“",
-	"escr": "â„¯",
-	"Escr": "â„°",
-	"esdot": "â‰",
-	"Esim": "â©³",
-	"esim": "â‰‚",
-	"Eta": "Î—",
-	"eta": "Î·",
-	"ETH": "Ã",
-	"eth": "Ã°",
-	"Euml": "Ã‹",
-	"euml": "Ã«",
-	"euro": "â‚¬",
+	"EqualTilde": "≂",
+	"equest": "≟",
+	"Equilibrium": "⇌",
+	"equiv": "≡",
+	"equivDD": "⩸",
+	"eqvparsl": "⧥",
+	"erarr": "⥱",
+	"erDot": "≓",
+	"escr": "ℯ",
+	"Escr": "ℰ",
+	"esdot": "≐",
+	"Esim": "⩳",
+	"esim": "≂",
+	"Eta": "Η",
+	"eta": "η",
+	"ETH": "Ð",
+	"eth": "ð",
+	"Euml": "Ë",
+	"euml": "ë",
+	"euro": "€",
 	"excl": "!",
-	"exist": "âˆƒ",
-	"Exists": "âˆƒ",
-	"expectation": "â„°",
-	"exponentiale": "â…‡",
-	"ExponentialE": "â…‡",
-	"fallingdotseq": "â‰’",
-	"Fcy": "Ð¤",
-	"fcy": "Ñ„",
-	"female": "â™€",
-	"ffilig": "ï¬ƒ",
-	"fflig": "ï¬€",
-	"ffllig": "ï¬„",
-	"Ffr": "ð”‰",
-	"ffr": "ð”£",
-	"filig": "ï¬",
-	"FilledSmallSquare": "â—¼",
-	"FilledVerySmallSquare": "â–ª",
+	"exist": "∃",
+	"Exists": "∃",
+	"expectation": "ℰ",
+	"exponentiale": "ⅇ",
+	"ExponentialE": "ⅇ",
+	"fallingdotseq": "≒",
+	"Fcy": "Ф",
+	"fcy": "ф",
+	"female": "♀",
+	"ffilig": "ﬃ",
+	"fflig": "ﬀ",
+	"ffllig": "ﬄ",
+	"Ffr": "𝔉",
+	"ffr": "𝔣",
+	"filig": "ﬁ",
+	"FilledSmallSquare": "◼",
+	"FilledVerySmallSquare": "▪",
 	"fjlig": "fj",
-	"flat": "â™­",
-	"fllig": "ï¬‚",
-	"fltns": "â–±",
-	"fnof": "Æ’",
-	"Fopf": "ð”½",
-	"fopf": "ð•—",
-	"forall": "âˆ€",
-	"ForAll": "âˆ€",
-	"fork": "â‹”",
-	"forkv": "â«™",
-	"Fouriertrf": "â„±",
-	"fpartint": "â¨",
-	"frac12": "Â½",
-	"frac13": "â…“",
-	"frac14": "Â¼",
-	"frac15": "â…•",
-	"frac16": "â…™",
-	"frac18": "â…›",
-	"frac23": "â…”",
-	"frac25": "â…–",
-	"frac34": "Â¾",
-	"frac35": "â…—",
-	"frac38": "â…œ",
-	"frac45": "â…˜",
-	"frac56": "â…š",
-	"frac58": "â…",
-	"frac78": "â…ž",
-	"frasl": "â„",
-	"frown": "âŒ¢",
-	"fscr": "ð’»",
-	"Fscr": "â„±",
-	"gacute": "Çµ",
-	"Gamma": "Î“",
-	"gamma": "Î³",
-	"Gammad": "Ïœ",
-	"gammad": "Ï",
-	"gap": "âª†",
-	"Gbreve": "Äž",
-	"gbreve": "ÄŸ",
-	"Gcedil": "Ä¢",
-	"Gcirc": "Äœ",
-	"gcirc": "Ä",
-	"Gcy": "Ð“",
-	"gcy": "Ð³",
-	"Gdot": "Ä ",
-	"gdot": "Ä¡",
-	"ge": "â‰¥",
-	"gE": "â‰§",
-	"gEl": "âªŒ",
-	"gel": "â‹›",
-	"geq": "â‰¥",
-	"geqq": "â‰§",
-	"geqslant": "â©¾",
-	"gescc": "âª©",
-	"ges": "â©¾",
-	"gesdot": "âª€",
-	"gesdoto": "âª‚",
-	"gesdotol": "âª„",
-	"gesl": "â‹›ï¸€",
-	"gesles": "âª”",
-	"Gfr": "ð”Š",
-	"gfr": "ð”¤",
-	"gg": "â‰«",
-	"Gg": "â‹™",
-	"ggg": "â‹™",
-	"gimel": "â„·",
-	"GJcy": "Ðƒ",
-	"gjcy": "Ñ“",
-	"gla": "âª¥",
-	"gl": "â‰·",
-	"glE": "âª’",
-	"glj": "âª¤",
-	"gnap": "âªŠ",
-	"gnapprox": "âªŠ",
-	"gne": "âªˆ",
-	"gnE": "â‰©",
-	"gneq": "âªˆ",
-	"gneqq": "â‰©",
-	"gnsim": "â‹§",
-	"Gopf": "ð”¾",
-	"gopf": "ð•˜",
+	"flat": "♭",
+	"fllig": "ﬂ",
+	"fltns": "▱",
+	"fnof": "ƒ",
+	"Fopf": "𝔽",
+	"fopf": "𝕗",
+	"forall": "∀",
+	"ForAll": "∀",
+	"fork": "⋔",
+	"forkv": "⫙",
+	"Fouriertrf": "ℱ",
+	"fpartint": "⨍",
+	"frac12": "½",
+	"frac13": "⅓",
+	"frac14": "¼",
+	"frac15": "⅕",
+	"frac16": "⅙",
+	"frac18": "⅛",
+	"frac23": "⅔",
+	"frac25": "⅖",
+	"frac34": "¾",
+	"frac35": "⅗",
+	"frac38": "⅜",
+	"frac45": "⅘",
+	"frac56": "⅚",
+	"frac58": "⅝",
+	"frac78": "⅞",
+	"frasl": "⁄",
+	"frown": "⌢",
+	"fscr": "𝒻",
+	"Fscr": "ℱ",
+	"gacute": "ǵ",
+	"Gamma": "Γ",
+	"gamma": "γ",
+	"Gammad": "Ϝ",
+	"gammad": "ϝ",
+	"gap": "⪆",
+	"Gbreve": "Ğ",
+	"gbreve": "ğ",
+	"Gcedil": "Ģ",
+	"Gcirc": "Ĝ",
+	"gcirc": "ĝ",
+	"Gcy": "Г",
+	"gcy": "г",
+	"Gdot": "Ġ",
+	"gdot": "ġ",
+	"ge": "≥",
+	"gE": "≧",
+	"gEl": "⪌",
+	"gel": "⋛",
+	"geq": "≥",
+	"geqq": "≧",
+	"geqslant": "⩾",
+	"gescc": "⪩",
+	"ges": "⩾",
+	"gesdot": "⪀",
+	"gesdoto": "⪂",
+	"gesdotol": "⪄",
+	"gesl": "⋛︀",
+	"gesles": "⪔",
+	"Gfr": "𝔊",
+	"gfr": "𝔤",
+	"gg": "≫",
+	"Gg": "⋙",
+	"ggg": "⋙",
+	"gimel": "ℷ",
+	"GJcy": "Ѓ",
+	"gjcy": "ѓ",
+	"gla": "⪥",
+	"gl": "≷",
+	"glE": "⪒",
+	"glj": "⪤",
+	"gnap": "⪊",
+	"gnapprox": "⪊",
+	"gne": "⪈",
+	"gnE": "≩",
+	"gneq": "⪈",
+	"gneqq": "≩",
+	"gnsim": "⋧",
+	"Gopf": "𝔾",
+	"gopf": "𝕘",
 	"grave": "`",
-	"GreaterEqual": "â‰¥",
-	"GreaterEqualLess": "â‹›",
-	"GreaterFullEqual": "â‰§",
-	"GreaterGreater": "âª¢",
-	"GreaterLess": "â‰·",
-	"GreaterSlantEqual": "â©¾",
-	"GreaterTilde": "â‰³",
-	"Gscr": "ð’¢",
-	"gscr": "â„Š",
-	"gsim": "â‰³",
-	"gsime": "âªŽ",
-	"gsiml": "âª",
-	"gtcc": "âª§",
-	"gtcir": "â©º",
+	"GreaterEqual": "≥",
+	"GreaterEqualLess": "⋛",
+	"GreaterFullEqual": "≧",
+	"GreaterGreater": "⪢",
+	"GreaterLess": "≷",
+	"GreaterSlantEqual": "⩾",
+	"GreaterTilde": "≳",
+	"Gscr": "𝒢",
+	"gscr": "ℊ",
+	"gsim": "≳",
+	"gsime": "⪎",
+	"gsiml": "⪐",
+	"gtcc": "⪧",
+	"gtcir": "⩺",
 	"gt": ">",
 	"GT": ">",
-	"Gt": "â‰«",
-	"gtdot": "â‹—",
-	"gtlPar": "â¦•",
-	"gtquest": "â©¼",
-	"gtrapprox": "âª†",
-	"gtrarr": "â¥¸",
-	"gtrdot": "â‹—",
-	"gtreqless": "â‹›",
-	"gtreqqless": "âªŒ",
-	"gtrless": "â‰·",
-	"gtrsim": "â‰³",
-	"gvertneqq": "â‰©ï¸€",
-	"gvnE": "â‰©ï¸€",
-	"Hacek": "Ë‡",
-	"hairsp": "â€Š",
-	"half": "Â½",
-	"hamilt": "â„‹",
-	"HARDcy": "Ðª",
-	"hardcy": "ÑŠ",
-	"harrcir": "â¥ˆ",
-	"harr": "â†”",
-	"hArr": "â‡”",
-	"harrw": "â†­",
+	"Gt": "≫",
+	"gtdot": "⋗",
+	"gtlPar": "⦕",
+	"gtquest": "⩼",
+	"gtrapprox": "⪆",
+	"gtrarr": "⥸",
+	"gtrdot": "⋗",
+	"gtreqless": "⋛",
+	"gtreqqless": "⪌",
+	"gtrless": "≷",
+	"gtrsim": "≳",
+	"gvertneqq": "≩︀",
+	"gvnE": "≩︀",
+	"Hacek": "ˇ",
+	"hairsp": " ",
+	"half": "½",
+	"hamilt": "ℋ",
+	"HARDcy": "Ъ",
+	"hardcy": "ъ",
+	"harrcir": "⥈",
+	"harr": "↔",
+	"hArr": "⇔",
+	"harrw": "↭",
 	"Hat": "^",
-	"hbar": "â„",
-	"Hcirc": "Ä¤",
-	"hcirc": "Ä¥",
-	"hearts": "â™¥",
-	"heartsuit": "â™¥",
-	"hellip": "â€¦",
-	"hercon": "âŠ¹",
-	"hfr": "ð”¥",
-	"Hfr": "â„Œ",
-	"HilbertSpace": "â„‹",
-	"hksearow": "â¤¥",
-	"hkswarow": "â¤¦",
-	"hoarr": "â‡¿",
-	"homtht": "âˆ»",
-	"hookleftarrow": "â†©",
-	"hookrightarrow": "â†ª",
-	"hopf": "ð•™",
-	"Hopf": "â„",
-	"horbar": "â€•",
-	"HorizontalLine": "â”€",
-	"hscr": "ð’½",
-	"Hscr": "â„‹",
-	"hslash": "â„",
-	"Hstrok": "Ä¦",
-	"hstrok": "Ä§",
-	"HumpDownHump": "â‰Ž",
-	"HumpEqual": "â‰",
-	"hybull": "âƒ",
-	"hyphen": "â€",
-	"Iacute": "Ã",
-	"iacute": "Ã­",
-	"ic": "â£",
-	"Icirc": "ÃŽ",
-	"icirc": "Ã®",
-	"Icy": "Ð˜",
-	"icy": "Ð¸",
-	"Idot": "Ä°",
-	"IEcy": "Ð•",
-	"iecy": "Ðµ",
-	"iexcl": "Â¡",
-	"iff": "â‡”",
-	"ifr": "ð”¦",
-	"Ifr": "â„‘",
-	"Igrave": "ÃŒ",
-	"igrave": "Ã¬",
-	"ii": "â…ˆ",
-	"iiiint": "â¨Œ",
-	"iiint": "âˆ­",
-	"iinfin": "â§œ",
-	"iiota": "â„©",
-	"IJlig": "Ä²",
-	"ijlig": "Ä³",
-	"Imacr": "Äª",
-	"imacr": "Ä«",
-	"image": "â„‘",
-	"ImaginaryI": "â…ˆ",
-	"imagline": "â„",
-	"imagpart": "â„‘",
-	"imath": "Ä±",
-	"Im": "â„‘",
-	"imof": "âŠ·",
-	"imped": "Æµ",
-	"Implies": "â‡’",
-	"incare": "â„…",
-	"in": "âˆˆ",
-	"infin": "âˆž",
-	"infintie": "â§",
-	"inodot": "Ä±",
-	"intcal": "âŠº",
-	"int": "âˆ«",
-	"Int": "âˆ¬",
-	"integers": "â„¤",
-	"Integral": "âˆ«",
-	"intercal": "âŠº",
-	"Intersection": "â‹‚",
-	"intlarhk": "â¨—",
-	"intprod": "â¨¼",
-	"InvisibleComma": "â£",
-	"InvisibleTimes": "â¢",
-	"IOcy": "Ð",
-	"iocy": "Ñ‘",
-	"Iogon": "Ä®",
-	"iogon": "Ä¯",
-	"Iopf": "ð•€",
-	"iopf": "ð•š",
-	"Iota": "Î™",
-	"iota": "Î¹",
-	"iprod": "â¨¼",
-	"iquest": "Â¿",
-	"iscr": "ð’¾",
-	"Iscr": "â„",
-	"isin": "âˆˆ",
-	"isindot": "â‹µ",
-	"isinE": "â‹¹",
-	"isins": "â‹´",
-	"isinsv": "â‹³",
-	"isinv": "âˆˆ",
-	"it": "â¢",
-	"Itilde": "Ä¨",
-	"itilde": "Ä©",
-	"Iukcy": "Ð†",
-	"iukcy": "Ñ–",
-	"Iuml": "Ã",
-	"iuml": "Ã¯",
-	"Jcirc": "Ä´",
-	"jcirc": "Äµ",
-	"Jcy": "Ð™",
-	"jcy": "Ð¹",
-	"Jfr": "ð”",
-	"jfr": "ð”§",
-	"jmath": "È·",
-	"Jopf": "ð•",
-	"jopf": "ð•›",
-	"Jscr": "ð’¥",
-	"jscr": "ð’¿",
-	"Jsercy": "Ðˆ",
-	"jsercy": "Ñ˜",
-	"Jukcy": "Ð„",
-	"jukcy": "Ñ”",
-	"Kappa": "Îš",
-	"kappa": "Îº",
-	"kappav": "Ï°",
-	"Kcedil": "Ä¶",
-	"kcedil": "Ä·",
-	"Kcy": "Ðš",
-	"kcy": "Ðº",
-	"Kfr": "ð”Ž",
-	"kfr": "ð”¨",
-	"kgreen": "Ä¸",
-	"KHcy": "Ð¥",
-	"khcy": "Ñ…",
-	"KJcy": "ÐŒ",
-	"kjcy": "Ñœ",
-	"Kopf": "ð•‚",
-	"kopf": "ð•œ",
-	"Kscr": "ð’¦",
-	"kscr": "ð“€",
-	"lAarr": "â‡š",
-	"Lacute": "Ä¹",
-	"lacute": "Äº",
-	"laemptyv": "â¦´",
-	"lagran": "â„’",
-	"Lambda": "Î›",
-	"lambda": "Î»",
-	"lang": "âŸ¨",
-	"Lang": "âŸª",
-	"langd": "â¦‘",
-	"langle": "âŸ¨",
-	"lap": "âª…",
-	"Laplacetrf": "â„’",
-	"laquo": "Â«",
-	"larrb": "â‡¤",
-	"larrbfs": "â¤Ÿ",
-	"larr": "â†",
-	"Larr": "â†ž",
-	"lArr": "â‡",
-	"larrfs": "â¤",
-	"larrhk": "â†©",
-	"larrlp": "â†«",
-	"larrpl": "â¤¹",
-	"larrsim": "â¥³",
-	"larrtl": "â†¢",
-	"latail": "â¤™",
-	"lAtail": "â¤›",
-	"lat": "âª«",
-	"late": "âª­",
-	"lates": "âª­ï¸€",
-	"lbarr": "â¤Œ",
-	"lBarr": "â¤Ž",
-	"lbbrk": "â²",
+	"hbar": "ℏ",
+	"Hcirc": "Ĥ",
+	"hcirc": "ĥ",
+	"hearts": "♥",
+	"heartsuit": "♥",
+	"hellip": "…",
+	"hercon": "⊹",
+	"hfr": "𝔥",
+	"Hfr": "ℌ",
+	"HilbertSpace": "ℋ",
+	"hksearow": "⤥",
+	"hkswarow": "⤦",
+	"hoarr": "⇿",
+	"homtht": "∻",
+	"hookleftarrow": "↩",
+	"hookrightarrow": "↪",
+	"hopf": "𝕙",
+	"Hopf": "ℍ",
+	"horbar": "―",
+	"HorizontalLine": "─",
+	"hscr": "𝒽",
+	"Hscr": "ℋ",
+	"hslash": "ℏ",
+	"Hstrok": "Ħ",
+	"hstrok": "ħ",
+	"HumpDownHump": "≎",
+	"HumpEqual": "≏",
+	"hybull": "⁃",
+	"hyphen": "‐",
+	"Iacute": "Í",
+	"iacute": "í",
+	"ic": "⁣",
+	"Icirc": "Î",
+	"icirc": "î",
+	"Icy": "И",
+	"icy": "и",
+	"Idot": "İ",
+	"IEcy": "Е",
+	"iecy": "е",
+	"iexcl": "¡",
+	"iff": "⇔",
+	"ifr": "𝔦",
+	"Ifr": "ℑ",
+	"Igrave": "Ì",
+	"igrave": "ì",
+	"ii": "ⅈ",
+	"iiiint": "⨌",
+	"iiint": "∭",
+	"iinfin": "⧜",
+	"iiota": "℩",
+	"IJlig": "Ĳ",
+	"ijlig": "ĳ",
+	"Imacr": "Ī",
+	"imacr": "ī",
+	"image": "ℑ",
+	"ImaginaryI": "ⅈ",
+	"imagline": "ℐ",
+	"imagpart": "ℑ",
+	"imath": "ı",
+	"Im": "ℑ",
+	"imof": "⊷",
+	"imped": "Ƶ",
+	"Implies": "⇒",
+	"incare": "℅",
+	"in": "∈",
+	"infin": "∞",
+	"infintie": "⧝",
+	"inodot": "ı",
+	"intcal": "⊺",
+	"int": "∫",
+	"Int": "∬",
+	"integers": "ℤ",
+	"Integral": "∫",
+	"intercal": "⊺",
+	"Intersection": "⋂",
+	"intlarhk": "⨗",
+	"intprod": "⨼",
+	"InvisibleComma": "⁣",
+	"InvisibleTimes": "⁢",
+	"IOcy": "Ё",
+	"iocy": "ё",
+	"Iogon": "Į",
+	"iogon": "į",
+	"Iopf": "𝕀",
+	"iopf": "𝕚",
+	"Iota": "Ι",
+	"iota": "ι",
+	"iprod": "⨼",
+	"iquest": "¿",
+	"iscr": "𝒾",
+	"Iscr": "ℐ",
+	"isin": "∈",
+	"isindot": "⋵",
+	"isinE": "⋹",
+	"isins": "⋴",
+	"isinsv": "⋳",
+	"isinv": "∈",
+	"it": "⁢",
+	"Itilde": "Ĩ",
+	"itilde": "ĩ",
+	"Iukcy": "І",
+	"iukcy": "і",
+	"Iuml": "Ï",
+	"iuml": "ï",
+	"Jcirc": "Ĵ",
+	"jcirc": "ĵ",
+	"Jcy": "Й",
+	"jcy": "й",
+	"Jfr": "𝔍",
+	"jfr": "𝔧",
+	"jmath": "ȷ",
+	"Jopf": "𝕁",
+	"jopf": "𝕛",
+	"Jscr": "𝒥",
+	"jscr": "𝒿",
+	"Jsercy": "Ј",
+	"jsercy": "ј",
+	"Jukcy": "Є",
+	"jukcy": "є",
+	"Kappa": "Κ",
+	"kappa": "κ",
+	"kappav": "ϰ",
+	"Kcedil": "Ķ",
+	"kcedil": "ķ",
+	"Kcy": "К",
+	"kcy": "к",
+	"Kfr": "𝔎",
+	"kfr": "𝔨",
+	"kgreen": "ĸ",
+	"KHcy": "Х",
+	"khcy": "х",
+	"KJcy": "Ќ",
+	"kjcy": "ќ",
+	"Kopf": "𝕂",
+	"kopf": "𝕜",
+	"Kscr": "𝒦",
+	"kscr": "𝓀",
+	"lAarr": "⇚",
+	"Lacute": "Ĺ",
+	"lacute": "ĺ",
+	"laemptyv": "⦴",
+	"lagran": "ℒ",
+	"Lambda": "Λ",
+	"lambda": "λ",
+	"lang": "⟨",
+	"Lang": "⟪",
+	"langd": "⦑",
+	"langle": "⟨",
+	"lap": "⪅",
+	"Laplacetrf": "ℒ",
+	"laquo": "«",
+	"larrb": "⇤",
+	"larrbfs": "⤟",
+	"larr": "←",
+	"Larr": "↞",
+	"lArr": "⇐",
+	"larrfs": "⤝",
+	"larrhk": "↩",
+	"larrlp": "↫",
+	"larrpl": "⤹",
+	"larrsim": "⥳",
+	"larrtl": "↢",
+	"latail": "⤙",
+	"lAtail": "⤛",
+	"lat": "⪫",
+	"late": "⪭",
+	"lates": "⪭︀",
+	"lbarr": "⤌",
+	"lBarr": "⤎",
+	"lbbrk": "❲",
 	"lbrace": "{",
 	"lbrack": "[",
-	"lbrke": "â¦‹",
-	"lbrksld": "â¦",
-	"lbrkslu": "â¦",
-	"Lcaron": "Ä½",
-	"lcaron": "Ä¾",
-	"Lcedil": "Ä»",
-	"lcedil": "Ä¼",
-	"lceil": "âŒˆ",
+	"lbrke": "⦋",
+	"lbrksld": "⦏",
+	"lbrkslu": "⦍",
+	"Lcaron": "Ľ",
+	"lcaron": "ľ",
+	"Lcedil": "Ļ",
+	"lcedil": "ļ",
+	"lceil": "⌈",
 	"lcub": "{",
-	"Lcy": "Ð›",
-	"lcy": "Ð»",
-	"ldca": "â¤¶",
-	"ldquo": "â€œ",
-	"ldquor": "â€ž",
-	"ldrdhar": "â¥§",
-	"ldrushar": "â¥‹",
-	"ldsh": "â†²",
-	"le": "â‰¤",
-	"lE": "â‰¦",
-	"LeftAngleBracket": "âŸ¨",
-	"LeftArrowBar": "â‡¤",
-	"leftarrow": "â†",
-	"LeftArrow": "â†",
-	"Leftarrow": "â‡",
-	"LeftArrowRightArrow": "â‡†",
-	"leftarrowtail": "â†¢",
-	"LeftCeiling": "âŒˆ",
-	"LeftDoubleBracket": "âŸ¦",
-	"LeftDownTeeVector": "â¥¡",
-	"LeftDownVectorBar": "â¥™",
-	"LeftDownVector": "â‡ƒ",
-	"LeftFloor": "âŒŠ",
-	"leftharpoondown": "â†½",
-	"leftharpoonup": "â†¼",
-	"leftleftarrows": "â‡‡",
-	"leftrightarrow": "â†”",
-	"LeftRightArrow": "â†”",
-	"Leftrightarrow": "â‡”",
-	"leftrightarrows": "â‡†",
-	"leftrightharpoons": "â‡‹",
-	"leftrightsquigarrow": "â†­",
-	"LeftRightVector": "â¥Ž",
-	"LeftTeeArrow": "â†¤",
-	"LeftTee": "âŠ£",
-	"LeftTeeVector": "â¥š",
-	"leftthreetimes": "â‹‹",
-	"LeftTriangleBar": "â§",
-	"LeftTriangle": "âŠ²",
-	"LeftTriangleEqual": "âŠ´",
-	"LeftUpDownVector": "â¥‘",
-	"LeftUpTeeVector": "â¥ ",
-	"LeftUpVectorBar": "â¥˜",
-	"LeftUpVector": "â†¿",
-	"LeftVectorBar": "â¥’",
-	"LeftVector": "â†¼",
-	"lEg": "âª‹",
-	"leg": "â‹š",
-	"leq": "â‰¤",
-	"leqq": "â‰¦",
-	"leqslant": "â©½",
-	"lescc": "âª¨",
-	"les": "â©½",
-	"lesdot": "â©¿",
-	"lesdoto": "âª",
-	"lesdotor": "âªƒ",
-	"lesg": "â‹šï¸€",
-	"lesges": "âª“",
-	"lessapprox": "âª…",
-	"lessdot": "â‹–",
-	"lesseqgtr": "â‹š",
-	"lesseqqgtr": "âª‹",
-	"LessEqualGreater": "â‹š",
-	"LessFullEqual": "â‰¦",
-	"LessGreater": "â‰¶",
-	"lessgtr": "â‰¶",
-	"LessLess": "âª¡",
-	"lesssim": "â‰²",
-	"LessSlantEqual": "â©½",
-	"LessTilde": "â‰²",
-	"lfisht": "â¥¼",
-	"lfloor": "âŒŠ",
-	"Lfr": "ð”",
-	"lfr": "ð”©",
-	"lg": "â‰¶",
-	"lgE": "âª‘",
-	"lHar": "â¥¢",
-	"lhard": "â†½",
-	"lharu": "â†¼",
-	"lharul": "â¥ª",
-	"lhblk": "â–„",
-	"LJcy": "Ð‰",
-	"ljcy": "Ñ™",
-	"llarr": "â‡‡",
-	"ll": "â‰ª",
-	"Ll": "â‹˜",
-	"llcorner": "âŒž",
-	"Lleftarrow": "â‡š",
-	"llhard": "â¥«",
-	"lltri": "â—º",
-	"Lmidot": "Ä¿",
-	"lmidot": "Å€",
-	"lmoustache": "âŽ°",
-	"lmoust": "âŽ°",
-	"lnap": "âª‰",
-	"lnapprox": "âª‰",
-	"lne": "âª‡",
-	"lnE": "â‰¨",
-	"lneq": "âª‡",
-	"lneqq": "â‰¨",
-	"lnsim": "â‹¦",
-	"loang": "âŸ¬",
-	"loarr": "â‡½",
-	"lobrk": "âŸ¦",
-	"longleftarrow": "âŸµ",
-	"LongLeftArrow": "âŸµ",
-	"Longleftarrow": "âŸ¸",
-	"longleftrightarrow": "âŸ·",
-	"LongLeftRightArrow": "âŸ·",
-	"Longleftrightarrow": "âŸº",
-	"longmapsto": "âŸ¼",
-	"longrightarrow": "âŸ¶",
-	"LongRightArrow": "âŸ¶",
-	"Longrightarrow": "âŸ¹",
-	"looparrowleft": "â†«",
-	"looparrowright": "â†¬",
-	"lopar": "â¦…",
-	"Lopf": "ð•ƒ",
-	"lopf": "ð•",
-	"loplus": "â¨­",
-	"lotimes": "â¨´",
-	"lowast": "âˆ—",
+	"Lcy": "Л",
+	"lcy": "л",
+	"ldca": "⤶",
+	"ldquo": "“",
+	"ldquor": "„",
+	"ldrdhar": "⥧",
+	"ldrushar": "⥋",
+	"ldsh": "↲",
+	"le": "≤",
+	"lE": "≦",
+	"LeftAngleBracket": "⟨",
+	"LeftArrowBar": "⇤",
+	"leftarrow": "←",
+	"LeftArrow": "←",
+	"Leftarrow": "⇐",
+	"LeftArrowRightArrow": "⇆",
+	"leftarrowtail": "↢",
+	"LeftCeiling": "⌈",
+	"LeftDoubleBracket": "⟦",
+	"LeftDownTeeVector": "⥡",
+	"LeftDownVectorBar": "⥙",
+	"LeftDownVector": "⇃",
+	"LeftFloor": "⌊",
+	"leftharpoondown": "↽",
+	"leftharpoonup": "↼",
+	"leftleftarrows": "⇇",
+	"leftrightarrow": "↔",
+	"LeftRightArrow": "↔",
+	"Leftrightarrow": "⇔",
+	"leftrightarrows": "⇆",
+	"leftrightharpoons": "⇋",
+	"leftrightsquigarrow": "↭",
+	"LeftRightVector": "⥎",
+	"LeftTeeArrow": "↤",
+	"LeftTee": "⊣",
+	"LeftTeeVector": "⥚",
+	"leftthreetimes": "⋋",
+	"LeftTriangleBar": "⧏",
+	"LeftTriangle": "⊲",
+	"LeftTriangleEqual": "⊴",
+	"LeftUpDownVector": "⥑",
+	"LeftUpTeeVector": "⥠",
+	"LeftUpVectorBar": "⥘",
+	"LeftUpVector": "↿",
+	"LeftVectorBar": "⥒",
+	"LeftVector": "↼",
+	"lEg": "⪋",
+	"leg": "⋚",
+	"leq": "≤",
+	"leqq": "≦",
+	"leqslant": "⩽",
+	"lescc": "⪨",
+	"les": "⩽",
+	"lesdot": "⩿",
+	"lesdoto": "⪁",
+	"lesdotor": "⪃",
+	"lesg": "⋚︀",
+	"lesges": "⪓",
+	"lessapprox": "⪅",
+	"lessdot": "⋖",
+	"lesseqgtr": "⋚",
+	"lesseqqgtr": "⪋",
+	"LessEqualGreater": "⋚",
+	"LessFullEqual": "≦",
+	"LessGreater": "≶",
+	"lessgtr": "≶",
+	"LessLess": "⪡",
+	"lesssim": "≲",
+	"LessSlantEqual": "⩽",
+	"LessTilde": "≲",
+	"lfisht": "⥼",
+	"lfloor": "⌊",
+	"Lfr": "𝔏",
+	"lfr": "𝔩",
+	"lg": "≶",
+	"lgE": "⪑",
+	"lHar": "⥢",
+	"lhard": "↽",
+	"lharu": "↼",
+	"lharul": "⥪",
+	"lhblk": "▄",
+	"LJcy": "Љ",
+	"ljcy": "љ",
+	"llarr": "⇇",
+	"ll": "≪",
+	"Ll": "⋘",
+	"llcorner": "⌞",
+	"Lleftarrow": "⇚",
+	"llhard": "⥫",
+	"lltri": "◺",
+	"Lmidot": "Ŀ",
+	"lmidot": "ŀ",
+	"lmoustache": "⎰",
+	"lmoust": "⎰",
+	"lnap": "⪉",
+	"lnapprox": "⪉",
+	"lne": "⪇",
+	"lnE": "≨",
+	"lneq": "⪇",
+	"lneqq": "≨",
+	"lnsim": "⋦",
+	"loang": "⟬",
+	"loarr": "⇽",
+	"lobrk": "⟦",
+	"longleftarrow": "⟵",
+	"LongLeftArrow": "⟵",
+	"Longleftarrow": "⟸",
+	"longleftrightarrow": "⟷",
+	"LongLeftRightArrow": "⟷",
+	"Longleftrightarrow": "⟺",
+	"longmapsto": "⟼",
+	"longrightarrow": "⟶",
+	"LongRightArrow": "⟶",
+	"Longrightarrow": "⟹",
+	"looparrowleft": "↫",
+	"looparrowright": "↬",
+	"lopar": "⦅",
+	"Lopf": "𝕃",
+	"lopf": "𝕝",
+	"loplus": "⨭",
+	"lotimes": "⨴",
+	"lowast": "∗",
 	"lowbar": "_",
-	"LowerLeftArrow": "â†™",
-	"LowerRightArrow": "â†˜",
-	"loz": "â—Š",
-	"lozenge": "â—Š",
-	"lozf": "â§«",
+	"LowerLeftArrow": "↙",
+	"LowerRightArrow": "↘",
+	"loz": "◊",
+	"lozenge": "◊",
+	"lozf": "⧫",
 	"lpar": "(",
-	"lparlt": "â¦“",
-	"lrarr": "â‡†",
-	"lrcorner": "âŒŸ",
-	"lrhar": "â‡‹",
-	"lrhard": "â¥­",
-	"lrm": "â€Ž",
-	"lrtri": "âŠ¿",
-	"lsaquo": "â€¹",
-	"lscr": "ð“",
-	"Lscr": "â„’",
-	"lsh": "â†°",
-	"Lsh": "â†°",
-	"lsim": "â‰²",
-	"lsime": "âª",
-	"lsimg": "âª",
+	"lparlt": "⦓",
+	"lrarr": "⇆",
+	"lrcorner": "⌟",
+	"lrhar": "⇋",
+	"lrhard": "⥭",
+	"lrm": "‎",
+	"lrtri": "⊿",
+	"lsaquo": "‹",
+	"lscr": "𝓁",
+	"Lscr": "ℒ",
+	"lsh": "↰",
+	"Lsh": "↰",
+	"lsim": "≲",
+	"lsime": "⪍",
+	"lsimg": "⪏",
 	"lsqb": "[",
-	"lsquo": "â€˜",
-	"lsquor": "â€š",
-	"Lstrok": "Å",
-	"lstrok": "Å‚",
-	"ltcc": "âª¦",
-	"ltcir": "â©¹",
+	"lsquo": "‘",
+	"lsquor": "‚",
+	"Lstrok": "Ł",
+	"lstrok": "ł",
+	"ltcc": "⪦",
+	"ltcir": "⩹",
 	"lt": "<",
 	"LT": "<",
-	"Lt": "â‰ª",
-	"ltdot": "â‹–",
-	"lthree": "â‹‹",
-	"ltimes": "â‹‰",
-	"ltlarr": "â¥¶",
-	"ltquest": "â©»",
-	"ltri": "â—ƒ",
-	"ltrie": "âŠ´",
-	"ltrif": "â—‚",
-	"ltrPar": "â¦–",
-	"lurdshar": "â¥Š",
-	"luruhar": "â¥¦",
-	"lvertneqq": "â‰¨ï¸€",
-	"lvnE": "â‰¨ï¸€",
-	"macr": "Â¯",
-	"male": "â™‚",
-	"malt": "âœ ",
-	"maltese": "âœ ",
-	"Map": "â¤…",
-	"map": "â†¦",
-	"mapsto": "â†¦",
-	"mapstodown": "â†§",
-	"mapstoleft": "â†¤",
-	"mapstoup": "â†¥",
-	"marker": "â–®",
-	"mcomma": "â¨©",
-	"Mcy": "Ðœ",
-	"mcy": "Ð¼",
-	"mdash": "â€”",
-	"mDDot": "âˆº",
-	"measuredangle": "âˆ¡",
-	"MediumSpace": "âŸ",
-	"Mellintrf": "â„³",
-	"Mfr": "ð”",
-	"mfr": "ð”ª",
-	"mho": "â„§",
-	"micro": "Âµ",
+	"Lt": "≪",
+	"ltdot": "⋖",
+	"lthree": "⋋",
+	"ltimes": "⋉",
+	"ltlarr": "⥶",
+	"ltquest": "⩻",
+	"ltri": "◃",
+	"ltrie": "⊴",
+	"ltrif": "◂",
+	"ltrPar": "⦖",
+	"lurdshar": "⥊",
+	"luruhar": "⥦",
+	"lvertneqq": "≨︀",
+	"lvnE": "≨︀",
+	"macr": "¯",
+	"male": "♂",
+	"malt": "✠",
+	"maltese": "✠",
+	"Map": "⤅",
+	"map": "↦",
+	"mapsto": "↦",
+	"mapstodown": "↧",
+	"mapstoleft": "↤",
+	"mapstoup": "↥",
+	"marker": "▮",
+	"mcomma": "⨩",
+	"Mcy": "М",
+	"mcy": "м",
+	"mdash": "—",
+	"mDDot": "∺",
+	"measuredangle": "∡",
+	"MediumSpace": " ",
+	"Mellintrf": "ℳ",
+	"Mfr": "𝔐",
+	"mfr": "𝔪",
+	"mho": "℧",
+	"micro": "µ",
 	"midast": "*",
-	"midcir": "â«°",
-	"mid": "âˆ£",
-	"middot": "Â·",
-	"minusb": "âŠŸ",
-	"minus": "âˆ’",
-	"minusd": "âˆ¸",
-	"minusdu": "â¨ª",
-	"MinusPlus": "âˆ“",
-	"mlcp": "â«›",
-	"mldr": "â€¦",
-	"mnplus": "âˆ“",
-	"models": "âŠ§",
-	"Mopf": "ð•„",
-	"mopf": "ð•ž",
-	"mp": "âˆ“",
-	"mscr": "ð“‚",
-	"Mscr": "â„³",
-	"mstpos": "âˆ¾",
-	"Mu": "Îœ",
-	"mu": "Î¼",
-	"multimap": "âŠ¸",
-	"mumap": "âŠ¸",
-	"nabla": "âˆ‡",
-	"Nacute": "Åƒ",
-	"nacute": "Å„",
-	"nang": "âˆ âƒ’",
-	"nap": "â‰‰",
-	"napE": "â©°Ì¸",
-	"napid": "â‰‹Ì¸",
-	"napos": "Å‰",
-	"napprox": "â‰‰",
-	"natural": "â™®",
-	"naturals": "â„•",
-	"natur": "â™®",
-	"nbsp": "Â ",
-	"nbump": "â‰ŽÌ¸",
-	"nbumpe": "â‰Ì¸",
-	"ncap": "â©ƒ",
-	"Ncaron": "Å‡",
-	"ncaron": "Åˆ",
-	"Ncedil": "Å…",
-	"ncedil": "Å†",
-	"ncong": "â‰‡",
-	"ncongdot": "â©­Ì¸",
-	"ncup": "â©‚",
-	"Ncy": "Ð",
-	"ncy": "Ð½",
-	"ndash": "â€“",
-	"nearhk": "â¤¤",
-	"nearr": "â†—",
-	"neArr": "â‡—",
-	"nearrow": "â†—",
-	"ne": "â‰ ",
-	"nedot": "â‰Ì¸",
-	"NegativeMediumSpace": "â€‹",
-	"NegativeThickSpace": "â€‹",
-	"NegativeThinSpace": "â€‹",
-	"NegativeVeryThinSpace": "â€‹",
-	"nequiv": "â‰¢",
-	"nesear": "â¤¨",
-	"nesim": "â‰‚Ì¸",
-	"NestedGreaterGreater": "â‰«",
-	"NestedLessLess": "â‰ª",
+	"midcir": "⫰",
+	"mid": "∣",
+	"middot": "·",
+	"minusb": "⊟",
+	"minus": "−",
+	"minusd": "∸",
+	"minusdu": "⨪",
+	"MinusPlus": "∓",
+	"mlcp": "⫛",
+	"mldr": "…",
+	"mnplus": "∓",
+	"models": "⊧",
+	"Mopf": "𝕄",
+	"mopf": "𝕞",
+	"mp": "∓",
+	"mscr": "𝓂",
+	"Mscr": "ℳ",
+	"mstpos": "∾",
+	"Mu": "Μ",
+	"mu": "μ",
+	"multimap": "⊸",
+	"mumap": "⊸",
+	"nabla": "∇",
+	"Nacute": "Ń",
+	"nacute": "ń",
+	"nang": "∠⃒",
+	"nap": "≉",
+	"napE": "⩰̸",
+	"napid": "≋̸",
+	"napos": "ŉ",
+	"napprox": "≉",
+	"natural": "♮",
+	"naturals": "ℕ",
+	"natur": "♮",
+	"nbsp": " ",
+	"nbump": "≎̸",
+	"nbumpe": "≏̸",
+	"ncap": "⩃",
+	"Ncaron": "Ň",
+	"ncaron": "ň",
+	"Ncedil": "Ņ",
+	"ncedil": "ņ",
+	"ncong": "≇",
+	"ncongdot": "⩭̸",
+	"ncup": "⩂",
+	"Ncy": "Н",
+	"ncy": "н",
+	"ndash": "–",
+	"nearhk": "⤤",
+	"nearr": "↗",
+	"neArr": "⇗",
+	"nearrow": "↗",
+	"ne": "≠",
+	"nedot": "≐̸",
+	"NegativeMediumSpace": "​",
+	"NegativeThickSpace": "​",
+	"NegativeThinSpace": "​",
+	"NegativeVeryThinSpace": "​",
+	"nequiv": "≢",
+	"nesear": "⤨",
+	"nesim": "≂̸",
+	"NestedGreaterGreater": "≫",
+	"NestedLessLess": "≪",
 	"NewLine": "\n",
-	"nexist": "âˆ„",
-	"nexists": "âˆ„",
-	"Nfr": "ð”‘",
-	"nfr": "ð”«",
-	"ngE": "â‰§Ì¸",
-	"nge": "â‰±",
-	"ngeq": "â‰±",
-	"ngeqq": "â‰§Ì¸",
-	"ngeqslant": "â©¾Ì¸",
-	"nges": "â©¾Ì¸",
-	"nGg": "â‹™Ì¸",
-	"ngsim": "â‰µ",
-	"nGt": "â‰«âƒ’",
-	"ngt": "â‰¯",
-	"ngtr": "â‰¯",
-	"nGtv": "â‰«Ì¸",
-	"nharr": "â†®",
-	"nhArr": "â‡Ž",
-	"nhpar": "â«²",
-	"ni": "âˆ‹",
-	"nis": "â‹¼",
-	"nisd": "â‹º",
-	"niv": "âˆ‹",
-	"NJcy": "ÐŠ",
-	"njcy": "Ñš",
-	"nlarr": "â†š",
-	"nlArr": "â‡",
-	"nldr": "â€¥",
-	"nlE": "â‰¦Ì¸",
-	"nle": "â‰°",
-	"nleftarrow": "â†š",
-	"nLeftarrow": "â‡",
-	"nleftrightarrow": "â†®",
-	"nLeftrightarrow": "â‡Ž",
-	"nleq": "â‰°",
-	"nleqq": "â‰¦Ì¸",
-	"nleqslant": "â©½Ì¸",
-	"nles": "â©½Ì¸",
-	"nless": "â‰®",
-	"nLl": "â‹˜Ì¸",
-	"nlsim": "â‰´",
-	"nLt": "â‰ªâƒ’",
-	"nlt": "â‰®",
-	"nltri": "â‹ª",
-	"nltrie": "â‹¬",
-	"nLtv": "â‰ªÌ¸",
-	"nmid": "âˆ¤",
-	"NoBreak": "â ",
-	"NonBreakingSpace": "Â ",
-	"nopf": "ð•Ÿ",
-	"Nopf": "â„•",
-	"Not": "â«¬",
-	"not": "Â¬",
-	"NotCongruent": "â‰¢",
-	"NotCupCap": "â‰­",
-	"NotDoubleVerticalBar": "âˆ¦",
-	"NotElement": "âˆ‰",
-	"NotEqual": "â‰ ",
-	"NotEqualTilde": "â‰‚Ì¸",
-	"NotExists": "âˆ„",
-	"NotGreater": "â‰¯",
-	"NotGreaterEqual": "â‰±",
-	"NotGreaterFullEqual": "â‰§Ì¸",
-	"NotGreaterGreater": "â‰«Ì¸",
-	"NotGreaterLess": "â‰¹",
-	"NotGreaterSlantEqual": "â©¾Ì¸",
-	"NotGreaterTilde": "â‰µ",
-	"NotHumpDownHump": "â‰ŽÌ¸",
-	"NotHumpEqual": "â‰Ì¸",
-	"notin": "âˆ‰",
-	"notindot": "â‹µÌ¸",
-	"notinE": "â‹¹Ì¸",
-	"notinva": "âˆ‰",
-	"notinvb": "â‹·",
-	"notinvc": "â‹¶",
-	"NotLeftTriangleBar": "â§Ì¸",
-	"NotLeftTriangle": "â‹ª",
-	"NotLeftTriangleEqual": "â‹¬",
-	"NotLess": "â‰®",
-	"NotLessEqual": "â‰°",
-	"NotLessGreater": "â‰¸",
-	"NotLessLess": "â‰ªÌ¸",
-	"NotLessSlantEqual": "â©½Ì¸",
-	"NotLessTilde": "â‰´",
-	"NotNestedGreaterGreater": "âª¢Ì¸",
-	"NotNestedLessLess": "âª¡Ì¸",
-	"notni": "âˆŒ",
-	"notniva": "âˆŒ",
-	"notnivb": "â‹¾",
-	"notnivc": "â‹½",
-	"NotPrecedes": "âŠ€",
-	"NotPrecedesEqual": "âª¯Ì¸",
-	"NotPrecedesSlantEqual": "â‹ ",
-	"NotReverseElement": "âˆŒ",
-	"NotRightTriangleBar": "â§Ì¸",
-	"NotRightTriangle": "â‹«",
-	"NotRightTriangleEqual": "â‹­",
-	"NotSquareSubset": "âŠÌ¸",
-	"NotSquareSubsetEqual": "â‹¢",
-	"NotSquareSuperset": "âŠÌ¸",
-	"NotSquareSupersetEqual": "â‹£",
-	"NotSubset": "âŠ‚âƒ’",
-	"NotSubsetEqual": "âŠˆ",
-	"NotSucceeds": "âŠ",
-	"NotSucceedsEqual": "âª°Ì¸",
-	"NotSucceedsSlantEqual": "â‹¡",
-	"NotSucceedsTilde": "â‰¿Ì¸",
-	"NotSuperset": "âŠƒâƒ’",
-	"NotSupersetEqual": "âŠ‰",
-	"NotTilde": "â‰",
-	"NotTildeEqual": "â‰„",
-	"NotTildeFullEqual": "â‰‡",
-	"NotTildeTilde": "â‰‰",
-	"NotVerticalBar": "âˆ¤",
-	"nparallel": "âˆ¦",
-	"npar": "âˆ¦",
-	"nparsl": "â«½âƒ¥",
-	"npart": "âˆ‚Ì¸",
-	"npolint": "â¨”",
-	"npr": "âŠ€",
-	"nprcue": "â‹ ",
-	"nprec": "âŠ€",
-	"npreceq": "âª¯Ì¸",
-	"npre": "âª¯Ì¸",
-	"nrarrc": "â¤³Ì¸",
-	"nrarr": "â†›",
-	"nrArr": "â‡",
-	"nrarrw": "â†Ì¸",
-	"nrightarrow": "â†›",
-	"nRightarrow": "â‡",
-	"nrtri": "â‹«",
-	"nrtrie": "â‹­",
-	"nsc": "âŠ",
-	"nsccue": "â‹¡",
-	"nsce": "âª°Ì¸",
-	"Nscr": "ð’©",
-	"nscr": "ð“ƒ",
-	"nshortmid": "âˆ¤",
-	"nshortparallel": "âˆ¦",
-	"nsim": "â‰",
-	"nsime": "â‰„",
-	"nsimeq": "â‰„",
-	"nsmid": "âˆ¤",
-	"nspar": "âˆ¦",
-	"nsqsube": "â‹¢",
-	"nsqsupe": "â‹£",
-	"nsub": "âŠ„",
-	"nsubE": "â«…Ì¸",
-	"nsube": "âŠˆ",
-	"nsubset": "âŠ‚âƒ’",
-	"nsubseteq": "âŠˆ",
-	"nsubseteqq": "â«…Ì¸",
-	"nsucc": "âŠ",
-	"nsucceq": "âª°Ì¸",
-	"nsup": "âŠ…",
-	"nsupE": "â«†Ì¸",
-	"nsupe": "âŠ‰",
-	"nsupset": "âŠƒâƒ’",
-	"nsupseteq": "âŠ‰",
-	"nsupseteqq": "â«†Ì¸",
-	"ntgl": "â‰¹",
-	"Ntilde": "Ã‘",
-	"ntilde": "Ã±",
-	"ntlg": "â‰¸",
-	"ntriangleleft": "â‹ª",
-	"ntrianglelefteq": "â‹¬",
-	"ntriangleright": "â‹«",
-	"ntrianglerighteq": "â‹­",
-	"Nu": "Î",
-	"nu": "Î½",
+	"nexist": "∄",
+	"nexists": "∄",
+	"Nfr": "𝔑",
+	"nfr": "𝔫",
+	"ngE": "≧̸",
+	"nge": "≱",
+	"ngeq": "≱",
+	"ngeqq": "≧̸",
+	"ngeqslant": "⩾̸",
+	"nges": "⩾̸",
+	"nGg": "⋙̸",
+	"ngsim": "≵",
+	"nGt": "≫⃒",
+	"ngt": "≯",
+	"ngtr": "≯",
+	"nGtv": "≫̸",
+	"nharr": "↮",
+	"nhArr": "⇎",
+	"nhpar": "⫲",
+	"ni": "∋",
+	"nis": "⋼",
+	"nisd": "⋺",
+	"niv": "∋",
+	"NJcy": "Њ",
+	"njcy": "њ",
+	"nlarr": "↚",
+	"nlArr": "⇍",
+	"nldr": "‥",
+	"nlE": "≦̸",
+	"nle": "≰",
+	"nleftarrow": "↚",
+	"nLeftarrow": "⇍",
+	"nleftrightarrow": "↮",
+	"nLeftrightarrow": "⇎",
+	"nleq": "≰",
+	"nleqq": "≦̸",
+	"nleqslant": "⩽̸",
+	"nles": "⩽̸",
+	"nless": "≮",
+	"nLl": "⋘̸",
+	"nlsim": "≴",
+	"nLt": "≪⃒",
+	"nlt": "≮",
+	"nltri": "⋪",
+	"nltrie": "⋬",
+	"nLtv": "≪̸",
+	"nmid": "∤",
+	"NoBreak": "⁠",
+	"NonBreakingSpace": " ",
+	"nopf": "𝕟",
+	"Nopf": "ℕ",
+	"Not": "⫬",
+	"not": "¬",
+	"NotCongruent": "≢",
+	"NotCupCap": "≭",
+	"NotDoubleVerticalBar": "∦",
+	"NotElement": "∉",
+	"NotEqual": "≠",
+	"NotEqualTilde": "≂̸",
+	"NotExists": "∄",
+	"NotGreater": "≯",
+	"NotGreaterEqual": "≱",
+	"NotGreaterFullEqual": "≧̸",
+	"NotGreaterGreater": "≫̸",
+	"NotGreaterLess": "≹",
+	"NotGreaterSlantEqual": "⩾̸",
+	"NotGreaterTilde": "≵",
+	"NotHumpDownHump": "≎̸",
+	"NotHumpEqual": "≏̸",
+	"notin": "∉",
+	"notindot": "⋵̸",
+	"notinE": "⋹̸",
+	"notinva": "∉",
+	"notinvb": "⋷",
+	"notinvc": "⋶",
+	"NotLeftTriangleBar": "⧏̸",
+	"NotLeftTriangle": "⋪",
+	"NotLeftTriangleEqual": "⋬",
+	"NotLess": "≮",
+	"NotLessEqual": "≰",
+	"NotLessGreater": "≸",
+	"NotLessLess": "≪̸",
+	"NotLessSlantEqual": "⩽̸",
+	"NotLessTilde": "≴",
+	"NotNestedGreaterGreater": "⪢̸",
+	"NotNestedLessLess": "⪡̸",
+	"notni": "∌",
+	"notniva": "∌",
+	"notnivb": "⋾",
+	"notnivc": "⋽",
+	"NotPrecedes": "⊀",
+	"NotPrecedesEqual": "⪯̸",
+	"NotPrecedesSlantEqual": "⋠",
+	"NotReverseElement": "∌",
+	"NotRightTriangleBar": "⧐̸",
+	"NotRightTriangle": "⋫",
+	"NotRightTriangleEqual": "⋭",
+	"NotSquareSubset": "⊏̸",
+	"NotSquareSubsetEqual": "⋢",
+	"NotSquareSuperset": "⊐̸",
+	"NotSquareSupersetEqual": "⋣",
+	"NotSubset": "⊂⃒",
+	"NotSubsetEqual": "⊈",
+	"NotSucceeds": "⊁",
+	"NotSucceedsEqual": "⪰̸",
+	"NotSucceedsSlantEqual": "⋡",
+	"NotSucceedsTilde": "≿̸",
+	"NotSuperset": "⊃⃒",
+	"NotSupersetEqual": "⊉",
+	"NotTilde": "≁",
+	"NotTildeEqual": "≄",
+	"NotTildeFullEqual": "≇",
+	"NotTildeTilde": "≉",
+	"NotVerticalBar": "∤",
+	"nparallel": "∦",
+	"npar": "∦",
+	"nparsl": "⫽⃥",
+	"npart": "∂̸",
+	"npolint": "⨔",
+	"npr": "⊀",
+	"nprcue": "⋠",
+	"nprec": "⊀",
+	"npreceq": "⪯̸",
+	"npre": "⪯̸",
+	"nrarrc": "⤳̸",
+	"nrarr": "↛",
+	"nrArr": "⇏",
+	"nrarrw": "↝̸",
+	"nrightarrow": "↛",
+	"nRightarrow": "⇏",
+	"nrtri": "⋫",
+	"nrtrie": "⋭",
+	"nsc": "⊁",
+	"nsccue": "⋡",
+	"nsce": "⪰̸",
+	"Nscr": "𝒩",
+	"nscr": "𝓃",
+	"nshortmid": "∤",
+	"nshortparallel": "∦",
+	"nsim": "≁",
+	"nsime": "≄",
+	"nsimeq": "≄",
+	"nsmid": "∤",
+	"nspar": "∦",
+	"nsqsube": "⋢",
+	"nsqsupe": "⋣",
+	"nsub": "⊄",
+	"nsubE": "⫅̸",
+	"nsube": "⊈",
+	"nsubset": "⊂⃒",
+	"nsubseteq": "⊈",
+	"nsubseteqq": "⫅̸",
+	"nsucc": "⊁",
+	"nsucceq": "⪰̸",
+	"nsup": "⊅",
+	"nsupE": "⫆̸",
+	"nsupe": "⊉",
+	"nsupset": "⊃⃒",
+	"nsupseteq": "⊉",
+	"nsupseteqq": "⫆̸",
+	"ntgl": "≹",
+	"Ntilde": "Ñ",
+	"ntilde": "ñ",
+	"ntlg": "≸",
+	"ntriangleleft": "⋪",
+	"ntrianglelefteq": "⋬",
+	"ntriangleright": "⋫",
+	"ntrianglerighteq": "⋭",
+	"Nu": "Ν",
+	"nu": "ν",
 	"num": "#",
-	"numero": "â„–",
-	"numsp": "â€‡",
-	"nvap": "â‰âƒ’",
-	"nvdash": "âŠ¬",
-	"nvDash": "âŠ­",
-	"nVdash": "âŠ®",
-	"nVDash": "âŠ¯",
-	"nvge": "â‰¥âƒ’",
-	"nvgt": ">âƒ’",
-	"nvHarr": "â¤„",
-	"nvinfin": "â§ž",
-	"nvlArr": "â¤‚",
-	"nvle": "â‰¤âƒ’",
-	"nvlt": "<âƒ’",
-	"nvltrie": "âŠ´âƒ’",
-	"nvrArr": "â¤ƒ",
-	"nvrtrie": "âŠµâƒ’",
-	"nvsim": "âˆ¼âƒ’",
-	"nwarhk": "â¤£",
-	"nwarr": "â†–",
-	"nwArr": "â‡–",
-	"nwarrow": "â†–",
-	"nwnear": "â¤§",
-	"Oacute": "Ã“",
-	"oacute": "Ã³",
-	"oast": "âŠ›",
-	"Ocirc": "Ã”",
-	"ocirc": "Ã´",
-	"ocir": "âŠš",
-	"Ocy": "Ðž",
-	"ocy": "Ð¾",
-	"odash": "âŠ",
-	"Odblac": "Å",
-	"odblac": "Å‘",
-	"odiv": "â¨¸",
-	"odot": "âŠ™",
-	"odsold": "â¦¼",
-	"OElig": "Å’",
-	"oelig": "Å“",
-	"ofcir": "â¦¿",
-	"Ofr": "ð”’",
-	"ofr": "ð”¬",
-	"ogon": "Ë›",
-	"Ograve": "Ã’",
-	"ograve": "Ã²",
-	"ogt": "â§",
-	"ohbar": "â¦µ",
-	"ohm": "Î©",
-	"oint": "âˆ®",
-	"olarr": "â†º",
-	"olcir": "â¦¾",
-	"olcross": "â¦»",
-	"oline": "â€¾",
-	"olt": "â§€",
-	"Omacr": "ÅŒ",
-	"omacr": "Å",
-	"Omega": "Î©",
-	"omega": "Ï‰",
-	"Omicron": "ÎŸ",
-	"omicron": "Î¿",
-	"omid": "â¦¶",
-	"ominus": "âŠ–",
-	"Oopf": "ð•†",
-	"oopf": "ð• ",
-	"opar": "â¦·",
-	"OpenCurlyDoubleQuote": "â€œ",
-	"OpenCurlyQuote": "â€˜",
-	"operp": "â¦¹",
-	"oplus": "âŠ•",
-	"orarr": "â†»",
-	"Or": "â©”",
-	"or": "âˆ¨",
-	"ord": "â©",
-	"order": "â„´",
-	"orderof": "â„´",
-	"ordf": "Âª",
-	"ordm": "Âº",
-	"origof": "âŠ¶",
-	"oror": "â©–",
-	"orslope": "â©—",
-	"orv": "â©›",
-	"oS": "â“ˆ",
-	"Oscr": "ð’ª",
-	"oscr": "â„´",
-	"Oslash": "Ã˜",
-	"oslash": "Ã¸",
-	"osol": "âŠ˜",
-	"Otilde": "Ã•",
-	"otilde": "Ãµ",
-	"otimesas": "â¨¶",
-	"Otimes": "â¨·",
-	"otimes": "âŠ—",
-	"Ouml": "Ã–",
-	"ouml": "Ã¶",
-	"ovbar": "âŒ½",
-	"OverBar": "â€¾",
-	"OverBrace": "âž",
-	"OverBracket": "âŽ´",
-	"OverParenthesis": "âœ",
-	"para": "Â¶",
-	"parallel": "âˆ¥",
-	"par": "âˆ¥",
-	"parsim": "â«³",
-	"parsl": "â«½",
-	"part": "âˆ‚",
-	"PartialD": "âˆ‚",
-	"Pcy": "ÐŸ",
-	"pcy": "Ð¿",
+	"numero": "№",
+	"numsp": " ",
+	"nvap": "≍⃒",
+	"nvdash": "⊬",
+	"nvDash": "⊭",
+	"nVdash": "⊮",
+	"nVDash": "⊯",
+	"nvge": "≥⃒",
+	"nvgt": ">⃒",
+	"nvHarr": "⤄",
+	"nvinfin": "⧞",
+	"nvlArr": "⤂",
+	"nvle": "≤⃒",
+	"nvlt": "<⃒",
+	"nvltrie": "⊴⃒",
+	"nvrArr": "⤃",
+	"nvrtrie": "⊵⃒",
+	"nvsim": "∼⃒",
+	"nwarhk": "⤣",
+	"nwarr": "↖",
+	"nwArr": "⇖",
+	"nwarrow": "↖",
+	"nwnear": "⤧",
+	"Oacute": "Ó",
+	"oacute": "ó",
+	"oast": "⊛",
+	"Ocirc": "Ô",
+	"ocirc": "ô",
+	"ocir": "⊚",
+	"Ocy": "О",
+	"ocy": "о",
+	"odash": "⊝",
+	"Odblac": "Ő",
+	"odblac": "ő",
+	"odiv": "⨸",
+	"odot": "⊙",
+	"odsold": "⦼",
+	"OElig": "Œ",
+	"oelig": "œ",
+	"ofcir": "⦿",
+	"Ofr": "𝔒",
+	"ofr": "𝔬",
+	"ogon": "˛",
+	"Ograve": "Ò",
+	"ograve": "ò",
+	"ogt": "⧁",
+	"ohbar": "⦵",
+	"ohm": "Ω",
+	"oint": "∮",
+	"olarr": "↺",
+	"olcir": "⦾",
+	"olcross": "⦻",
+	"oline": "‾",
+	"olt": "⧀",
+	"Omacr": "Ō",
+	"omacr": "ō",
+	"Omega": "Ω",
+	"omega": "ω",
+	"Omicron": "Ο",
+	"omicron": "ο",
+	"omid": "⦶",
+	"ominus": "⊖",
+	"Oopf": "𝕆",
+	"oopf": "𝕠",
+	"opar": "⦷",
+	"OpenCurlyDoubleQuote": "“",
+	"OpenCurlyQuote": "‘",
+	"operp": "⦹",
+	"oplus": "⊕",
+	"orarr": "↻",
+	"Or": "⩔",
+	"or": "∨",
+	"ord": "⩝",
+	"order": "ℴ",
+	"orderof": "ℴ",
+	"ordf": "ª",
+	"ordm": "º",
+	"origof": "⊶",
+	"oror": "⩖",
+	"orslope": "⩗",
+	"orv": "⩛",
+	"oS": "Ⓢ",
+	"Oscr": "𝒪",
+	"oscr": "ℴ",
+	"Oslash": "Ø",
+	"oslash": "ø",
+	"osol": "⊘",
+	"Otilde": "Õ",
+	"otilde": "õ",
+	"otimesas": "⨶",
+	"Otimes": "⨷",
+	"otimes": "⊗",
+	"Ouml": "Ö",
+	"ouml": "ö",
+	"ovbar": "⌽",
+	"OverBar": "‾",
+	"OverBrace": "⏞",
+	"OverBracket": "⎴",
+	"OverParenthesis": "⏜",
+	"para": "¶",
+	"parallel": "∥",
+	"par": "∥",
+	"parsim": "⫳",
+	"parsl": "⫽",
+	"part": "∂",
+	"PartialD": "∂",
+	"Pcy": "П",
+	"pcy": "п",
 	"percnt": "%",
 	"period": ".",
-	"permil": "â€°",
-	"perp": "âŠ¥",
-	"pertenk": "â€±",
-	"Pfr": "ð”“",
-	"pfr": "ð”­",
-	"Phi": "Î¦",
-	"phi": "Ï†",
-	"phiv": "Ï•",
-	"phmmat": "â„³",
-	"phone": "â˜Ž",
-	"Pi": "Î ",
-	"pi": "Ï€",
-	"pitchfork": "â‹”",
-	"piv": "Ï–",
-	"planck": "â„",
-	"planckh": "â„Ž",
-	"plankv": "â„",
-	"plusacir": "â¨£",
-	"plusb": "âŠž",
-	"pluscir": "â¨¢",
+	"permil": "‰",
+	"perp": "⊥",
+	"pertenk": "‱",
+	"Pfr": "𝔓",
+	"pfr": "𝔭",
+	"Phi": "Φ",
+	"phi": "φ",
+	"phiv": "ϕ",
+	"phmmat": "ℳ",
+	"phone": "☎",
+	"Pi": "Π",
+	"pi": "π",
+	"pitchfork": "⋔",
+	"piv": "ϖ",
+	"planck": "ℏ",
+	"planckh": "ℎ",
+	"plankv": "ℏ",
+	"plusacir": "⨣",
+	"plusb": "⊞",
+	"pluscir": "⨢",
 	"plus": "+",
-	"plusdo": "âˆ”",
-	"plusdu": "â¨¥",
-	"pluse": "â©²",
-	"PlusMinus": "Â±",
-	"plusmn": "Â±",
-	"plussim": "â¨¦",
-	"plustwo": "â¨§",
-	"pm": "Â±",
-	"Poincareplane": "â„Œ",
-	"pointint": "â¨•",
-	"popf": "ð•¡",
-	"Popf": "â„™",
-	"pound": "Â£",
-	"prap": "âª·",
-	"Pr": "âª»",
-	"pr": "â‰º",
-	"prcue": "â‰¼",
-	"precapprox": "âª·",
-	"prec": "â‰º",
-	"preccurlyeq": "â‰¼",
-	"Precedes": "â‰º",
-	"PrecedesEqual": "âª¯",
-	"PrecedesSlantEqual": "â‰¼",
-	"PrecedesTilde": "â‰¾",
-	"preceq": "âª¯",
-	"precnapprox": "âª¹",
-	"precneqq": "âªµ",
-	"precnsim": "â‹¨",
-	"pre": "âª¯",
-	"prE": "âª³",
-	"precsim": "â‰¾",
-	"prime": "â€²",
-	"Prime": "â€³",
-	"primes": "â„™",
-	"prnap": "âª¹",
-	"prnE": "âªµ",
-	"prnsim": "â‹¨",
-	"prod": "âˆ",
-	"Product": "âˆ",
-	"profalar": "âŒ®",
-	"profline": "âŒ’",
-	"profsurf": "âŒ“",
-	"prop": "âˆ",
-	"Proportional": "âˆ",
-	"Proportion": "âˆ·",
-	"propto": "âˆ",
-	"prsim": "â‰¾",
-	"prurel": "âŠ°",
-	"Pscr": "ð’«",
-	"pscr": "ð“…",
-	"Psi": "Î¨",
-	"psi": "Ïˆ",
-	"puncsp": "â€ˆ",
-	"Qfr": "ð””",
-	"qfr": "ð”®",
-	"qint": "â¨Œ",
-	"qopf": "ð•¢",
-	"Qopf": "â„š",
-	"qprime": "â—",
-	"Qscr": "ð’¬",
-	"qscr": "ð“†",
-	"quaternions": "â„",
-	"quatint": "â¨–",
+	"plusdo": "∔",
+	"plusdu": "⨥",
+	"pluse": "⩲",
+	"PlusMinus": "±",
+	"plusmn": "±",
+	"plussim": "⨦",
+	"plustwo": "⨧",
+	"pm": "±",
+	"Poincareplane": "ℌ",
+	"pointint": "⨕",
+	"popf": "𝕡",
+	"Popf": "ℙ",
+	"pound": "£",
+	"prap": "⪷",
+	"Pr": "⪻",
+	"pr": "≺",
+	"prcue": "≼",
+	"precapprox": "⪷",
+	"prec": "≺",
+	"preccurlyeq": "≼",
+	"Precedes": "≺",
+	"PrecedesEqual": "⪯",
+	"PrecedesSlantEqual": "≼",
+	"PrecedesTilde": "≾",
+	"preceq": "⪯",
+	"precnapprox": "⪹",
+	"precneqq": "⪵",
+	"precnsim": "⋨",
+	"pre": "⪯",
+	"prE": "⪳",
+	"precsim": "≾",
+	"prime": "′",
+	"Prime": "″",
+	"primes": "ℙ",
+	"prnap": "⪹",
+	"prnE": "⪵",
+	"prnsim": "⋨",
+	"prod": "∏",
+	"Product": "∏",
+	"profalar": "⌮",
+	"profline": "⌒",
+	"profsurf": "⌓",
+	"prop": "∝",
+	"Proportional": "∝",
+	"Proportion": "∷",
+	"propto": "∝",
+	"prsim": "≾",
+	"prurel": "⊰",
+	"Pscr": "𝒫",
+	"pscr": "𝓅",
+	"Psi": "Ψ",
+	"psi": "ψ",
+	"puncsp": " ",
+	"Qfr": "𝔔",
+	"qfr": "𝔮",
+	"qint": "⨌",
+	"qopf": "𝕢",
+	"Qopf": "ℚ",
+	"qprime": "⁗",
+	"Qscr": "𝒬",
+	"qscr": "𝓆",
+	"quaternions": "ℍ",
+	"quatint": "⨖",
 	"quest": "?",
-	"questeq": "â‰Ÿ",
+	"questeq": "≟",
 	"quot": "\"",
 	"QUOT": "\"",
-	"rAarr": "â‡›",
-	"race": "âˆ½Ì±",
-	"Racute": "Å”",
-	"racute": "Å•",
-	"radic": "âˆš",
-	"raemptyv": "â¦³",
-	"rang": "âŸ©",
-	"Rang": "âŸ«",
-	"rangd": "â¦’",
-	"range": "â¦¥",
-	"rangle": "âŸ©",
-	"raquo": "Â»",
-	"rarrap": "â¥µ",
-	"rarrb": "â‡¥",
-	"rarrbfs": "â¤ ",
-	"rarrc": "â¤³",
-	"rarr": "â†’",
-	"Rarr": "â† ",
-	"rArr": "â‡’",
-	"rarrfs": "â¤ž",
-	"rarrhk": "â†ª",
-	"rarrlp": "â†¬",
-	"rarrpl": "â¥…",
-	"rarrsim": "â¥´",
-	"Rarrtl": "â¤–",
-	"rarrtl": "â†£",
-	"rarrw": "â†",
-	"ratail": "â¤š",
-	"rAtail": "â¤œ",
-	"ratio": "âˆ¶",
-	"rationals": "â„š",
-	"rbarr": "â¤",
-	"rBarr": "â¤",
-	"RBarr": "â¤",
-	"rbbrk": "â³",
+	"rAarr": "⇛",
+	"race": "∽̱",
+	"Racute": "Ŕ",
+	"racute": "ŕ",
+	"radic": "√",
+	"raemptyv": "⦳",
+	"rang": "⟩",
+	"Rang": "⟫",
+	"rangd": "⦒",
+	"range": "⦥",
+	"rangle": "⟩",
+	"raquo": "»",
+	"rarrap": "⥵",
+	"rarrb": "⇥",
+	"rarrbfs": "⤠",
+	"rarrc": "⤳",
+	"rarr": "→",
+	"Rarr": "↠",
+	"rArr": "⇒",
+	"rarrfs": "⤞",
+	"rarrhk": "↪",
+	"rarrlp": "↬",
+	"rarrpl": "⥅",
+	"rarrsim": "⥴",
+	"Rarrtl": "⤖",
+	"rarrtl": "↣",
+	"rarrw": "↝",
+	"ratail": "⤚",
+	"rAtail": "⤜",
+	"ratio": "∶",
+	"rationals": "ℚ",
+	"rbarr": "⤍",
+	"rBarr": "⤏",
+	"RBarr": "⤐",
+	"rbbrk": "❳",
 	"rbrace": "}",
 	"rbrack": "]",
-	"rbrke": "â¦Œ",
-	"rbrksld": "â¦Ž",
-	"rbrkslu": "â¦",
-	"Rcaron": "Å˜",
-	"rcaron": "Å™",
-	"Rcedil": "Å–",
-	"rcedil": "Å—",
-	"rceil": "âŒ‰",
+	"rbrke": "⦌",
+	"rbrksld": "⦎",
+	"rbrkslu": "⦐",
+	"Rcaron": "Ř",
+	"rcaron": "ř",
+	"Rcedil": "Ŗ",
+	"rcedil": "ŗ",
+	"rceil": "⌉",
 	"rcub": "}",
-	"Rcy": "Ð ",
-	"rcy": "Ñ€",
-	"rdca": "â¤·",
-	"rdldhar": "â¥©",
-	"rdquo": "â€",
-	"rdquor": "â€",
-	"rdsh": "â†³",
-	"real": "â„œ",
-	"realine": "â„›",
-	"realpart": "â„œ",
-	"reals": "â„",
-	"Re": "â„œ",
-	"rect": "â–­",
-	"reg": "Â®",
-	"REG": "Â®",
-	"ReverseElement": "âˆ‹",
-	"ReverseEquilibrium": "â‡‹",
-	"ReverseUpEquilibrium": "â¥¯",
-	"rfisht": "â¥½",
-	"rfloor": "âŒ‹",
-	"rfr": "ð”¯",
-	"Rfr": "â„œ",
-	"rHar": "â¥¤",
-	"rhard": "â‡",
-	"rharu": "â‡€",
-	"rharul": "â¥¬",
-	"Rho": "Î¡",
-	"rho": "Ï",
-	"rhov": "Ï±",
-	"RightAngleBracket": "âŸ©",
-	"RightArrowBar": "â‡¥",
-	"rightarrow": "â†’",
-	"RightArrow": "â†’",
-	"Rightarrow": "â‡’",
-	"RightArrowLeftArrow": "â‡„",
-	"rightarrowtail": "â†£",
-	"RightCeiling": "âŒ‰",
-	"RightDoubleBracket": "âŸ§",
-	"RightDownTeeVector": "â¥",
-	"RightDownVectorBar": "â¥•",
-	"RightDownVector": "â‡‚",
-	"RightFloor": "âŒ‹",
-	"rightharpoondown": "â‡",
-	"rightharpoonup": "â‡€",
-	"rightleftarrows": "â‡„",
-	"rightleftharpoons": "â‡Œ",
-	"rightrightarrows": "â‡‰",
-	"rightsquigarrow": "â†",
-	"RightTeeArrow": "â†¦",
-	"RightTee": "âŠ¢",
-	"RightTeeVector": "â¥›",
-	"rightthreetimes": "â‹Œ",
-	"RightTriangleBar": "â§",
-	"RightTriangle": "âŠ³",
-	"RightTriangleEqual": "âŠµ",
-	"RightUpDownVector": "â¥",
-	"RightUpTeeVector": "â¥œ",
-	"RightUpVectorBar": "â¥”",
-	"RightUpVector": "â†¾",
-	"RightVectorBar": "â¥“",
-	"RightVector": "â‡€",
-	"ring": "Ëš",
-	"risingdotseq": "â‰“",
-	"rlarr": "â‡„",
-	"rlhar": "â‡Œ",
-	"rlm": "â€",
-	"rmoustache": "âŽ±",
-	"rmoust": "âŽ±",
-	"rnmid": "â«®",
-	"roang": "âŸ­",
-	"roarr": "â‡¾",
-	"robrk": "âŸ§",
-	"ropar": "â¦†",
-	"ropf": "ð•£",
-	"Ropf": "â„",
-	"roplus": "â¨®",
-	"rotimes": "â¨µ",
-	"RoundImplies": "â¥°",
+	"Rcy": "Р",
+	"rcy": "р",
+	"rdca": "⤷",
+	"rdldhar": "⥩",
+	"rdquo": "”",
+	"rdquor": "”",
+	"rdsh": "↳",
+	"real": "ℜ",
+	"realine": "ℛ",
+	"realpart": "ℜ",
+	"reals": "ℝ",
+	"Re": "ℜ",
+	"rect": "▭",
+	"reg": "®",
+	"REG": "®",
+	"ReverseElement": "∋",
+	"ReverseEquilibrium": "⇋",
+	"ReverseUpEquilibrium": "⥯",
+	"rfisht": "⥽",
+	"rfloor": "⌋",
+	"rfr": "𝔯",
+	"Rfr": "ℜ",
+	"rHar": "⥤",
+	"rhard": "⇁",
+	"rharu": "⇀",
+	"rharul": "⥬",
+	"Rho": "Ρ",
+	"rho": "ρ",
+	"rhov": "ϱ",
+	"RightAngleBracket": "⟩",
+	"RightArrowBar": "⇥",
+	"rightarrow": "→",
+	"RightArrow": "→",
+	"Rightarrow": "⇒",
+	"RightArrowLeftArrow": "⇄",
+	"rightarrowtail": "↣",
+	"RightCeiling": "⌉",
+	"RightDoubleBracket": "⟧",
+	"RightDownTeeVector": "⥝",
+	"RightDownVectorBar": "⥕",
+	"RightDownVector": "⇂",
+	"RightFloor": "⌋",
+	"rightharpoondown": "⇁",
+	"rightharpoonup": "⇀",
+	"rightleftarrows": "⇄",
+	"rightleftharpoons": "⇌",
+	"rightrightarrows": "⇉",
+	"rightsquigarrow": "↝",
+	"RightTeeArrow": "↦",
+	"RightTee": "⊢",
+	"RightTeeVector": "⥛",
+	"rightthreetimes": "⋌",
+	"RightTriangleBar": "⧐",
+	"RightTriangle": "⊳",
+	"RightTriangleEqual": "⊵",
+	"RightUpDownVector": "⥏",
+	"RightUpTeeVector": "⥜",
+	"RightUpVectorBar": "⥔",
+	"RightUpVector": "↾",
+	"RightVectorBar": "⥓",
+	"RightVector": "⇀",
+	"ring": "˚",
+	"risingdotseq": "≓",
+	"rlarr": "⇄",
+	"rlhar": "⇌",
+	"rlm": "‏",
+	"rmoustache": "⎱",
+	"rmoust": "⎱",
+	"rnmid": "⫮",
+	"roang": "⟭",
+	"roarr": "⇾",
+	"robrk": "⟧",
+	"ropar": "⦆",
+	"ropf": "𝕣",
+	"Ropf": "ℝ",
+	"roplus": "⨮",
+	"rotimes": "⨵",
+	"RoundImplies": "⥰",
 	"rpar": ")",
-	"rpargt": "â¦”",
-	"rppolint": "â¨’",
-	"rrarr": "â‡‰",
-	"Rrightarrow": "â‡›",
-	"rsaquo": "â€º",
-	"rscr": "ð“‡",
-	"Rscr": "â„›",
-	"rsh": "â†±",
-	"Rsh": "â†±",
+	"rpargt": "⦔",
+	"rppolint": "⨒",
+	"rrarr": "⇉",
+	"Rrightarrow": "⇛",
+	"rsaquo": "›",
+	"rscr": "𝓇",
+	"Rscr": "ℛ",
+	"rsh": "↱",
+	"Rsh": "↱",
 	"rsqb": "]",
-	"rsquo": "â€™",
-	"rsquor": "â€™",
-	"rthree": "â‹Œ",
-	"rtimes": "â‹Š",
-	"rtri": "â–¹",
-	"rtrie": "âŠµ",
-	"rtrif": "â–¸",
-	"rtriltri": "â§Ž",
-	"RuleDelayed": "â§´",
-	"ruluhar": "â¥¨",
-	"rx": "â„ž",
-	"Sacute": "Åš",
-	"sacute": "Å›",
-	"sbquo": "â€š",
-	"scap": "âª¸",
-	"Scaron": "Å ",
-	"scaron": "Å¡",
-	"Sc": "âª¼",
-	"sc": "â‰»",
-	"sccue": "â‰½",
-	"sce": "âª°",
-	"scE": "âª´",
-	"Scedil": "Åž",
-	"scedil": "ÅŸ",
-	"Scirc": "Åœ",
-	"scirc": "Å",
-	"scnap": "âªº",
-	"scnE": "âª¶",
-	"scnsim": "â‹©",
-	"scpolint": "â¨“",
-	"scsim": "â‰¿",
-	"Scy": "Ð¡",
-	"scy": "Ñ",
-	"sdotb": "âŠ¡",
-	"sdot": "â‹…",
-	"sdote": "â©¦",
-	"searhk": "â¤¥",
-	"searr": "â†˜",
-	"seArr": "â‡˜",
-	"searrow": "â†˜",
-	"sect": "Â§",
+	"rsquo": "’",
+	"rsquor": "’",
+	"rthree": "⋌",
+	"rtimes": "⋊",
+	"rtri": "▹",
+	"rtrie": "⊵",
+	"rtrif": "▸",
+	"rtriltri": "⧎",
+	"RuleDelayed": "⧴",
+	"ruluhar": "⥨",
+	"rx": "℞",
+	"Sacute": "Ś",
+	"sacute": "ś",
+	"sbquo": "‚",
+	"scap": "⪸",
+	"Scaron": "Š",
+	"scaron": "š",
+	"Sc": "⪼",
+	"sc": "≻",
+	"sccue": "≽",
+	"sce": "⪰",
+	"scE": "⪴",
+	"Scedil": "Ş",
+	"scedil": "ş",
+	"Scirc": "Ŝ",
+	"scirc": "ŝ",
+	"scnap": "⪺",
+	"scnE": "⪶",
+	"scnsim": "⋩",
+	"scpolint": "⨓",
+	"scsim": "≿",
+	"Scy": "С",
+	"scy": "с",
+	"sdotb": "⊡",
+	"sdot": "⋅",
+	"sdote": "⩦",
+	"searhk": "⤥",
+	"searr": "↘",
+	"seArr": "⇘",
+	"searrow": "↘",
+	"sect": "§",
 	"semi": ";",
-	"seswar": "â¤©",
-	"setminus": "âˆ–",
-	"setmn": "âˆ–",
-	"sext": "âœ¶",
-	"Sfr": "ð”–",
-	"sfr": "ð”°",
-	"sfrown": "âŒ¢",
-	"sharp": "â™¯",
-	"SHCHcy": "Ð©",
-	"shchcy": "Ñ‰",
-	"SHcy": "Ð¨",
-	"shcy": "Ñˆ",
-	"ShortDownArrow": "â†“",
-	"ShortLeftArrow": "â†",
-	"shortmid": "âˆ£",
-	"shortparallel": "âˆ¥",
-	"ShortRightArrow": "â†’",
-	"ShortUpArrow": "â†‘",
-	"shy": "Â­",
-	"Sigma": "Î£",
-	"sigma": "Ïƒ",
-	"sigmaf": "Ï‚",
-	"sigmav": "Ï‚",
-	"sim": "âˆ¼",
-	"simdot": "â©ª",
-	"sime": "â‰ƒ",
-	"simeq": "â‰ƒ",
-	"simg": "âªž",
-	"simgE": "âª ",
-	"siml": "âª",
-	"simlE": "âªŸ",
-	"simne": "â‰†",
-	"simplus": "â¨¤",
-	"simrarr": "â¥²",
-	"slarr": "â†",
-	"SmallCircle": "âˆ˜",
-	"smallsetminus": "âˆ–",
-	"smashp": "â¨³",
-	"smeparsl": "â§¤",
-	"smid": "âˆ£",
-	"smile": "âŒ£",
-	"smt": "âªª",
-	"smte": "âª¬",
-	"smtes": "âª¬ï¸€",
-	"SOFTcy": "Ð¬",
-	"softcy": "ÑŒ",
-	"solbar": "âŒ¿",
-	"solb": "â§„",
+	"seswar": "⤩",
+	"setminus": "∖",
+	"setmn": "∖",
+	"sext": "✶",
+	"Sfr": "𝔖",
+	"sfr": "𝔰",
+	"sfrown": "⌢",
+	"sharp": "♯",
+	"SHCHcy": "Щ",
+	"shchcy": "щ",
+	"SHcy": "Ш",
+	"shcy": "ш",
+	"ShortDownArrow": "↓",
+	"ShortLeftArrow": "←",
+	"shortmid": "∣",
+	"shortparallel": "∥",
+	"ShortRightArrow": "→",
+	"ShortUpArrow": "↑",
+	"shy": "­",
+	"Sigma": "Σ",
+	"sigma": "σ",
+	"sigmaf": "ς",
+	"sigmav": "ς",
+	"sim": "∼",
+	"simdot": "⩪",
+	"sime": "≃",
+	"simeq": "≃",
+	"simg": "⪞",
+	"simgE": "⪠",
+	"siml": "⪝",
+	"simlE": "⪟",
+	"simne": "≆",
+	"simplus": "⨤",
+	"simrarr": "⥲",
+	"slarr": "←",
+	"SmallCircle": "∘",
+	"smallsetminus": "∖",
+	"smashp": "⨳",
+	"smeparsl": "⧤",
+	"smid": "∣",
+	"smile": "⌣",
+	"smt": "⪪",
+	"smte": "⪬",
+	"smtes": "⪬︀",
+	"SOFTcy": "Ь",
+	"softcy": "ь",
+	"solbar": "⌿",
+	"solb": "⧄",
 	"sol": "/",
-	"Sopf": "ð•Š",
-	"sopf": "ð•¤",
-	"spades": "â™ ",
-	"spadesuit": "â™ ",
-	"spar": "âˆ¥",
-	"sqcap": "âŠ“",
-	"sqcaps": "âŠ“ï¸€",
-	"sqcup": "âŠ”",
-	"sqcups": "âŠ”ï¸€",
-	"Sqrt": "âˆš",
-	"sqsub": "âŠ",
-	"sqsube": "âŠ‘",
-	"sqsubset": "âŠ",
-	"sqsubseteq": "âŠ‘",
-	"sqsup": "âŠ",
-	"sqsupe": "âŠ’",
-	"sqsupset": "âŠ",
-	"sqsupseteq": "âŠ’",
-	"square": "â–¡",
-	"Square": "â–¡",
-	"SquareIntersection": "âŠ“",
-	"SquareSubset": "âŠ",
-	"SquareSubsetEqual": "âŠ‘",
-	"SquareSuperset": "âŠ",
-	"SquareSupersetEqual": "âŠ’",
-	"SquareUnion": "âŠ”",
-	"squarf": "â–ª",
-	"squ": "â–¡",
-	"squf": "â–ª",
-	"srarr": "â†’",
-	"Sscr": "ð’®",
-	"sscr": "ð“ˆ",
-	"ssetmn": "âˆ–",
-	"ssmile": "âŒ£",
-	"sstarf": "â‹†",
-	"Star": "â‹†",
-	"star": "â˜†",
-	"starf": "â˜…",
-	"straightepsilon": "Ïµ",
-	"straightphi": "Ï•",
-	"strns": "Â¯",
-	"sub": "âŠ‚",
-	"Sub": "â‹",
-	"subdot": "âª½",
-	"subE": "â«…",
-	"sube": "âŠ†",
-	"subedot": "â«ƒ",
-	"submult": "â«",
-	"subnE": "â«‹",
-	"subne": "âŠŠ",
-	"subplus": "âª¿",
-	"subrarr": "â¥¹",
-	"subset": "âŠ‚",
-	"Subset": "â‹",
-	"subseteq": "âŠ†",
-	"subseteqq": "â«…",
-	"SubsetEqual": "âŠ†",
-	"subsetneq": "âŠŠ",
-	"subsetneqq": "â«‹",
-	"subsim": "â«‡",
-	"subsub": "â«•",
-	"subsup": "â«“",
-	"succapprox": "âª¸",
-	"succ": "â‰»",
-	"succcurlyeq": "â‰½",
-	"Succeeds": "â‰»",
-	"SucceedsEqual": "âª°",
-	"SucceedsSlantEqual": "â‰½",
-	"SucceedsTilde": "â‰¿",
-	"succeq": "âª°",
-	"succnapprox": "âªº",
-	"succneqq": "âª¶",
-	"succnsim": "â‹©",
-	"succsim": "â‰¿",
-	"SuchThat": "âˆ‹",
-	"sum": "âˆ‘",
-	"Sum": "âˆ‘",
-	"sung": "â™ª",
-	"sup1": "Â¹",
-	"sup2": "Â²",
-	"sup3": "Â³",
-	"sup": "âŠƒ",
-	"Sup": "â‹‘",
-	"supdot": "âª¾",
-	"supdsub": "â«˜",
-	"supE": "â«†",
-	"supe": "âŠ‡",
-	"supedot": "â«„",
-	"Superset": "âŠƒ",
-	"SupersetEqual": "âŠ‡",
-	"suphsol": "âŸ‰",
-	"suphsub": "â«—",
-	"suplarr": "â¥»",
-	"supmult": "â«‚",
-	"supnE": "â«Œ",
-	"supne": "âŠ‹",
-	"supplus": "â«€",
-	"supset": "âŠƒ",
-	"Supset": "â‹‘",
-	"supseteq": "âŠ‡",
-	"supseteqq": "â«†",
-	"supsetneq": "âŠ‹",
-	"supsetneqq": "â«Œ",
-	"supsim": "â«ˆ",
-	"supsub": "â«”",
-	"supsup": "â«–",
-	"swarhk": "â¤¦",
-	"swarr": "â†™",
-	"swArr": "â‡™",
-	"swarrow": "â†™",
-	"swnwar": "â¤ª",
-	"szlig": "ÃŸ",
+	"Sopf": "𝕊",
+	"sopf": "𝕤",
+	"spades": "♠",
+	"spadesuit": "♠",
+	"spar": "∥",
+	"sqcap": "⊓",
+	"sqcaps": "⊓︀",
+	"sqcup": "⊔",
+	"sqcups": "⊔︀",
+	"Sqrt": "√",
+	"sqsub": "⊏",
+	"sqsube": "⊑",
+	"sqsubset": "⊏",
+	"sqsubseteq": "⊑",
+	"sqsup": "⊐",
+	"sqsupe": "⊒",
+	"sqsupset": "⊐",
+	"sqsupseteq": "⊒",
+	"square": "□",
+	"Square": "□",
+	"SquareIntersection": "⊓",
+	"SquareSubset": "⊏",
+	"SquareSubsetEqual": "⊑",
+	"SquareSuperset": "⊐",
+	"SquareSupersetEqual": "⊒",
+	"SquareUnion": "⊔",
+	"squarf": "▪",
+	"squ": "□",
+	"squf": "▪",
+	"srarr": "→",
+	"Sscr": "𝒮",
+	"sscr": "𝓈",
+	"ssetmn": "∖",
+	"ssmile": "⌣",
+	"sstarf": "⋆",
+	"Star": "⋆",
+	"star": "☆",
+	"starf": "★",
+	"straightepsilon": "ϵ",
+	"straightphi": "ϕ",
+	"strns": "¯",
+	"sub": "⊂",
+	"Sub": "⋐",
+	"subdot": "⪽",
+	"subE": "⫅",
+	"sube": "⊆",
+	"subedot": "⫃",
+	"submult": "⫁",
+	"subnE": "⫋",
+	"subne": "⊊",
+	"subplus": "⪿",
+	"subrarr": "⥹",
+	"subset": "⊂",
+	"Subset": "⋐",
+	"subseteq": "⊆",
+	"subseteqq": "⫅",
+	"SubsetEqual": "⊆",
+	"subsetneq": "⊊",
+	"subsetneqq": "⫋",
+	"subsim": "⫇",
+	"subsub": "⫕",
+	"subsup": "⫓",
+	"succapprox": "⪸",
+	"succ": "≻",
+	"succcurlyeq": "≽",
+	"Succeeds": "≻",
+	"SucceedsEqual": "⪰",
+	"SucceedsSlantEqual": "≽",
+	"SucceedsTilde": "≿",
+	"succeq": "⪰",
+	"succnapprox": "⪺",
+	"succneqq": "⪶",
+	"succnsim": "⋩",
+	"succsim": "≿",
+	"SuchThat": "∋",
+	"sum": "∑",
+	"Sum": "∑",
+	"sung": "♪",
+	"sup1": "¹",
+	"sup2": "²",
+	"sup3": "³",
+	"sup": "⊃",
+	"Sup": "⋑",
+	"supdot": "⪾",
+	"supdsub": "⫘",
+	"supE": "⫆",
+	"supe": "⊇",
+	"supedot": "⫄",
+	"Superset": "⊃",
+	"SupersetEqual": "⊇",
+	"suphsol": "⟉",
+	"suphsub": "⫗",
+	"suplarr": "⥻",
+	"supmult": "⫂",
+	"supnE": "⫌",
+	"supne": "⊋",
+	"supplus": "⫀",
+	"supset": "⊃",
+	"Supset": "⋑",
+	"supseteq": "⊇",
+	"supseteqq": "⫆",
+	"supsetneq": "⊋",
+	"supsetneqq": "⫌",
+	"supsim": "⫈",
+	"supsub": "⫔",
+	"supsup": "⫖",
+	"swarhk": "⤦",
+	"swarr": "↙",
+	"swArr": "⇙",
+	"swarrow": "↙",
+	"swnwar": "⤪",
+	"szlig": "ß",
 	"Tab": "\t",
-	"target": "âŒ–",
-	"Tau": "Î¤",
-	"tau": "Ï„",
-	"tbrk": "âŽ´",
-	"Tcaron": "Å¤",
-	"tcaron": "Å¥",
-	"Tcedil": "Å¢",
-	"tcedil": "Å£",
-	"Tcy": "Ð¢",
-	"tcy": "Ñ‚",
-	"tdot": "âƒ›",
-	"telrec": "âŒ•",
-	"Tfr": "ð”—",
-	"tfr": "ð”±",
-	"there4": "âˆ´",
-	"therefore": "âˆ´",
-	"Therefore": "âˆ´",
-	"Theta": "Î˜",
-	"theta": "Î¸",
-	"thetasym": "Ï‘",
-	"thetav": "Ï‘",
-	"thickapprox": "â‰ˆ",
-	"thicksim": "âˆ¼",
-	"ThickSpace": "âŸâ€Š",
-	"ThinSpace": "â€‰",
-	"thinsp": "â€‰",
-	"thkap": "â‰ˆ",
-	"thksim": "âˆ¼",
-	"THORN": "Ãž",
-	"thorn": "Ã¾",
-	"tilde": "Ëœ",
-	"Tilde": "âˆ¼",
-	"TildeEqual": "â‰ƒ",
-	"TildeFullEqual": "â‰…",
-	"TildeTilde": "â‰ˆ",
-	"timesbar": "â¨±",
-	"timesb": "âŠ ",
-	"times": "Ã—",
-	"timesd": "â¨°",
-	"tint": "âˆ­",
-	"toea": "â¤¨",
-	"topbot": "âŒ¶",
-	"topcir": "â«±",
-	"top": "âŠ¤",
-	"Topf": "ð•‹",
-	"topf": "ð•¥",
-	"topfork": "â«š",
-	"tosa": "â¤©",
-	"tprime": "â€´",
-	"trade": "â„¢",
-	"TRADE": "â„¢",
-	"triangle": "â–µ",
-	"triangledown": "â–¿",
-	"triangleleft": "â—ƒ",
-	"trianglelefteq": "âŠ´",
-	"triangleq": "â‰œ",
-	"triangleright": "â–¹",
-	"trianglerighteq": "âŠµ",
-	"tridot": "â—¬",
-	"trie": "â‰œ",
-	"triminus": "â¨º",
-	"TripleDot": "âƒ›",
-	"triplus": "â¨¹",
-	"trisb": "â§",
-	"tritime": "â¨»",
-	"trpezium": "â¢",
-	"Tscr": "ð’¯",
-	"tscr": "ð“‰",
-	"TScy": "Ð¦",
-	"tscy": "Ñ†",
-	"TSHcy": "Ð‹",
-	"tshcy": "Ñ›",
-	"Tstrok": "Å¦",
-	"tstrok": "Å§",
-	"twixt": "â‰¬",
-	"twoheadleftarrow": "â†ž",
-	"twoheadrightarrow": "â† ",
-	"Uacute": "Ãš",
-	"uacute": "Ãº",
-	"uarr": "â†‘",
-	"Uarr": "â†Ÿ",
-	"uArr": "â‡‘",
-	"Uarrocir": "â¥‰",
-	"Ubrcy": "ÐŽ",
-	"ubrcy": "Ñž",
-	"Ubreve": "Å¬",
-	"ubreve": "Å­",
-	"Ucirc": "Ã›",
-	"ucirc": "Ã»",
-	"Ucy": "Ð£",
-	"ucy": "Ñƒ",
-	"udarr": "â‡…",
-	"Udblac": "Å°",
-	"udblac": "Å±",
-	"udhar": "â¥®",
-	"ufisht": "â¥¾",
-	"Ufr": "ð”˜",
-	"ufr": "ð”²",
-	"Ugrave": "Ã™",
-	"ugrave": "Ã¹",
-	"uHar": "â¥£",
-	"uharl": "â†¿",
-	"uharr": "â†¾",
-	"uhblk": "â–€",
-	"ulcorn": "âŒœ",
-	"ulcorner": "âŒœ",
-	"ulcrop": "âŒ",
-	"ultri": "â—¸",
-	"Umacr": "Åª",
-	"umacr": "Å«",
-	"uml": "Â¨",
+	"target": "⌖",
+	"Tau": "Τ",
+	"tau": "τ",
+	"tbrk": "⎴",
+	"Tcaron": "Ť",
+	"tcaron": "ť",
+	"Tcedil": "Ţ",
+	"tcedil": "ţ",
+	"Tcy": "Т",
+	"tcy": "т",
+	"tdot": "⃛",
+	"telrec": "⌕",
+	"Tfr": "𝔗",
+	"tfr": "𝔱",
+	"there4": "∴",
+	"therefore": "∴",
+	"Therefore": "∴",
+	"Theta": "Θ",
+	"theta": "θ",
+	"thetasym": "ϑ",
+	"thetav": "ϑ",
+	"thickapprox": "≈",
+	"thicksim": "∼",
+	"ThickSpace": "  ",
+	"ThinSpace": " ",
+	"thinsp": " ",
+	"thkap": "≈",
+	"thksim": "∼",
+	"THORN": "Þ",
+	"thorn": "þ",
+	"tilde": "˜",
+	"Tilde": "∼",
+	"TildeEqual": "≃",
+	"TildeFullEqual": "≅",
+	"TildeTilde": "≈",
+	"timesbar": "⨱",
+	"timesb": "⊠",
+	"times": "×",
+	"timesd": "⨰",
+	"tint": "∭",
+	"toea": "⤨",
+	"topbot": "⌶",
+	"topcir": "⫱",
+	"top": "⊤",
+	"Topf": "𝕋",
+	"topf": "𝕥",
+	"topfork": "⫚",
+	"tosa": "⤩",
+	"tprime": "‴",
+	"trade": "™",
+	"TRADE": "™",
+	"triangle": "▵",
+	"triangledown": "▿",
+	"triangleleft": "◃",
+	"trianglelefteq": "⊴",
+	"triangleq": "≜",
+	"triangleright": "▹",
+	"trianglerighteq": "⊵",
+	"tridot": "◬",
+	"trie": "≜",
+	"triminus": "⨺",
+	"TripleDot": "⃛",
+	"triplus": "⨹",
+	"trisb": "⧍",
+	"tritime": "⨻",
+	"trpezium": "⏢",
+	"Tscr": "𝒯",
+	"tscr": "𝓉",
+	"TScy": "Ц",
+	"tscy": "ц",
+	"TSHcy": "Ћ",
+	"tshcy": "ћ",
+	"Tstrok": "Ŧ",
+	"tstrok": "ŧ",
+	"twixt": "≬",
+	"twoheadleftarrow": "↞",
+	"twoheadrightarrow": "↠",
+	"Uacute": "Ú",
+	"uacute": "ú",
+	"uarr": "↑",
+	"Uarr": "↟",
+	"uArr": "⇑",
+	"Uarrocir": "⥉",
+	"Ubrcy": "Ў",
+	"ubrcy": "ў",
+	"Ubreve": "Ŭ",
+	"ubreve": "ŭ",
+	"Ucirc": "Û",
+	"ucirc": "û",
+	"Ucy": "У",
+	"ucy": "у",
+	"udarr": "⇅",
+	"Udblac": "Ű",
+	"udblac": "ű",
+	"udhar": "⥮",
+	"ufisht": "⥾",
+	"Ufr": "𝔘",
+	"ufr": "𝔲",
+	"Ugrave": "Ù",
+	"ugrave": "ù",
+	"uHar": "⥣",
+	"uharl": "↿",
+	"uharr": "↾",
+	"uhblk": "▀",
+	"ulcorn": "⌜",
+	"ulcorner": "⌜",
+	"ulcrop": "⌏",
+	"ultri": "◸",
+	"Umacr": "Ū",
+	"umacr": "ū",
+	"uml": "¨",
 	"UnderBar": "_",
-	"UnderBrace": "âŸ",
-	"UnderBracket": "âŽµ",
-	"UnderParenthesis": "â",
-	"Union": "â‹ƒ",
-	"UnionPlus": "âŠŽ",
-	"Uogon": "Å²",
-	"uogon": "Å³",
-	"Uopf": "ð•Œ",
-	"uopf": "ð•¦",
-	"UpArrowBar": "â¤’",
-	"uparrow": "â†‘",
-	"UpArrow": "â†‘",
-	"Uparrow": "â‡‘",
-	"UpArrowDownArrow": "â‡…",
-	"updownarrow": "â†•",
-	"UpDownArrow": "â†•",
-	"Updownarrow": "â‡•",
-	"UpEquilibrium": "â¥®",
-	"upharpoonleft": "â†¿",
-	"upharpoonright": "â†¾",
-	"uplus": "âŠŽ",
-	"UpperLeftArrow": "â†–",
-	"UpperRightArrow": "â†—",
-	"upsi": "Ï…",
-	"Upsi": "Ï’",
-	"upsih": "Ï’",
-	"Upsilon": "Î¥",
-	"upsilon": "Ï…",
-	"UpTeeArrow": "â†¥",
-	"UpTee": "âŠ¥",
-	"upuparrows": "â‡ˆ",
-	"urcorn": "âŒ",
-	"urcorner": "âŒ",
-	"urcrop": "âŒŽ",
-	"Uring": "Å®",
-	"uring": "Å¯",
-	"urtri": "â—¹",
-	"Uscr": "ð’°",
-	"uscr": "ð“Š",
-	"utdot": "â‹°",
-	"Utilde": "Å¨",
-	"utilde": "Å©",
-	"utri": "â–µ",
-	"utrif": "â–´",
-	"uuarr": "â‡ˆ",
-	"Uuml": "Ãœ",
-	"uuml": "Ã¼",
-	"uwangle": "â¦§",
-	"vangrt": "â¦œ",
-	"varepsilon": "Ïµ",
-	"varkappa": "Ï°",
-	"varnothing": "âˆ…",
-	"varphi": "Ï•",
-	"varpi": "Ï–",
-	"varpropto": "âˆ",
-	"varr": "â†•",
-	"vArr": "â‡•",
-	"varrho": "Ï±",
-	"varsigma": "Ï‚",
-	"varsubsetneq": "âŠŠï¸€",
-	"varsubsetneqq": "â«‹ï¸€",
-	"varsupsetneq": "âŠ‹ï¸€",
-	"varsupsetneqq": "â«Œï¸€",
-	"vartheta": "Ï‘",
-	"vartriangleleft": "âŠ²",
-	"vartriangleright": "âŠ³",
-	"vBar": "â«¨",
-	"Vbar": "â««",
-	"vBarv": "â«©",
-	"Vcy": "Ð’",
-	"vcy": "Ð²",
-	"vdash": "âŠ¢",
-	"vDash": "âŠ¨",
-	"Vdash": "âŠ©",
-	"VDash": "âŠ«",
-	"Vdashl": "â«¦",
-	"veebar": "âŠ»",
-	"vee": "âˆ¨",
-	"Vee": "â‹",
-	"veeeq": "â‰š",
-	"vellip": "â‹®",
+	"UnderBrace": "⏟",
+	"UnderBracket": "⎵",
+	"UnderParenthesis": "⏝",
+	"Union": "⋃",
+	"UnionPlus": "⊎",
+	"Uogon": "Ų",
+	"uogon": "ų",
+	"Uopf": "𝕌",
+	"uopf": "𝕦",
+	"UpArrowBar": "⤒",
+	"uparrow": "↑",
+	"UpArrow": "↑",
+	"Uparrow": "⇑",
+	"UpArrowDownArrow": "⇅",
+	"updownarrow": "↕",
+	"UpDownArrow": "↕",
+	"Updownarrow": "⇕",
+	"UpEquilibrium": "⥮",
+	"upharpoonleft": "↿",
+	"upharpoonright": "↾",
+	"uplus": "⊎",
+	"UpperLeftArrow": "↖",
+	"UpperRightArrow": "↗",
+	"upsi": "υ",
+	"Upsi": "ϒ",
+	"upsih": "ϒ",
+	"Upsilon": "Υ",
+	"upsilon": "υ",
+	"UpTeeArrow": "↥",
+	"UpTee": "⊥",
+	"upuparrows": "⇈",
+	"urcorn": "⌝",
+	"urcorner": "⌝",
+	"urcrop": "⌎",
+	"Uring": "Ů",
+	"uring": "ů",
+	"urtri": "◹",
+	"Uscr": "𝒰",
+	"uscr": "𝓊",
+	"utdot": "⋰",
+	"Utilde": "Ũ",
+	"utilde": "ũ",
+	"utri": "▵",
+	"utrif": "▴",
+	"uuarr": "⇈",
+	"Uuml": "Ü",
+	"uuml": "ü",
+	"uwangle": "⦧",
+	"vangrt": "⦜",
+	"varepsilon": "ϵ",
+	"varkappa": "ϰ",
+	"varnothing": "∅",
+	"varphi": "ϕ",
+	"varpi": "ϖ",
+	"varpropto": "∝",
+	"varr": "↕",
+	"vArr": "⇕",
+	"varrho": "ϱ",
+	"varsigma": "ς",
+	"varsubsetneq": "⊊︀",
+	"varsubsetneqq": "⫋︀",
+	"varsupsetneq": "⊋︀",
+	"varsupsetneqq": "⫌︀",
+	"vartheta": "ϑ",
+	"vartriangleleft": "⊲",
+	"vartriangleright": "⊳",
+	"vBar": "⫨",
+	"Vbar": "⫫",
+	"vBarv": "⫩",
+	"Vcy": "В",
+	"vcy": "в",
+	"vdash": "⊢",
+	"vDash": "⊨",
+	"Vdash": "⊩",
+	"VDash": "⊫",
+	"Vdashl": "⫦",
+	"veebar": "⊻",
+	"vee": "∨",
+	"Vee": "⋁",
+	"veeeq": "≚",
+	"vellip": "⋮",
 	"verbar": "|",
-	"Verbar": "â€–",
+	"Verbar": "‖",
 	"vert": "|",
-	"Vert": "â€–",
-	"VerticalBar": "âˆ£",
+	"Vert": "‖",
+	"VerticalBar": "∣",
 	"VerticalLine": "|",
-	"VerticalSeparator": "â˜",
-	"VerticalTilde": "â‰€",
-	"VeryThinSpace": "â€Š",
-	"Vfr": "ð”™",
-	"vfr": "ð”³",
-	"vltri": "âŠ²",
-	"vnsub": "âŠ‚âƒ’",
-	"vnsup": "âŠƒâƒ’",
-	"Vopf": "ð•",
-	"vopf": "ð•§",
-	"vprop": "âˆ",
-	"vrtri": "âŠ³",
-	"Vscr": "ð’±",
-	"vscr": "ð“‹",
-	"vsubnE": "â«‹ï¸€",
-	"vsubne": "âŠŠï¸€",
-	"vsupnE": "â«Œï¸€",
-	"vsupne": "âŠ‹ï¸€",
-	"Vvdash": "âŠª",
-	"vzigzag": "â¦š",
-	"Wcirc": "Å´",
-	"wcirc": "Åµ",
-	"wedbar": "â©Ÿ",
-	"wedge": "âˆ§",
-	"Wedge": "â‹€",
-	"wedgeq": "â‰™",
-	"weierp": "â„˜",
-	"Wfr": "ð”š",
-	"wfr": "ð”´",
-	"Wopf": "ð•Ž",
-	"wopf": "ð•¨",
-	"wp": "â„˜",
-	"wr": "â‰€",
-	"wreath": "â‰€",
-	"Wscr": "ð’²",
-	"wscr": "ð“Œ",
-	"xcap": "â‹‚",
-	"xcirc": "â—¯",
-	"xcup": "â‹ƒ",
-	"xdtri": "â–½",
-	"Xfr": "ð”›",
-	"xfr": "ð”µ",
-	"xharr": "âŸ·",
-	"xhArr": "âŸº",
-	"Xi": "Îž",
-	"xi": "Î¾",
-	"xlarr": "âŸµ",
-	"xlArr": "âŸ¸",
-	"xmap": "âŸ¼",
-	"xnis": "â‹»",
-	"xodot": "â¨€",
-	"Xopf": "ð•",
-	"xopf": "ð•©",
-	"xoplus": "â¨",
-	"xotime": "â¨‚",
-	"xrarr": "âŸ¶",
-	"xrArr": "âŸ¹",
-	"Xscr": "ð’³",
-	"xscr": "ð“",
-	"xsqcup": "â¨†",
-	"xuplus": "â¨„",
-	"xutri": "â–³",
-	"xvee": "â‹",
-	"xwedge": "â‹€",
-	"Yacute": "Ã",
-	"yacute": "Ã½",
-	"YAcy": "Ð¯",
-	"yacy": "Ñ",
-	"Ycirc": "Å¶",
-	"ycirc": "Å·",
-	"Ycy": "Ð«",
-	"ycy": "Ñ‹",
-	"yen": "Â¥",
-	"Yfr": "ð”œ",
-	"yfr": "ð”¶",
-	"YIcy": "Ð‡",
-	"yicy": "Ñ—",
-	"Yopf": "ð•",
-	"yopf": "ð•ª",
-	"Yscr": "ð’´",
-	"yscr": "ð“Ž",
-	"YUcy": "Ð®",
-	"yucy": "ÑŽ",
-	"yuml": "Ã¿",
-	"Yuml": "Å¸",
-	"Zacute": "Å¹",
-	"zacute": "Åº",
-	"Zcaron": "Å½",
-	"zcaron": "Å¾",
-	"Zcy": "Ð—",
-	"zcy": "Ð·",
-	"Zdot": "Å»",
-	"zdot": "Å¼",
-	"zeetrf": "â„¨",
-	"ZeroWidthSpace": "â€‹",
-	"Zeta": "Î–",
-	"zeta": "Î¶",
-	"zfr": "ð”·",
-	"Zfr": "â„¨",
-	"ZHcy": "Ð–",
-	"zhcy": "Ð¶",
-	"zigrarr": "â‡",
-	"zopf": "ð•«",
-	"Zopf": "â„¤",
-	"Zscr": "ð’µ",
-	"zscr": "ð“",
-	"zwj": "â€",
-	"zwnj": "â€Œ"
+	"VerticalSeparator": "❘",
+	"VerticalTilde": "≀",
+	"VeryThinSpace": " ",
+	"Vfr": "𝔙",
+	"vfr": "𝔳",
+	"vltri": "⊲",
+	"vnsub": "⊂⃒",
+	"vnsup": "⊃⃒",
+	"Vopf": "𝕍",
+	"vopf": "𝕧",
+	"vprop": "∝",
+	"vrtri": "⊳",
+	"Vscr": "𝒱",
+	"vscr": "𝓋",
+	"vsubnE": "⫋︀",
+	"vsubne": "⊊︀",
+	"vsupnE": "⫌︀",
+	"vsupne": "⊋︀",
+	"Vvdash": "⊪",
+	"vzigzag": "⦚",
+	"Wcirc": "Ŵ",
+	"wcirc": "ŵ",
+	"wedbar": "⩟",
+	"wedge": "∧",
+	"Wedge": "⋀",
+	"wedgeq": "≙",
+	"weierp": "℘",
+	"Wfr": "𝔚",
+	"wfr": "𝔴",
+	"Wopf": "𝕎",
+	"wopf": "𝕨",
+	"wp": "℘",
+	"wr": "≀",
+	"wreath": "≀",
+	"Wscr": "𝒲",
+	"wscr": "𝓌",
+	"xcap": "⋂",
+	"xcirc": "◯",
+	"xcup": "⋃",
+	"xdtri": "▽",
+	"Xfr": "𝔛",
+	"xfr": "𝔵",
+	"xharr": "⟷",
+	"xhArr": "⟺",
+	"Xi": "Ξ",
+	"xi": "ξ",
+	"xlarr": "⟵",
+	"xlArr": "⟸",
+	"xmap": "⟼",
+	"xnis": "⋻",
+	"xodot": "⨀",
+	"Xopf": "𝕏",
+	"xopf": "𝕩",
+	"xoplus": "⨁",
+	"xotime": "⨂",
+	"xrarr": "⟶",
+	"xrArr": "⟹",
+	"Xscr": "𝒳",
+	"xscr": "𝓍",
+	"xsqcup": "⨆",
+	"xuplus": "⨄",
+	"xutri": "△",
+	"xvee": "⋁",
+	"xwedge": "⋀",
+	"Yacute": "Ý",
+	"yacute": "ý",
+	"YAcy": "Я",
+	"yacy": "я",
+	"Ycirc": "Ŷ",
+	"ycirc": "ŷ",
+	"Ycy": "Ы",
+	"ycy": "ы",
+	"yen": "¥",
+	"Yfr": "𝔜",
+	"yfr": "𝔶",
+	"YIcy": "Ї",
+	"yicy": "ї",
+	"Yopf": "𝕐",
+	"yopf": "𝕪",
+	"Yscr": "𝒴",
+	"yscr": "𝓎",
+	"YUcy": "Ю",
+	"yucy": "ю",
+	"yuml": "ÿ",
+	"Yuml": "Ÿ",
+	"Zacute": "Ź",
+	"zacute": "ź",
+	"Zcaron": "Ž",
+	"zcaron": "ž",
+	"Zcy": "З",
+	"zcy": "з",
+	"Zdot": "Ż",
+	"zdot": "ż",
+	"zeetrf": "ℨ",
+	"ZeroWidthSpace": "​",
+	"Zeta": "Ζ",
+	"zeta": "ζ",
+	"zfr": "𝔷",
+	"Zfr": "ℨ",
+	"ZHcy": "Ж",
+	"zhcy": "ж",
+	"zigrarr": "⇝",
+	"zopf": "𝕫",
+	"Zopf": "ℤ",
+	"Zscr": "𝒵",
+	"zscr": "𝓏",
+	"zwj": "‍",
+	"zwnj": "‌"
 };
 
 /***/ }),
@@ -6223,7 +7197,7 @@ var defaultSchemas = {
 var tlds_2ch_src_re = 'a[cdefgilmnoqrstuwxz]|b[abdefghijmnorstvwyz]|c[acdfghiklmnoruvwxyz]|d[ejkmoz]|e[cegrstu]|f[ijkmor]|g[abdefghilmnpqrstuwy]|h[kmnrtu]|i[delmnoqrst]|j[emop]|k[eghimnprwyz]|l[abcikrstuvy]|m[acdeghklmnopqrstuvwxyz]|n[acefgilopruz]|om|p[aefghklmnrstwy]|qa|r[eosuw]|s[abcdeghijklmnortuvxyz]|t[cdfghjklmnortvwz]|u[agksyz]|v[aceginu]|w[fs]|y[et]|z[amw]';
 
 // DON'T try to make PRs with changes. Extend TLDs with LinkifyIt.tlds() instead
-var tlds_default = 'biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|Ñ€Ñ„'.split('|');
+var tlds_default = 'biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|рф'.split('|');
 
 /*eslint-enable max-len*/
 
@@ -6686,7 +7660,7 @@ LinkifyIt.prototype.match = function match(text) {
  * to avoid false positives. By default this algorythm used:
  *
  * - hostname with any 2-letter root zones are ok.
- * - biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|Ñ€Ñ„
+ * - biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|рф
  *   are ok.
  * - encoded (`xn--...`) root zones are ok.
  *
@@ -6755,10 +7729,10 @@ module.exports = function (opts) {
   var re = {};
 
   // Use direct extract instead of `regenerate` to reduse browserified size
-  re.src_Any = __webpack_require__(13).source;
-  re.src_Cc  = __webpack_require__(11).source;
-  re.src_Z   = __webpack_require__(12).source;
-  re.src_P   = __webpack_require__(3).source;
+  re.src_Any = __webpack_require__(14).source;
+  re.src_Cc  = __webpack_require__(12).source;
+  re.src_Z   = __webpack_require__(13).source;
+  re.src_P   = __webpack_require__(4).source;
 
   // \p{\Z\P\Cc\CF} (white spaces + control + format + punctuation)
   re.src_ZPCc = [ re.src_Z, re.src_P, re.src_Cc ].join('|');
@@ -7251,7 +8225,7 @@ var ParserCore   = __webpack_require__(27);
 var ParserBlock  = __webpack_require__(26);
 var ParserInline = __webpack_require__(28);
 var LinkifyIt    = __webpack_require__(17);
-var mdurl        = __webpack_require__(9);
+var mdurl        = __webpack_require__(10);
 var punycode     = __webpack_require__(68);
 
 
@@ -7393,10 +8367,10 @@ function normalizeLinkText(url) {
  * - __typographer__  - `false`. Set `true` to enable [some language-neutral
  *   replacement](https://github.com/markdown-it/markdown-it/blob/master/lib/rules_core/replacements.js) +
  *   quotes beautification (smartquotes).
- * - __quotes__ - `â€œâ€â€˜â€™`, String or Array. Double + single quotes replacement
+ * - __quotes__ - `“”‘’`, String or Array. Double + single quotes replacement
  *   pairs, when typographer enabled and smartquotes on. For example, you can
- *   use `'Â«Â»â€žâ€œ'` for Russian, `'â€žâ€œâ€šâ€˜'` for German, and
- *   `['Â«\xA0', '\xA0Â»', 'â€¹\xA0', '\xA0â€º']` for French (including nbsp).
+ *   use `'«»„“'` for Russian, `'„“‚‘'` for German, and
+ *   `['«\xA0', '\xA0»', '‹\xA0', '\xA0›']` for French (including nbsp).
  * - __highlight__ - `null`. Highlighter function for fenced code blocks.
  *   Highlighter `function (str, lang)` should return escaped HTML. It can also
  *   return empty string if the source was not changed and should be escaped
@@ -7835,7 +8809,7 @@ module.exports = MarkdownIt;
 
 
 
-var Ruler           = __webpack_require__(1);
+var Ruler           = __webpack_require__(2);
 
 
 var _rules = [
@@ -7965,7 +8939,7 @@ module.exports = ParserBlock;
 
 
 
-var Ruler  = __webpack_require__(1);
+var Ruler  = __webpack_require__(2);
 
 
 var _rules = [
@@ -8029,7 +9003,7 @@ module.exports = Core;
 
 
 
-var Ruler           = __webpack_require__(1);
+var Ruler           = __webpack_require__(2);
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -8040,8 +9014,8 @@ var _rules = [
   [ 'newline',         __webpack_require__(60) ],
   [ 'escape',          __webpack_require__(56) ],
   [ 'backticks',       __webpack_require__(53) ],
-  [ 'strikethrough',   __webpack_require__(8).tokenize ],
-  [ 'emphasis',        __webpack_require__(7).tokenize ],
+  [ 'strikethrough',   __webpack_require__(9).tokenize ],
+  [ 'emphasis',        __webpack_require__(8).tokenize ],
   [ 'link',            __webpack_require__(59) ],
   [ 'image',           __webpack_require__(58) ],
   [ 'autolink',        __webpack_require__(52) ],
@@ -8051,8 +9025,8 @@ var _rules = [
 
 var _rules2 = [
   [ 'balance_pairs',   __webpack_require__(54) ],
-  [ 'strikethrough',   __webpack_require__(8).postProcess ],
-  [ 'emphasis',        __webpack_require__(7).postProcess ],
+  [ 'strikethrough',   __webpack_require__(9).postProcess ],
+  [ 'emphasis',        __webpack_require__(8).postProcess ],
   [ 'text_collapse',   __webpack_require__(63) ]
 ];
 
@@ -8224,9 +9198,9 @@ module.exports = {
     // Double + single quotes replacement pairs, when typographer enabled,
     // and smartquotes on. Could be either a String or an Array.
     //
-    // For example, you can use 'Â«Â»â€žâ€œ' for Russian, 'â€žâ€œâ€šâ€˜' for German,
-    // and ['Â«\xA0', '\xA0Â»', 'â€¹\xA0', '\xA0â€º'] for French (including nbsp).
-    quotes: '\u201c\u201d\u2018\u2019', /* â€œâ€â€˜â€™ */
+    // For example, you can use '«»„“' for Russian, '„“‚‘' for German,
+    // and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
+    quotes: '\u201c\u201d\u2018\u2019', /* “”‘’ */
 
     // Highlighter function. Should return escaped HTML,
     // or '' if the source string is not changed and should be escaped externaly.
@@ -8311,9 +9285,9 @@ module.exports = {
     // Double + single quotes replacement pairs, when typographer enabled,
     // and smartquotes on. Could be either a String or an Array.
     //
-    // For example, you can use 'Â«Â»â€žâ€œ' for Russian, 'â€žâ€œâ€šâ€˜' for German,
-    // and ['Â«\xA0', '\xA0Â»', 'â€¹\xA0', '\xA0â€º'] for French (including nbsp).
-    quotes: '\u201c\u201d\u2018\u2019', /* â€œâ€â€˜â€™ */
+    // For example, you can use '«»„“' for Russian, '„“‚‘' for German,
+    // and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
+    quotes: '\u201c\u201d\u2018\u2019', /* “”‘’ */
 
     // Highlighter function. Should return escaped HTML,
     // or '' if the source string is not changed and should be escaped externaly.
@@ -8360,9 +9334,9 @@ module.exports = {
     // Double + single quotes replacement pairs, when typographer enabled,
     // and smartquotes on. Could be either a String or an Array.
     //
-    // For example, you can use 'Â«Â»â€žâ€œ' for Russian, 'â€žâ€œâ€šâ€˜' for German,
-    // and ['Â«\xA0', '\xA0Â»', 'â€¹\xA0', '\xA0â€º'] for French (including nbsp).
-    quotes: '\u201c\u201d\u2018\u2019', /* â€œâ€â€˜â€™ */
+    // For example, you can use '«»„“' for Russian, '„“‚‘' for German,
+    // and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
+    quotes: '\u201c\u201d\u2018\u2019', /* “”‘’ */
 
     // Highlighter function. Should return escaped HTML,
     // or '' if the source string is not changed and should be escaped externaly.
@@ -9306,7 +10280,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
 
 
 var block_names = __webpack_require__(20);
-var HTML_OPEN_CLOSE_TAG_RE = __webpack_require__(6).HTML_OPEN_CLOSE_TAG_RE;
+var HTML_OPEN_CLOSE_TAG_RE = __webpack_require__(7).HTML_OPEN_CLOSE_TAG_RE;
 
 // An array of opening and corresponding closing sequences for html tags,
 // last argument defines whether it can terminate a paragraph or not
@@ -10084,7 +11058,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
 
 
 
-var Token = __webpack_require__(2);
+var Token = __webpack_require__(3);
 var isSpace = __webpack_require__(0).isSpace;
 
 
@@ -10732,20 +11706,20 @@ module.exports = function inline(state) {
 "use strict";
 // Simple typographyc replacements
 //
-// (c) (C) â†’ Â©
-// (tm) (TM) â†’ â„¢
-// (r) (R) â†’ Â®
-// +- â†’ Â±
-// (p) (P) -> Â§
-// ... â†’ â€¦ (also ?.... â†’ ?.., !.... â†’ !..)
-// ???????? â†’ ???, !!!!! â†’ !!!, `,,` â†’ `,`
-// -- â†’ &ndash;, --- â†’ &mdash;
+// (c) (C) → ©
+// (tm) (TM) → ™
+// (r) (R) → ®
+// +- → ±
+// (p) (P) -> §
+// ... → … (also ?.... → ?.., !.... → !..)
+// ???????? → ???, !!!!! → !!!, `,,` → `,`
+// -- → &ndash;, --- → &mdash;
 //
 
 
 // TODO:
-// - fractionals 1/2, 1/4, 3/4 -> Â½, Â¼, Â¾
-// - miltiplication 2 x 4 -> 2 Ã— 4
+// - fractionals 1/2, 1/4, 3/4 -> ½, ¼, ¾
+// - miltiplication 2 x 4 -> 2 × 4
 
 var RARE_RE = /\+-|\.\.|\?\?\?\?|!!!!|,,|--/;
 
@@ -10755,10 +11729,10 @@ var SCOPED_ABBR_TEST_RE = /\((c|tm|r|p)\)/i;
 
 var SCOPED_ABBR_RE = /\((c|tm|r|p)\)/ig;
 var SCOPED_ABBR = {
-  c: 'Â©',
-  r: 'Â®',
-  p: 'Â§',
-  tm: 'â„¢'
+  c: '©',
+  r: '®',
+  p: '§',
+  tm: '™'
 };
 
 function replaceFn(match, name) {
@@ -10794,10 +11768,10 @@ function replace_rare(inlineTokens) {
     if (token.type === 'text' && !inside_autolink) {
       if (RARE_RE.test(token.content)) {
         token.content = token.content
-                    .replace(/\+-/g, 'Â±')
-                    // .., ..., ....... -> â€¦
+                    .replace(/\+-/g, '±')
+                    // .., ..., ....... -> …
                     // but ?..... & !..... -> ?.. & !..
-                    .replace(/\.{2,}/g, 'â€¦').replace(/([?!])â€¦/g, '$1..')
+                    .replace(/\.{2,}/g, '…').replace(/([?!])…/g, '$1..')
                     .replace(/([?!]){4,}/g, '$1$1$1').replace(/,{2,}/g, ',')
                     // em-dash
                     .replace(/(^|[^-])---([^-]|$)/mg, '$1\u2014$2')
@@ -10855,7 +11829,7 @@ var isMdAsciiPunct = __webpack_require__(0).isMdAsciiPunct;
 
 var QUOTE_TEST_RE = /['"]/;
 var QUOTE_RE = /['"]/g;
-var APOSTROPHE = '\u2019'; /* â€™ */
+var APOSTROPHE = '\u2019'; /* ’ */
 
 
 function replaceAt(str, index, ch) {
@@ -11048,7 +12022,7 @@ module.exports = function smartquotes(state) {
 //
 
 
-var Token = __webpack_require__(2);
+var Token = __webpack_require__(3);
 
 
 function StateCore(src, md, env) {
@@ -11255,7 +12229,7 @@ module.exports = function link_pairs(state) {
 
 
 
-var entities          = __webpack_require__(5);
+var entities          = __webpack_require__(6);
 var has               = __webpack_require__(0).has;
 var isValidEntityCode = __webpack_require__(0).isValidEntityCode;
 var fromCodePoint     = __webpack_require__(0).fromCodePoint;
@@ -11370,7 +12344,7 @@ module.exports = function escape(state, silent) {
 
 
 
-var HTML_TAG_RE = __webpack_require__(6).HTML_TAG_RE;
+var HTML_TAG_RE = __webpack_require__(7).HTML_TAG_RE;
 
 
 function isLetter(ch) {
@@ -11789,7 +12763,7 @@ module.exports = function newline(state, silent) {
 
 
 
-var Token          = __webpack_require__(2);
+var Token          = __webpack_require__(3);
 var isWhiteSpace   = __webpack_require__(0).isWhiteSpace;
 var isPunctChar    = __webpack_require__(0).isPunctChar;
 var isMdAsciiPunct = __webpack_require__(0).isMdAsciiPunct;
@@ -13186,9 +14160,9 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(14));
-__export(__webpack_require__(4));
 __export(__webpack_require__(15));
+__export(__webpack_require__(1));
+__export(__webpack_require__(5));
 
 
 /***/ }),
@@ -13278,11 +14252,11 @@ module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u2
 "use strict";
 
 
-exports.Any = __webpack_require__(13);
-exports.Cc  = __webpack_require__(11);
+exports.Any = __webpack_require__(14);
+exports.Cc  = __webpack_require__(12);
 exports.Cf  = __webpack_require__(71);
-exports.P   = __webpack_require__(3);
-exports.Z   = __webpack_require__(12);
+exports.P   = __webpack_require__(4);
+exports.Z   = __webpack_require__(13);
 
 
 /***/ }),
