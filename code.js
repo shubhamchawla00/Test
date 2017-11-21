@@ -218,7 +218,7 @@ function HostContainer() {
     this.allowFacts = true;
     this.allowHeroImage = true;
     this.allowImages = true;
-    this.allowActionCard = false;
+    this.allowActionCard = true;
 }
 
 MessageCard.prototype.parse = function (json) {
