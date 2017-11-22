@@ -140,7 +140,7 @@ function onExecuteAction(action) {
     message += "    Title: " + action.title + "\n";
     if (action instanceof AdaptiveCards.ShowCardAction){
         temp = action
-        showPopupCard(action);
+        	Card(action);
     }
     else if (action instanceof AdaptiveCards.OpenUrlAction) {
         message += "    Type: OpenUrl\n";
@@ -189,8 +189,8 @@ function showPopupCard(action) {
     };
 
     //TODO: Change this as required
-    popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="E:/Work/AdaptiveCards/source/nodejs/adaptivecards-visualizer/css/app.css">';
-    popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="E:/Work/AdaptiveCards/source/nodejs/adaptivecards-visualizer/css/teams.css">';
+    popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">';
+    popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">';
 
     var overlayElement = popupWindow.document.createElement("div");
     overlayElement.id = "popupOverlay";
