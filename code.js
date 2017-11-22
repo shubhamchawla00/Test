@@ -427,8 +427,9 @@ function parseOpenUrlAction(json) {
 }
 
 function parseHttpAction(json) {
-    var mobileRender = new AdaptiveCardMobileRender();
-    var action = new mobileRender.HttpAction();
+    //var mobileRender = new AdaptiveCardMobileRender();
+    //var action = new mobileRender.HttpAction();
+    var action = new AdaptiveCards.HttpAction();
     action.method = "POST";
     action.body = json["body"];
     action.title = json["name"];
