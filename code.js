@@ -140,7 +140,7 @@ function onExecuteAction(action) {
     message += "    Title: " + action.title + "\n";
     if (action instanceof AdaptiveCards.ShowCardAction){
         temp = action
-        	Card(action);
+    	showPopupCard(action);
     }
     else if (action instanceof AdaptiveCards.OpenUrlAction) {
         message += "    Type: OpenUrl\n";
