@@ -1,7 +1,7 @@
 'use strict';
 
 function AdaptiveCardMobileRender(targetDom) {
-    this.targetDom = targetDom || "#content";
+    this.targetDom = targetDom || "content";
  }
 
 AdaptiveCardMobileRender.prototype.HttpAction = function () {
@@ -164,7 +164,7 @@ function onExecuteAction(action) {
                     "size": "small"
                 }
             ]
-        });
+        }); 
     }
     else {
         message += "    Type: <unknown>";
@@ -216,7 +216,7 @@ function MessageCard() {
 function HostContainer() {
     this.allowCardTitle = true;
     this.allowFacts = true;
-    this.allowHeroImage = false;
+    this.allowHeroImage = true;
     this.allowImages = true;
     this.allowActionCard = true;
 }
@@ -355,7 +355,7 @@ MessageCard.prototype.parse = function (json) {
 
     this._adaptiveCard = new AdaptiveCards.AdaptiveCard();
     this._adaptiveCard.hostConfig = new AdaptiveCards.HostConfig(this.defaultCardConfig);
-
+    
     if (json["title"] != undefined) {
         var textBlock = new AdaptiveCards.TextBlock();
         textBlock.text = json["title"];
@@ -632,7 +632,6 @@ function parseSection(json, host) {
         actionSet.actionStyle = "link";
         section.addItem(actionSet);
     }
-    console.log(section);
     return section;
 }
 

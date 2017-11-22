@@ -1053,7 +1053,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Enums = __webpack_require__(1);
 var Utils = __webpack_require__(11);
-var SpacingDefinition = (function () {
+var SpacingDefinition = /** @class */ (function () {
     function SpacingDefinition(obj) {
         this.left = 0;
         this.top = 0;
@@ -1069,7 +1069,7 @@ var SpacingDefinition = (function () {
     return SpacingDefinition;
 }());
 exports.SpacingDefinition = SpacingDefinition;
-var PaddingDefinition = (function () {
+var PaddingDefinition = /** @class */ (function () {
     function PaddingDefinition(obj) {
         this.top = Enums.Padding.None;
         this.right = Enums.Padding.None;
@@ -1093,7 +1093,7 @@ var PaddingDefinition = (function () {
     return PaddingDefinition;
 }());
 exports.PaddingDefinition = PaddingDefinition;
-var TextColorDefinition = (function () {
+var TextColorDefinition = /** @class */ (function () {
     function TextColorDefinition(obj) {
         this.normal = "#0000FF";
         this.subtle = "#222222";
@@ -1105,7 +1105,7 @@ var TextColorDefinition = (function () {
     return TextColorDefinition;
 }());
 exports.TextColorDefinition = TextColorDefinition;
-var ContainerStyleDefinition = (function () {
+var ContainerStyleDefinition = /** @class */ (function () {
     function ContainerStyleDefinition(obj) {
         this.fontColors = {
             default: new TextColorDefinition(),
@@ -1128,7 +1128,7 @@ var ContainerStyleDefinition = (function () {
     return ContainerStyleDefinition;
 }());
 exports.ContainerStyleDefinition = ContainerStyleDefinition;
-var AdaptiveCardConfig = (function () {
+var AdaptiveCardConfig = /** @class */ (function () {
     function AdaptiveCardConfig(obj) {
         this.allowCustomStyle = false;
         if (obj) {
@@ -1138,7 +1138,22 @@ var AdaptiveCardConfig = (function () {
     return AdaptiveCardConfig;
 }());
 exports.AdaptiveCardConfig = AdaptiveCardConfig;
-var ImageSetConfig = (function () {
+var ImageConfig = /** @class */ (function () {
+    function ImageConfig(obj) {
+        this.size = Enums.Size.Medium;
+        if (obj) {
+            this.size = obj["size"] || this.size;
+        }
+    }
+    ImageConfig.prototype.toJSON = function () {
+        return {
+            size: Enums.Size[this.size]
+        };
+    };
+    return ImageConfig;
+}());
+exports.ImageConfig = ImageConfig;
+var ImageSetConfig = /** @class */ (function () {
     function ImageSetConfig(obj) {
         this.imageSize = Enums.Size.Medium;
         this.maxImageHeight = 100;
@@ -1156,7 +1171,7 @@ var ImageSetConfig = (function () {
     return ImageSetConfig;
 }());
 exports.ImageSetConfig = ImageSetConfig;
-var FactTextDefinition = (function () {
+var FactTextDefinition = /** @class */ (function () {
     function FactTextDefinition(obj) {
         this.size = Enums.TextSize.Default;
         this.color = Enums.TextColor.Default;
@@ -1184,7 +1199,7 @@ var FactTextDefinition = (function () {
     return FactTextDefinition;
 }());
 exports.FactTextDefinition = FactTextDefinition;
-var FactTitleDefinition = (function (_super) {
+var FactTitleDefinition = /** @class */ (function (_super) {
     __extends(FactTitleDefinition, _super);
     function FactTitleDefinition(obj) {
         var _this = _super.call(this, obj) || this;
@@ -1198,7 +1213,7 @@ var FactTitleDefinition = (function (_super) {
     return FactTitleDefinition;
 }(FactTextDefinition));
 exports.FactTitleDefinition = FactTitleDefinition;
-var FactSetConfig = (function () {
+var FactSetConfig = /** @class */ (function () {
     function FactSetConfig(obj) {
         this.title = new FactTitleDefinition();
         this.value = new FactTextDefinition();
@@ -1212,7 +1227,7 @@ var FactSetConfig = (function () {
     return FactSetConfig;
 }());
 exports.FactSetConfig = FactSetConfig;
-var ShowCardActionConfig = (function () {
+var ShowCardActionConfig = /** @class */ (function () {
     function ShowCardActionConfig(obj) {
         this.actionMode = Enums.ShowCardActionMode.Inline;
         this.inlineTopMargin = 16;
@@ -1233,7 +1248,7 @@ var ShowCardActionConfig = (function () {
     return ShowCardActionConfig;
 }());
 exports.ShowCardActionConfig = ShowCardActionConfig;
-var ActionsConfig = (function () {
+var ActionsConfig = /** @class */ (function () {
     function ActionsConfig(obj) {
         this.maxActions = 5;
         this.spacing = Enums.Spacing.Default;
@@ -1266,7 +1281,7 @@ var ActionsConfig = (function () {
     return ActionsConfig;
 }());
 exports.ActionsConfig = ActionsConfig;
-var ContainerStyleSet = (function () {
+var ContainerStyleSet = /** @class */ (function () {
     function ContainerStyleSet(obj) {
         this.default = new ContainerStyleDefinition();
         this.emphasis = new ContainerStyleDefinition();
@@ -1279,7 +1294,7 @@ var ContainerStyleSet = (function () {
     return ContainerStyleSet;
 }());
 exports.ContainerStyleSet = ContainerStyleSet;
-var HostConfig = (function () {
+var HostConfig = /** @class */ (function () {
     function HostConfig(obj) {
         this.supportsInteractivity = true;
         this.fontFamily = "Segoe UI";
@@ -1315,6 +1330,7 @@ var HostConfig = (function () {
         };
         this.actions = new ActionsConfig();
         this.adaptiveCard = new AdaptiveCardConfig();
+        this.image = new ImageConfig();
         this.imageSet = new ImageSetConfig();
         this.factSet = new FactSetConfig();
         if (obj) {
@@ -1355,6 +1371,7 @@ var HostConfig = (function () {
             };
             this.actions = new ActionsConfig(obj["actions"]);
             this.adaptiveCard = new AdaptiveCardConfig(obj["adaptiveCard"]);
+            this.image = new ImageConfig(obj["image"]);
             this.imageSet = new ImageSetConfig(obj["imageSet"]);
             this.factSet = new FactSetConfig(obj["factSet"]);
         }
@@ -1538,7 +1555,7 @@ module.exports.postProcess = function emphasis(state) {
       delimiters = state.delimiters,
       max = state.delimiters.length;
 
-  for (i = 0; i < max; i++) {
+  for (i = max - 1; i >= 0; i--) {
     startDelim = delimiters[i];
 
     if (startDelim.marker !== 0x5F/* _ */ && startDelim.marker !== 0x2A/* * */) {
@@ -1552,16 +1569,16 @@ module.exports.postProcess = function emphasis(state) {
 
     endDelim = delimiters[startDelim.end];
 
-    // If the next delimiter has the same marker and is adjacent to this one,
+    // If the previous delimiter has the same marker and is adjacent to this one,
     // merge those into one strong delimiter.
     //
     // `<em><em>whatever</em></em>` -> `<strong>whatever</strong>`
     //
-    isStrong = i + 1 < max &&
-               delimiters[i + 1].end === startDelim.end - 1 &&
-               delimiters[i + 1].token === startDelim.token + 1 &&
-               delimiters[startDelim.end - 1].token === endDelim.token - 1 &&
-               delimiters[i + 1].marker === startDelim.marker;
+    isStrong = i > 0 &&
+               delimiters[i - 1].end === startDelim.end + 1 &&
+               delimiters[i - 1].token === startDelim.token - 1 &&
+               delimiters[startDelim.end + 1].token === endDelim.token + 1 &&
+               delimiters[i - 1].marker === startDelim.marker;
 
     ch = String.fromCharCode(startDelim.marker);
 
@@ -1580,9 +1597,9 @@ module.exports.postProcess = function emphasis(state) {
     token.content = '';
 
     if (isStrong) {
-      state.tokens[delimiters[i + 1].token].content = '';
-      state.tokens[delimiters[startDelim.end - 1].token].content = '';
-      i++;
+      state.tokens[delimiters[i - 1].token].content = '';
+      state.tokens[delimiters[startDelim.end + 1].token].content = '';
+      i--;
     }
   }
 };
@@ -1830,7 +1847,7 @@ function stringToCssColor(color) {
     }
 }
 exports.stringToCssColor = stringToCssColor;
-var StringWithSubstitutions = (function () {
+var StringWithSubstitutions = /** @class */ (function () {
     function StringWithSubstitutions() {
         this._isProcessed = false;
         this._original = null;
@@ -1947,7 +1964,7 @@ function createActionInstance(json) {
     }
     return result;
 }
-var CardElement = (function () {
+var CardElement = /** @class */ (function () {
     function CardElement() {
         this._internalPadding = null;
         this._parent = null;
@@ -2241,7 +2258,7 @@ var CardElement = (function () {
     return CardElement;
 }());
 exports.CardElement = CardElement;
-var TextBlock = (function (_super) {
+var TextBlock = /** @class */ (function (_super) {
     __extends(TextBlock, _super);
     function TextBlock() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2413,7 +2430,7 @@ var TextBlock = (function (_super) {
     return TextBlock;
 }(CardElement));
 exports.TextBlock = TextBlock;
-var Fact = (function () {
+var Fact = /** @class */ (function () {
     function Fact() {
     }
     Fact.prototype.renderSpeech = function () {
@@ -2425,7 +2442,7 @@ var Fact = (function () {
     return Fact;
 }());
 exports.Fact = Fact;
-var FactSet = (function (_super) {
+var FactSet = /** @class */ (function (_super) {
     __extends(FactSet, _super);
     function FactSet() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2526,7 +2543,7 @@ var FactSet = (function (_super) {
     return FactSet;
 }(CardElement));
 exports.FactSet = FactSet;
-var Image = (function (_super) {
+var Image = /** @class */ (function (_super) {
     __extends(Image, _super);
     function Image() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2617,9 +2634,6 @@ var Image = (function (_super) {
                 imageElement.style.backgroundPosition = "50% 50%";
                 imageElement.style.backgroundRepeat = "no-repeat";
             }
-            if (!Utils.isNullOrEmpty(this.backgroundColor)) {
-                imageElement.style.backgroundColor = Utils.stringToCssColor(this.backgroundColor);
-            }
             imageElement.src = this.url;
             imageElement.alt = this.altText;
             element.appendChild(imageElement);
@@ -2685,7 +2699,7 @@ var Image = (function (_super) {
     return Image;
 }(CardElement));
 exports.Image = Image;
-var ImageSet = (function (_super) {
+var ImageSet = /** @class */ (function (_super) {
     __extends(ImageSet, _super);
     function ImageSet() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2752,7 +2766,7 @@ var ImageSet = (function (_super) {
     return ImageSet;
 }(CardElement));
 exports.ImageSet = ImageSet;
-var Input = (function (_super) {
+var Input = /** @class */ (function (_super) {
     __extends(Input, _super);
     function Input() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -2792,7 +2806,7 @@ var Input = (function (_super) {
     return Input;
 }(CardElement));
 exports.Input = Input;
-var TextInput = (function (_super) {
+var TextInput = /** @class */ (function (_super) {
     __extends(TextInput, _super);
     function TextInput() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -2858,7 +2872,7 @@ var TextInput = (function (_super) {
     return TextInput;
 }(Input));
 exports.TextInput = TextInput;
-var ToggleInput = (function (_super) {
+var ToggleInput = /** @class */ (function (_super) {
     __extends(ToggleInput, _super);
     function ToggleInput() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2918,13 +2932,13 @@ var ToggleInput = (function (_super) {
     return ToggleInput;
 }(Input));
 exports.ToggleInput = ToggleInput;
-var Choice = (function () {
+var Choice = /** @class */ (function () {
     function Choice() {
     }
     return Choice;
 }());
 exports.Choice = Choice;
-var ChoiceSetInput = (function (_super) {
+var ChoiceSetInput = /** @class */ (function (_super) {
     __extends(ChoiceSetInput, _super);
     function ChoiceSetInput() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3103,7 +3117,7 @@ var ChoiceSetInput = (function (_super) {
     return ChoiceSetInput;
 }(Input));
 exports.ChoiceSetInput = ChoiceSetInput;
-var NumberInput = (function (_super) {
+var NumberInput = /** @class */ (function (_super) {
     __extends(NumberInput, _super);
     function NumberInput() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -3144,7 +3158,7 @@ var NumberInput = (function (_super) {
     return NumberInput;
 }(Input));
 exports.NumberInput = NumberInput;
-var DateInput = (function (_super) {
+var DateInput = /** @class */ (function (_super) {
     __extends(DateInput, _super);
     function DateInput() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -3172,7 +3186,7 @@ var DateInput = (function (_super) {
     return DateInput;
 }(Input));
 exports.DateInput = DateInput;
-var TimeInput = (function (_super) {
+var TimeInput = /** @class */ (function (_super) {
     __extends(TimeInput, _super);
     function TimeInput() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -3206,7 +3220,7 @@ var ActionButtonState;
     ActionButtonState[ActionButtonState["Expanded"] = 1] = "Expanded";
     ActionButtonState[ActionButtonState["Subdued"] = 2] = "Subdued";
 })(ActionButtonState || (ActionButtonState = {}));
-var ActionButton = (function () {
+var ActionButton = /** @class */ (function () {
     function ActionButton(action) {
         var _this = this;
         this._element = null;
@@ -3279,7 +3293,7 @@ var ActionButton = (function () {
     });
     return ActionButton;
 }());
-var Action = (function () {
+var Action = /** @class */ (function () {
     function Action() {
         this._parent = null;
         this._actionCollection = null; // hold the reference to its action collection
@@ -3337,7 +3351,7 @@ var Action = (function () {
     return Action;
 }());
 exports.Action = Action;
-var SubmitAction = (function (_super) {
+var SubmitAction = /** @class */ (function (_super) {
     __extends(SubmitAction, _super);
     function SubmitAction() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3380,7 +3394,7 @@ var SubmitAction = (function (_super) {
     return SubmitAction;
 }(Action));
 exports.SubmitAction = SubmitAction;
-var OpenUrlAction = (function (_super) {
+var OpenUrlAction = /** @class */ (function (_super) {
     __extends(OpenUrlAction, _super);
     function OpenUrlAction() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -3403,7 +3417,7 @@ var OpenUrlAction = (function (_super) {
     return OpenUrlAction;
 }(Action));
 exports.OpenUrlAction = OpenUrlAction;
-var HttpHeader = (function () {
+var HttpHeader = /** @class */ (function () {
     function HttpHeader() {
         this._value = new Utils.StringWithSubstitutions();
     }
@@ -3423,7 +3437,7 @@ var HttpHeader = (function () {
     return HttpHeader;
 }());
 exports.HttpHeader = HttpHeader;
-var HttpAction = (function (_super) {
+var HttpAction = /** @class */ (function (_super) {
     __extends(HttpAction, _super);
     function HttpAction() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3503,7 +3517,7 @@ var HttpAction = (function (_super) {
     return HttpAction;
 }(Action));
 exports.HttpAction = HttpAction;
-var ShowCardAction = (function (_super) {
+var ShowCardAction = /** @class */ (function (_super) {
     __extends(ShowCardAction, _super);
     function ShowCardAction() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -3537,7 +3551,7 @@ var ShowCardAction = (function (_super) {
     return ShowCardAction;
 }(Action));
 exports.ShowCardAction = ShowCardAction;
-var ActionCollection = (function () {
+var ActionCollection = /** @class */ (function () {
     function ActionCollection(owner) {
         this._actionButtons = [];
         this._expandedAction = null;
@@ -3672,7 +3686,7 @@ var ActionCollection = (function () {
         }
         return result;
     };
-    ActionCollection.prototype.render = function (orientation) {
+    ActionCollection.prototype.render = function () {
         var _this = this;
         if (!this._owner.hostConfig.supportsInteractivity) {
             return null;
@@ -3689,7 +3703,7 @@ var ActionCollection = (function () {
         else {
             var buttonStrip = document.createElement("div");
             buttonStrip.style.display = "flex";
-            if (orientation == Enums.Orientation.Horizontal) {
+            if (this._owner.hostConfig.actions.actionsOrientation == Enums.Orientation.Horizontal) {
                 buttonStrip.style.flexDirection = "row";
                 if (this._owner.horizontalAlignment && this._owner.hostConfig.actions.actionAlignment != Enums.ActionAlignment.Stretch) {
                     switch (this._owner.horizontalAlignment) {
@@ -3766,7 +3780,7 @@ var ActionCollection = (function () {
                     }
                     else if (this._owner.hostConfig.actions.buttonSpacing > 0) {
                         var spacer = document.createElement("div");
-                        if (orientation === Enums.Orientation.Horizontal) {
+                        if (this._owner.hostConfig.actions.actionsOrientation === Enums.Orientation.Horizontal) {
                             spacer.style.flex = "0 0 auto";
                             spacer.style.width = this._owner.hostConfig.actions.buttonSpacing + "px";
                         }
@@ -3808,18 +3822,17 @@ var ActionCollection = (function () {
     };
     return ActionCollection;
 }());
-var ActionSet = (function (_super) {
+var ActionSet = /** @class */ (function (_super) {
     __extends(ActionSet, _super);
     function ActionSet() {
         var _this = _super.call(this) || this;
-        _this.orientation = null;
         _this._actionCollection = new ActionCollection(_this);
         _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(_this); };
         _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(_this); };
         return _this;
     }
     ActionSet.prototype.internalRender = function () {
-        return this._actionCollection.render(this.orientation ? this.orientation : this.hostConfig.actions.actionsOrientation);
+        return this._actionCollection.render();
     };
     ActionSet.prototype.getJsonTypeName = function () {
         return "ActionSet";
@@ -3830,10 +3843,6 @@ var ActionSet = (function (_super) {
     ActionSet.prototype.parse = function (json, itemsCollectionPropertyName) {
         if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
         _super.prototype.parse.call(this, json);
-        var jsonOrientation = json["orientation"];
-        if (jsonOrientation) {
-            this.orientation = Utils.getEnumValueOrDefault(Enums.Orientation, jsonOrientation, Enums.Orientation.Horizontal);
-        }
         if (json["actions"] != undefined) {
             var jsonActions = json["actions"];
             for (var i = 0; i < jsonActions.length; i++) {
@@ -3863,7 +3872,7 @@ var ActionSet = (function (_super) {
     return ActionSet;
 }(CardElement));
 exports.ActionSet = ActionSet;
-var BackgroundImage = (function () {
+var BackgroundImage = /** @class */ (function () {
     function BackgroundImage() {
         this.mode = Enums.BackgroundImageMode.Stretch;
         this.horizontalAlignment = Enums.HorizontalAlignment.Left;
@@ -3915,14 +3924,12 @@ var BackgroundImage = (function () {
     return BackgroundImage;
 }());
 exports.BackgroundImage = BackgroundImage;
-var Container = (function (_super) {
+var Container = /** @class */ (function (_super) {
     __extends(Container, _super);
     function Container() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this._items = [];
         _this._style = null;
-        _this.bleed = false;
-        _this.verticalContentAlignment = Enums.VerticalAlignment.Top;
         return _this;
     }
     Container.prototype.isElementAllowed = function (element, forbiddenElementTypes) {
@@ -3961,7 +3968,7 @@ var Container = (function (_super) {
         if (this.hasBackground) {
             var physicalMargin = new HostConfig.SpacingDefinition();
             var physicalPadding = new HostConfig.SpacingDefinition();
-            var useAutoPadding = (this.parent ? this.parent.canContentBleed() : false) && this.bleed;
+            var useAutoPadding = AdaptiveCard.useAutoPadding && (this.parent ? this.parent.canContentBleed() : false);
             if (useAutoPadding) {
                 var effectivePadding = this.getNonZeroPadding();
                 var effectiveMargin = new HostConfig.PaddingDefinition({
@@ -4073,17 +4080,6 @@ var Container = (function (_super) {
         element.className = "ac-container";
         element.style.display = "flex";
         element.style.flexDirection = "column";
-        switch (this.verticalContentAlignment) {
-            case Enums.VerticalAlignment.Center:
-                element.style.justifyContent = "center";
-                break;
-            case Enums.VerticalAlignment.Bottom:
-                element.style.justifyContent = "flex-end";
-                break;
-            default:
-                element.style.justifyContent = "flex-start";
-                break;
-        }
         if (this.hasBackground) {
             if (this.backgroundImage) {
                 this.backgroundImage.apply(element);
@@ -4216,7 +4212,6 @@ var Container = (function (_super) {
                 this.backgroundImage.parse(json["backgroundImage"]);
             }
         }
-        this.verticalContentAlignment = Utils.getEnumValueOrDefault(Enums.VerticalAlignment, json["verticalContentAlignment"], this.verticalContentAlignment);
         this._style = Utils.getEnumValueOrDefault(Enums.ContainerStyle, json["style"], null);
         if (json[itemsCollectionPropertyName] != null) {
             var items = json[itemsCollectionPropertyName];
@@ -4339,30 +4334,24 @@ var Container = (function (_super) {
     return Container;
 }(CardElement));
 exports.Container = Container;
-var Column = (function (_super) {
+var Column = /** @class */ (function (_super) {
     __extends(Column, _super);
     function Column() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this._computedWeight = 0;
         _this.width = "auto";
-        _this.pixelWidth = 0;
         return _this;
     }
     Column.prototype.adjustRenderedElementSize = function (renderedElement) {
         renderedElement.style.minWidth = "0";
-        if (this.pixelWidth > 0) {
-            renderedElement.style.flex = "0 0 " + this.pixelWidth + "px";
+        if (typeof this.width === "number") {
+            renderedElement.style.flex = "1 1 " + (this._computedWeight > 0 ? this._computedWeight : this.width) + "%";
+        }
+        else if (this.width === "auto") {
+            renderedElement.style.flex = "0 1 auto";
         }
         else {
-            if (typeof this.width === "number") {
-                renderedElement.style.flex = "1 1 " + (this._computedWeight > 0 ? this._computedWeight : this.width) + "%";
-            }
-            else if (this.width === "auto") {
-                renderedElement.style.flex = "0 1 auto";
-            }
-            else {
-                renderedElement.style.flex = "1 1 50px";
-            }
+            renderedElement.style.flex = "1 1 50px";
         }
     };
     Object.defineProperty(Column.prototype, "separatorOrientation", {
@@ -4427,7 +4416,7 @@ var Column = (function (_super) {
     return Column;
 }(Container));
 exports.Column = Column;
-var ColumnSet = (function (_super) {
+var ColumnSet = /** @class */ (function (_super) {
     __extends(ColumnSet, _super);
     function ColumnSet() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -4610,6 +4599,94 @@ exports.ColumnSet = ColumnSet;
 function raiseAnchorClickedEvent(anchor) {
     return AdaptiveCard.onAnchorClicked != null ? AdaptiveCard.onAnchorClicked(anchor) : false;
 }
+
+function onExecuteAction(action) {
+    var message = "Action executed\n";
+    message += "    Title: " + action.title + "\n";
+    if (action instanceof AdaptiveCards.OpenUrlAction) {
+        message += "    Type: OpenUrl\n";
+        message += "    Url: " + action.url + "\n";
+    }
+    else if (action instanceof AdaptiveCards.SubmitAction) {
+        message += "    Type: Submit";
+        message += "    Data: " + JSON.stringify(action.data);
+    }
+    else if (action instanceof AdaptiveCards.HttpAction) {
+        var httpAction = action;
+        message += "    Type: Http\n";
+        message += "    Url: " + httpAction.url + "\n";
+        message += "    Method: " + httpAction.method + "\n";
+        message += "    Headers:\n";
+        for (var i = 0; i < httpAction.headers.length; i++) {
+            message += "        " + httpAction.headers[i].name + ": " + httpAction.headers[i].value + "\n";
+        }
+        message += "    Body: " + httpAction.body + "\n";
+    }
+    else if (action instanceof AdaptiveCards.ShowCardAction) {
+        showPopupCard(action);
+    }
+    else {
+        message += "    Type: <unknown>";
+    }
+
+    alert(message);
+}
+
+function showPopupCard(action) {
+    var myWindow = window.open("", "MsgWindow", "width=200,height=100");
+    var overlayElement = myWindow.document.createElement("div");
+    overlayElement.id = "popupOverlay";
+    overlayElement.className = "popupOverlay";
+    overlayElement.tabIndex = 0;
+    overlayElement.style.width = "auto"; // myWindow.document.documentElement.scrollWidth + "px";
+    overlayElement.style.height = myWindow.document.documentElement.scrollHeight + "px";
+    overlayElement.onclick = function (e) {
+        document.body.removeChild(overlayElement);
+    };
+    var cardContainer = myWindow.document.createElement("div");
+    cardContainer.className = "popupCardContainer";
+    cardContainer.onclick = function (e) { e.stopPropagation(); };
+    cardContainer.appendChild(action.card.render());
+    overlayElement.appendChild(cardContainer);
+    myWindow.document.body.appendChild(overlayElement);
+    var cardContainerBounds = cardContainer.getBoundingClientRect();
+    cardContainer.style.left = (window.innerWidth - cardContainerBounds.width) / 2 + "px";
+    cardContainer.style.top = (window.innerHeight - cardContainerBounds.height) / 2 + "px";
+}
+
+// function raiseExecuteActionEvent(action) {
+//     action.prepare(action.parent.getRootElement().getAllInputs());
+//     var message = "Action executed\n";
+//     message += "    Title: " + action.title + "\n";
+//     if (action instanceof AdaptiveCards.OpenUrlAction) {
+//         message += "    Type: OpenUrl\n";
+//         message += "    Url: " + action.url + "\n";
+//     }
+//     else if (action instanceof AdaptiveCards.SubmitAction) {
+//         message += "    Type: Submit";
+//         message += "    Data: " + JSON.stringify(action.data);
+//     }
+//     else if (action instanceof AdaptiveCards.HttpAction) {
+//         var httpAction = action;
+//         message += "    Type: Http\n";
+//         message += "    Url: " + httpAction.url + "\n";
+//         message += "    Method: " + httpAction.method + "\n";
+//         message += "    Headers:\n";
+//         for (var i = 0; i < httpAction.headers.length; i++) {
+//             message += "        " + httpAction.headers[i].name + ": " + httpAction.headers[i].value + "\n";
+//         }
+//         message += "    Body: " + httpAction.body + "\n";
+//     }
+//     else if (action instanceof AdaptiveCards.ShowCardAction) {
+//         showPopupCard(action);
+//     }
+//     else {
+//         message += "    Type: <unknown>";
+//     }
+
+//     alert(message);
+// }
+
 function raiseExecuteActionEvent(action) {
     if (AdaptiveCard.onExecuteAction != null) {
         action.prepare(action.parent.getRootElement().getAllInputs());
@@ -4637,79 +4714,9 @@ function raiseParseError(error) {
         AdaptiveCard.onParseError(error);
     }
 }
-var ContainerWithActions = (function (_super) {
-    __extends(ContainerWithActions, _super);
-    function ContainerWithActions() {
-        var _this = _super.call(this) || this;
-        _this._actionCollection = new ActionCollection(_this);
-        _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(null); };
-        _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(null); };
-        return _this;
-    }
-    ContainerWithActions.prototype.internalRender = function () {
-        var element = _super.prototype.internalRender.call(this);
-        var renderedActions = this._actionCollection.render(this.hostConfig.actions.actionsOrientation);
-        if (renderedActions) {
-            Utils.appendChild(element, Utils.renderSeparation({
-                spacing: this.hostConfig.getEffectiveSpacing(this.hostConfig.actions.spacing),
-                lineThickness: null,
-                lineColor: null
-            }, Enums.Orientation.Horizontal));
-            Utils.appendChild(element, renderedActions);
-        }
-        return element.children.length > 0 ? element : null;
-    };
-    ContainerWithActions.prototype.getActionById = function (id) {
-        var result = this._actionCollection.getActionById(id);
-        return result ? result : _super.prototype.getActionById.call(this, id);
-    };
-    ContainerWithActions.prototype.parse = function (json, itemsCollectionPropertyName) {
-        if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
-        _super.prototype.parse.call(this, json, itemsCollectionPropertyName);
-        if (json["actions"] != undefined) {
-            var jsonActions = json["actions"];
-            for (var i = 0; i < jsonActions.length; i++) {
-                var action = createActionInstance(jsonActions[i]);
-                if (action != null) {
-                    this.addAction(action);
-                }
-            }
-        }
-    };
-    ContainerWithActions.prototype.validate = function () {
-        var result = _super.prototype.validate.call(this);
-        if (this._actionCollection) {
-            result = result.concat(this._actionCollection.validate());
-        }
-        return result;
-    };
-    ContainerWithActions.prototype.isLastElement = function (element) {
-        return _super.prototype.isLastElement.call(this, element) && this._actionCollection.items.length == 0;
-    };
-    ContainerWithActions.prototype.addAction = function (action) {
-        this._actionCollection.addAction(action);
-    };
-    ContainerWithActions.prototype.clear = function () {
-        _super.prototype.clear.call(this);
-        this._actionCollection.clear();
-    };
-    ContainerWithActions.prototype.getAllInputs = function () {
-        return _super.prototype.getAllInputs.call(this).concat(this._actionCollection.getAllInputs());
-    };
-    Object.defineProperty(ContainerWithActions.prototype, "isStandalone", {
-        get: function () {
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return ContainerWithActions;
-}(Container));
-exports.ContainerWithActions = ContainerWithActions;
-var TypeRegistry = (function () {
+var TypeRegistry = /** @class */ (function () {
     function TypeRegistry() {
         this._items = [];
-        this.reset();
     }
     TypeRegistry.prototype.findTypeRegistration = function (typeName) {
         for (var i = 0; i < this._items.length; i++) {
@@ -4750,50 +4757,96 @@ var TypeRegistry = (function () {
     return TypeRegistry;
 }());
 exports.TypeRegistry = TypeRegistry;
-var ElementTypeRegistry = (function (_super) {
-    __extends(ElementTypeRegistry, _super);
-    function ElementTypeRegistry() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var ContainerWithActions = /** @class */ (function (_super) {
+    __extends(ContainerWithActions, _super);
+    function ContainerWithActions() {
+        var _this = _super.call(this) || this;
+        _this._actionCollection = new ActionCollection(_this);
+        _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(null); };
+        _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(null); };
+        return _this;
     }
-    ElementTypeRegistry.prototype.reset = function () {
-        this.clear();
-        this.registerType("Container", function () { return new Container(); });
-        this.registerType("TextBlock", function () { return new TextBlock(); });
-        this.registerType("Image", function () { return new Image(); });
-        this.registerType("ImageSet", function () { return new ImageSet(); });
-        this.registerType("FactSet", function () { return new FactSet(); });
-        this.registerType("ColumnSet", function () { return new ColumnSet(); });
-        this.registerType("Input.Text", function () { return new TextInput(); });
-        this.registerType("Input.Date", function () { return new DateInput(); });
-        this.registerType("Input.Time", function () { return new TimeInput(); });
-        this.registerType("Input.Number", function () { return new NumberInput(); });
-        this.registerType("Input.ChoiceSet", function () { return new ChoiceSetInput(); });
-        this.registerType("Input.Toggle", function () { return new ToggleInput(); });
+    ContainerWithActions.prototype.internalRender = function () {
+        var element = _super.prototype.internalRender.call(this);
+        var renderedActions = this._actionCollection.render();
+        if (renderedActions) {
+            Utils.appendChild(element, Utils.renderSeparation({
+                spacing: this.hostConfig.getEffectiveSpacing(this.hostConfig.actions.spacing),
+                lineThickness: null,
+                lineColor: null
+            }, Enums.Orientation.Horizontal));
+            Utils.appendChild(element, renderedActions);
+        }
+        return element.children.length > 0 ? element : null;
     };
-    return ElementTypeRegistry;
-}(TypeRegistry));
-exports.ElementTypeRegistry = ElementTypeRegistry;
-var ActionTypeRegistry = (function (_super) {
-    __extends(ActionTypeRegistry, _super);
-    function ActionTypeRegistry() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ActionTypeRegistry.prototype.reset = function () {
-        this.clear();
-        this.registerType("Action.OpenUrl", function () { return new OpenUrlAction(); });
-        this.registerType("Action.Submit", function () { return new SubmitAction(); });
-        this.registerType("Action.ShowCard", function () { return new ShowCardAction(); });
+    ContainerWithActions.prototype.getActionById = function (id) {
+        var result = this._actionCollection.getActionById(id);
+        return result ? result : _super.prototype.getActionById.call(this, id);
     };
-    return ActionTypeRegistry;
-}(TypeRegistry));
-exports.ActionTypeRegistry = ActionTypeRegistry;
-var AdaptiveCard = (function (_super) {
+    ContainerWithActions.prototype.parse = function (json, itemsCollectionPropertyName) {
+        if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
+        _super.prototype.parse.call(this, json, itemsCollectionPropertyName);
+        if (json["actions"] != undefined) {
+            var jsonActions = json["actions"];
+            for (var i = 0; i < jsonActions.length; i++) {
+                var action = createActionInstance(jsonActions[i]);
+                if (action != null) {
+                    this.addAction(action);
+                }
+            }
+        }
+    };
+    ContainerWithActions.prototype.isLastElement = function (element) {
+        return _super.prototype.isLastElement.call(this, element) && this._actionCollection.items.length == 0;
+    };
+    ContainerWithActions.prototype.addAction = function (action) {
+        this._actionCollection.addAction(action);
+    };
+    ContainerWithActions.prototype.clear = function () {
+        _super.prototype.clear.call(this);
+        this._actionCollection.clear();
+    };
+    ContainerWithActions.prototype.getAllInputs = function () {
+        return _super.prototype.getAllInputs.call(this).concat(this._actionCollection.getAllInputs());
+    };
+    Object.defineProperty(ContainerWithActions.prototype, "isStandalone", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ContainerWithActions;
+}(Container));
+exports.ContainerWithActions = ContainerWithActions;
+var AdaptiveCard = /** @class */ (function (_super) {
     __extends(AdaptiveCard, _super);
     function AdaptiveCard() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.minVersion = { major: 1, minor: 0 };
         return _this;
     }
+    AdaptiveCard.initialize = function () {
+        AdaptiveCard.elementTypeRegistry.clear();
+        AdaptiveCard.elementTypeRegistry.registerType("Container", function () { return new Container(); });
+        AdaptiveCard.elementTypeRegistry.registerType("TextBlock", function () { return new TextBlock(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Image", function () { return new Image(); });
+        AdaptiveCard.elementTypeRegistry.registerType("ImageSet", function () { return new ImageSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("FactSet", function () { return new FactSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("ColumnSet", function () { return new ColumnSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("ActionSet", function () { return new ActionSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Text", function () { return new TextInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Date", function () { return new DateInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Time", function () { return new TimeInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Number", function () { return new NumberInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.ChoiceSet", function () { return new ChoiceSetInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Toggle", function () { return new ToggleInput(); });
+        AdaptiveCard.actionTypeRegistry.clear();
+        AdaptiveCard.actionTypeRegistry.registerType("Action.Http", function () { return new HttpAction(); });
+        AdaptiveCard.actionTypeRegistry.registerType("Action.OpenUrl", function () { return new OpenUrlAction(); });
+        AdaptiveCard.actionTypeRegistry.registerType("Action.Submit", function () { return new SubmitAction(); });
+        AdaptiveCard.actionTypeRegistry.registerType("Action.ShowCard", function () { return new ShowCardAction(); });
+    };
     AdaptiveCard.prototype.isVersionSupported = function () {
         var unsupportedVersion = (AdaptiveCard.currentVersion.major < this.minVersion.major) ||
             (AdaptiveCard.currentVersion.major == this.minVersion.major && AdaptiveCard.currentVersion.minor < this.minVersion.minor);
@@ -4890,12 +4943,84 @@ var AdaptiveCard = (function (_super) {
     AdaptiveCard.prototype.canContentBleed = function () {
         return true;
     };
+	
+	function showPopupCard(action) {
+		var myWindow = window.open("", "MsgWindow", "width=200,height=100");
+		var overlayElement = myWindow.document.createElement("div");
+		overlayElement.id = "popupOverlay";
+		overlayElement.className = "popupOverlay";
+		overlayElement.tabIndex = 0;
+		overlayElement.style.width = myWindow.document.documentElement.scrollWidth + "px";
+		overlayElement.style.height = myWindow.document.documentElement.scrollHeight + "px";
+		overlayElement.onclick = function (e) {
+			document.body.removeChild(overlayElement);
+		};
+		var cardContainer = myWindow.document.createElement("div");
+		cardContainer.className = "popupCardContainer";
+		cardContainer.onclick = function (e) { e.stopPropagation(); };
+		var hostContainer = hostContainerOptions[hostContainerPicker.selectedIndex].hostContainer;
+		cardContainer.appendChild(hostContainer.render(action.card.render(), action.card.renderSpeech()));
+		overlayElement.appendChild(cardContainer);
+		myWindow.document.body.appendChild(overlayElement);
+		var cardContainerBounds = cardContainer.getBoundingClientRect();
+		cardContainer.style.left = (window.innerWidth - cardContainerBounds.width) / 2 + "px";
+		cardContainer.style.top = (window.innerHeight - cardContainerBounds.height) / 2 + "px";
+	}
+
+	function actionExecuted(action) {
+		var message = "Action executed\n";
+		message += "    Title: " + action.title + "\n";
+		if (action instanceof Adaptive.OpenUrlAction) {
+			message += "    Type: OpenUrl\n";
+			message += "    Url: " + action.url + "\n";
+		}
+		else if (action instanceof Adaptive.SubmitAction) {
+			message += "    Type: Submit";
+			message += "    Data: " + JSON.stringify(action.data);
+		}
+		else if (action instanceof Adaptive.HttpAction) {
+			var httpAction = action;
+			message += "    Type: Http\n";
+			message += "    Url: " + httpAction.url + "\n";
+			message += "    Method: " + httpAction.method + "\n";
+			message += "    Headers:\n";
+			for (var i = 0; i < httpAction.headers.length; i++) {
+				message += "        " + httpAction.headers[i].name + ": " + httpAction.headers[i].value + "\n";
+			}
+			message += "    Body: " + httpAction.body + "\n";
+		}
+		else if (action instanceof Adaptive.ShowCardAction) {
+			showPopupCard(action);
+		}
+		else {
+			message += "    Type: <unknown>";
+		}
+		// Uncomment to test the action's setStatus method:
+		/*
+		action.setStatus(
+			{
+				"type": "AdaptiveCard",
+				"body": [
+					{
+						"type": "TextBlock",
+						"text": "Working on it...",
+						"weight": "normal",
+						"size": "small"
+					}
+				]
+			});
+
+		window.setTimeout(actionCompletedCallback, 2000, action);
+		*/
+		alert(message);
+	}
+
     AdaptiveCard.currentVersion = { major: 1, minor: 0 };
+    AdaptiveCard.useAutoPadding = false;
     AdaptiveCard.preExpandSingleShowCardAction = false;
-    AdaptiveCard.elementTypeRegistry = new ElementTypeRegistry();
-    AdaptiveCard.actionTypeRegistry = new ActionTypeRegistry();
+    AdaptiveCard.elementTypeRegistry = new TypeRegistry();
+    AdaptiveCard.actionTypeRegistry = new TypeRegistry();
     AdaptiveCard.onAnchorClicked = null;
-    AdaptiveCard.onExecuteAction = null;
     AdaptiveCard.onElementVisibilityChanged = null;
     AdaptiveCard.onInlineCardExpanded = null;
     AdaptiveCard.onParseElement = null;
@@ -4903,7 +5028,9 @@ var AdaptiveCard = (function (_super) {
     return AdaptiveCard;
 }(ContainerWithActions));
 exports.AdaptiveCard = AdaptiveCard;
-var InlineAdaptiveCard = (function (_super) {
+// This calls acts as a static constructor (see https://github.com/Microsoft/TypeScript/issues/265)
+AdaptiveCard.initialize();
+var InlineAdaptiveCard = /** @class */ (function (_super) {
     __extends(InlineAdaptiveCard, _super);
     function InlineAdaptiveCard() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -4946,2131 +5073,2131 @@ var defaultHostConfig = new HostConfig.HostConfig();
 /***/ (function(module, exports) {
 
 module.exports = {
-	"Aacute": "Á",
-	"aacute": "á",
-	"Abreve": "Ă",
-	"abreve": "ă",
-	"ac": "∾",
-	"acd": "∿",
-	"acE": "∾̳",
-	"Acirc": "Â",
-	"acirc": "â",
-	"acute": "´",
-	"Acy": "А",
-	"acy": "а",
-	"AElig": "Æ",
-	"aelig": "æ",
-	"af": "⁡",
-	"Afr": "𝔄",
-	"afr": "𝔞",
-	"Agrave": "À",
-	"agrave": "à",
-	"alefsym": "ℵ",
-	"aleph": "ℵ",
-	"Alpha": "Α",
-	"alpha": "α",
-	"Amacr": "Ā",
-	"amacr": "ā",
-	"amalg": "⨿",
+	"Aacute": "Ã",
+	"aacute": "Ã¡",
+	"Abreve": "Ä‚",
+	"abreve": "Äƒ",
+	"ac": "âˆ¾",
+	"acd": "âˆ¿",
+	"acE": "âˆ¾Ì³",
+	"Acirc": "Ã‚",
+	"acirc": "Ã¢",
+	"acute": "Â´",
+	"Acy": "Ð",
+	"acy": "Ð°",
+	"AElig": "Ã†",
+	"aelig": "Ã¦",
+	"af": "â¡",
+	"Afr": "ð”„",
+	"afr": "ð”ž",
+	"Agrave": "Ã€",
+	"agrave": "Ã ",
+	"alefsym": "â„µ",
+	"aleph": "â„µ",
+	"Alpha": "Î‘",
+	"alpha": "Î±",
+	"Amacr": "Ä€",
+	"amacr": "Ä",
+	"amalg": "â¨¿",
 	"amp": "&",
 	"AMP": "&",
-	"andand": "⩕",
-	"And": "⩓",
-	"and": "∧",
-	"andd": "⩜",
-	"andslope": "⩘",
-	"andv": "⩚",
-	"ang": "∠",
-	"ange": "⦤",
-	"angle": "∠",
-	"angmsdaa": "⦨",
-	"angmsdab": "⦩",
-	"angmsdac": "⦪",
-	"angmsdad": "⦫",
-	"angmsdae": "⦬",
-	"angmsdaf": "⦭",
-	"angmsdag": "⦮",
-	"angmsdah": "⦯",
-	"angmsd": "∡",
-	"angrt": "∟",
-	"angrtvb": "⊾",
-	"angrtvbd": "⦝",
-	"angsph": "∢",
-	"angst": "Å",
-	"angzarr": "⍼",
-	"Aogon": "Ą",
-	"aogon": "ą",
-	"Aopf": "𝔸",
-	"aopf": "𝕒",
-	"apacir": "⩯",
-	"ap": "≈",
-	"apE": "⩰",
-	"ape": "≊",
-	"apid": "≋",
+	"andand": "â©•",
+	"And": "â©“",
+	"and": "âˆ§",
+	"andd": "â©œ",
+	"andslope": "â©˜",
+	"andv": "â©š",
+	"ang": "âˆ ",
+	"ange": "â¦¤",
+	"angle": "âˆ ",
+	"angmsdaa": "â¦¨",
+	"angmsdab": "â¦©",
+	"angmsdac": "â¦ª",
+	"angmsdad": "â¦«",
+	"angmsdae": "â¦¬",
+	"angmsdaf": "â¦­",
+	"angmsdag": "â¦®",
+	"angmsdah": "â¦¯",
+	"angmsd": "âˆ¡",
+	"angrt": "âˆŸ",
+	"angrtvb": "âŠ¾",
+	"angrtvbd": "â¦",
+	"angsph": "âˆ¢",
+	"angst": "Ã…",
+	"angzarr": "â¼",
+	"Aogon": "Ä„",
+	"aogon": "Ä…",
+	"Aopf": "ð”¸",
+	"aopf": "ð•’",
+	"apacir": "â©¯",
+	"ap": "â‰ˆ",
+	"apE": "â©°",
+	"ape": "â‰Š",
+	"apid": "â‰‹",
 	"apos": "'",
-	"ApplyFunction": "⁡",
-	"approx": "≈",
-	"approxeq": "≊",
-	"Aring": "Å",
-	"aring": "å",
-	"Ascr": "𝒜",
-	"ascr": "𝒶",
-	"Assign": "≔",
+	"ApplyFunction": "â¡",
+	"approx": "â‰ˆ",
+	"approxeq": "â‰Š",
+	"Aring": "Ã…",
+	"aring": "Ã¥",
+	"Ascr": "ð’œ",
+	"ascr": "ð’¶",
+	"Assign": "â‰”",
 	"ast": "*",
-	"asymp": "≈",
-	"asympeq": "≍",
-	"Atilde": "Ã",
-	"atilde": "ã",
-	"Auml": "Ä",
-	"auml": "ä",
-	"awconint": "∳",
-	"awint": "⨑",
-	"backcong": "≌",
-	"backepsilon": "϶",
-	"backprime": "‵",
-	"backsim": "∽",
-	"backsimeq": "⋍",
-	"Backslash": "∖",
-	"Barv": "⫧",
-	"barvee": "⊽",
-	"barwed": "⌅",
-	"Barwed": "⌆",
-	"barwedge": "⌅",
-	"bbrk": "⎵",
-	"bbrktbrk": "⎶",
-	"bcong": "≌",
-	"Bcy": "Б",
-	"bcy": "б",
-	"bdquo": "„",
-	"becaus": "∵",
-	"because": "∵",
-	"Because": "∵",
-	"bemptyv": "⦰",
-	"bepsi": "϶",
-	"bernou": "ℬ",
-	"Bernoullis": "ℬ",
-	"Beta": "Β",
-	"beta": "β",
-	"beth": "ℶ",
-	"between": "≬",
-	"Bfr": "𝔅",
-	"bfr": "𝔟",
-	"bigcap": "⋂",
-	"bigcirc": "◯",
-	"bigcup": "⋃",
-	"bigodot": "⨀",
-	"bigoplus": "⨁",
-	"bigotimes": "⨂",
-	"bigsqcup": "⨆",
-	"bigstar": "★",
-	"bigtriangledown": "▽",
-	"bigtriangleup": "△",
-	"biguplus": "⨄",
-	"bigvee": "⋁",
-	"bigwedge": "⋀",
-	"bkarow": "⤍",
-	"blacklozenge": "⧫",
-	"blacksquare": "▪",
-	"blacktriangle": "▴",
-	"blacktriangledown": "▾",
-	"blacktriangleleft": "◂",
-	"blacktriangleright": "▸",
-	"blank": "␣",
-	"blk12": "▒",
-	"blk14": "░",
-	"blk34": "▓",
-	"block": "█",
-	"bne": "=⃥",
-	"bnequiv": "≡⃥",
-	"bNot": "⫭",
-	"bnot": "⌐",
-	"Bopf": "𝔹",
-	"bopf": "𝕓",
-	"bot": "⊥",
-	"bottom": "⊥",
-	"bowtie": "⋈",
-	"boxbox": "⧉",
-	"boxdl": "┐",
-	"boxdL": "╕",
-	"boxDl": "╖",
-	"boxDL": "╗",
-	"boxdr": "┌",
-	"boxdR": "╒",
-	"boxDr": "╓",
-	"boxDR": "╔",
-	"boxh": "─",
-	"boxH": "═",
-	"boxhd": "┬",
-	"boxHd": "╤",
-	"boxhD": "╥",
-	"boxHD": "╦",
-	"boxhu": "┴",
-	"boxHu": "╧",
-	"boxhU": "╨",
-	"boxHU": "╩",
-	"boxminus": "⊟",
-	"boxplus": "⊞",
-	"boxtimes": "⊠",
-	"boxul": "┘",
-	"boxuL": "╛",
-	"boxUl": "╜",
-	"boxUL": "╝",
-	"boxur": "└",
-	"boxuR": "╘",
-	"boxUr": "╙",
-	"boxUR": "╚",
-	"boxv": "│",
-	"boxV": "║",
-	"boxvh": "┼",
-	"boxvH": "╪",
-	"boxVh": "╫",
-	"boxVH": "╬",
-	"boxvl": "┤",
-	"boxvL": "╡",
-	"boxVl": "╢",
-	"boxVL": "╣",
-	"boxvr": "├",
-	"boxvR": "╞",
-	"boxVr": "╟",
-	"boxVR": "╠",
-	"bprime": "‵",
-	"breve": "˘",
-	"Breve": "˘",
-	"brvbar": "¦",
-	"bscr": "𝒷",
-	"Bscr": "ℬ",
-	"bsemi": "⁏",
-	"bsim": "∽",
-	"bsime": "⋍",
-	"bsolb": "⧅",
+	"asymp": "â‰ˆ",
+	"asympeq": "â‰",
+	"Atilde": "Ãƒ",
+	"atilde": "Ã£",
+	"Auml": "Ã„",
+	"auml": "Ã¤",
+	"awconint": "âˆ³",
+	"awint": "â¨‘",
+	"backcong": "â‰Œ",
+	"backepsilon": "Ï¶",
+	"backprime": "â€µ",
+	"backsim": "âˆ½",
+	"backsimeq": "â‹",
+	"Backslash": "âˆ–",
+	"Barv": "â«§",
+	"barvee": "âŠ½",
+	"barwed": "âŒ…",
+	"Barwed": "âŒ†",
+	"barwedge": "âŒ…",
+	"bbrk": "âŽµ",
+	"bbrktbrk": "âŽ¶",
+	"bcong": "â‰Œ",
+	"Bcy": "Ð‘",
+	"bcy": "Ð±",
+	"bdquo": "â€ž",
+	"becaus": "âˆµ",
+	"because": "âˆµ",
+	"Because": "âˆµ",
+	"bemptyv": "â¦°",
+	"bepsi": "Ï¶",
+	"bernou": "â„¬",
+	"Bernoullis": "â„¬",
+	"Beta": "Î’",
+	"beta": "Î²",
+	"beth": "â„¶",
+	"between": "â‰¬",
+	"Bfr": "ð”…",
+	"bfr": "ð”Ÿ",
+	"bigcap": "â‹‚",
+	"bigcirc": "â—¯",
+	"bigcup": "â‹ƒ",
+	"bigodot": "â¨€",
+	"bigoplus": "â¨",
+	"bigotimes": "â¨‚",
+	"bigsqcup": "â¨†",
+	"bigstar": "â˜…",
+	"bigtriangledown": "â–½",
+	"bigtriangleup": "â–³",
+	"biguplus": "â¨„",
+	"bigvee": "â‹",
+	"bigwedge": "â‹€",
+	"bkarow": "â¤",
+	"blacklozenge": "â§«",
+	"blacksquare": "â–ª",
+	"blacktriangle": "â–´",
+	"blacktriangledown": "â–¾",
+	"blacktriangleleft": "â—‚",
+	"blacktriangleright": "â–¸",
+	"blank": "â£",
+	"blk12": "â–’",
+	"blk14": "â–‘",
+	"blk34": "â–“",
+	"block": "â–ˆ",
+	"bne": "=âƒ¥",
+	"bnequiv": "â‰¡âƒ¥",
+	"bNot": "â«­",
+	"bnot": "âŒ",
+	"Bopf": "ð”¹",
+	"bopf": "ð•“",
+	"bot": "âŠ¥",
+	"bottom": "âŠ¥",
+	"bowtie": "â‹ˆ",
+	"boxbox": "â§‰",
+	"boxdl": "â”",
+	"boxdL": "â••",
+	"boxDl": "â•–",
+	"boxDL": "â•—",
+	"boxdr": "â”Œ",
+	"boxdR": "â•’",
+	"boxDr": "â•“",
+	"boxDR": "â•”",
+	"boxh": "â”€",
+	"boxH": "â•",
+	"boxhd": "â”¬",
+	"boxHd": "â•¤",
+	"boxhD": "â•¥",
+	"boxHD": "â•¦",
+	"boxhu": "â”´",
+	"boxHu": "â•§",
+	"boxhU": "â•¨",
+	"boxHU": "â•©",
+	"boxminus": "âŠŸ",
+	"boxplus": "âŠž",
+	"boxtimes": "âŠ ",
+	"boxul": "â”˜",
+	"boxuL": "â•›",
+	"boxUl": "â•œ",
+	"boxUL": "â•",
+	"boxur": "â””",
+	"boxuR": "â•˜",
+	"boxUr": "â•™",
+	"boxUR": "â•š",
+	"boxv": "â”‚",
+	"boxV": "â•‘",
+	"boxvh": "â”¼",
+	"boxvH": "â•ª",
+	"boxVh": "â•«",
+	"boxVH": "â•¬",
+	"boxvl": "â”¤",
+	"boxvL": "â•¡",
+	"boxVl": "â•¢",
+	"boxVL": "â•£",
+	"boxvr": "â”œ",
+	"boxvR": "â•ž",
+	"boxVr": "â•Ÿ",
+	"boxVR": "â• ",
+	"bprime": "â€µ",
+	"breve": "Ë˜",
+	"Breve": "Ë˜",
+	"brvbar": "Â¦",
+	"bscr": "ð’·",
+	"Bscr": "â„¬",
+	"bsemi": "â",
+	"bsim": "âˆ½",
+	"bsime": "â‹",
+	"bsolb": "â§…",
 	"bsol": "\\",
-	"bsolhsub": "⟈",
-	"bull": "•",
-	"bullet": "•",
-	"bump": "≎",
-	"bumpE": "⪮",
-	"bumpe": "≏",
-	"Bumpeq": "≎",
-	"bumpeq": "≏",
-	"Cacute": "Ć",
-	"cacute": "ć",
-	"capand": "⩄",
-	"capbrcup": "⩉",
-	"capcap": "⩋",
-	"cap": "∩",
-	"Cap": "⋒",
-	"capcup": "⩇",
-	"capdot": "⩀",
-	"CapitalDifferentialD": "ⅅ",
-	"caps": "∩︀",
-	"caret": "⁁",
-	"caron": "ˇ",
-	"Cayleys": "ℭ",
-	"ccaps": "⩍",
-	"Ccaron": "Č",
-	"ccaron": "č",
-	"Ccedil": "Ç",
-	"ccedil": "ç",
-	"Ccirc": "Ĉ",
-	"ccirc": "ĉ",
-	"Cconint": "∰",
-	"ccups": "⩌",
-	"ccupssm": "⩐",
-	"Cdot": "Ċ",
-	"cdot": "ċ",
-	"cedil": "¸",
-	"Cedilla": "¸",
-	"cemptyv": "⦲",
-	"cent": "¢",
-	"centerdot": "·",
-	"CenterDot": "·",
-	"cfr": "𝔠",
-	"Cfr": "ℭ",
-	"CHcy": "Ч",
-	"chcy": "ч",
-	"check": "✓",
-	"checkmark": "✓",
-	"Chi": "Χ",
-	"chi": "χ",
-	"circ": "ˆ",
-	"circeq": "≗",
-	"circlearrowleft": "↺",
-	"circlearrowright": "↻",
-	"circledast": "⊛",
-	"circledcirc": "⊚",
-	"circleddash": "⊝",
-	"CircleDot": "⊙",
-	"circledR": "®",
-	"circledS": "Ⓢ",
-	"CircleMinus": "⊖",
-	"CirclePlus": "⊕",
-	"CircleTimes": "⊗",
-	"cir": "○",
-	"cirE": "⧃",
-	"cire": "≗",
-	"cirfnint": "⨐",
-	"cirmid": "⫯",
-	"cirscir": "⧂",
-	"ClockwiseContourIntegral": "∲",
-	"CloseCurlyDoubleQuote": "”",
-	"CloseCurlyQuote": "’",
-	"clubs": "♣",
-	"clubsuit": "♣",
+	"bsolhsub": "âŸˆ",
+	"bull": "â€¢",
+	"bullet": "â€¢",
+	"bump": "â‰Ž",
+	"bumpE": "âª®",
+	"bumpe": "â‰",
+	"Bumpeq": "â‰Ž",
+	"bumpeq": "â‰",
+	"Cacute": "Ä†",
+	"cacute": "Ä‡",
+	"capand": "â©„",
+	"capbrcup": "â©‰",
+	"capcap": "â©‹",
+	"cap": "âˆ©",
+	"Cap": "â‹’",
+	"capcup": "â©‡",
+	"capdot": "â©€",
+	"CapitalDifferentialD": "â……",
+	"caps": "âˆ©ï¸€",
+	"caret": "â",
+	"caron": "Ë‡",
+	"Cayleys": "â„­",
+	"ccaps": "â©",
+	"Ccaron": "ÄŒ",
+	"ccaron": "Ä",
+	"Ccedil": "Ã‡",
+	"ccedil": "Ã§",
+	"Ccirc": "Äˆ",
+	"ccirc": "Ä‰",
+	"Cconint": "âˆ°",
+	"ccups": "â©Œ",
+	"ccupssm": "â©",
+	"Cdot": "ÄŠ",
+	"cdot": "Ä‹",
+	"cedil": "Â¸",
+	"Cedilla": "Â¸",
+	"cemptyv": "â¦²",
+	"cent": "Â¢",
+	"centerdot": "Â·",
+	"CenterDot": "Â·",
+	"cfr": "ð” ",
+	"Cfr": "â„­",
+	"CHcy": "Ð§",
+	"chcy": "Ñ‡",
+	"check": "âœ“",
+	"checkmark": "âœ“",
+	"Chi": "Î§",
+	"chi": "Ï‡",
+	"circ": "Ë†",
+	"circeq": "â‰—",
+	"circlearrowleft": "â†º",
+	"circlearrowright": "â†»",
+	"circledast": "âŠ›",
+	"circledcirc": "âŠš",
+	"circleddash": "âŠ",
+	"CircleDot": "âŠ™",
+	"circledR": "Â®",
+	"circledS": "â“ˆ",
+	"CircleMinus": "âŠ–",
+	"CirclePlus": "âŠ•",
+	"CircleTimes": "âŠ—",
+	"cir": "â—‹",
+	"cirE": "â§ƒ",
+	"cire": "â‰—",
+	"cirfnint": "â¨",
+	"cirmid": "â«¯",
+	"cirscir": "â§‚",
+	"ClockwiseContourIntegral": "âˆ²",
+	"CloseCurlyDoubleQuote": "â€",
+	"CloseCurlyQuote": "â€™",
+	"clubs": "â™£",
+	"clubsuit": "â™£",
 	"colon": ":",
-	"Colon": "∷",
-	"Colone": "⩴",
-	"colone": "≔",
-	"coloneq": "≔",
+	"Colon": "âˆ·",
+	"Colone": "â©´",
+	"colone": "â‰”",
+	"coloneq": "â‰”",
 	"comma": ",",
 	"commat": "@",
-	"comp": "∁",
-	"compfn": "∘",
-	"complement": "∁",
-	"complexes": "ℂ",
-	"cong": "≅",
-	"congdot": "⩭",
-	"Congruent": "≡",
-	"conint": "∮",
-	"Conint": "∯",
-	"ContourIntegral": "∮",
-	"copf": "𝕔",
-	"Copf": "ℂ",
-	"coprod": "∐",
-	"Coproduct": "∐",
-	"copy": "©",
-	"COPY": "©",
-	"copysr": "℗",
-	"CounterClockwiseContourIntegral": "∳",
-	"crarr": "↵",
-	"cross": "✗",
-	"Cross": "⨯",
-	"Cscr": "𝒞",
-	"cscr": "𝒸",
-	"csub": "⫏",
-	"csube": "⫑",
-	"csup": "⫐",
-	"csupe": "⫒",
-	"ctdot": "⋯",
-	"cudarrl": "⤸",
-	"cudarrr": "⤵",
-	"cuepr": "⋞",
-	"cuesc": "⋟",
-	"cularr": "↶",
-	"cularrp": "⤽",
-	"cupbrcap": "⩈",
-	"cupcap": "⩆",
-	"CupCap": "≍",
-	"cup": "∪",
-	"Cup": "⋓",
-	"cupcup": "⩊",
-	"cupdot": "⊍",
-	"cupor": "⩅",
-	"cups": "∪︀",
-	"curarr": "↷",
-	"curarrm": "⤼",
-	"curlyeqprec": "⋞",
-	"curlyeqsucc": "⋟",
-	"curlyvee": "⋎",
-	"curlywedge": "⋏",
-	"curren": "¤",
-	"curvearrowleft": "↶",
-	"curvearrowright": "↷",
-	"cuvee": "⋎",
-	"cuwed": "⋏",
-	"cwconint": "∲",
-	"cwint": "∱",
-	"cylcty": "⌭",
-	"dagger": "†",
-	"Dagger": "‡",
-	"daleth": "ℸ",
-	"darr": "↓",
-	"Darr": "↡",
-	"dArr": "⇓",
-	"dash": "‐",
-	"Dashv": "⫤",
-	"dashv": "⊣",
-	"dbkarow": "⤏",
-	"dblac": "˝",
-	"Dcaron": "Ď",
-	"dcaron": "ď",
-	"Dcy": "Д",
-	"dcy": "д",
-	"ddagger": "‡",
-	"ddarr": "⇊",
-	"DD": "ⅅ",
-	"dd": "ⅆ",
-	"DDotrahd": "⤑",
-	"ddotseq": "⩷",
-	"deg": "°",
-	"Del": "∇",
-	"Delta": "Δ",
-	"delta": "δ",
-	"demptyv": "⦱",
-	"dfisht": "⥿",
-	"Dfr": "𝔇",
-	"dfr": "𝔡",
-	"dHar": "⥥",
-	"dharl": "⇃",
-	"dharr": "⇂",
-	"DiacriticalAcute": "´",
-	"DiacriticalDot": "˙",
-	"DiacriticalDoubleAcute": "˝",
+	"comp": "âˆ",
+	"compfn": "âˆ˜",
+	"complement": "âˆ",
+	"complexes": "â„‚",
+	"cong": "â‰…",
+	"congdot": "â©­",
+	"Congruent": "â‰¡",
+	"conint": "âˆ®",
+	"Conint": "âˆ¯",
+	"ContourIntegral": "âˆ®",
+	"copf": "ð•”",
+	"Copf": "â„‚",
+	"coprod": "âˆ",
+	"Coproduct": "âˆ",
+	"copy": "Â©",
+	"COPY": "Â©",
+	"copysr": "â„—",
+	"CounterClockwiseContourIntegral": "âˆ³",
+	"crarr": "â†µ",
+	"cross": "âœ—",
+	"Cross": "â¨¯",
+	"Cscr": "ð’ž",
+	"cscr": "ð’¸",
+	"csub": "â«",
+	"csube": "â«‘",
+	"csup": "â«",
+	"csupe": "â«’",
+	"ctdot": "â‹¯",
+	"cudarrl": "â¤¸",
+	"cudarrr": "â¤µ",
+	"cuepr": "â‹ž",
+	"cuesc": "â‹Ÿ",
+	"cularr": "â†¶",
+	"cularrp": "â¤½",
+	"cupbrcap": "â©ˆ",
+	"cupcap": "â©†",
+	"CupCap": "â‰",
+	"cup": "âˆª",
+	"Cup": "â‹“",
+	"cupcup": "â©Š",
+	"cupdot": "âŠ",
+	"cupor": "â©…",
+	"cups": "âˆªï¸€",
+	"curarr": "â†·",
+	"curarrm": "â¤¼",
+	"curlyeqprec": "â‹ž",
+	"curlyeqsucc": "â‹Ÿ",
+	"curlyvee": "â‹Ž",
+	"curlywedge": "â‹",
+	"curren": "Â¤",
+	"curvearrowleft": "â†¶",
+	"curvearrowright": "â†·",
+	"cuvee": "â‹Ž",
+	"cuwed": "â‹",
+	"cwconint": "âˆ²",
+	"cwint": "âˆ±",
+	"cylcty": "âŒ­",
+	"dagger": "â€ ",
+	"Dagger": "â€¡",
+	"daleth": "â„¸",
+	"darr": "â†“",
+	"Darr": "â†¡",
+	"dArr": "â‡“",
+	"dash": "â€",
+	"Dashv": "â«¤",
+	"dashv": "âŠ£",
+	"dbkarow": "â¤",
+	"dblac": "Ë",
+	"Dcaron": "ÄŽ",
+	"dcaron": "Ä",
+	"Dcy": "Ð”",
+	"dcy": "Ð´",
+	"ddagger": "â€¡",
+	"ddarr": "â‡Š",
+	"DD": "â……",
+	"dd": "â…†",
+	"DDotrahd": "â¤‘",
+	"ddotseq": "â©·",
+	"deg": "Â°",
+	"Del": "âˆ‡",
+	"Delta": "Î”",
+	"delta": "Î´",
+	"demptyv": "â¦±",
+	"dfisht": "â¥¿",
+	"Dfr": "ð”‡",
+	"dfr": "ð”¡",
+	"dHar": "â¥¥",
+	"dharl": "â‡ƒ",
+	"dharr": "â‡‚",
+	"DiacriticalAcute": "Â´",
+	"DiacriticalDot": "Ë™",
+	"DiacriticalDoubleAcute": "Ë",
 	"DiacriticalGrave": "`",
-	"DiacriticalTilde": "˜",
-	"diam": "⋄",
-	"diamond": "⋄",
-	"Diamond": "⋄",
-	"diamondsuit": "♦",
-	"diams": "♦",
-	"die": "¨",
-	"DifferentialD": "ⅆ",
-	"digamma": "ϝ",
-	"disin": "⋲",
-	"div": "÷",
-	"divide": "÷",
-	"divideontimes": "⋇",
-	"divonx": "⋇",
-	"DJcy": "Ђ",
-	"djcy": "ђ",
-	"dlcorn": "⌞",
-	"dlcrop": "⌍",
+	"DiacriticalTilde": "Ëœ",
+	"diam": "â‹„",
+	"diamond": "â‹„",
+	"Diamond": "â‹„",
+	"diamondsuit": "â™¦",
+	"diams": "â™¦",
+	"die": "Â¨",
+	"DifferentialD": "â…†",
+	"digamma": "Ï",
+	"disin": "â‹²",
+	"div": "Ã·",
+	"divide": "Ã·",
+	"divideontimes": "â‹‡",
+	"divonx": "â‹‡",
+	"DJcy": "Ð‚",
+	"djcy": "Ñ’",
+	"dlcorn": "âŒž",
+	"dlcrop": "âŒ",
 	"dollar": "$",
-	"Dopf": "𝔻",
-	"dopf": "𝕕",
-	"Dot": "¨",
-	"dot": "˙",
-	"DotDot": "⃜",
-	"doteq": "≐",
-	"doteqdot": "≑",
-	"DotEqual": "≐",
-	"dotminus": "∸",
-	"dotplus": "∔",
-	"dotsquare": "⊡",
-	"doublebarwedge": "⌆",
-	"DoubleContourIntegral": "∯",
-	"DoubleDot": "¨",
-	"DoubleDownArrow": "⇓",
-	"DoubleLeftArrow": "⇐",
-	"DoubleLeftRightArrow": "⇔",
-	"DoubleLeftTee": "⫤",
-	"DoubleLongLeftArrow": "⟸",
-	"DoubleLongLeftRightArrow": "⟺",
-	"DoubleLongRightArrow": "⟹",
-	"DoubleRightArrow": "⇒",
-	"DoubleRightTee": "⊨",
-	"DoubleUpArrow": "⇑",
-	"DoubleUpDownArrow": "⇕",
-	"DoubleVerticalBar": "∥",
-	"DownArrowBar": "⤓",
-	"downarrow": "↓",
-	"DownArrow": "↓",
-	"Downarrow": "⇓",
-	"DownArrowUpArrow": "⇵",
-	"DownBreve": "̑",
-	"downdownarrows": "⇊",
-	"downharpoonleft": "⇃",
-	"downharpoonright": "⇂",
-	"DownLeftRightVector": "⥐",
-	"DownLeftTeeVector": "⥞",
-	"DownLeftVectorBar": "⥖",
-	"DownLeftVector": "↽",
-	"DownRightTeeVector": "⥟",
-	"DownRightVectorBar": "⥗",
-	"DownRightVector": "⇁",
-	"DownTeeArrow": "↧",
-	"DownTee": "⊤",
-	"drbkarow": "⤐",
-	"drcorn": "⌟",
-	"drcrop": "⌌",
-	"Dscr": "𝒟",
-	"dscr": "𝒹",
-	"DScy": "Ѕ",
-	"dscy": "ѕ",
-	"dsol": "⧶",
-	"Dstrok": "Đ",
-	"dstrok": "đ",
-	"dtdot": "⋱",
-	"dtri": "▿",
-	"dtrif": "▾",
-	"duarr": "⇵",
-	"duhar": "⥯",
-	"dwangle": "⦦",
-	"DZcy": "Џ",
-	"dzcy": "џ",
-	"dzigrarr": "⟿",
-	"Eacute": "É",
-	"eacute": "é",
-	"easter": "⩮",
-	"Ecaron": "Ě",
-	"ecaron": "ě",
-	"Ecirc": "Ê",
-	"ecirc": "ê",
-	"ecir": "≖",
-	"ecolon": "≕",
-	"Ecy": "Э",
-	"ecy": "э",
-	"eDDot": "⩷",
-	"Edot": "Ė",
-	"edot": "ė",
-	"eDot": "≑",
-	"ee": "ⅇ",
-	"efDot": "≒",
-	"Efr": "𝔈",
-	"efr": "𝔢",
-	"eg": "⪚",
-	"Egrave": "È",
-	"egrave": "è",
-	"egs": "⪖",
-	"egsdot": "⪘",
-	"el": "⪙",
-	"Element": "∈",
-	"elinters": "⏧",
-	"ell": "ℓ",
-	"els": "⪕",
-	"elsdot": "⪗",
-	"Emacr": "Ē",
-	"emacr": "ē",
-	"empty": "∅",
-	"emptyset": "∅",
-	"EmptySmallSquare": "◻",
-	"emptyv": "∅",
-	"EmptyVerySmallSquare": "▫",
-	"emsp13": " ",
-	"emsp14": " ",
-	"emsp": " ",
-	"ENG": "Ŋ",
-	"eng": "ŋ",
-	"ensp": " ",
-	"Eogon": "Ę",
-	"eogon": "ę",
-	"Eopf": "𝔼",
-	"eopf": "𝕖",
-	"epar": "⋕",
-	"eparsl": "⧣",
-	"eplus": "⩱",
-	"epsi": "ε",
-	"Epsilon": "Ε",
-	"epsilon": "ε",
-	"epsiv": "ϵ",
-	"eqcirc": "≖",
-	"eqcolon": "≕",
-	"eqsim": "≂",
-	"eqslantgtr": "⪖",
-	"eqslantless": "⪕",
-	"Equal": "⩵",
+	"Dopf": "ð”»",
+	"dopf": "ð••",
+	"Dot": "Â¨",
+	"dot": "Ë™",
+	"DotDot": "âƒœ",
+	"doteq": "â‰",
+	"doteqdot": "â‰‘",
+	"DotEqual": "â‰",
+	"dotminus": "âˆ¸",
+	"dotplus": "âˆ”",
+	"dotsquare": "âŠ¡",
+	"doublebarwedge": "âŒ†",
+	"DoubleContourIntegral": "âˆ¯",
+	"DoubleDot": "Â¨",
+	"DoubleDownArrow": "â‡“",
+	"DoubleLeftArrow": "â‡",
+	"DoubleLeftRightArrow": "â‡”",
+	"DoubleLeftTee": "â«¤",
+	"DoubleLongLeftArrow": "âŸ¸",
+	"DoubleLongLeftRightArrow": "âŸº",
+	"DoubleLongRightArrow": "âŸ¹",
+	"DoubleRightArrow": "â‡’",
+	"DoubleRightTee": "âŠ¨",
+	"DoubleUpArrow": "â‡‘",
+	"DoubleUpDownArrow": "â‡•",
+	"DoubleVerticalBar": "âˆ¥",
+	"DownArrowBar": "â¤“",
+	"downarrow": "â†“",
+	"DownArrow": "â†“",
+	"Downarrow": "â‡“",
+	"DownArrowUpArrow": "â‡µ",
+	"DownBreve": "Ì‘",
+	"downdownarrows": "â‡Š",
+	"downharpoonleft": "â‡ƒ",
+	"downharpoonright": "â‡‚",
+	"DownLeftRightVector": "â¥",
+	"DownLeftTeeVector": "â¥ž",
+	"DownLeftVectorBar": "â¥–",
+	"DownLeftVector": "â†½",
+	"DownRightTeeVector": "â¥Ÿ",
+	"DownRightVectorBar": "â¥—",
+	"DownRightVector": "â‡",
+	"DownTeeArrow": "â†§",
+	"DownTee": "âŠ¤",
+	"drbkarow": "â¤",
+	"drcorn": "âŒŸ",
+	"drcrop": "âŒŒ",
+	"Dscr": "ð’Ÿ",
+	"dscr": "ð’¹",
+	"DScy": "Ð…",
+	"dscy": "Ñ•",
+	"dsol": "â§¶",
+	"Dstrok": "Ä",
+	"dstrok": "Ä‘",
+	"dtdot": "â‹±",
+	"dtri": "â–¿",
+	"dtrif": "â–¾",
+	"duarr": "â‡µ",
+	"duhar": "â¥¯",
+	"dwangle": "â¦¦",
+	"DZcy": "Ð",
+	"dzcy": "ÑŸ",
+	"dzigrarr": "âŸ¿",
+	"Eacute": "Ã‰",
+	"eacute": "Ã©",
+	"easter": "â©®",
+	"Ecaron": "Äš",
+	"ecaron": "Ä›",
+	"Ecirc": "ÃŠ",
+	"ecirc": "Ãª",
+	"ecir": "â‰–",
+	"ecolon": "â‰•",
+	"Ecy": "Ð­",
+	"ecy": "Ñ",
+	"eDDot": "â©·",
+	"Edot": "Ä–",
+	"edot": "Ä—",
+	"eDot": "â‰‘",
+	"ee": "â…‡",
+	"efDot": "â‰’",
+	"Efr": "ð”ˆ",
+	"efr": "ð”¢",
+	"eg": "âªš",
+	"Egrave": "Ãˆ",
+	"egrave": "Ã¨",
+	"egs": "âª–",
+	"egsdot": "âª˜",
+	"el": "âª™",
+	"Element": "âˆˆ",
+	"elinters": "â§",
+	"ell": "â„“",
+	"els": "âª•",
+	"elsdot": "âª—",
+	"Emacr": "Ä’",
+	"emacr": "Ä“",
+	"empty": "âˆ…",
+	"emptyset": "âˆ…",
+	"EmptySmallSquare": "â—»",
+	"emptyv": "âˆ…",
+	"EmptyVerySmallSquare": "â–«",
+	"emsp13": "â€„",
+	"emsp14": "â€…",
+	"emsp": "â€ƒ",
+	"ENG": "ÅŠ",
+	"eng": "Å‹",
+	"ensp": "â€‚",
+	"Eogon": "Ä˜",
+	"eogon": "Ä™",
+	"Eopf": "ð”¼",
+	"eopf": "ð•–",
+	"epar": "â‹•",
+	"eparsl": "â§£",
+	"eplus": "â©±",
+	"epsi": "Îµ",
+	"Epsilon": "Î•",
+	"epsilon": "Îµ",
+	"epsiv": "Ïµ",
+	"eqcirc": "â‰–",
+	"eqcolon": "â‰•",
+	"eqsim": "â‰‚",
+	"eqslantgtr": "âª–",
+	"eqslantless": "âª•",
+	"Equal": "â©µ",
 	"equals": "=",
-	"EqualTilde": "≂",
-	"equest": "≟",
-	"Equilibrium": "⇌",
-	"equiv": "≡",
-	"equivDD": "⩸",
-	"eqvparsl": "⧥",
-	"erarr": "⥱",
-	"erDot": "≓",
-	"escr": "ℯ",
-	"Escr": "ℰ",
-	"esdot": "≐",
-	"Esim": "⩳",
-	"esim": "≂",
-	"Eta": "Η",
-	"eta": "η",
-	"ETH": "Ð",
-	"eth": "ð",
-	"Euml": "Ë",
-	"euml": "ë",
-	"euro": "€",
+	"EqualTilde": "â‰‚",
+	"equest": "â‰Ÿ",
+	"Equilibrium": "â‡Œ",
+	"equiv": "â‰¡",
+	"equivDD": "â©¸",
+	"eqvparsl": "â§¥",
+	"erarr": "â¥±",
+	"erDot": "â‰“",
+	"escr": "â„¯",
+	"Escr": "â„°",
+	"esdot": "â‰",
+	"Esim": "â©³",
+	"esim": "â‰‚",
+	"Eta": "Î—",
+	"eta": "Î·",
+	"ETH": "Ã",
+	"eth": "Ã°",
+	"Euml": "Ã‹",
+	"euml": "Ã«",
+	"euro": "â‚¬",
 	"excl": "!",
-	"exist": "∃",
-	"Exists": "∃",
-	"expectation": "ℰ",
-	"exponentiale": "ⅇ",
-	"ExponentialE": "ⅇ",
-	"fallingdotseq": "≒",
-	"Fcy": "Ф",
-	"fcy": "ф",
-	"female": "♀",
-	"ffilig": "ﬃ",
-	"fflig": "ﬀ",
-	"ffllig": "ﬄ",
-	"Ffr": "𝔉",
-	"ffr": "𝔣",
-	"filig": "ﬁ",
-	"FilledSmallSquare": "◼",
-	"FilledVerySmallSquare": "▪",
+	"exist": "âˆƒ",
+	"Exists": "âˆƒ",
+	"expectation": "â„°",
+	"exponentiale": "â…‡",
+	"ExponentialE": "â…‡",
+	"fallingdotseq": "â‰’",
+	"Fcy": "Ð¤",
+	"fcy": "Ñ„",
+	"female": "â™€",
+	"ffilig": "ï¬ƒ",
+	"fflig": "ï¬€",
+	"ffllig": "ï¬„",
+	"Ffr": "ð”‰",
+	"ffr": "ð”£",
+	"filig": "ï¬",
+	"FilledSmallSquare": "â—¼",
+	"FilledVerySmallSquare": "â–ª",
 	"fjlig": "fj",
-	"flat": "♭",
-	"fllig": "ﬂ",
-	"fltns": "▱",
-	"fnof": "ƒ",
-	"Fopf": "𝔽",
-	"fopf": "𝕗",
-	"forall": "∀",
-	"ForAll": "∀",
-	"fork": "⋔",
-	"forkv": "⫙",
-	"Fouriertrf": "ℱ",
-	"fpartint": "⨍",
-	"frac12": "½",
-	"frac13": "⅓",
-	"frac14": "¼",
-	"frac15": "⅕",
-	"frac16": "⅙",
-	"frac18": "⅛",
-	"frac23": "⅔",
-	"frac25": "⅖",
-	"frac34": "¾",
-	"frac35": "⅗",
-	"frac38": "⅜",
-	"frac45": "⅘",
-	"frac56": "⅚",
-	"frac58": "⅝",
-	"frac78": "⅞",
-	"frasl": "⁄",
-	"frown": "⌢",
-	"fscr": "𝒻",
-	"Fscr": "ℱ",
-	"gacute": "ǵ",
-	"Gamma": "Γ",
-	"gamma": "γ",
-	"Gammad": "Ϝ",
-	"gammad": "ϝ",
-	"gap": "⪆",
-	"Gbreve": "Ğ",
-	"gbreve": "ğ",
-	"Gcedil": "Ģ",
-	"Gcirc": "Ĝ",
-	"gcirc": "ĝ",
-	"Gcy": "Г",
-	"gcy": "г",
-	"Gdot": "Ġ",
-	"gdot": "ġ",
-	"ge": "≥",
-	"gE": "≧",
-	"gEl": "⪌",
-	"gel": "⋛",
-	"geq": "≥",
-	"geqq": "≧",
-	"geqslant": "⩾",
-	"gescc": "⪩",
-	"ges": "⩾",
-	"gesdot": "⪀",
-	"gesdoto": "⪂",
-	"gesdotol": "⪄",
-	"gesl": "⋛︀",
-	"gesles": "⪔",
-	"Gfr": "𝔊",
-	"gfr": "𝔤",
-	"gg": "≫",
-	"Gg": "⋙",
-	"ggg": "⋙",
-	"gimel": "ℷ",
-	"GJcy": "Ѓ",
-	"gjcy": "ѓ",
-	"gla": "⪥",
-	"gl": "≷",
-	"glE": "⪒",
-	"glj": "⪤",
-	"gnap": "⪊",
-	"gnapprox": "⪊",
-	"gne": "⪈",
-	"gnE": "≩",
-	"gneq": "⪈",
-	"gneqq": "≩",
-	"gnsim": "⋧",
-	"Gopf": "𝔾",
-	"gopf": "𝕘",
+	"flat": "â™­",
+	"fllig": "ï¬‚",
+	"fltns": "â–±",
+	"fnof": "Æ’",
+	"Fopf": "ð”½",
+	"fopf": "ð•—",
+	"forall": "âˆ€",
+	"ForAll": "âˆ€",
+	"fork": "â‹”",
+	"forkv": "â«™",
+	"Fouriertrf": "â„±",
+	"fpartint": "â¨",
+	"frac12": "Â½",
+	"frac13": "â…“",
+	"frac14": "Â¼",
+	"frac15": "â…•",
+	"frac16": "â…™",
+	"frac18": "â…›",
+	"frac23": "â…”",
+	"frac25": "â…–",
+	"frac34": "Â¾",
+	"frac35": "â…—",
+	"frac38": "â…œ",
+	"frac45": "â…˜",
+	"frac56": "â…š",
+	"frac58": "â…",
+	"frac78": "â…ž",
+	"frasl": "â„",
+	"frown": "âŒ¢",
+	"fscr": "ð’»",
+	"Fscr": "â„±",
+	"gacute": "Çµ",
+	"Gamma": "Î“",
+	"gamma": "Î³",
+	"Gammad": "Ïœ",
+	"gammad": "Ï",
+	"gap": "âª†",
+	"Gbreve": "Äž",
+	"gbreve": "ÄŸ",
+	"Gcedil": "Ä¢",
+	"Gcirc": "Äœ",
+	"gcirc": "Ä",
+	"Gcy": "Ð“",
+	"gcy": "Ð³",
+	"Gdot": "Ä ",
+	"gdot": "Ä¡",
+	"ge": "â‰¥",
+	"gE": "â‰§",
+	"gEl": "âªŒ",
+	"gel": "â‹›",
+	"geq": "â‰¥",
+	"geqq": "â‰§",
+	"geqslant": "â©¾",
+	"gescc": "âª©",
+	"ges": "â©¾",
+	"gesdot": "âª€",
+	"gesdoto": "âª‚",
+	"gesdotol": "âª„",
+	"gesl": "â‹›ï¸€",
+	"gesles": "âª”",
+	"Gfr": "ð”Š",
+	"gfr": "ð”¤",
+	"gg": "â‰«",
+	"Gg": "â‹™",
+	"ggg": "â‹™",
+	"gimel": "â„·",
+	"GJcy": "Ðƒ",
+	"gjcy": "Ñ“",
+	"gla": "âª¥",
+	"gl": "â‰·",
+	"glE": "âª’",
+	"glj": "âª¤",
+	"gnap": "âªŠ",
+	"gnapprox": "âªŠ",
+	"gne": "âªˆ",
+	"gnE": "â‰©",
+	"gneq": "âªˆ",
+	"gneqq": "â‰©",
+	"gnsim": "â‹§",
+	"Gopf": "ð”¾",
+	"gopf": "ð•˜",
 	"grave": "`",
-	"GreaterEqual": "≥",
-	"GreaterEqualLess": "⋛",
-	"GreaterFullEqual": "≧",
-	"GreaterGreater": "⪢",
-	"GreaterLess": "≷",
-	"GreaterSlantEqual": "⩾",
-	"GreaterTilde": "≳",
-	"Gscr": "𝒢",
-	"gscr": "ℊ",
-	"gsim": "≳",
-	"gsime": "⪎",
-	"gsiml": "⪐",
-	"gtcc": "⪧",
-	"gtcir": "⩺",
+	"GreaterEqual": "â‰¥",
+	"GreaterEqualLess": "â‹›",
+	"GreaterFullEqual": "â‰§",
+	"GreaterGreater": "âª¢",
+	"GreaterLess": "â‰·",
+	"GreaterSlantEqual": "â©¾",
+	"GreaterTilde": "â‰³",
+	"Gscr": "ð’¢",
+	"gscr": "â„Š",
+	"gsim": "â‰³",
+	"gsime": "âªŽ",
+	"gsiml": "âª",
+	"gtcc": "âª§",
+	"gtcir": "â©º",
 	"gt": ">",
 	"GT": ">",
-	"Gt": "≫",
-	"gtdot": "⋗",
-	"gtlPar": "⦕",
-	"gtquest": "⩼",
-	"gtrapprox": "⪆",
-	"gtrarr": "⥸",
-	"gtrdot": "⋗",
-	"gtreqless": "⋛",
-	"gtreqqless": "⪌",
-	"gtrless": "≷",
-	"gtrsim": "≳",
-	"gvertneqq": "≩︀",
-	"gvnE": "≩︀",
-	"Hacek": "ˇ",
-	"hairsp": " ",
-	"half": "½",
-	"hamilt": "ℋ",
-	"HARDcy": "Ъ",
-	"hardcy": "ъ",
-	"harrcir": "⥈",
-	"harr": "↔",
-	"hArr": "⇔",
-	"harrw": "↭",
+	"Gt": "â‰«",
+	"gtdot": "â‹—",
+	"gtlPar": "â¦•",
+	"gtquest": "â©¼",
+	"gtrapprox": "âª†",
+	"gtrarr": "â¥¸",
+	"gtrdot": "â‹—",
+	"gtreqless": "â‹›",
+	"gtreqqless": "âªŒ",
+	"gtrless": "â‰·",
+	"gtrsim": "â‰³",
+	"gvertneqq": "â‰©ï¸€",
+	"gvnE": "â‰©ï¸€",
+	"Hacek": "Ë‡",
+	"hairsp": "â€Š",
+	"half": "Â½",
+	"hamilt": "â„‹",
+	"HARDcy": "Ðª",
+	"hardcy": "ÑŠ",
+	"harrcir": "â¥ˆ",
+	"harr": "â†”",
+	"hArr": "â‡”",
+	"harrw": "â†­",
 	"Hat": "^",
-	"hbar": "ℏ",
-	"Hcirc": "Ĥ",
-	"hcirc": "ĥ",
-	"hearts": "♥",
-	"heartsuit": "♥",
-	"hellip": "…",
-	"hercon": "⊹",
-	"hfr": "𝔥",
-	"Hfr": "ℌ",
-	"HilbertSpace": "ℋ",
-	"hksearow": "⤥",
-	"hkswarow": "⤦",
-	"hoarr": "⇿",
-	"homtht": "∻",
-	"hookleftarrow": "↩",
-	"hookrightarrow": "↪",
-	"hopf": "𝕙",
-	"Hopf": "ℍ",
-	"horbar": "―",
-	"HorizontalLine": "─",
-	"hscr": "𝒽",
-	"Hscr": "ℋ",
-	"hslash": "ℏ",
-	"Hstrok": "Ħ",
-	"hstrok": "ħ",
-	"HumpDownHump": "≎",
-	"HumpEqual": "≏",
-	"hybull": "⁃",
-	"hyphen": "‐",
-	"Iacute": "Í",
-	"iacute": "í",
-	"ic": "⁣",
-	"Icirc": "Î",
-	"icirc": "î",
-	"Icy": "И",
-	"icy": "и",
-	"Idot": "İ",
-	"IEcy": "Е",
-	"iecy": "е",
-	"iexcl": "¡",
-	"iff": "⇔",
-	"ifr": "𝔦",
-	"Ifr": "ℑ",
-	"Igrave": "Ì",
-	"igrave": "ì",
-	"ii": "ⅈ",
-	"iiiint": "⨌",
-	"iiint": "∭",
-	"iinfin": "⧜",
-	"iiota": "℩",
-	"IJlig": "Ĳ",
-	"ijlig": "ĳ",
-	"Imacr": "Ī",
-	"imacr": "ī",
-	"image": "ℑ",
-	"ImaginaryI": "ⅈ",
-	"imagline": "ℐ",
-	"imagpart": "ℑ",
-	"imath": "ı",
-	"Im": "ℑ",
-	"imof": "⊷",
-	"imped": "Ƶ",
-	"Implies": "⇒",
-	"incare": "℅",
-	"in": "∈",
-	"infin": "∞",
-	"infintie": "⧝",
-	"inodot": "ı",
-	"intcal": "⊺",
-	"int": "∫",
-	"Int": "∬",
-	"integers": "ℤ",
-	"Integral": "∫",
-	"intercal": "⊺",
-	"Intersection": "⋂",
-	"intlarhk": "⨗",
-	"intprod": "⨼",
-	"InvisibleComma": "⁣",
-	"InvisibleTimes": "⁢",
-	"IOcy": "Ё",
-	"iocy": "ё",
-	"Iogon": "Į",
-	"iogon": "į",
-	"Iopf": "𝕀",
-	"iopf": "𝕚",
-	"Iota": "Ι",
-	"iota": "ι",
-	"iprod": "⨼",
-	"iquest": "¿",
-	"iscr": "𝒾",
-	"Iscr": "ℐ",
-	"isin": "∈",
-	"isindot": "⋵",
-	"isinE": "⋹",
-	"isins": "⋴",
-	"isinsv": "⋳",
-	"isinv": "∈",
-	"it": "⁢",
-	"Itilde": "Ĩ",
-	"itilde": "ĩ",
-	"Iukcy": "І",
-	"iukcy": "і",
-	"Iuml": "Ï",
-	"iuml": "ï",
-	"Jcirc": "Ĵ",
-	"jcirc": "ĵ",
-	"Jcy": "Й",
-	"jcy": "й",
-	"Jfr": "𝔍",
-	"jfr": "𝔧",
-	"jmath": "ȷ",
-	"Jopf": "𝕁",
-	"jopf": "𝕛",
-	"Jscr": "𝒥",
-	"jscr": "𝒿",
-	"Jsercy": "Ј",
-	"jsercy": "ј",
-	"Jukcy": "Є",
-	"jukcy": "є",
-	"Kappa": "Κ",
-	"kappa": "κ",
-	"kappav": "ϰ",
-	"Kcedil": "Ķ",
-	"kcedil": "ķ",
-	"Kcy": "К",
-	"kcy": "к",
-	"Kfr": "𝔎",
-	"kfr": "𝔨",
-	"kgreen": "ĸ",
-	"KHcy": "Х",
-	"khcy": "х",
-	"KJcy": "Ќ",
-	"kjcy": "ќ",
-	"Kopf": "𝕂",
-	"kopf": "𝕜",
-	"Kscr": "𝒦",
-	"kscr": "𝓀",
-	"lAarr": "⇚",
-	"Lacute": "Ĺ",
-	"lacute": "ĺ",
-	"laemptyv": "⦴",
-	"lagran": "ℒ",
-	"Lambda": "Λ",
-	"lambda": "λ",
-	"lang": "⟨",
-	"Lang": "⟪",
-	"langd": "⦑",
-	"langle": "⟨",
-	"lap": "⪅",
-	"Laplacetrf": "ℒ",
-	"laquo": "«",
-	"larrb": "⇤",
-	"larrbfs": "⤟",
-	"larr": "←",
-	"Larr": "↞",
-	"lArr": "⇐",
-	"larrfs": "⤝",
-	"larrhk": "↩",
-	"larrlp": "↫",
-	"larrpl": "⤹",
-	"larrsim": "⥳",
-	"larrtl": "↢",
-	"latail": "⤙",
-	"lAtail": "⤛",
-	"lat": "⪫",
-	"late": "⪭",
-	"lates": "⪭︀",
-	"lbarr": "⤌",
-	"lBarr": "⤎",
-	"lbbrk": "❲",
+	"hbar": "â„",
+	"Hcirc": "Ä¤",
+	"hcirc": "Ä¥",
+	"hearts": "â™¥",
+	"heartsuit": "â™¥",
+	"hellip": "â€¦",
+	"hercon": "âŠ¹",
+	"hfr": "ð”¥",
+	"Hfr": "â„Œ",
+	"HilbertSpace": "â„‹",
+	"hksearow": "â¤¥",
+	"hkswarow": "â¤¦",
+	"hoarr": "â‡¿",
+	"homtht": "âˆ»",
+	"hookleftarrow": "â†©",
+	"hookrightarrow": "â†ª",
+	"hopf": "ð•™",
+	"Hopf": "â„",
+	"horbar": "â€•",
+	"HorizontalLine": "â”€",
+	"hscr": "ð’½",
+	"Hscr": "â„‹",
+	"hslash": "â„",
+	"Hstrok": "Ä¦",
+	"hstrok": "Ä§",
+	"HumpDownHump": "â‰Ž",
+	"HumpEqual": "â‰",
+	"hybull": "âƒ",
+	"hyphen": "â€",
+	"Iacute": "Ã",
+	"iacute": "Ã­",
+	"ic": "â£",
+	"Icirc": "ÃŽ",
+	"icirc": "Ã®",
+	"Icy": "Ð˜",
+	"icy": "Ð¸",
+	"Idot": "Ä°",
+	"IEcy": "Ð•",
+	"iecy": "Ðµ",
+	"iexcl": "Â¡",
+	"iff": "â‡”",
+	"ifr": "ð”¦",
+	"Ifr": "â„‘",
+	"Igrave": "ÃŒ",
+	"igrave": "Ã¬",
+	"ii": "â…ˆ",
+	"iiiint": "â¨Œ",
+	"iiint": "âˆ­",
+	"iinfin": "â§œ",
+	"iiota": "â„©",
+	"IJlig": "Ä²",
+	"ijlig": "Ä³",
+	"Imacr": "Äª",
+	"imacr": "Ä«",
+	"image": "â„‘",
+	"ImaginaryI": "â…ˆ",
+	"imagline": "â„",
+	"imagpart": "â„‘",
+	"imath": "Ä±",
+	"Im": "â„‘",
+	"imof": "âŠ·",
+	"imped": "Æµ",
+	"Implies": "â‡’",
+	"incare": "â„…",
+	"in": "âˆˆ",
+	"infin": "âˆž",
+	"infintie": "â§",
+	"inodot": "Ä±",
+	"intcal": "âŠº",
+	"int": "âˆ«",
+	"Int": "âˆ¬",
+	"integers": "â„¤",
+	"Integral": "âˆ«",
+	"intercal": "âŠº",
+	"Intersection": "â‹‚",
+	"intlarhk": "â¨—",
+	"intprod": "â¨¼",
+	"InvisibleComma": "â£",
+	"InvisibleTimes": "â¢",
+	"IOcy": "Ð",
+	"iocy": "Ñ‘",
+	"Iogon": "Ä®",
+	"iogon": "Ä¯",
+	"Iopf": "ð•€",
+	"iopf": "ð•š",
+	"Iota": "Î™",
+	"iota": "Î¹",
+	"iprod": "â¨¼",
+	"iquest": "Â¿",
+	"iscr": "ð’¾",
+	"Iscr": "â„",
+	"isin": "âˆˆ",
+	"isindot": "â‹µ",
+	"isinE": "â‹¹",
+	"isins": "â‹´",
+	"isinsv": "â‹³",
+	"isinv": "âˆˆ",
+	"it": "â¢",
+	"Itilde": "Ä¨",
+	"itilde": "Ä©",
+	"Iukcy": "Ð†",
+	"iukcy": "Ñ–",
+	"Iuml": "Ã",
+	"iuml": "Ã¯",
+	"Jcirc": "Ä´",
+	"jcirc": "Äµ",
+	"Jcy": "Ð™",
+	"jcy": "Ð¹",
+	"Jfr": "ð”",
+	"jfr": "ð”§",
+	"jmath": "È·",
+	"Jopf": "ð•",
+	"jopf": "ð•›",
+	"Jscr": "ð’¥",
+	"jscr": "ð’¿",
+	"Jsercy": "Ðˆ",
+	"jsercy": "Ñ˜",
+	"Jukcy": "Ð„",
+	"jukcy": "Ñ”",
+	"Kappa": "Îš",
+	"kappa": "Îº",
+	"kappav": "Ï°",
+	"Kcedil": "Ä¶",
+	"kcedil": "Ä·",
+	"Kcy": "Ðš",
+	"kcy": "Ðº",
+	"Kfr": "ð”Ž",
+	"kfr": "ð”¨",
+	"kgreen": "Ä¸",
+	"KHcy": "Ð¥",
+	"khcy": "Ñ…",
+	"KJcy": "ÐŒ",
+	"kjcy": "Ñœ",
+	"Kopf": "ð•‚",
+	"kopf": "ð•œ",
+	"Kscr": "ð’¦",
+	"kscr": "ð“€",
+	"lAarr": "â‡š",
+	"Lacute": "Ä¹",
+	"lacute": "Äº",
+	"laemptyv": "â¦´",
+	"lagran": "â„’",
+	"Lambda": "Î›",
+	"lambda": "Î»",
+	"lang": "âŸ¨",
+	"Lang": "âŸª",
+	"langd": "â¦‘",
+	"langle": "âŸ¨",
+	"lap": "âª…",
+	"Laplacetrf": "â„’",
+	"laquo": "Â«",
+	"larrb": "â‡¤",
+	"larrbfs": "â¤Ÿ",
+	"larr": "â†",
+	"Larr": "â†ž",
+	"lArr": "â‡",
+	"larrfs": "â¤",
+	"larrhk": "â†©",
+	"larrlp": "â†«",
+	"larrpl": "â¤¹",
+	"larrsim": "â¥³",
+	"larrtl": "â†¢",
+	"latail": "â¤™",
+	"lAtail": "â¤›",
+	"lat": "âª«",
+	"late": "âª­",
+	"lates": "âª­ï¸€",
+	"lbarr": "â¤Œ",
+	"lBarr": "â¤Ž",
+	"lbbrk": "â²",
 	"lbrace": "{",
 	"lbrack": "[",
-	"lbrke": "⦋",
-	"lbrksld": "⦏",
-	"lbrkslu": "⦍",
-	"Lcaron": "Ľ",
-	"lcaron": "ľ",
-	"Lcedil": "Ļ",
-	"lcedil": "ļ",
-	"lceil": "⌈",
+	"lbrke": "â¦‹",
+	"lbrksld": "â¦",
+	"lbrkslu": "â¦",
+	"Lcaron": "Ä½",
+	"lcaron": "Ä¾",
+	"Lcedil": "Ä»",
+	"lcedil": "Ä¼",
+	"lceil": "âŒˆ",
 	"lcub": "{",
-	"Lcy": "Л",
-	"lcy": "л",
-	"ldca": "⤶",
-	"ldquo": "“",
-	"ldquor": "„",
-	"ldrdhar": "⥧",
-	"ldrushar": "⥋",
-	"ldsh": "↲",
-	"le": "≤",
-	"lE": "≦",
-	"LeftAngleBracket": "⟨",
-	"LeftArrowBar": "⇤",
-	"leftarrow": "←",
-	"LeftArrow": "←",
-	"Leftarrow": "⇐",
-	"LeftArrowRightArrow": "⇆",
-	"leftarrowtail": "↢",
-	"LeftCeiling": "⌈",
-	"LeftDoubleBracket": "⟦",
-	"LeftDownTeeVector": "⥡",
-	"LeftDownVectorBar": "⥙",
-	"LeftDownVector": "⇃",
-	"LeftFloor": "⌊",
-	"leftharpoondown": "↽",
-	"leftharpoonup": "↼",
-	"leftleftarrows": "⇇",
-	"leftrightarrow": "↔",
-	"LeftRightArrow": "↔",
-	"Leftrightarrow": "⇔",
-	"leftrightarrows": "⇆",
-	"leftrightharpoons": "⇋",
-	"leftrightsquigarrow": "↭",
-	"LeftRightVector": "⥎",
-	"LeftTeeArrow": "↤",
-	"LeftTee": "⊣",
-	"LeftTeeVector": "⥚",
-	"leftthreetimes": "⋋",
-	"LeftTriangleBar": "⧏",
-	"LeftTriangle": "⊲",
-	"LeftTriangleEqual": "⊴",
-	"LeftUpDownVector": "⥑",
-	"LeftUpTeeVector": "⥠",
-	"LeftUpVectorBar": "⥘",
-	"LeftUpVector": "↿",
-	"LeftVectorBar": "⥒",
-	"LeftVector": "↼",
-	"lEg": "⪋",
-	"leg": "⋚",
-	"leq": "≤",
-	"leqq": "≦",
-	"leqslant": "⩽",
-	"lescc": "⪨",
-	"les": "⩽",
-	"lesdot": "⩿",
-	"lesdoto": "⪁",
-	"lesdotor": "⪃",
-	"lesg": "⋚︀",
-	"lesges": "⪓",
-	"lessapprox": "⪅",
-	"lessdot": "⋖",
-	"lesseqgtr": "⋚",
-	"lesseqqgtr": "⪋",
-	"LessEqualGreater": "⋚",
-	"LessFullEqual": "≦",
-	"LessGreater": "≶",
-	"lessgtr": "≶",
-	"LessLess": "⪡",
-	"lesssim": "≲",
-	"LessSlantEqual": "⩽",
-	"LessTilde": "≲",
-	"lfisht": "⥼",
-	"lfloor": "⌊",
-	"Lfr": "𝔏",
-	"lfr": "𝔩",
-	"lg": "≶",
-	"lgE": "⪑",
-	"lHar": "⥢",
-	"lhard": "↽",
-	"lharu": "↼",
-	"lharul": "⥪",
-	"lhblk": "▄",
-	"LJcy": "Љ",
-	"ljcy": "љ",
-	"llarr": "⇇",
-	"ll": "≪",
-	"Ll": "⋘",
-	"llcorner": "⌞",
-	"Lleftarrow": "⇚",
-	"llhard": "⥫",
-	"lltri": "◺",
-	"Lmidot": "Ŀ",
-	"lmidot": "ŀ",
-	"lmoustache": "⎰",
-	"lmoust": "⎰",
-	"lnap": "⪉",
-	"lnapprox": "⪉",
-	"lne": "⪇",
-	"lnE": "≨",
-	"lneq": "⪇",
-	"lneqq": "≨",
-	"lnsim": "⋦",
-	"loang": "⟬",
-	"loarr": "⇽",
-	"lobrk": "⟦",
-	"longleftarrow": "⟵",
-	"LongLeftArrow": "⟵",
-	"Longleftarrow": "⟸",
-	"longleftrightarrow": "⟷",
-	"LongLeftRightArrow": "⟷",
-	"Longleftrightarrow": "⟺",
-	"longmapsto": "⟼",
-	"longrightarrow": "⟶",
-	"LongRightArrow": "⟶",
-	"Longrightarrow": "⟹",
-	"looparrowleft": "↫",
-	"looparrowright": "↬",
-	"lopar": "⦅",
-	"Lopf": "𝕃",
-	"lopf": "𝕝",
-	"loplus": "⨭",
-	"lotimes": "⨴",
-	"lowast": "∗",
+	"Lcy": "Ð›",
+	"lcy": "Ð»",
+	"ldca": "â¤¶",
+	"ldquo": "â€œ",
+	"ldquor": "â€ž",
+	"ldrdhar": "â¥§",
+	"ldrushar": "â¥‹",
+	"ldsh": "â†²",
+	"le": "â‰¤",
+	"lE": "â‰¦",
+	"LeftAngleBracket": "âŸ¨",
+	"LeftArrowBar": "â‡¤",
+	"leftarrow": "â†",
+	"LeftArrow": "â†",
+	"Leftarrow": "â‡",
+	"LeftArrowRightArrow": "â‡†",
+	"leftarrowtail": "â†¢",
+	"LeftCeiling": "âŒˆ",
+	"LeftDoubleBracket": "âŸ¦",
+	"LeftDownTeeVector": "â¥¡",
+	"LeftDownVectorBar": "â¥™",
+	"LeftDownVector": "â‡ƒ",
+	"LeftFloor": "âŒŠ",
+	"leftharpoondown": "â†½",
+	"leftharpoonup": "â†¼",
+	"leftleftarrows": "â‡‡",
+	"leftrightarrow": "â†”",
+	"LeftRightArrow": "â†”",
+	"Leftrightarrow": "â‡”",
+	"leftrightarrows": "â‡†",
+	"leftrightharpoons": "â‡‹",
+	"leftrightsquigarrow": "â†­",
+	"LeftRightVector": "â¥Ž",
+	"LeftTeeArrow": "â†¤",
+	"LeftTee": "âŠ£",
+	"LeftTeeVector": "â¥š",
+	"leftthreetimes": "â‹‹",
+	"LeftTriangleBar": "â§",
+	"LeftTriangle": "âŠ²",
+	"LeftTriangleEqual": "âŠ´",
+	"LeftUpDownVector": "â¥‘",
+	"LeftUpTeeVector": "â¥ ",
+	"LeftUpVectorBar": "â¥˜",
+	"LeftUpVector": "â†¿",
+	"LeftVectorBar": "â¥’",
+	"LeftVector": "â†¼",
+	"lEg": "âª‹",
+	"leg": "â‹š",
+	"leq": "â‰¤",
+	"leqq": "â‰¦",
+	"leqslant": "â©½",
+	"lescc": "âª¨",
+	"les": "â©½",
+	"lesdot": "â©¿",
+	"lesdoto": "âª",
+	"lesdotor": "âªƒ",
+	"lesg": "â‹šï¸€",
+	"lesges": "âª“",
+	"lessapprox": "âª…",
+	"lessdot": "â‹–",
+	"lesseqgtr": "â‹š",
+	"lesseqqgtr": "âª‹",
+	"LessEqualGreater": "â‹š",
+	"LessFullEqual": "â‰¦",
+	"LessGreater": "â‰¶",
+	"lessgtr": "â‰¶",
+	"LessLess": "âª¡",
+	"lesssim": "â‰²",
+	"LessSlantEqual": "â©½",
+	"LessTilde": "â‰²",
+	"lfisht": "â¥¼",
+	"lfloor": "âŒŠ",
+	"Lfr": "ð”",
+	"lfr": "ð”©",
+	"lg": "â‰¶",
+	"lgE": "âª‘",
+	"lHar": "â¥¢",
+	"lhard": "â†½",
+	"lharu": "â†¼",
+	"lharul": "â¥ª",
+	"lhblk": "â–„",
+	"LJcy": "Ð‰",
+	"ljcy": "Ñ™",
+	"llarr": "â‡‡",
+	"ll": "â‰ª",
+	"Ll": "â‹˜",
+	"llcorner": "âŒž",
+	"Lleftarrow": "â‡š",
+	"llhard": "â¥«",
+	"lltri": "â—º",
+	"Lmidot": "Ä¿",
+	"lmidot": "Å€",
+	"lmoustache": "âŽ°",
+	"lmoust": "âŽ°",
+	"lnap": "âª‰",
+	"lnapprox": "âª‰",
+	"lne": "âª‡",
+	"lnE": "â‰¨",
+	"lneq": "âª‡",
+	"lneqq": "â‰¨",
+	"lnsim": "â‹¦",
+	"loang": "âŸ¬",
+	"loarr": "â‡½",
+	"lobrk": "âŸ¦",
+	"longleftarrow": "âŸµ",
+	"LongLeftArrow": "âŸµ",
+	"Longleftarrow": "âŸ¸",
+	"longleftrightarrow": "âŸ·",
+	"LongLeftRightArrow": "âŸ·",
+	"Longleftrightarrow": "âŸº",
+	"longmapsto": "âŸ¼",
+	"longrightarrow": "âŸ¶",
+	"LongRightArrow": "âŸ¶",
+	"Longrightarrow": "âŸ¹",
+	"looparrowleft": "â†«",
+	"looparrowright": "â†¬",
+	"lopar": "â¦…",
+	"Lopf": "ð•ƒ",
+	"lopf": "ð•",
+	"loplus": "â¨­",
+	"lotimes": "â¨´",
+	"lowast": "âˆ—",
 	"lowbar": "_",
-	"LowerLeftArrow": "↙",
-	"LowerRightArrow": "↘",
-	"loz": "◊",
-	"lozenge": "◊",
-	"lozf": "⧫",
+	"LowerLeftArrow": "â†™",
+	"LowerRightArrow": "â†˜",
+	"loz": "â—Š",
+	"lozenge": "â—Š",
+	"lozf": "â§«",
 	"lpar": "(",
-	"lparlt": "⦓",
-	"lrarr": "⇆",
-	"lrcorner": "⌟",
-	"lrhar": "⇋",
-	"lrhard": "⥭",
-	"lrm": "‎",
-	"lrtri": "⊿",
-	"lsaquo": "‹",
-	"lscr": "𝓁",
-	"Lscr": "ℒ",
-	"lsh": "↰",
-	"Lsh": "↰",
-	"lsim": "≲",
-	"lsime": "⪍",
-	"lsimg": "⪏",
+	"lparlt": "â¦“",
+	"lrarr": "â‡†",
+	"lrcorner": "âŒŸ",
+	"lrhar": "â‡‹",
+	"lrhard": "â¥­",
+	"lrm": "â€Ž",
+	"lrtri": "âŠ¿",
+	"lsaquo": "â€¹",
+	"lscr": "ð“",
+	"Lscr": "â„’",
+	"lsh": "â†°",
+	"Lsh": "â†°",
+	"lsim": "â‰²",
+	"lsime": "âª",
+	"lsimg": "âª",
 	"lsqb": "[",
-	"lsquo": "‘",
-	"lsquor": "‚",
-	"Lstrok": "Ł",
-	"lstrok": "ł",
-	"ltcc": "⪦",
-	"ltcir": "⩹",
+	"lsquo": "â€˜",
+	"lsquor": "â€š",
+	"Lstrok": "Å",
+	"lstrok": "Å‚",
+	"ltcc": "âª¦",
+	"ltcir": "â©¹",
 	"lt": "<",
 	"LT": "<",
-	"Lt": "≪",
-	"ltdot": "⋖",
-	"lthree": "⋋",
-	"ltimes": "⋉",
-	"ltlarr": "⥶",
-	"ltquest": "⩻",
-	"ltri": "◃",
-	"ltrie": "⊴",
-	"ltrif": "◂",
-	"ltrPar": "⦖",
-	"lurdshar": "⥊",
-	"luruhar": "⥦",
-	"lvertneqq": "≨︀",
-	"lvnE": "≨︀",
-	"macr": "¯",
-	"male": "♂",
-	"malt": "✠",
-	"maltese": "✠",
-	"Map": "⤅",
-	"map": "↦",
-	"mapsto": "↦",
-	"mapstodown": "↧",
-	"mapstoleft": "↤",
-	"mapstoup": "↥",
-	"marker": "▮",
-	"mcomma": "⨩",
-	"Mcy": "М",
-	"mcy": "м",
-	"mdash": "—",
-	"mDDot": "∺",
-	"measuredangle": "∡",
-	"MediumSpace": " ",
-	"Mellintrf": "ℳ",
-	"Mfr": "𝔐",
-	"mfr": "𝔪",
-	"mho": "℧",
-	"micro": "µ",
+	"Lt": "â‰ª",
+	"ltdot": "â‹–",
+	"lthree": "â‹‹",
+	"ltimes": "â‹‰",
+	"ltlarr": "â¥¶",
+	"ltquest": "â©»",
+	"ltri": "â—ƒ",
+	"ltrie": "âŠ´",
+	"ltrif": "â—‚",
+	"ltrPar": "â¦–",
+	"lurdshar": "â¥Š",
+	"luruhar": "â¥¦",
+	"lvertneqq": "â‰¨ï¸€",
+	"lvnE": "â‰¨ï¸€",
+	"macr": "Â¯",
+	"male": "â™‚",
+	"malt": "âœ ",
+	"maltese": "âœ ",
+	"Map": "â¤…",
+	"map": "â†¦",
+	"mapsto": "â†¦",
+	"mapstodown": "â†§",
+	"mapstoleft": "â†¤",
+	"mapstoup": "â†¥",
+	"marker": "â–®",
+	"mcomma": "â¨©",
+	"Mcy": "Ðœ",
+	"mcy": "Ð¼",
+	"mdash": "â€”",
+	"mDDot": "âˆº",
+	"measuredangle": "âˆ¡",
+	"MediumSpace": "âŸ",
+	"Mellintrf": "â„³",
+	"Mfr": "ð”",
+	"mfr": "ð”ª",
+	"mho": "â„§",
+	"micro": "Âµ",
 	"midast": "*",
-	"midcir": "⫰",
-	"mid": "∣",
-	"middot": "·",
-	"minusb": "⊟",
-	"minus": "−",
-	"minusd": "∸",
-	"minusdu": "⨪",
-	"MinusPlus": "∓",
-	"mlcp": "⫛",
-	"mldr": "…",
-	"mnplus": "∓",
-	"models": "⊧",
-	"Mopf": "𝕄",
-	"mopf": "𝕞",
-	"mp": "∓",
-	"mscr": "𝓂",
-	"Mscr": "ℳ",
-	"mstpos": "∾",
-	"Mu": "Μ",
-	"mu": "μ",
-	"multimap": "⊸",
-	"mumap": "⊸",
-	"nabla": "∇",
-	"Nacute": "Ń",
-	"nacute": "ń",
-	"nang": "∠⃒",
-	"nap": "≉",
-	"napE": "⩰̸",
-	"napid": "≋̸",
-	"napos": "ŉ",
-	"napprox": "≉",
-	"natural": "♮",
-	"naturals": "ℕ",
-	"natur": "♮",
-	"nbsp": " ",
-	"nbump": "≎̸",
-	"nbumpe": "≏̸",
-	"ncap": "⩃",
-	"Ncaron": "Ň",
-	"ncaron": "ň",
-	"Ncedil": "Ņ",
-	"ncedil": "ņ",
-	"ncong": "≇",
-	"ncongdot": "⩭̸",
-	"ncup": "⩂",
-	"Ncy": "Н",
-	"ncy": "н",
-	"ndash": "–",
-	"nearhk": "⤤",
-	"nearr": "↗",
-	"neArr": "⇗",
-	"nearrow": "↗",
-	"ne": "≠",
-	"nedot": "≐̸",
-	"NegativeMediumSpace": "​",
-	"NegativeThickSpace": "​",
-	"NegativeThinSpace": "​",
-	"NegativeVeryThinSpace": "​",
-	"nequiv": "≢",
-	"nesear": "⤨",
-	"nesim": "≂̸",
-	"NestedGreaterGreater": "≫",
-	"NestedLessLess": "≪",
+	"midcir": "â«°",
+	"mid": "âˆ£",
+	"middot": "Â·",
+	"minusb": "âŠŸ",
+	"minus": "âˆ’",
+	"minusd": "âˆ¸",
+	"minusdu": "â¨ª",
+	"MinusPlus": "âˆ“",
+	"mlcp": "â«›",
+	"mldr": "â€¦",
+	"mnplus": "âˆ“",
+	"models": "âŠ§",
+	"Mopf": "ð•„",
+	"mopf": "ð•ž",
+	"mp": "âˆ“",
+	"mscr": "ð“‚",
+	"Mscr": "â„³",
+	"mstpos": "âˆ¾",
+	"Mu": "Îœ",
+	"mu": "Î¼",
+	"multimap": "âŠ¸",
+	"mumap": "âŠ¸",
+	"nabla": "âˆ‡",
+	"Nacute": "Åƒ",
+	"nacute": "Å„",
+	"nang": "âˆ âƒ’",
+	"nap": "â‰‰",
+	"napE": "â©°Ì¸",
+	"napid": "â‰‹Ì¸",
+	"napos": "Å‰",
+	"napprox": "â‰‰",
+	"natural": "â™®",
+	"naturals": "â„•",
+	"natur": "â™®",
+	"nbsp": "Â ",
+	"nbump": "â‰ŽÌ¸",
+	"nbumpe": "â‰Ì¸",
+	"ncap": "â©ƒ",
+	"Ncaron": "Å‡",
+	"ncaron": "Åˆ",
+	"Ncedil": "Å…",
+	"ncedil": "Å†",
+	"ncong": "â‰‡",
+	"ncongdot": "â©­Ì¸",
+	"ncup": "â©‚",
+	"Ncy": "Ð",
+	"ncy": "Ð½",
+	"ndash": "â€“",
+	"nearhk": "â¤¤",
+	"nearr": "â†—",
+	"neArr": "â‡—",
+	"nearrow": "â†—",
+	"ne": "â‰ ",
+	"nedot": "â‰Ì¸",
+	"NegativeMediumSpace": "â€‹",
+	"NegativeThickSpace": "â€‹",
+	"NegativeThinSpace": "â€‹",
+	"NegativeVeryThinSpace": "â€‹",
+	"nequiv": "â‰¢",
+	"nesear": "â¤¨",
+	"nesim": "â‰‚Ì¸",
+	"NestedGreaterGreater": "â‰«",
+	"NestedLessLess": "â‰ª",
 	"NewLine": "\n",
-	"nexist": "∄",
-	"nexists": "∄",
-	"Nfr": "𝔑",
-	"nfr": "𝔫",
-	"ngE": "≧̸",
-	"nge": "≱",
-	"ngeq": "≱",
-	"ngeqq": "≧̸",
-	"ngeqslant": "⩾̸",
-	"nges": "⩾̸",
-	"nGg": "⋙̸",
-	"ngsim": "≵",
-	"nGt": "≫⃒",
-	"ngt": "≯",
-	"ngtr": "≯",
-	"nGtv": "≫̸",
-	"nharr": "↮",
-	"nhArr": "⇎",
-	"nhpar": "⫲",
-	"ni": "∋",
-	"nis": "⋼",
-	"nisd": "⋺",
-	"niv": "∋",
-	"NJcy": "Њ",
-	"njcy": "њ",
-	"nlarr": "↚",
-	"nlArr": "⇍",
-	"nldr": "‥",
-	"nlE": "≦̸",
-	"nle": "≰",
-	"nleftarrow": "↚",
-	"nLeftarrow": "⇍",
-	"nleftrightarrow": "↮",
-	"nLeftrightarrow": "⇎",
-	"nleq": "≰",
-	"nleqq": "≦̸",
-	"nleqslant": "⩽̸",
-	"nles": "⩽̸",
-	"nless": "≮",
-	"nLl": "⋘̸",
-	"nlsim": "≴",
-	"nLt": "≪⃒",
-	"nlt": "≮",
-	"nltri": "⋪",
-	"nltrie": "⋬",
-	"nLtv": "≪̸",
-	"nmid": "∤",
-	"NoBreak": "⁠",
-	"NonBreakingSpace": " ",
-	"nopf": "𝕟",
-	"Nopf": "ℕ",
-	"Not": "⫬",
-	"not": "¬",
-	"NotCongruent": "≢",
-	"NotCupCap": "≭",
-	"NotDoubleVerticalBar": "∦",
-	"NotElement": "∉",
-	"NotEqual": "≠",
-	"NotEqualTilde": "≂̸",
-	"NotExists": "∄",
-	"NotGreater": "≯",
-	"NotGreaterEqual": "≱",
-	"NotGreaterFullEqual": "≧̸",
-	"NotGreaterGreater": "≫̸",
-	"NotGreaterLess": "≹",
-	"NotGreaterSlantEqual": "⩾̸",
-	"NotGreaterTilde": "≵",
-	"NotHumpDownHump": "≎̸",
-	"NotHumpEqual": "≏̸",
-	"notin": "∉",
-	"notindot": "⋵̸",
-	"notinE": "⋹̸",
-	"notinva": "∉",
-	"notinvb": "⋷",
-	"notinvc": "⋶",
-	"NotLeftTriangleBar": "⧏̸",
-	"NotLeftTriangle": "⋪",
-	"NotLeftTriangleEqual": "⋬",
-	"NotLess": "≮",
-	"NotLessEqual": "≰",
-	"NotLessGreater": "≸",
-	"NotLessLess": "≪̸",
-	"NotLessSlantEqual": "⩽̸",
-	"NotLessTilde": "≴",
-	"NotNestedGreaterGreater": "⪢̸",
-	"NotNestedLessLess": "⪡̸",
-	"notni": "∌",
-	"notniva": "∌",
-	"notnivb": "⋾",
-	"notnivc": "⋽",
-	"NotPrecedes": "⊀",
-	"NotPrecedesEqual": "⪯̸",
-	"NotPrecedesSlantEqual": "⋠",
-	"NotReverseElement": "∌",
-	"NotRightTriangleBar": "⧐̸",
-	"NotRightTriangle": "⋫",
-	"NotRightTriangleEqual": "⋭",
-	"NotSquareSubset": "⊏̸",
-	"NotSquareSubsetEqual": "⋢",
-	"NotSquareSuperset": "⊐̸",
-	"NotSquareSupersetEqual": "⋣",
-	"NotSubset": "⊂⃒",
-	"NotSubsetEqual": "⊈",
-	"NotSucceeds": "⊁",
-	"NotSucceedsEqual": "⪰̸",
-	"NotSucceedsSlantEqual": "⋡",
-	"NotSucceedsTilde": "≿̸",
-	"NotSuperset": "⊃⃒",
-	"NotSupersetEqual": "⊉",
-	"NotTilde": "≁",
-	"NotTildeEqual": "≄",
-	"NotTildeFullEqual": "≇",
-	"NotTildeTilde": "≉",
-	"NotVerticalBar": "∤",
-	"nparallel": "∦",
-	"npar": "∦",
-	"nparsl": "⫽⃥",
-	"npart": "∂̸",
-	"npolint": "⨔",
-	"npr": "⊀",
-	"nprcue": "⋠",
-	"nprec": "⊀",
-	"npreceq": "⪯̸",
-	"npre": "⪯̸",
-	"nrarrc": "⤳̸",
-	"nrarr": "↛",
-	"nrArr": "⇏",
-	"nrarrw": "↝̸",
-	"nrightarrow": "↛",
-	"nRightarrow": "⇏",
-	"nrtri": "⋫",
-	"nrtrie": "⋭",
-	"nsc": "⊁",
-	"nsccue": "⋡",
-	"nsce": "⪰̸",
-	"Nscr": "𝒩",
-	"nscr": "𝓃",
-	"nshortmid": "∤",
-	"nshortparallel": "∦",
-	"nsim": "≁",
-	"nsime": "≄",
-	"nsimeq": "≄",
-	"nsmid": "∤",
-	"nspar": "∦",
-	"nsqsube": "⋢",
-	"nsqsupe": "⋣",
-	"nsub": "⊄",
-	"nsubE": "⫅̸",
-	"nsube": "⊈",
-	"nsubset": "⊂⃒",
-	"nsubseteq": "⊈",
-	"nsubseteqq": "⫅̸",
-	"nsucc": "⊁",
-	"nsucceq": "⪰̸",
-	"nsup": "⊅",
-	"nsupE": "⫆̸",
-	"nsupe": "⊉",
-	"nsupset": "⊃⃒",
-	"nsupseteq": "⊉",
-	"nsupseteqq": "⫆̸",
-	"ntgl": "≹",
-	"Ntilde": "Ñ",
-	"ntilde": "ñ",
-	"ntlg": "≸",
-	"ntriangleleft": "⋪",
-	"ntrianglelefteq": "⋬",
-	"ntriangleright": "⋫",
-	"ntrianglerighteq": "⋭",
-	"Nu": "Ν",
-	"nu": "ν",
+	"nexist": "âˆ„",
+	"nexists": "âˆ„",
+	"Nfr": "ð”‘",
+	"nfr": "ð”«",
+	"ngE": "â‰§Ì¸",
+	"nge": "â‰±",
+	"ngeq": "â‰±",
+	"ngeqq": "â‰§Ì¸",
+	"ngeqslant": "â©¾Ì¸",
+	"nges": "â©¾Ì¸",
+	"nGg": "â‹™Ì¸",
+	"ngsim": "â‰µ",
+	"nGt": "â‰«âƒ’",
+	"ngt": "â‰¯",
+	"ngtr": "â‰¯",
+	"nGtv": "â‰«Ì¸",
+	"nharr": "â†®",
+	"nhArr": "â‡Ž",
+	"nhpar": "â«²",
+	"ni": "âˆ‹",
+	"nis": "â‹¼",
+	"nisd": "â‹º",
+	"niv": "âˆ‹",
+	"NJcy": "ÐŠ",
+	"njcy": "Ñš",
+	"nlarr": "â†š",
+	"nlArr": "â‡",
+	"nldr": "â€¥",
+	"nlE": "â‰¦Ì¸",
+	"nle": "â‰°",
+	"nleftarrow": "â†š",
+	"nLeftarrow": "â‡",
+	"nleftrightarrow": "â†®",
+	"nLeftrightarrow": "â‡Ž",
+	"nleq": "â‰°",
+	"nleqq": "â‰¦Ì¸",
+	"nleqslant": "â©½Ì¸",
+	"nles": "â©½Ì¸",
+	"nless": "â‰®",
+	"nLl": "â‹˜Ì¸",
+	"nlsim": "â‰´",
+	"nLt": "â‰ªâƒ’",
+	"nlt": "â‰®",
+	"nltri": "â‹ª",
+	"nltrie": "â‹¬",
+	"nLtv": "â‰ªÌ¸",
+	"nmid": "âˆ¤",
+	"NoBreak": "â ",
+	"NonBreakingSpace": "Â ",
+	"nopf": "ð•Ÿ",
+	"Nopf": "â„•",
+	"Not": "â«¬",
+	"not": "Â¬",
+	"NotCongruent": "â‰¢",
+	"NotCupCap": "â‰­",
+	"NotDoubleVerticalBar": "âˆ¦",
+	"NotElement": "âˆ‰",
+	"NotEqual": "â‰ ",
+	"NotEqualTilde": "â‰‚Ì¸",
+	"NotExists": "âˆ„",
+	"NotGreater": "â‰¯",
+	"NotGreaterEqual": "â‰±",
+	"NotGreaterFullEqual": "â‰§Ì¸",
+	"NotGreaterGreater": "â‰«Ì¸",
+	"NotGreaterLess": "â‰¹",
+	"NotGreaterSlantEqual": "â©¾Ì¸",
+	"NotGreaterTilde": "â‰µ",
+	"NotHumpDownHump": "â‰ŽÌ¸",
+	"NotHumpEqual": "â‰Ì¸",
+	"notin": "âˆ‰",
+	"notindot": "â‹µÌ¸",
+	"notinE": "â‹¹Ì¸",
+	"notinva": "âˆ‰",
+	"notinvb": "â‹·",
+	"notinvc": "â‹¶",
+	"NotLeftTriangleBar": "â§Ì¸",
+	"NotLeftTriangle": "â‹ª",
+	"NotLeftTriangleEqual": "â‹¬",
+	"NotLess": "â‰®",
+	"NotLessEqual": "â‰°",
+	"NotLessGreater": "â‰¸",
+	"NotLessLess": "â‰ªÌ¸",
+	"NotLessSlantEqual": "â©½Ì¸",
+	"NotLessTilde": "â‰´",
+	"NotNestedGreaterGreater": "âª¢Ì¸",
+	"NotNestedLessLess": "âª¡Ì¸",
+	"notni": "âˆŒ",
+	"notniva": "âˆŒ",
+	"notnivb": "â‹¾",
+	"notnivc": "â‹½",
+	"NotPrecedes": "âŠ€",
+	"NotPrecedesEqual": "âª¯Ì¸",
+	"NotPrecedesSlantEqual": "â‹ ",
+	"NotReverseElement": "âˆŒ",
+	"NotRightTriangleBar": "â§Ì¸",
+	"NotRightTriangle": "â‹«",
+	"NotRightTriangleEqual": "â‹­",
+	"NotSquareSubset": "âŠÌ¸",
+	"NotSquareSubsetEqual": "â‹¢",
+	"NotSquareSuperset": "âŠÌ¸",
+	"NotSquareSupersetEqual": "â‹£",
+	"NotSubset": "âŠ‚âƒ’",
+	"NotSubsetEqual": "âŠˆ",
+	"NotSucceeds": "âŠ",
+	"NotSucceedsEqual": "âª°Ì¸",
+	"NotSucceedsSlantEqual": "â‹¡",
+	"NotSucceedsTilde": "â‰¿Ì¸",
+	"NotSuperset": "âŠƒâƒ’",
+	"NotSupersetEqual": "âŠ‰",
+	"NotTilde": "â‰",
+	"NotTildeEqual": "â‰„",
+	"NotTildeFullEqual": "â‰‡",
+	"NotTildeTilde": "â‰‰",
+	"NotVerticalBar": "âˆ¤",
+	"nparallel": "âˆ¦",
+	"npar": "âˆ¦",
+	"nparsl": "â«½âƒ¥",
+	"npart": "âˆ‚Ì¸",
+	"npolint": "â¨”",
+	"npr": "âŠ€",
+	"nprcue": "â‹ ",
+	"nprec": "âŠ€",
+	"npreceq": "âª¯Ì¸",
+	"npre": "âª¯Ì¸",
+	"nrarrc": "â¤³Ì¸",
+	"nrarr": "â†›",
+	"nrArr": "â‡",
+	"nrarrw": "â†Ì¸",
+	"nrightarrow": "â†›",
+	"nRightarrow": "â‡",
+	"nrtri": "â‹«",
+	"nrtrie": "â‹­",
+	"nsc": "âŠ",
+	"nsccue": "â‹¡",
+	"nsce": "âª°Ì¸",
+	"Nscr": "ð’©",
+	"nscr": "ð“ƒ",
+	"nshortmid": "âˆ¤",
+	"nshortparallel": "âˆ¦",
+	"nsim": "â‰",
+	"nsime": "â‰„",
+	"nsimeq": "â‰„",
+	"nsmid": "âˆ¤",
+	"nspar": "âˆ¦",
+	"nsqsube": "â‹¢",
+	"nsqsupe": "â‹£",
+	"nsub": "âŠ„",
+	"nsubE": "â«…Ì¸",
+	"nsube": "âŠˆ",
+	"nsubset": "âŠ‚âƒ’",
+	"nsubseteq": "âŠˆ",
+	"nsubseteqq": "â«…Ì¸",
+	"nsucc": "âŠ",
+	"nsucceq": "âª°Ì¸",
+	"nsup": "âŠ…",
+	"nsupE": "â«†Ì¸",
+	"nsupe": "âŠ‰",
+	"nsupset": "âŠƒâƒ’",
+	"nsupseteq": "âŠ‰",
+	"nsupseteqq": "â«†Ì¸",
+	"ntgl": "â‰¹",
+	"Ntilde": "Ã‘",
+	"ntilde": "Ã±",
+	"ntlg": "â‰¸",
+	"ntriangleleft": "â‹ª",
+	"ntrianglelefteq": "â‹¬",
+	"ntriangleright": "â‹«",
+	"ntrianglerighteq": "â‹­",
+	"Nu": "Î",
+	"nu": "Î½",
 	"num": "#",
-	"numero": "№",
-	"numsp": " ",
-	"nvap": "≍⃒",
-	"nvdash": "⊬",
-	"nvDash": "⊭",
-	"nVdash": "⊮",
-	"nVDash": "⊯",
-	"nvge": "≥⃒",
-	"nvgt": ">⃒",
-	"nvHarr": "⤄",
-	"nvinfin": "⧞",
-	"nvlArr": "⤂",
-	"nvle": "≤⃒",
-	"nvlt": "<⃒",
-	"nvltrie": "⊴⃒",
-	"nvrArr": "⤃",
-	"nvrtrie": "⊵⃒",
-	"nvsim": "∼⃒",
-	"nwarhk": "⤣",
-	"nwarr": "↖",
-	"nwArr": "⇖",
-	"nwarrow": "↖",
-	"nwnear": "⤧",
-	"Oacute": "Ó",
-	"oacute": "ó",
-	"oast": "⊛",
-	"Ocirc": "Ô",
-	"ocirc": "ô",
-	"ocir": "⊚",
-	"Ocy": "О",
-	"ocy": "о",
-	"odash": "⊝",
-	"Odblac": "Ő",
-	"odblac": "ő",
-	"odiv": "⨸",
-	"odot": "⊙",
-	"odsold": "⦼",
-	"OElig": "Œ",
-	"oelig": "œ",
-	"ofcir": "⦿",
-	"Ofr": "𝔒",
-	"ofr": "𝔬",
-	"ogon": "˛",
-	"Ograve": "Ò",
-	"ograve": "ò",
-	"ogt": "⧁",
-	"ohbar": "⦵",
-	"ohm": "Ω",
-	"oint": "∮",
-	"olarr": "↺",
-	"olcir": "⦾",
-	"olcross": "⦻",
-	"oline": "‾",
-	"olt": "⧀",
-	"Omacr": "Ō",
-	"omacr": "ō",
-	"Omega": "Ω",
-	"omega": "ω",
-	"Omicron": "Ο",
-	"omicron": "ο",
-	"omid": "⦶",
-	"ominus": "⊖",
-	"Oopf": "𝕆",
-	"oopf": "𝕠",
-	"opar": "⦷",
-	"OpenCurlyDoubleQuote": "“",
-	"OpenCurlyQuote": "‘",
-	"operp": "⦹",
-	"oplus": "⊕",
-	"orarr": "↻",
-	"Or": "⩔",
-	"or": "∨",
-	"ord": "⩝",
-	"order": "ℴ",
-	"orderof": "ℴ",
-	"ordf": "ª",
-	"ordm": "º",
-	"origof": "⊶",
-	"oror": "⩖",
-	"orslope": "⩗",
-	"orv": "⩛",
-	"oS": "Ⓢ",
-	"Oscr": "𝒪",
-	"oscr": "ℴ",
-	"Oslash": "Ø",
-	"oslash": "ø",
-	"osol": "⊘",
-	"Otilde": "Õ",
-	"otilde": "õ",
-	"otimesas": "⨶",
-	"Otimes": "⨷",
-	"otimes": "⊗",
-	"Ouml": "Ö",
-	"ouml": "ö",
-	"ovbar": "⌽",
-	"OverBar": "‾",
-	"OverBrace": "⏞",
-	"OverBracket": "⎴",
-	"OverParenthesis": "⏜",
-	"para": "¶",
-	"parallel": "∥",
-	"par": "∥",
-	"parsim": "⫳",
-	"parsl": "⫽",
-	"part": "∂",
-	"PartialD": "∂",
-	"Pcy": "П",
-	"pcy": "п",
+	"numero": "â„–",
+	"numsp": "â€‡",
+	"nvap": "â‰âƒ’",
+	"nvdash": "âŠ¬",
+	"nvDash": "âŠ­",
+	"nVdash": "âŠ®",
+	"nVDash": "âŠ¯",
+	"nvge": "â‰¥âƒ’",
+	"nvgt": ">âƒ’",
+	"nvHarr": "â¤„",
+	"nvinfin": "â§ž",
+	"nvlArr": "â¤‚",
+	"nvle": "â‰¤âƒ’",
+	"nvlt": "<âƒ’",
+	"nvltrie": "âŠ´âƒ’",
+	"nvrArr": "â¤ƒ",
+	"nvrtrie": "âŠµâƒ’",
+	"nvsim": "âˆ¼âƒ’",
+	"nwarhk": "â¤£",
+	"nwarr": "â†–",
+	"nwArr": "â‡–",
+	"nwarrow": "â†–",
+	"nwnear": "â¤§",
+	"Oacute": "Ã“",
+	"oacute": "Ã³",
+	"oast": "âŠ›",
+	"Ocirc": "Ã”",
+	"ocirc": "Ã´",
+	"ocir": "âŠš",
+	"Ocy": "Ðž",
+	"ocy": "Ð¾",
+	"odash": "âŠ",
+	"Odblac": "Å",
+	"odblac": "Å‘",
+	"odiv": "â¨¸",
+	"odot": "âŠ™",
+	"odsold": "â¦¼",
+	"OElig": "Å’",
+	"oelig": "Å“",
+	"ofcir": "â¦¿",
+	"Ofr": "ð”’",
+	"ofr": "ð”¬",
+	"ogon": "Ë›",
+	"Ograve": "Ã’",
+	"ograve": "Ã²",
+	"ogt": "â§",
+	"ohbar": "â¦µ",
+	"ohm": "Î©",
+	"oint": "âˆ®",
+	"olarr": "â†º",
+	"olcir": "â¦¾",
+	"olcross": "â¦»",
+	"oline": "â€¾",
+	"olt": "â§€",
+	"Omacr": "ÅŒ",
+	"omacr": "Å",
+	"Omega": "Î©",
+	"omega": "Ï‰",
+	"Omicron": "ÎŸ",
+	"omicron": "Î¿",
+	"omid": "â¦¶",
+	"ominus": "âŠ–",
+	"Oopf": "ð•†",
+	"oopf": "ð• ",
+	"opar": "â¦·",
+	"OpenCurlyDoubleQuote": "â€œ",
+	"OpenCurlyQuote": "â€˜",
+	"operp": "â¦¹",
+	"oplus": "âŠ•",
+	"orarr": "â†»",
+	"Or": "â©”",
+	"or": "âˆ¨",
+	"ord": "â©",
+	"order": "â„´",
+	"orderof": "â„´",
+	"ordf": "Âª",
+	"ordm": "Âº",
+	"origof": "âŠ¶",
+	"oror": "â©–",
+	"orslope": "â©—",
+	"orv": "â©›",
+	"oS": "â“ˆ",
+	"Oscr": "ð’ª",
+	"oscr": "â„´",
+	"Oslash": "Ã˜",
+	"oslash": "Ã¸",
+	"osol": "âŠ˜",
+	"Otilde": "Ã•",
+	"otilde": "Ãµ",
+	"otimesas": "â¨¶",
+	"Otimes": "â¨·",
+	"otimes": "âŠ—",
+	"Ouml": "Ã–",
+	"ouml": "Ã¶",
+	"ovbar": "âŒ½",
+	"OverBar": "â€¾",
+	"OverBrace": "âž",
+	"OverBracket": "âŽ´",
+	"OverParenthesis": "âœ",
+	"para": "Â¶",
+	"parallel": "âˆ¥",
+	"par": "âˆ¥",
+	"parsim": "â«³",
+	"parsl": "â«½",
+	"part": "âˆ‚",
+	"PartialD": "âˆ‚",
+	"Pcy": "ÐŸ",
+	"pcy": "Ð¿",
 	"percnt": "%",
 	"period": ".",
-	"permil": "‰",
-	"perp": "⊥",
-	"pertenk": "‱",
-	"Pfr": "𝔓",
-	"pfr": "𝔭",
-	"Phi": "Φ",
-	"phi": "φ",
-	"phiv": "ϕ",
-	"phmmat": "ℳ",
-	"phone": "☎",
-	"Pi": "Π",
-	"pi": "π",
-	"pitchfork": "⋔",
-	"piv": "ϖ",
-	"planck": "ℏ",
-	"planckh": "ℎ",
-	"plankv": "ℏ",
-	"plusacir": "⨣",
-	"plusb": "⊞",
-	"pluscir": "⨢",
+	"permil": "â€°",
+	"perp": "âŠ¥",
+	"pertenk": "â€±",
+	"Pfr": "ð”“",
+	"pfr": "ð”­",
+	"Phi": "Î¦",
+	"phi": "Ï†",
+	"phiv": "Ï•",
+	"phmmat": "â„³",
+	"phone": "â˜Ž",
+	"Pi": "Î ",
+	"pi": "Ï€",
+	"pitchfork": "â‹”",
+	"piv": "Ï–",
+	"planck": "â„",
+	"planckh": "â„Ž",
+	"plankv": "â„",
+	"plusacir": "â¨£",
+	"plusb": "âŠž",
+	"pluscir": "â¨¢",
 	"plus": "+",
-	"plusdo": "∔",
-	"plusdu": "⨥",
-	"pluse": "⩲",
-	"PlusMinus": "±",
-	"plusmn": "±",
-	"plussim": "⨦",
-	"plustwo": "⨧",
-	"pm": "±",
-	"Poincareplane": "ℌ",
-	"pointint": "⨕",
-	"popf": "𝕡",
-	"Popf": "ℙ",
-	"pound": "£",
-	"prap": "⪷",
-	"Pr": "⪻",
-	"pr": "≺",
-	"prcue": "≼",
-	"precapprox": "⪷",
-	"prec": "≺",
-	"preccurlyeq": "≼",
-	"Precedes": "≺",
-	"PrecedesEqual": "⪯",
-	"PrecedesSlantEqual": "≼",
-	"PrecedesTilde": "≾",
-	"preceq": "⪯",
-	"precnapprox": "⪹",
-	"precneqq": "⪵",
-	"precnsim": "⋨",
-	"pre": "⪯",
-	"prE": "⪳",
-	"precsim": "≾",
-	"prime": "′",
-	"Prime": "″",
-	"primes": "ℙ",
-	"prnap": "⪹",
-	"prnE": "⪵",
-	"prnsim": "⋨",
-	"prod": "∏",
-	"Product": "∏",
-	"profalar": "⌮",
-	"profline": "⌒",
-	"profsurf": "⌓",
-	"prop": "∝",
-	"Proportional": "∝",
-	"Proportion": "∷",
-	"propto": "∝",
-	"prsim": "≾",
-	"prurel": "⊰",
-	"Pscr": "𝒫",
-	"pscr": "𝓅",
-	"Psi": "Ψ",
-	"psi": "ψ",
-	"puncsp": " ",
-	"Qfr": "𝔔",
-	"qfr": "𝔮",
-	"qint": "⨌",
-	"qopf": "𝕢",
-	"Qopf": "ℚ",
-	"qprime": "⁗",
-	"Qscr": "𝒬",
-	"qscr": "𝓆",
-	"quaternions": "ℍ",
-	"quatint": "⨖",
+	"plusdo": "âˆ”",
+	"plusdu": "â¨¥",
+	"pluse": "â©²",
+	"PlusMinus": "Â±",
+	"plusmn": "Â±",
+	"plussim": "â¨¦",
+	"plustwo": "â¨§",
+	"pm": "Â±",
+	"Poincareplane": "â„Œ",
+	"pointint": "â¨•",
+	"popf": "ð•¡",
+	"Popf": "â„™",
+	"pound": "Â£",
+	"prap": "âª·",
+	"Pr": "âª»",
+	"pr": "â‰º",
+	"prcue": "â‰¼",
+	"precapprox": "âª·",
+	"prec": "â‰º",
+	"preccurlyeq": "â‰¼",
+	"Precedes": "â‰º",
+	"PrecedesEqual": "âª¯",
+	"PrecedesSlantEqual": "â‰¼",
+	"PrecedesTilde": "â‰¾",
+	"preceq": "âª¯",
+	"precnapprox": "âª¹",
+	"precneqq": "âªµ",
+	"precnsim": "â‹¨",
+	"pre": "âª¯",
+	"prE": "âª³",
+	"precsim": "â‰¾",
+	"prime": "â€²",
+	"Prime": "â€³",
+	"primes": "â„™",
+	"prnap": "âª¹",
+	"prnE": "âªµ",
+	"prnsim": "â‹¨",
+	"prod": "âˆ",
+	"Product": "âˆ",
+	"profalar": "âŒ®",
+	"profline": "âŒ’",
+	"profsurf": "âŒ“",
+	"prop": "âˆ",
+	"Proportional": "âˆ",
+	"Proportion": "âˆ·",
+	"propto": "âˆ",
+	"prsim": "â‰¾",
+	"prurel": "âŠ°",
+	"Pscr": "ð’«",
+	"pscr": "ð“…",
+	"Psi": "Î¨",
+	"psi": "Ïˆ",
+	"puncsp": "â€ˆ",
+	"Qfr": "ð””",
+	"qfr": "ð”®",
+	"qint": "â¨Œ",
+	"qopf": "ð•¢",
+	"Qopf": "â„š",
+	"qprime": "â—",
+	"Qscr": "ð’¬",
+	"qscr": "ð“†",
+	"quaternions": "â„",
+	"quatint": "â¨–",
 	"quest": "?",
-	"questeq": "≟",
+	"questeq": "â‰Ÿ",
 	"quot": "\"",
 	"QUOT": "\"",
-	"rAarr": "⇛",
-	"race": "∽̱",
-	"Racute": "Ŕ",
-	"racute": "ŕ",
-	"radic": "√",
-	"raemptyv": "⦳",
-	"rang": "⟩",
-	"Rang": "⟫",
-	"rangd": "⦒",
-	"range": "⦥",
-	"rangle": "⟩",
-	"raquo": "»",
-	"rarrap": "⥵",
-	"rarrb": "⇥",
-	"rarrbfs": "⤠",
-	"rarrc": "⤳",
-	"rarr": "→",
-	"Rarr": "↠",
-	"rArr": "⇒",
-	"rarrfs": "⤞",
-	"rarrhk": "↪",
-	"rarrlp": "↬",
-	"rarrpl": "⥅",
-	"rarrsim": "⥴",
-	"Rarrtl": "⤖",
-	"rarrtl": "↣",
-	"rarrw": "↝",
-	"ratail": "⤚",
-	"rAtail": "⤜",
-	"ratio": "∶",
-	"rationals": "ℚ",
-	"rbarr": "⤍",
-	"rBarr": "⤏",
-	"RBarr": "⤐",
-	"rbbrk": "❳",
+	"rAarr": "â‡›",
+	"race": "âˆ½Ì±",
+	"Racute": "Å”",
+	"racute": "Å•",
+	"radic": "âˆš",
+	"raemptyv": "â¦³",
+	"rang": "âŸ©",
+	"Rang": "âŸ«",
+	"rangd": "â¦’",
+	"range": "â¦¥",
+	"rangle": "âŸ©",
+	"raquo": "Â»",
+	"rarrap": "â¥µ",
+	"rarrb": "â‡¥",
+	"rarrbfs": "â¤ ",
+	"rarrc": "â¤³",
+	"rarr": "â†’",
+	"Rarr": "â† ",
+	"rArr": "â‡’",
+	"rarrfs": "â¤ž",
+	"rarrhk": "â†ª",
+	"rarrlp": "â†¬",
+	"rarrpl": "â¥…",
+	"rarrsim": "â¥´",
+	"Rarrtl": "â¤–",
+	"rarrtl": "â†£",
+	"rarrw": "â†",
+	"ratail": "â¤š",
+	"rAtail": "â¤œ",
+	"ratio": "âˆ¶",
+	"rationals": "â„š",
+	"rbarr": "â¤",
+	"rBarr": "â¤",
+	"RBarr": "â¤",
+	"rbbrk": "â³",
 	"rbrace": "}",
 	"rbrack": "]",
-	"rbrke": "⦌",
-	"rbrksld": "⦎",
-	"rbrkslu": "⦐",
-	"Rcaron": "Ř",
-	"rcaron": "ř",
-	"Rcedil": "Ŗ",
-	"rcedil": "ŗ",
-	"rceil": "⌉",
+	"rbrke": "â¦Œ",
+	"rbrksld": "â¦Ž",
+	"rbrkslu": "â¦",
+	"Rcaron": "Å˜",
+	"rcaron": "Å™",
+	"Rcedil": "Å–",
+	"rcedil": "Å—",
+	"rceil": "âŒ‰",
 	"rcub": "}",
-	"Rcy": "Р",
-	"rcy": "р",
-	"rdca": "⤷",
-	"rdldhar": "⥩",
-	"rdquo": "”",
-	"rdquor": "”",
-	"rdsh": "↳",
-	"real": "ℜ",
-	"realine": "ℛ",
-	"realpart": "ℜ",
-	"reals": "ℝ",
-	"Re": "ℜ",
-	"rect": "▭",
-	"reg": "®",
-	"REG": "®",
-	"ReverseElement": "∋",
-	"ReverseEquilibrium": "⇋",
-	"ReverseUpEquilibrium": "⥯",
-	"rfisht": "⥽",
-	"rfloor": "⌋",
-	"rfr": "𝔯",
-	"Rfr": "ℜ",
-	"rHar": "⥤",
-	"rhard": "⇁",
-	"rharu": "⇀",
-	"rharul": "⥬",
-	"Rho": "Ρ",
-	"rho": "ρ",
-	"rhov": "ϱ",
-	"RightAngleBracket": "⟩",
-	"RightArrowBar": "⇥",
-	"rightarrow": "→",
-	"RightArrow": "→",
-	"Rightarrow": "⇒",
-	"RightArrowLeftArrow": "⇄",
-	"rightarrowtail": "↣",
-	"RightCeiling": "⌉",
-	"RightDoubleBracket": "⟧",
-	"RightDownTeeVector": "⥝",
-	"RightDownVectorBar": "⥕",
-	"RightDownVector": "⇂",
-	"RightFloor": "⌋",
-	"rightharpoondown": "⇁",
-	"rightharpoonup": "⇀",
-	"rightleftarrows": "⇄",
-	"rightleftharpoons": "⇌",
-	"rightrightarrows": "⇉",
-	"rightsquigarrow": "↝",
-	"RightTeeArrow": "↦",
-	"RightTee": "⊢",
-	"RightTeeVector": "⥛",
-	"rightthreetimes": "⋌",
-	"RightTriangleBar": "⧐",
-	"RightTriangle": "⊳",
-	"RightTriangleEqual": "⊵",
-	"RightUpDownVector": "⥏",
-	"RightUpTeeVector": "⥜",
-	"RightUpVectorBar": "⥔",
-	"RightUpVector": "↾",
-	"RightVectorBar": "⥓",
-	"RightVector": "⇀",
-	"ring": "˚",
-	"risingdotseq": "≓",
-	"rlarr": "⇄",
-	"rlhar": "⇌",
-	"rlm": "‏",
-	"rmoustache": "⎱",
-	"rmoust": "⎱",
-	"rnmid": "⫮",
-	"roang": "⟭",
-	"roarr": "⇾",
-	"robrk": "⟧",
-	"ropar": "⦆",
-	"ropf": "𝕣",
-	"Ropf": "ℝ",
-	"roplus": "⨮",
-	"rotimes": "⨵",
-	"RoundImplies": "⥰",
+	"Rcy": "Ð ",
+	"rcy": "Ñ€",
+	"rdca": "â¤·",
+	"rdldhar": "â¥©",
+	"rdquo": "â€",
+	"rdquor": "â€",
+	"rdsh": "â†³",
+	"real": "â„œ",
+	"realine": "â„›",
+	"realpart": "â„œ",
+	"reals": "â„",
+	"Re": "â„œ",
+	"rect": "â–­",
+	"reg": "Â®",
+	"REG": "Â®",
+	"ReverseElement": "âˆ‹",
+	"ReverseEquilibrium": "â‡‹",
+	"ReverseUpEquilibrium": "â¥¯",
+	"rfisht": "â¥½",
+	"rfloor": "âŒ‹",
+	"rfr": "ð”¯",
+	"Rfr": "â„œ",
+	"rHar": "â¥¤",
+	"rhard": "â‡",
+	"rharu": "â‡€",
+	"rharul": "â¥¬",
+	"Rho": "Î¡",
+	"rho": "Ï",
+	"rhov": "Ï±",
+	"RightAngleBracket": "âŸ©",
+	"RightArrowBar": "â‡¥",
+	"rightarrow": "â†’",
+	"RightArrow": "â†’",
+	"Rightarrow": "â‡’",
+	"RightArrowLeftArrow": "â‡„",
+	"rightarrowtail": "â†£",
+	"RightCeiling": "âŒ‰",
+	"RightDoubleBracket": "âŸ§",
+	"RightDownTeeVector": "â¥",
+	"RightDownVectorBar": "â¥•",
+	"RightDownVector": "â‡‚",
+	"RightFloor": "âŒ‹",
+	"rightharpoondown": "â‡",
+	"rightharpoonup": "â‡€",
+	"rightleftarrows": "â‡„",
+	"rightleftharpoons": "â‡Œ",
+	"rightrightarrows": "â‡‰",
+	"rightsquigarrow": "â†",
+	"RightTeeArrow": "â†¦",
+	"RightTee": "âŠ¢",
+	"RightTeeVector": "â¥›",
+	"rightthreetimes": "â‹Œ",
+	"RightTriangleBar": "â§",
+	"RightTriangle": "âŠ³",
+	"RightTriangleEqual": "âŠµ",
+	"RightUpDownVector": "â¥",
+	"RightUpTeeVector": "â¥œ",
+	"RightUpVectorBar": "â¥”",
+	"RightUpVector": "â†¾",
+	"RightVectorBar": "â¥“",
+	"RightVector": "â‡€",
+	"ring": "Ëš",
+	"risingdotseq": "â‰“",
+	"rlarr": "â‡„",
+	"rlhar": "â‡Œ",
+	"rlm": "â€",
+	"rmoustache": "âŽ±",
+	"rmoust": "âŽ±",
+	"rnmid": "â«®",
+	"roang": "âŸ­",
+	"roarr": "â‡¾",
+	"robrk": "âŸ§",
+	"ropar": "â¦†",
+	"ropf": "ð•£",
+	"Ropf": "â„",
+	"roplus": "â¨®",
+	"rotimes": "â¨µ",
+	"RoundImplies": "â¥°",
 	"rpar": ")",
-	"rpargt": "⦔",
-	"rppolint": "⨒",
-	"rrarr": "⇉",
-	"Rrightarrow": "⇛",
-	"rsaquo": "›",
-	"rscr": "𝓇",
-	"Rscr": "ℛ",
-	"rsh": "↱",
-	"Rsh": "↱",
+	"rpargt": "â¦”",
+	"rppolint": "â¨’",
+	"rrarr": "â‡‰",
+	"Rrightarrow": "â‡›",
+	"rsaquo": "â€º",
+	"rscr": "ð“‡",
+	"Rscr": "â„›",
+	"rsh": "â†±",
+	"Rsh": "â†±",
 	"rsqb": "]",
-	"rsquo": "’",
-	"rsquor": "’",
-	"rthree": "⋌",
-	"rtimes": "⋊",
-	"rtri": "▹",
-	"rtrie": "⊵",
-	"rtrif": "▸",
-	"rtriltri": "⧎",
-	"RuleDelayed": "⧴",
-	"ruluhar": "⥨",
-	"rx": "℞",
-	"Sacute": "Ś",
-	"sacute": "ś",
-	"sbquo": "‚",
-	"scap": "⪸",
-	"Scaron": "Š",
-	"scaron": "š",
-	"Sc": "⪼",
-	"sc": "≻",
-	"sccue": "≽",
-	"sce": "⪰",
-	"scE": "⪴",
-	"Scedil": "Ş",
-	"scedil": "ş",
-	"Scirc": "Ŝ",
-	"scirc": "ŝ",
-	"scnap": "⪺",
-	"scnE": "⪶",
-	"scnsim": "⋩",
-	"scpolint": "⨓",
-	"scsim": "≿",
-	"Scy": "С",
-	"scy": "с",
-	"sdotb": "⊡",
-	"sdot": "⋅",
-	"sdote": "⩦",
-	"searhk": "⤥",
-	"searr": "↘",
-	"seArr": "⇘",
-	"searrow": "↘",
-	"sect": "§",
+	"rsquo": "â€™",
+	"rsquor": "â€™",
+	"rthree": "â‹Œ",
+	"rtimes": "â‹Š",
+	"rtri": "â–¹",
+	"rtrie": "âŠµ",
+	"rtrif": "â–¸",
+	"rtriltri": "â§Ž",
+	"RuleDelayed": "â§´",
+	"ruluhar": "â¥¨",
+	"rx": "â„ž",
+	"Sacute": "Åš",
+	"sacute": "Å›",
+	"sbquo": "â€š",
+	"scap": "âª¸",
+	"Scaron": "Å ",
+	"scaron": "Å¡",
+	"Sc": "âª¼",
+	"sc": "â‰»",
+	"sccue": "â‰½",
+	"sce": "âª°",
+	"scE": "âª´",
+	"Scedil": "Åž",
+	"scedil": "ÅŸ",
+	"Scirc": "Åœ",
+	"scirc": "Å",
+	"scnap": "âªº",
+	"scnE": "âª¶",
+	"scnsim": "â‹©",
+	"scpolint": "â¨“",
+	"scsim": "â‰¿",
+	"Scy": "Ð¡",
+	"scy": "Ñ",
+	"sdotb": "âŠ¡",
+	"sdot": "â‹…",
+	"sdote": "â©¦",
+	"searhk": "â¤¥",
+	"searr": "â†˜",
+	"seArr": "â‡˜",
+	"searrow": "â†˜",
+	"sect": "Â§",
 	"semi": ";",
-	"seswar": "⤩",
-	"setminus": "∖",
-	"setmn": "∖",
-	"sext": "✶",
-	"Sfr": "𝔖",
-	"sfr": "𝔰",
-	"sfrown": "⌢",
-	"sharp": "♯",
-	"SHCHcy": "Щ",
-	"shchcy": "щ",
-	"SHcy": "Ш",
-	"shcy": "ш",
-	"ShortDownArrow": "↓",
-	"ShortLeftArrow": "←",
-	"shortmid": "∣",
-	"shortparallel": "∥",
-	"ShortRightArrow": "→",
-	"ShortUpArrow": "↑",
-	"shy": "­",
-	"Sigma": "Σ",
-	"sigma": "σ",
-	"sigmaf": "ς",
-	"sigmav": "ς",
-	"sim": "∼",
-	"simdot": "⩪",
-	"sime": "≃",
-	"simeq": "≃",
-	"simg": "⪞",
-	"simgE": "⪠",
-	"siml": "⪝",
-	"simlE": "⪟",
-	"simne": "≆",
-	"simplus": "⨤",
-	"simrarr": "⥲",
-	"slarr": "←",
-	"SmallCircle": "∘",
-	"smallsetminus": "∖",
-	"smashp": "⨳",
-	"smeparsl": "⧤",
-	"smid": "∣",
-	"smile": "⌣",
-	"smt": "⪪",
-	"smte": "⪬",
-	"smtes": "⪬︀",
-	"SOFTcy": "Ь",
-	"softcy": "ь",
-	"solbar": "⌿",
-	"solb": "⧄",
+	"seswar": "â¤©",
+	"setminus": "âˆ–",
+	"setmn": "âˆ–",
+	"sext": "âœ¶",
+	"Sfr": "ð”–",
+	"sfr": "ð”°",
+	"sfrown": "âŒ¢",
+	"sharp": "â™¯",
+	"SHCHcy": "Ð©",
+	"shchcy": "Ñ‰",
+	"SHcy": "Ð¨",
+	"shcy": "Ñˆ",
+	"ShortDownArrow": "â†“",
+	"ShortLeftArrow": "â†",
+	"shortmid": "âˆ£",
+	"shortparallel": "âˆ¥",
+	"ShortRightArrow": "â†’",
+	"ShortUpArrow": "â†‘",
+	"shy": "Â­",
+	"Sigma": "Î£",
+	"sigma": "Ïƒ",
+	"sigmaf": "Ï‚",
+	"sigmav": "Ï‚",
+	"sim": "âˆ¼",
+	"simdot": "â©ª",
+	"sime": "â‰ƒ",
+	"simeq": "â‰ƒ",
+	"simg": "âªž",
+	"simgE": "âª ",
+	"siml": "âª",
+	"simlE": "âªŸ",
+	"simne": "â‰†",
+	"simplus": "â¨¤",
+	"simrarr": "â¥²",
+	"slarr": "â†",
+	"SmallCircle": "âˆ˜",
+	"smallsetminus": "âˆ–",
+	"smashp": "â¨³",
+	"smeparsl": "â§¤",
+	"smid": "âˆ£",
+	"smile": "âŒ£",
+	"smt": "âªª",
+	"smte": "âª¬",
+	"smtes": "âª¬ï¸€",
+	"SOFTcy": "Ð¬",
+	"softcy": "ÑŒ",
+	"solbar": "âŒ¿",
+	"solb": "â§„",
 	"sol": "/",
-	"Sopf": "𝕊",
-	"sopf": "𝕤",
-	"spades": "♠",
-	"spadesuit": "♠",
-	"spar": "∥",
-	"sqcap": "⊓",
-	"sqcaps": "⊓︀",
-	"sqcup": "⊔",
-	"sqcups": "⊔︀",
-	"Sqrt": "√",
-	"sqsub": "⊏",
-	"sqsube": "⊑",
-	"sqsubset": "⊏",
-	"sqsubseteq": "⊑",
-	"sqsup": "⊐",
-	"sqsupe": "⊒",
-	"sqsupset": "⊐",
-	"sqsupseteq": "⊒",
-	"square": "□",
-	"Square": "□",
-	"SquareIntersection": "⊓",
-	"SquareSubset": "⊏",
-	"SquareSubsetEqual": "⊑",
-	"SquareSuperset": "⊐",
-	"SquareSupersetEqual": "⊒",
-	"SquareUnion": "⊔",
-	"squarf": "▪",
-	"squ": "□",
-	"squf": "▪",
-	"srarr": "→",
-	"Sscr": "𝒮",
-	"sscr": "𝓈",
-	"ssetmn": "∖",
-	"ssmile": "⌣",
-	"sstarf": "⋆",
-	"Star": "⋆",
-	"star": "☆",
-	"starf": "★",
-	"straightepsilon": "ϵ",
-	"straightphi": "ϕ",
-	"strns": "¯",
-	"sub": "⊂",
-	"Sub": "⋐",
-	"subdot": "⪽",
-	"subE": "⫅",
-	"sube": "⊆",
-	"subedot": "⫃",
-	"submult": "⫁",
-	"subnE": "⫋",
-	"subne": "⊊",
-	"subplus": "⪿",
-	"subrarr": "⥹",
-	"subset": "⊂",
-	"Subset": "⋐",
-	"subseteq": "⊆",
-	"subseteqq": "⫅",
-	"SubsetEqual": "⊆",
-	"subsetneq": "⊊",
-	"subsetneqq": "⫋",
-	"subsim": "⫇",
-	"subsub": "⫕",
-	"subsup": "⫓",
-	"succapprox": "⪸",
-	"succ": "≻",
-	"succcurlyeq": "≽",
-	"Succeeds": "≻",
-	"SucceedsEqual": "⪰",
-	"SucceedsSlantEqual": "≽",
-	"SucceedsTilde": "≿",
-	"succeq": "⪰",
-	"succnapprox": "⪺",
-	"succneqq": "⪶",
-	"succnsim": "⋩",
-	"succsim": "≿",
-	"SuchThat": "∋",
-	"sum": "∑",
-	"Sum": "∑",
-	"sung": "♪",
-	"sup1": "¹",
-	"sup2": "²",
-	"sup3": "³",
-	"sup": "⊃",
-	"Sup": "⋑",
-	"supdot": "⪾",
-	"supdsub": "⫘",
-	"supE": "⫆",
-	"supe": "⊇",
-	"supedot": "⫄",
-	"Superset": "⊃",
-	"SupersetEqual": "⊇",
-	"suphsol": "⟉",
-	"suphsub": "⫗",
-	"suplarr": "⥻",
-	"supmult": "⫂",
-	"supnE": "⫌",
-	"supne": "⊋",
-	"supplus": "⫀",
-	"supset": "⊃",
-	"Supset": "⋑",
-	"supseteq": "⊇",
-	"supseteqq": "⫆",
-	"supsetneq": "⊋",
-	"supsetneqq": "⫌",
-	"supsim": "⫈",
-	"supsub": "⫔",
-	"supsup": "⫖",
-	"swarhk": "⤦",
-	"swarr": "↙",
-	"swArr": "⇙",
-	"swarrow": "↙",
-	"swnwar": "⤪",
-	"szlig": "ß",
+	"Sopf": "ð•Š",
+	"sopf": "ð•¤",
+	"spades": "â™ ",
+	"spadesuit": "â™ ",
+	"spar": "âˆ¥",
+	"sqcap": "âŠ“",
+	"sqcaps": "âŠ“ï¸€",
+	"sqcup": "âŠ”",
+	"sqcups": "âŠ”ï¸€",
+	"Sqrt": "âˆš",
+	"sqsub": "âŠ",
+	"sqsube": "âŠ‘",
+	"sqsubset": "âŠ",
+	"sqsubseteq": "âŠ‘",
+	"sqsup": "âŠ",
+	"sqsupe": "âŠ’",
+	"sqsupset": "âŠ",
+	"sqsupseteq": "âŠ’",
+	"square": "â–¡",
+	"Square": "â–¡",
+	"SquareIntersection": "âŠ“",
+	"SquareSubset": "âŠ",
+	"SquareSubsetEqual": "âŠ‘",
+	"SquareSuperset": "âŠ",
+	"SquareSupersetEqual": "âŠ’",
+	"SquareUnion": "âŠ”",
+	"squarf": "â–ª",
+	"squ": "â–¡",
+	"squf": "â–ª",
+	"srarr": "â†’",
+	"Sscr": "ð’®",
+	"sscr": "ð“ˆ",
+	"ssetmn": "âˆ–",
+	"ssmile": "âŒ£",
+	"sstarf": "â‹†",
+	"Star": "â‹†",
+	"star": "â˜†",
+	"starf": "â˜…",
+	"straightepsilon": "Ïµ",
+	"straightphi": "Ï•",
+	"strns": "Â¯",
+	"sub": "âŠ‚",
+	"Sub": "â‹",
+	"subdot": "âª½",
+	"subE": "â«…",
+	"sube": "âŠ†",
+	"subedot": "â«ƒ",
+	"submult": "â«",
+	"subnE": "â«‹",
+	"subne": "âŠŠ",
+	"subplus": "âª¿",
+	"subrarr": "â¥¹",
+	"subset": "âŠ‚",
+	"Subset": "â‹",
+	"subseteq": "âŠ†",
+	"subseteqq": "â«…",
+	"SubsetEqual": "âŠ†",
+	"subsetneq": "âŠŠ",
+	"subsetneqq": "â«‹",
+	"subsim": "â«‡",
+	"subsub": "â«•",
+	"subsup": "â«“",
+	"succapprox": "âª¸",
+	"succ": "â‰»",
+	"succcurlyeq": "â‰½",
+	"Succeeds": "â‰»",
+	"SucceedsEqual": "âª°",
+	"SucceedsSlantEqual": "â‰½",
+	"SucceedsTilde": "â‰¿",
+	"succeq": "âª°",
+	"succnapprox": "âªº",
+	"succneqq": "âª¶",
+	"succnsim": "â‹©",
+	"succsim": "â‰¿",
+	"SuchThat": "âˆ‹",
+	"sum": "âˆ‘",
+	"Sum": "âˆ‘",
+	"sung": "â™ª",
+	"sup1": "Â¹",
+	"sup2": "Â²",
+	"sup3": "Â³",
+	"sup": "âŠƒ",
+	"Sup": "â‹‘",
+	"supdot": "âª¾",
+	"supdsub": "â«˜",
+	"supE": "â«†",
+	"supe": "âŠ‡",
+	"supedot": "â«„",
+	"Superset": "âŠƒ",
+	"SupersetEqual": "âŠ‡",
+	"suphsol": "âŸ‰",
+	"suphsub": "â«—",
+	"suplarr": "â¥»",
+	"supmult": "â«‚",
+	"supnE": "â«Œ",
+	"supne": "âŠ‹",
+	"supplus": "â«€",
+	"supset": "âŠƒ",
+	"Supset": "â‹‘",
+	"supseteq": "âŠ‡",
+	"supseteqq": "â«†",
+	"supsetneq": "âŠ‹",
+	"supsetneqq": "â«Œ",
+	"supsim": "â«ˆ",
+	"supsub": "â«”",
+	"supsup": "â«–",
+	"swarhk": "â¤¦",
+	"swarr": "â†™",
+	"swArr": "â‡™",
+	"swarrow": "â†™",
+	"swnwar": "â¤ª",
+	"szlig": "ÃŸ",
 	"Tab": "\t",
-	"target": "⌖",
-	"Tau": "Τ",
-	"tau": "τ",
-	"tbrk": "⎴",
-	"Tcaron": "Ť",
-	"tcaron": "ť",
-	"Tcedil": "Ţ",
-	"tcedil": "ţ",
-	"Tcy": "Т",
-	"tcy": "т",
-	"tdot": "⃛",
-	"telrec": "⌕",
-	"Tfr": "𝔗",
-	"tfr": "𝔱",
-	"there4": "∴",
-	"therefore": "∴",
-	"Therefore": "∴",
-	"Theta": "Θ",
-	"theta": "θ",
-	"thetasym": "ϑ",
-	"thetav": "ϑ",
-	"thickapprox": "≈",
-	"thicksim": "∼",
-	"ThickSpace": "  ",
-	"ThinSpace": " ",
-	"thinsp": " ",
-	"thkap": "≈",
-	"thksim": "∼",
-	"THORN": "Þ",
-	"thorn": "þ",
-	"tilde": "˜",
-	"Tilde": "∼",
-	"TildeEqual": "≃",
-	"TildeFullEqual": "≅",
-	"TildeTilde": "≈",
-	"timesbar": "⨱",
-	"timesb": "⊠",
-	"times": "×",
-	"timesd": "⨰",
-	"tint": "∭",
-	"toea": "⤨",
-	"topbot": "⌶",
-	"topcir": "⫱",
-	"top": "⊤",
-	"Topf": "𝕋",
-	"topf": "𝕥",
-	"topfork": "⫚",
-	"tosa": "⤩",
-	"tprime": "‴",
-	"trade": "™",
-	"TRADE": "™",
-	"triangle": "▵",
-	"triangledown": "▿",
-	"triangleleft": "◃",
-	"trianglelefteq": "⊴",
-	"triangleq": "≜",
-	"triangleright": "▹",
-	"trianglerighteq": "⊵",
-	"tridot": "◬",
-	"trie": "≜",
-	"triminus": "⨺",
-	"TripleDot": "⃛",
-	"triplus": "⨹",
-	"trisb": "⧍",
-	"tritime": "⨻",
-	"trpezium": "⏢",
-	"Tscr": "𝒯",
-	"tscr": "𝓉",
-	"TScy": "Ц",
-	"tscy": "ц",
-	"TSHcy": "Ћ",
-	"tshcy": "ћ",
-	"Tstrok": "Ŧ",
-	"tstrok": "ŧ",
-	"twixt": "≬",
-	"twoheadleftarrow": "↞",
-	"twoheadrightarrow": "↠",
-	"Uacute": "Ú",
-	"uacute": "ú",
-	"uarr": "↑",
-	"Uarr": "↟",
-	"uArr": "⇑",
-	"Uarrocir": "⥉",
-	"Ubrcy": "Ў",
-	"ubrcy": "ў",
-	"Ubreve": "Ŭ",
-	"ubreve": "ŭ",
-	"Ucirc": "Û",
-	"ucirc": "û",
-	"Ucy": "У",
-	"ucy": "у",
-	"udarr": "⇅",
-	"Udblac": "Ű",
-	"udblac": "ű",
-	"udhar": "⥮",
-	"ufisht": "⥾",
-	"Ufr": "𝔘",
-	"ufr": "𝔲",
-	"Ugrave": "Ù",
-	"ugrave": "ù",
-	"uHar": "⥣",
-	"uharl": "↿",
-	"uharr": "↾",
-	"uhblk": "▀",
-	"ulcorn": "⌜",
-	"ulcorner": "⌜",
-	"ulcrop": "⌏",
-	"ultri": "◸",
-	"Umacr": "Ū",
-	"umacr": "ū",
-	"uml": "¨",
+	"target": "âŒ–",
+	"Tau": "Î¤",
+	"tau": "Ï„",
+	"tbrk": "âŽ´",
+	"Tcaron": "Å¤",
+	"tcaron": "Å¥",
+	"Tcedil": "Å¢",
+	"tcedil": "Å£",
+	"Tcy": "Ð¢",
+	"tcy": "Ñ‚",
+	"tdot": "âƒ›",
+	"telrec": "âŒ•",
+	"Tfr": "ð”—",
+	"tfr": "ð”±",
+	"there4": "âˆ´",
+	"therefore": "âˆ´",
+	"Therefore": "âˆ´",
+	"Theta": "Î˜",
+	"theta": "Î¸",
+	"thetasym": "Ï‘",
+	"thetav": "Ï‘",
+	"thickapprox": "â‰ˆ",
+	"thicksim": "âˆ¼",
+	"ThickSpace": "âŸâ€Š",
+	"ThinSpace": "â€‰",
+	"thinsp": "â€‰",
+	"thkap": "â‰ˆ",
+	"thksim": "âˆ¼",
+	"THORN": "Ãž",
+	"thorn": "Ã¾",
+	"tilde": "Ëœ",
+	"Tilde": "âˆ¼",
+	"TildeEqual": "â‰ƒ",
+	"TildeFullEqual": "â‰…",
+	"TildeTilde": "â‰ˆ",
+	"timesbar": "â¨±",
+	"timesb": "âŠ ",
+	"times": "Ã—",
+	"timesd": "â¨°",
+	"tint": "âˆ­",
+	"toea": "â¤¨",
+	"topbot": "âŒ¶",
+	"topcir": "â«±",
+	"top": "âŠ¤",
+	"Topf": "ð•‹",
+	"topf": "ð•¥",
+	"topfork": "â«š",
+	"tosa": "â¤©",
+	"tprime": "â€´",
+	"trade": "â„¢",
+	"TRADE": "â„¢",
+	"triangle": "â–µ",
+	"triangledown": "â–¿",
+	"triangleleft": "â—ƒ",
+	"trianglelefteq": "âŠ´",
+	"triangleq": "â‰œ",
+	"triangleright": "â–¹",
+	"trianglerighteq": "âŠµ",
+	"tridot": "â—¬",
+	"trie": "â‰œ",
+	"triminus": "â¨º",
+	"TripleDot": "âƒ›",
+	"triplus": "â¨¹",
+	"trisb": "â§",
+	"tritime": "â¨»",
+	"trpezium": "â¢",
+	"Tscr": "ð’¯",
+	"tscr": "ð“‰",
+	"TScy": "Ð¦",
+	"tscy": "Ñ†",
+	"TSHcy": "Ð‹",
+	"tshcy": "Ñ›",
+	"Tstrok": "Å¦",
+	"tstrok": "Å§",
+	"twixt": "â‰¬",
+	"twoheadleftarrow": "â†ž",
+	"twoheadrightarrow": "â† ",
+	"Uacute": "Ãš",
+	"uacute": "Ãº",
+	"uarr": "â†‘",
+	"Uarr": "â†Ÿ",
+	"uArr": "â‡‘",
+	"Uarrocir": "â¥‰",
+	"Ubrcy": "ÐŽ",
+	"ubrcy": "Ñž",
+	"Ubreve": "Å¬",
+	"ubreve": "Å­",
+	"Ucirc": "Ã›",
+	"ucirc": "Ã»",
+	"Ucy": "Ð£",
+	"ucy": "Ñƒ",
+	"udarr": "â‡…",
+	"Udblac": "Å°",
+	"udblac": "Å±",
+	"udhar": "â¥®",
+	"ufisht": "â¥¾",
+	"Ufr": "ð”˜",
+	"ufr": "ð”²",
+	"Ugrave": "Ã™",
+	"ugrave": "Ã¹",
+	"uHar": "â¥£",
+	"uharl": "â†¿",
+	"uharr": "â†¾",
+	"uhblk": "â–€",
+	"ulcorn": "âŒœ",
+	"ulcorner": "âŒœ",
+	"ulcrop": "âŒ",
+	"ultri": "â—¸",
+	"Umacr": "Åª",
+	"umacr": "Å«",
+	"uml": "Â¨",
 	"UnderBar": "_",
-	"UnderBrace": "⏟",
-	"UnderBracket": "⎵",
-	"UnderParenthesis": "⏝",
-	"Union": "⋃",
-	"UnionPlus": "⊎",
-	"Uogon": "Ų",
-	"uogon": "ų",
-	"Uopf": "𝕌",
-	"uopf": "𝕦",
-	"UpArrowBar": "⤒",
-	"uparrow": "↑",
-	"UpArrow": "↑",
-	"Uparrow": "⇑",
-	"UpArrowDownArrow": "⇅",
-	"updownarrow": "↕",
-	"UpDownArrow": "↕",
-	"Updownarrow": "⇕",
-	"UpEquilibrium": "⥮",
-	"upharpoonleft": "↿",
-	"upharpoonright": "↾",
-	"uplus": "⊎",
-	"UpperLeftArrow": "↖",
-	"UpperRightArrow": "↗",
-	"upsi": "υ",
-	"Upsi": "ϒ",
-	"upsih": "ϒ",
-	"Upsilon": "Υ",
-	"upsilon": "υ",
-	"UpTeeArrow": "↥",
-	"UpTee": "⊥",
-	"upuparrows": "⇈",
-	"urcorn": "⌝",
-	"urcorner": "⌝",
-	"urcrop": "⌎",
-	"Uring": "Ů",
-	"uring": "ů",
-	"urtri": "◹",
-	"Uscr": "𝒰",
-	"uscr": "𝓊",
-	"utdot": "⋰",
-	"Utilde": "Ũ",
-	"utilde": "ũ",
-	"utri": "▵",
-	"utrif": "▴",
-	"uuarr": "⇈",
-	"Uuml": "Ü",
-	"uuml": "ü",
-	"uwangle": "⦧",
-	"vangrt": "⦜",
-	"varepsilon": "ϵ",
-	"varkappa": "ϰ",
-	"varnothing": "∅",
-	"varphi": "ϕ",
-	"varpi": "ϖ",
-	"varpropto": "∝",
-	"varr": "↕",
-	"vArr": "⇕",
-	"varrho": "ϱ",
-	"varsigma": "ς",
-	"varsubsetneq": "⊊︀",
-	"varsubsetneqq": "⫋︀",
-	"varsupsetneq": "⊋︀",
-	"varsupsetneqq": "⫌︀",
-	"vartheta": "ϑ",
-	"vartriangleleft": "⊲",
-	"vartriangleright": "⊳",
-	"vBar": "⫨",
-	"Vbar": "⫫",
-	"vBarv": "⫩",
-	"Vcy": "В",
-	"vcy": "в",
-	"vdash": "⊢",
-	"vDash": "⊨",
-	"Vdash": "⊩",
-	"VDash": "⊫",
-	"Vdashl": "⫦",
-	"veebar": "⊻",
-	"vee": "∨",
-	"Vee": "⋁",
-	"veeeq": "≚",
-	"vellip": "⋮",
+	"UnderBrace": "âŸ",
+	"UnderBracket": "âŽµ",
+	"UnderParenthesis": "â",
+	"Union": "â‹ƒ",
+	"UnionPlus": "âŠŽ",
+	"Uogon": "Å²",
+	"uogon": "Å³",
+	"Uopf": "ð•Œ",
+	"uopf": "ð•¦",
+	"UpArrowBar": "â¤’",
+	"uparrow": "â†‘",
+	"UpArrow": "â†‘",
+	"Uparrow": "â‡‘",
+	"UpArrowDownArrow": "â‡…",
+	"updownarrow": "â†•",
+	"UpDownArrow": "â†•",
+	"Updownarrow": "â‡•",
+	"UpEquilibrium": "â¥®",
+	"upharpoonleft": "â†¿",
+	"upharpoonright": "â†¾",
+	"uplus": "âŠŽ",
+	"UpperLeftArrow": "â†–",
+	"UpperRightArrow": "â†—",
+	"upsi": "Ï…",
+	"Upsi": "Ï’",
+	"upsih": "Ï’",
+	"Upsilon": "Î¥",
+	"upsilon": "Ï…",
+	"UpTeeArrow": "â†¥",
+	"UpTee": "âŠ¥",
+	"upuparrows": "â‡ˆ",
+	"urcorn": "âŒ",
+	"urcorner": "âŒ",
+	"urcrop": "âŒŽ",
+	"Uring": "Å®",
+	"uring": "Å¯",
+	"urtri": "â—¹",
+	"Uscr": "ð’°",
+	"uscr": "ð“Š",
+	"utdot": "â‹°",
+	"Utilde": "Å¨",
+	"utilde": "Å©",
+	"utri": "â–µ",
+	"utrif": "â–´",
+	"uuarr": "â‡ˆ",
+	"Uuml": "Ãœ",
+	"uuml": "Ã¼",
+	"uwangle": "â¦§",
+	"vangrt": "â¦œ",
+	"varepsilon": "Ïµ",
+	"varkappa": "Ï°",
+	"varnothing": "âˆ…",
+	"varphi": "Ï•",
+	"varpi": "Ï–",
+	"varpropto": "âˆ",
+	"varr": "â†•",
+	"vArr": "â‡•",
+	"varrho": "Ï±",
+	"varsigma": "Ï‚",
+	"varsubsetneq": "âŠŠï¸€",
+	"varsubsetneqq": "â«‹ï¸€",
+	"varsupsetneq": "âŠ‹ï¸€",
+	"varsupsetneqq": "â«Œï¸€",
+	"vartheta": "Ï‘",
+	"vartriangleleft": "âŠ²",
+	"vartriangleright": "âŠ³",
+	"vBar": "â«¨",
+	"Vbar": "â««",
+	"vBarv": "â«©",
+	"Vcy": "Ð’",
+	"vcy": "Ð²",
+	"vdash": "âŠ¢",
+	"vDash": "âŠ¨",
+	"Vdash": "âŠ©",
+	"VDash": "âŠ«",
+	"Vdashl": "â«¦",
+	"veebar": "âŠ»",
+	"vee": "âˆ¨",
+	"Vee": "â‹",
+	"veeeq": "â‰š",
+	"vellip": "â‹®",
 	"verbar": "|",
-	"Verbar": "‖",
+	"Verbar": "â€–",
 	"vert": "|",
-	"Vert": "‖",
-	"VerticalBar": "∣",
+	"Vert": "â€–",
+	"VerticalBar": "âˆ£",
 	"VerticalLine": "|",
-	"VerticalSeparator": "❘",
-	"VerticalTilde": "≀",
-	"VeryThinSpace": " ",
-	"Vfr": "𝔙",
-	"vfr": "𝔳",
-	"vltri": "⊲",
-	"vnsub": "⊂⃒",
-	"vnsup": "⊃⃒",
-	"Vopf": "𝕍",
-	"vopf": "𝕧",
-	"vprop": "∝",
-	"vrtri": "⊳",
-	"Vscr": "𝒱",
-	"vscr": "𝓋",
-	"vsubnE": "⫋︀",
-	"vsubne": "⊊︀",
-	"vsupnE": "⫌︀",
-	"vsupne": "⊋︀",
-	"Vvdash": "⊪",
-	"vzigzag": "⦚",
-	"Wcirc": "Ŵ",
-	"wcirc": "ŵ",
-	"wedbar": "⩟",
-	"wedge": "∧",
-	"Wedge": "⋀",
-	"wedgeq": "≙",
-	"weierp": "℘",
-	"Wfr": "𝔚",
-	"wfr": "𝔴",
-	"Wopf": "𝕎",
-	"wopf": "𝕨",
-	"wp": "℘",
-	"wr": "≀",
-	"wreath": "≀",
-	"Wscr": "𝒲",
-	"wscr": "𝓌",
-	"xcap": "⋂",
-	"xcirc": "◯",
-	"xcup": "⋃",
-	"xdtri": "▽",
-	"Xfr": "𝔛",
-	"xfr": "𝔵",
-	"xharr": "⟷",
-	"xhArr": "⟺",
-	"Xi": "Ξ",
-	"xi": "ξ",
-	"xlarr": "⟵",
-	"xlArr": "⟸",
-	"xmap": "⟼",
-	"xnis": "⋻",
-	"xodot": "⨀",
-	"Xopf": "𝕏",
-	"xopf": "𝕩",
-	"xoplus": "⨁",
-	"xotime": "⨂",
-	"xrarr": "⟶",
-	"xrArr": "⟹",
-	"Xscr": "𝒳",
-	"xscr": "𝓍",
-	"xsqcup": "⨆",
-	"xuplus": "⨄",
-	"xutri": "△",
-	"xvee": "⋁",
-	"xwedge": "⋀",
-	"Yacute": "Ý",
-	"yacute": "ý",
-	"YAcy": "Я",
-	"yacy": "я",
-	"Ycirc": "Ŷ",
-	"ycirc": "ŷ",
-	"Ycy": "Ы",
-	"ycy": "ы",
-	"yen": "¥",
-	"Yfr": "𝔜",
-	"yfr": "𝔶",
-	"YIcy": "Ї",
-	"yicy": "ї",
-	"Yopf": "𝕐",
-	"yopf": "𝕪",
-	"Yscr": "𝒴",
-	"yscr": "𝓎",
-	"YUcy": "Ю",
-	"yucy": "ю",
-	"yuml": "ÿ",
-	"Yuml": "Ÿ",
-	"Zacute": "Ź",
-	"zacute": "ź",
-	"Zcaron": "Ž",
-	"zcaron": "ž",
-	"Zcy": "З",
-	"zcy": "з",
-	"Zdot": "Ż",
-	"zdot": "ż",
-	"zeetrf": "ℨ",
-	"ZeroWidthSpace": "​",
-	"Zeta": "Ζ",
-	"zeta": "ζ",
-	"zfr": "𝔷",
-	"Zfr": "ℨ",
-	"ZHcy": "Ж",
-	"zhcy": "ж",
-	"zigrarr": "⇝",
-	"zopf": "𝕫",
-	"Zopf": "ℤ",
-	"Zscr": "𝒵",
-	"zscr": "𝓏",
-	"zwj": "‍",
-	"zwnj": "‌"
+	"VerticalSeparator": "â˜",
+	"VerticalTilde": "â‰€",
+	"VeryThinSpace": "â€Š",
+	"Vfr": "ð”™",
+	"vfr": "ð”³",
+	"vltri": "âŠ²",
+	"vnsub": "âŠ‚âƒ’",
+	"vnsup": "âŠƒâƒ’",
+	"Vopf": "ð•",
+	"vopf": "ð•§",
+	"vprop": "âˆ",
+	"vrtri": "âŠ³",
+	"Vscr": "ð’±",
+	"vscr": "ð“‹",
+	"vsubnE": "â«‹ï¸€",
+	"vsubne": "âŠŠï¸€",
+	"vsupnE": "â«Œï¸€",
+	"vsupne": "âŠ‹ï¸€",
+	"Vvdash": "âŠª",
+	"vzigzag": "â¦š",
+	"Wcirc": "Å´",
+	"wcirc": "Åµ",
+	"wedbar": "â©Ÿ",
+	"wedge": "âˆ§",
+	"Wedge": "â‹€",
+	"wedgeq": "â‰™",
+	"weierp": "â„˜",
+	"Wfr": "ð”š",
+	"wfr": "ð”´",
+	"Wopf": "ð•Ž",
+	"wopf": "ð•¨",
+	"wp": "â„˜",
+	"wr": "â‰€",
+	"wreath": "â‰€",
+	"Wscr": "ð’²",
+	"wscr": "ð“Œ",
+	"xcap": "â‹‚",
+	"xcirc": "â—¯",
+	"xcup": "â‹ƒ",
+	"xdtri": "â–½",
+	"Xfr": "ð”›",
+	"xfr": "ð”µ",
+	"xharr": "âŸ·",
+	"xhArr": "âŸº",
+	"Xi": "Îž",
+	"xi": "Î¾",
+	"xlarr": "âŸµ",
+	"xlArr": "âŸ¸",
+	"xmap": "âŸ¼",
+	"xnis": "â‹»",
+	"xodot": "â¨€",
+	"Xopf": "ð•",
+	"xopf": "ð•©",
+	"xoplus": "â¨",
+	"xotime": "â¨‚",
+	"xrarr": "âŸ¶",
+	"xrArr": "âŸ¹",
+	"Xscr": "ð’³",
+	"xscr": "ð“",
+	"xsqcup": "â¨†",
+	"xuplus": "â¨„",
+	"xutri": "â–³",
+	"xvee": "â‹",
+	"xwedge": "â‹€",
+	"Yacute": "Ã",
+	"yacute": "Ã½",
+	"YAcy": "Ð¯",
+	"yacy": "Ñ",
+	"Ycirc": "Å¶",
+	"ycirc": "Å·",
+	"Ycy": "Ð«",
+	"ycy": "Ñ‹",
+	"yen": "Â¥",
+	"Yfr": "ð”œ",
+	"yfr": "ð”¶",
+	"YIcy": "Ð‡",
+	"yicy": "Ñ—",
+	"Yopf": "ð•",
+	"yopf": "ð•ª",
+	"Yscr": "ð’´",
+	"yscr": "ð“Ž",
+	"YUcy": "Ð®",
+	"yucy": "ÑŽ",
+	"yuml": "Ã¿",
+	"Yuml": "Å¸",
+	"Zacute": "Å¹",
+	"zacute": "Åº",
+	"Zcaron": "Å½",
+	"zcaron": "Å¾",
+	"Zcy": "Ð—",
+	"zcy": "Ð·",
+	"Zdot": "Å»",
+	"zdot": "Å¼",
+	"zeetrf": "â„¨",
+	"ZeroWidthSpace": "â€‹",
+	"Zeta": "Î–",
+	"zeta": "Î¶",
+	"zfr": "ð”·",
+	"Zfr": "â„¨",
+	"ZHcy": "Ð–",
+	"zhcy": "Ð¶",
+	"zigrarr": "â‡",
+	"zopf": "ð•«",
+	"Zopf": "â„¤",
+	"Zscr": "ð’µ",
+	"zscr": "ð“",
+	"zwj": "â€",
+	"zwnj": "â€Œ"
 };
 
 /***/ }),
@@ -7197,7 +7324,7 @@ var defaultSchemas = {
 var tlds_2ch_src_re = 'a[cdefgilmnoqrstuwxz]|b[abdefghijmnorstvwyz]|c[acdfghiklmnoruvwxyz]|d[ejkmoz]|e[cegrstu]|f[ijkmor]|g[abdefghilmnpqrstuwy]|h[kmnrtu]|i[delmnoqrst]|j[emop]|k[eghimnprwyz]|l[abcikrstuvy]|m[acdeghklmnopqrstuvwxyz]|n[acefgilopruz]|om|p[aefghklmnrstwy]|qa|r[eosuw]|s[abcdeghijklmnortuvxyz]|t[cdfghjklmnortvwz]|u[agksyz]|v[aceginu]|w[fs]|y[et]|z[amw]';
 
 // DON'T try to make PRs with changes. Extend TLDs with LinkifyIt.tlds() instead
-var tlds_default = 'biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|рф'.split('|');
+var tlds_default = 'biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|Ñ€Ñ„'.split('|');
 
 /*eslint-enable max-len*/
 
@@ -7660,7 +7787,7 @@ LinkifyIt.prototype.match = function match(text) {
  * to avoid false positives. By default this algorythm used:
  *
  * - hostname with any 2-letter root zones are ok.
- * - biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|рф
+ * - biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|Ñ€Ñ„
  *   are ok.
  * - encoded (`xn--...`) root zones are ok.
  *
@@ -7974,10 +8101,8 @@ module.exports = [
   'option',
   'p',
   'param',
-  'pre',
   'section',
   'source',
-  'title',
   'summary',
   'table',
   'tbody',
@@ -8072,18 +8197,18 @@ module.exports = function parseLinkDestination(str, pos, max) {
 
     if (code === 0x28 /* ( */) {
       level++;
-      if (level > 1) { break; }
     }
 
     if (code === 0x29 /* ) */) {
+      if (level === 0) { break; }
       level--;
-      if (level < 0) { break; }
     }
 
     pos++;
   }
 
   if (start === pos) { return result; }
+  if (level !== 0) { return result; }
 
   result.str = unescapeAll(str.slice(start, pos));
   result.lines = lines;
@@ -8367,10 +8492,10 @@ function normalizeLinkText(url) {
  * - __typographer__  - `false`. Set `true` to enable [some language-neutral
  *   replacement](https://github.com/markdown-it/markdown-it/blob/master/lib/rules_core/replacements.js) +
  *   quotes beautification (smartquotes).
- * - __quotes__ - `“”‘’`, String or Array. Double + single quotes replacement
+ * - __quotes__ - `â€œâ€â€˜â€™`, String or Array. Double + single quotes replacement
  *   pairs, when typographer enabled and smartquotes on. For example, you can
- *   use `'«»„“'` for Russian, `'„“‚‘'` for German, and
- *   `['«\xA0', '\xA0»', '‹\xA0', '\xA0›']` for French (including nbsp).
+ *   use `'Â«Â»â€žâ€œ'` for Russian, `'â€žâ€œâ€šâ€˜'` for German, and
+ *   `['Â«\xA0', '\xA0Â»', 'â€¹\xA0', '\xA0â€º']` for French (including nbsp).
  * - __highlight__ - `null`. Highlighter function for fenced code blocks.
  *   Highlighter `function (str, lang)` should return escaped HTML. It can also
  *   return empty string if the source was not changed and should be escaped
@@ -8818,7 +8943,7 @@ var _rules = [
   [ 'table',      __webpack_require__(44),      [ 'paragraph', 'reference' ] ],
   [ 'code',       __webpack_require__(34) ],
   [ 'fence',      __webpack_require__(35),      [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
-  [ 'blockquote', __webpack_require__(33), [ 'paragraph', 'reference', 'list' ] ],
+  [ 'blockquote', __webpack_require__(33), [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
   [ 'hr',         __webpack_require__(37),         [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
   [ 'list',       __webpack_require__(40),       [ 'paragraph', 'reference', 'blockquote' ] ],
   [ 'reference',  __webpack_require__(42) ],
@@ -8883,7 +9008,7 @@ ParserBlock.prototype.tokenize = function (state, startLine, endLine) {
       if (ok) { break; }
     }
 
-    // set state.tight iff we had an empty line before current tag
+    // set state.tight if we had an empty line before current tag
     // i.e. latest empty line should not count
     state.tight = !hasEmptyLines;
 
@@ -9198,9 +9323,9 @@ module.exports = {
     // Double + single quotes replacement pairs, when typographer enabled,
     // and smartquotes on. Could be either a String or an Array.
     //
-    // For example, you can use '«»„“' for Russian, '„“‚‘' for German,
-    // and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
-    quotes: '\u201c\u201d\u2018\u2019', /* “”‘’ */
+    // For example, you can use 'Â«Â»â€žâ€œ' for Russian, 'â€žâ€œâ€šâ€˜' for German,
+    // and ['Â«\xA0', '\xA0Â»', 'â€¹\xA0', '\xA0â€º'] for French (including nbsp).
+    quotes: '\u201c\u201d\u2018\u2019', /* â€œâ€â€˜â€™ */
 
     // Highlighter function. Should return escaped HTML,
     // or '' if the source string is not changed and should be escaped externaly.
@@ -9285,9 +9410,9 @@ module.exports = {
     // Double + single quotes replacement pairs, when typographer enabled,
     // and smartquotes on. Could be either a String or an Array.
     //
-    // For example, you can use '«»„“' for Russian, '„“‚‘' for German,
-    // and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
-    quotes: '\u201c\u201d\u2018\u2019', /* “”‘’ */
+    // For example, you can use 'Â«Â»â€žâ€œ' for Russian, 'â€žâ€œâ€šâ€˜' for German,
+    // and ['Â«\xA0', '\xA0Â»', 'â€¹\xA0', '\xA0â€º'] for French (including nbsp).
+    quotes: '\u201c\u201d\u2018\u2019', /* â€œâ€â€˜â€™ */
 
     // Highlighter function. Should return escaped HTML,
     // or '' if the source string is not changed and should be escaped externaly.
@@ -9334,9 +9459,9 @@ module.exports = {
     // Double + single quotes replacement pairs, when typographer enabled,
     // and smartquotes on. Could be either a String or an Array.
     //
-    // For example, you can use '«»„“' for Russian, '„“‚‘' for German,
-    // and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
-    quotes: '\u201c\u201d\u2018\u2019', /* “”‘’ */
+    // For example, you can use 'Â«Â»â€žâ€œ' for Russian, 'â€žâ€œâ€šâ€˜' for German,
+    // and ['Â«\xA0', '\xA0Â»', 'â€¹\xA0', '\xA0â€º'] for French (including nbsp).
+    quotes: '\u201c\u201d\u2018\u2019', /* â€œâ€â€˜â€™ */
 
     // Highlighter function. Should return escaped HTML,
     // or '' if the source string is not changed and should be escaped externaly.
@@ -9441,7 +9566,7 @@ default_rules.fence = function (tokens, idx, options, env, slf) {
     return highlighted + '\n';
   }
 
-  // If language exists, inject class gently, without mudofying original token.
+  // If language exists, inject class gently, without modifying original token.
   // May be, one day we will add .clone() for token and simplify this part, but
   // now we prefer to keep things local.
   if (info) {
@@ -9737,7 +9862,6 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
       ch,
       i,
       initial,
-      isOutdented,
       l,
       lastLineEmpty,
       lines,
@@ -9753,6 +9877,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
       terminate,
       terminatorRules,
       token,
+      wasOutdented,
       oldLineMax = state.lineMax,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
@@ -9833,6 +9958,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
 
   oldParentType = state.parentType;
   state.parentType = 'blockquote';
+  wasOutdented = false;
 
   // Search the end of the block
   //
@@ -9861,7 +9987,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
     //    > current blockquote
     // 2. checking this line
     // ```
-    isOutdented = state.sCount[nextLine] < state.blkIndent;
+    if (state.sCount[nextLine] < state.blkIndent) wasOutdented = true;
 
     pos = state.bMarks[nextLine] + state.tShift[nextLine];
     max = state.eMarks[nextLine];
@@ -9871,7 +9997,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
       break;
     }
 
-    if (state.src.charCodeAt(pos++) === 0x3E/* > */ && !isOutdented) {
+    if (state.src.charCodeAt(pos++) === 0x3E/* > */ && !wasOutdented) {
       // This line is inside the blockquote.
 
       // skip spaces after ">" and re-calculate offset
@@ -9970,8 +10096,6 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
 
       break;
     }
-
-    if (isOutdented) break;
 
     oldBMarks.push(state.bMarks[nextLine]);
     oldBSCount.push(state.bsCount[nextLine]);
@@ -10452,7 +10576,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
 var isSpace = __webpack_require__(0).isSpace;
 
 
-// Search `[-+*][\n ]`, returns next pos arter marker on success
+// Search `[-+*][\n ]`, returns next pos after marker on success
 // or -1 on fail.
 function skipBulletListMarker(state, startLine) {
   var marker, pos, max, ch;
@@ -10480,7 +10604,7 @@ function skipBulletListMarker(state, startLine) {
   return pos;
 }
 
-// Search `\d+[.)][\n ]`, returns next pos arter marker on success
+// Search `\d+[.)][\n ]`, returns next pos after marker on success
 // or -1 on fail.
 function skipOrderedListMarker(state, startLine) {
   var ch,
@@ -10657,12 +10781,10 @@ module.exports = function list(state, startLine, endLine, silent) {
     while (pos < max) {
       ch = state.src.charCodeAt(pos);
 
-      if (isSpace(ch)) {
-        if (ch === 0x09) {
-          offset += 4 - (offset + state.bsCount[nextLine]) % 4;
-        } else {
-          offset++;
-        }
+      if (ch === 0x09) {
+        offset += 4 - (offset + state.bsCount[nextLine]) % 4;
+      } else if (ch === 0x20) {
+        offset++;
       } else {
         break;
       }
@@ -10763,7 +10885,7 @@ module.exports = function list(state, startLine, endLine, silent) {
     if (markerCharCode !== state.src.charCodeAt(posAfterMarker - 1)) { break; }
   }
 
-  // Finilize list
+  // Finalize list
   if (isOrdered) {
     token = state.push('ordered_list_close', 'ol', -1);
   } else {
@@ -11706,20 +11828,20 @@ module.exports = function inline(state) {
 "use strict";
 // Simple typographyc replacements
 //
-// (c) (C) → ©
-// (tm) (TM) → ™
-// (r) (R) → ®
-// +- → ±
-// (p) (P) -> §
-// ... → … (also ?.... → ?.., !.... → !..)
-// ???????? → ???, !!!!! → !!!, `,,` → `,`
-// -- → &ndash;, --- → &mdash;
+// (c) (C) â†’ Â©
+// (tm) (TM) â†’ â„¢
+// (r) (R) â†’ Â®
+// +- â†’ Â±
+// (p) (P) -> Â§
+// ... â†’ â€¦ (also ?.... â†’ ?.., !.... â†’ !..)
+// ???????? â†’ ???, !!!!! â†’ !!!, `,,` â†’ `,`
+// -- â†’ &ndash;, --- â†’ &mdash;
 //
 
 
 // TODO:
-// - fractionals 1/2, 1/4, 3/4 -> ½, ¼, ¾
-// - miltiplication 2 x 4 -> 2 × 4
+// - fractionals 1/2, 1/4, 3/4 -> Â½, Â¼, Â¾
+// - miltiplication 2 x 4 -> 2 Ã— 4
 
 var RARE_RE = /\+-|\.\.|\?\?\?\?|!!!!|,,|--/;
 
@@ -11729,10 +11851,10 @@ var SCOPED_ABBR_TEST_RE = /\((c|tm|r|p)\)/i;
 
 var SCOPED_ABBR_RE = /\((c|tm|r|p)\)/ig;
 var SCOPED_ABBR = {
-  c: '©',
-  r: '®',
-  p: '§',
-  tm: '™'
+  c: 'Â©',
+  r: 'Â®',
+  p: 'Â§',
+  tm: 'â„¢'
 };
 
 function replaceFn(match, name) {
@@ -11768,10 +11890,10 @@ function replace_rare(inlineTokens) {
     if (token.type === 'text' && !inside_autolink) {
       if (RARE_RE.test(token.content)) {
         token.content = token.content
-                    .replace(/\+-/g, '±')
-                    // .., ..., ....... -> …
+                    .replace(/\+-/g, 'Â±')
+                    // .., ..., ....... -> â€¦
                     // but ?..... & !..... -> ?.. & !..
-                    .replace(/\.{2,}/g, '…').replace(/([?!])…/g, '$1..')
+                    .replace(/\.{2,}/g, 'â€¦').replace(/([?!])â€¦/g, '$1..')
                     .replace(/([?!]){4,}/g, '$1$1$1').replace(/,{2,}/g, ',')
                     // em-dash
                     .replace(/(^|[^-])---([^-]|$)/mg, '$1\u2014$2')
@@ -11829,7 +11951,7 @@ var isMdAsciiPunct = __webpack_require__(0).isMdAsciiPunct;
 
 var QUOTE_TEST_RE = /['"]/;
 var QUOTE_RE = /['"]/g;
-var APOSTROPHE = '\u2019'; /* ’ */
+var APOSTROPHE = '\u2019'; /* â€™ */
 
 
 function replaceAt(str, index, ch) {
@@ -12280,7 +12402,7 @@ module.exports = function entity(state, silent) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// Proceess escaped chars and hardbreaks
+// Process escaped chars and hardbreaks
 
 
 
@@ -14182,7 +14304,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var AbstractTextFormatter = (function () {
+var AbstractTextFormatter = /** @class */ (function () {
     function AbstractTextFormatter(regularExpression) {
         this._regularExpression = regularExpression;
     }
@@ -14197,7 +14319,7 @@ var AbstractTextFormatter = (function () {
     };
     return AbstractTextFormatter;
 }());
-var DateFormatter = (function (_super) {
+var DateFormatter = /** @class */ (function (_super) {
     __extends(DateFormatter, _super);
     function DateFormatter() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -14214,7 +14336,7 @@ var DateFormatter = (function (_super) {
     };
     return DateFormatter;
 }(AbstractTextFormatter));
-var TimeFormatter = (function (_super) {
+var TimeFormatter = /** @class */ (function (_super) {
     __extends(TimeFormatter, _super);
     function TimeFormatter() {
         return _super !== null && _super.apply(this, arguments) || this;
