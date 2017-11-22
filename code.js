@@ -170,7 +170,7 @@ function onExecuteAction(action) {
         message += "    Type: <unknown>";
     }
 
-    alert(message);
+    //alert(message);
 }
 
 function showPopupCard(action) {
