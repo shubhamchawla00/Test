@@ -1,7 +1,7 @@
 'use strict';
 
 function AdaptiveCardMobileRender(targetDom) {
-    this.targetDom = targetDom || "content";
+    this.targetDom = targetDom || "#content";
  }
 
 AdaptiveCardMobileRender.prototype.HttpAction = function () {
