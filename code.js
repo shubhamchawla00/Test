@@ -193,6 +193,7 @@ function showPopupCard(action) {
     popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">';
 
     var overlayElement = popupWindow.document.createElement("div");
+    overlayElement.setAttribute('src', 'hdwebview://jswindowopenoverride||'); 
     overlayElement.id = "popupOverlay";
     overlayElement.className = "popupOverlay";
     overlayElement.tabIndex = 0;
