@@ -193,7 +193,6 @@ function showPopupCard(action) {
     popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">';
 
     var overlayElement = popupWindow.document.createElement("div");
-    overlayElement.setAttribute('src', 'hdwebview://jswindowopenoverride||'); 
     overlayElement.id = "popupOverlay";
     overlayElement.className = "popupOverlay";
     overlayElement.tabIndex = 0;
@@ -642,4 +641,26 @@ window.renderCard = function(json) {
   cardRenderer.init();
   var parsedJSON = JSON.parse(window.atob(json));
   cardRenderer.render(parsedJSON);
+}
+
+window.onreadyPopup = function() {
+var popupWindow = window.child
+ popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">';
+    popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">';
+
+    var overlayElement = popupWindow.document.createElement("div");
+    overlayElement.id = "popupOverlay";
+    overlayElement.className = "popupOverlay";
+    overlayElement.tabIndex = 0;
+    overlayElement.style.width = "auto"; // popupWindow.document.documentElement.scrollWidth + "px";
+    overlayElement.style.height = popupWindow.document.documentElement.scrollHeight + "px";
+    overlayElement.onclick = function (e) {
+        document.body.removeChild(overlayElement);
+    };
+    var cardContainer = popupWindow.document.createElement("div");
+    cardContainer.className = "popupCardContainer";
+    cardContainer.onclick = function (e) { e.stopPropagation(); };
+    cardContainer.appendChild(action.card.render());
+    overlayElement.appendChild(cardContainer);
+    popupWindow.document.body.appendChild(overlayElement);
 }
