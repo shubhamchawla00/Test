@@ -183,30 +183,30 @@ function showPopupCard(action) {
     top += (window.innerHeight / 2) - (height / 2);
     // Open a child window with a desired set of standard browser features
     var popupWindow = window.open("", '_blank', 'toolbar=no, location=yes, status=no, menubar=no, top=' + top + ', left=' + left + ', width=' + width + ', height=' + height);
-    if (!popupWindow) {
-        // If we failed to open the window fail the authentication flow
-//         throw new Error("Failed to open popup");
-    };
+  //   if (!popupWindow) {
+//         // If we failed to open the window fail the authentication flow
+ //         throw new Error("Failed to open popup");
+//     };
 
     //TODO: Change this as required
-    popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">';
-    popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">';
-
-    var overlayElement = popupWindow.document.createElement("div");
-    overlayElement.id = "popupOverlay";
-    overlayElement.className = "popupOverlay";
-    overlayElement.tabIndex = 0;
-    overlayElement.style.width = "auto"; // popupWindow.document.documentElement.scrollWidth + "px";
-    overlayElement.style.height = popupWindow.document.documentElement.scrollHeight + "px";
-    overlayElement.onclick = function (e) {
-        document.body.removeChild(overlayElement);
-    };
-    var cardContainer = popupWindow.document.createElement("div");
-    cardContainer.className = "popupCardContainer";
-    cardContainer.onclick = function (e) { e.stopPropagation(); };
-    cardContainer.appendChild(action.card.render());
-    overlayElement.appendChild(cardContainer);
-    popupWindow.document.body.appendChild(overlayElement);
+   //  popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">';
+//     popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">';
+// 
+//     var overlayElement = popupWindow.document.createElement("div");
+//     overlayElement.id = "popupOverlay";
+//     overlayElement.className = "popupOverlay";
+//     overlayElement.tabIndex = 0;
+//     overlayElement.style.width = "auto"; // popupWindow.document.documentElement.scrollWidth + "px";
+//     overlayElement.style.height = popupWindow.document.documentElement.scrollHeight + "px";
+//     overlayElement.onclick = function (e) {
+//         document.body.removeChild(overlayElement);
+//     };
+//     var cardContainer = popupWindow.document.createElement("div");
+//     cardContainer.className = "popupCardContainer";
+//     cardContainer.onclick = function (e) { e.stopPropagation(); };
+//     cardContainer.appendChild(action.card.render());
+//     overlayElement.appendChild(cardContainer);
+//     popupWindow.document.body.appendChild(overlayElement);
 }
 
 function MessageCard() {
