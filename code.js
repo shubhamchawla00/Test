@@ -185,7 +185,7 @@ function showPopupCard(action) {
     var popupWindow = window.open("", '_blank', 'toolbar=no, location=yes, status=no, menubar=no, top=' + top + ', left=' + left + ', width=' + width + ', height=' + height);
     if (!popupWindow) {
         // If we failed to open the window fail the authentication flow
-        throw new Error("Failed to open popup");
+//         throw new Error("Failed to open popup");
     };
 
     //TODO: Change this as required
