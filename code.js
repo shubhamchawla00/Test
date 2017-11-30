@@ -175,7 +175,7 @@ function onExecuteAction(action) {
 
 function showPopupCard(action) {
 	post('www.google.com/showActionPopUp', {head: '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">  <link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">',
-	 body: action.card.render().innerHTML});
+	 body: window.btoa(action.card.render().innerHTML)});
 }
 
 function post(path, params, method) {
@@ -192,7 +192,7 @@ function post(path, params, method) {
             var hiddenField = document.createElement("input");
             hiddenField.setAttribute("type", "hidden");
             hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", window.atob(params[key]));
+            hiddenField.setAttribute("value", params[key]);
 
             form.appendChild(hiddenField);
         }
