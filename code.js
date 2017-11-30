@@ -174,8 +174,8 @@ function onExecuteAction(action) {
 }
 
 function showPopupCard(action) {
-	post('www.google.com/showActionPopUp', {head: '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">  <link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">',
-	 body: window.btoa(action.card.render().innerHTML)});
+	post('www.google.com/showActionPopUp', {head: window.btoa('<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">  <link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">'),
+	body: window.btoa(action.card.render().innerHTML)});
 }
 
 function post(path, params, method) {
