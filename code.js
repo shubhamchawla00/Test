@@ -174,39 +174,31 @@ function onExecuteAction(action) {
 }
 
 function showPopupCard(action) {
-    var width = 350;
-    var height = 250;
-    // We are running in the browser so we need to center the new window ourselves
-    var left = window.screenLeft ? window.screenLeft : window.screenX;
-    var top = window.screenTop ? window.screenTop : window.screenY;
-    left += (window.innerWidth / 2) - (width / 2);
-    top += (window.innerHeight / 2) - (height / 2);
-    // Open a child window with a desired set of standard browser features
-    var popupWindow = window.open("", '_blank', 'toolbar=no, location=yes, status=no, menubar=no, top=' + top + ', left=' + left + ', width=' + width + ', height=' + height);
-  //   if (!popupWindow) {
-//         // If we failed to open the window fail the authentication flow
- //         throw new Error("Failed to open popup");
-//     };
+	post('/showActionPopUp/', {head: '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">  <link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">', body: action.card.render()});
+}
 
-    //TODO: Change this as required
-   //  popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">';
-//     popupWindow.document.head.innerHTML+= '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">';
-// 
-//     var overlayElement = popupWindow.document.createElement("div");
-//     overlayElement.id = "popupOverlay";
-//     overlayElement.className = "popupOverlay";
-//     overlayElement.tabIndex = 0;
-//     overlayElement.style.width = "auto"; // popupWindow.document.documentElement.scrollWidth + "px";
-//     overlayElement.style.height = popupWindow.document.documentElement.scrollHeight + "px";
-//     overlayElement.onclick = function (e) {
-//         document.body.removeChild(overlayElement);
-//     };
-//     var cardContainer = popupWindow.document.createElement("div");
-//     cardContainer.className = "popupCardContainer";
-//     cardContainer.onclick = function (e) { e.stopPropagation(); };
-//     cardContainer.appendChild(action.card.render());
-//     overlayElement.appendChild(cardContainer);
-//     popupWindow.document.body.appendChild(overlayElement);
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
 }
 
 function MessageCard() {
