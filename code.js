@@ -174,7 +174,7 @@ function onExecuteAction(action) {
 }
 
 function showPopupCard(action) {
-	post('/showActionPopUp/', {head: '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">  <link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">', body: action.card.render()});
+	post('showActionPopUp', {head: '<link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/app.css">  <link rel="stylesheet" type="text/css" href="http://adaptivecards.io/visualizer/css/teams.css">', body: action.card.render()});
 }
 
 function post(path, params, method) {
